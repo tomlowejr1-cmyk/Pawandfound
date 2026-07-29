@@ -3,9 +3,6 @@
   "buildCommand": "bash ./build-vercel.sh",
   "outputDirectory": ".vercel/output",
   "installCommand": "bun install",
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/render" }
-  ],
   "github": {
     "enabled": true,
     "autoAlias": true,
