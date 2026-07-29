@@ -312,11 +312,44 @@ function BlogPage() {
         </div>
         <div className="blog-content mt-8" dangerouslySetInnerHTML={{ __html: post.content }} />
         
-        {/* Shop the Look */}
-        {post.relatedSlugs && (() => {
-          const relatedProducts = post.relatedSlugs
-            .map(slug => products.find(p => p.slug === slug))
-            .filter(Boolean) as Product[];
+        {/* Shop This Article */}
+        {(() => {
+          // First check explicit relatedSlugs, then fall back to tag-based matching
+          let relatedProducts: Product[] = [];
+          if (post.relatedSlugs) {
+            relatedProducts = post.relatedSlugs
+              .map(slug => products.find(p => p.slug === slug))
+              .filter(Boolean) as Product[];
+          } else {
+            // Auto-match based on post tags
+            const tags = post.tags;
+            const scored = products.map(p => {
+              let score = 0;
+              for (const tag of tags) {
+                if (tag === "dogs" || tag === "dog") {
+                  if (p.tags?.some((t: string) => ["dog", "collar", "leash", "t-shirt", "hoodie", "toy", "chew"].some(k => t.includes(k)))) score += 3;
+                }
+                if (tag === "cats" || tag === "cat") {
+                  if (p.tags?.some((t: string) => ["cat", "litter", "carrier", "toy"].some(k => t.includes(k)))) score += 3;
+                }
+                if (tag === "essentials" || tag === "food" || tag === "nutrition") {
+                  if (p.tags?.some((t: string) => ["bowl", "food", "treats", "litter"].some(k => t.includes(k)))) score += 2;
+                }
+                if (tag === "supplies" || tag === "tips" || tag === "health") {
+                  if (p.tags?.some((t: string) => ["grooming", "brush", "shampoo", "bed", "safety"].some(k => t.includes(k)))) score += 2;
+                }
+                if (tag === "guides") {
+                  if (p.featured) score += 2;
+                }
+              }
+              return { product: p, score };
+            });
+            relatedProducts = scored
+              .filter(s => s.score > 0)
+              .sort((a, b) => b.score - a.score)
+              .slice(0, 4)
+              .map(s => s.product);
+          }
           if (relatedProducts.length > 0) {
             return <ShopTheLook products={relatedProducts} />;
           }
