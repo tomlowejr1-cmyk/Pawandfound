@@ -3,12 +3,6 @@
   "buildCommand": "bash ./build-vercel.sh",
   "outputDirectory": ".vercel/output",
   "installCommand": "bun install",
-  "functions": {
-    "render.func": {
-      "runtime": "@vercel/node@3.2.24",
-      "includeFiles": "dist/**"
-    }
-  },
   "rewrites": [
     { "source": "/(.*)", "destination": "/render" }
   ],
