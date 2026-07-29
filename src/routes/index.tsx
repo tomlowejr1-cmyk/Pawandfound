@@ -3,8 +3,6 @@ import { loadProducts } from "~/lib/products";
 import type { Product } from "~/lib/types";
 import { CATEGORIES } from "~/lib/types";
 import { NewsletterSignup } from "~/components/newsletter-signup";
-import { WeatherWidget } from "~/components/weather-widget";
-
 const SITE_URL = "https://pawandfound.store";
 
 /** Deterministic shuffle using week number as seed */
@@ -97,13 +95,6 @@ function Home() {
               </a>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* Weather Widget */}
-      <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 -mt-8 relative z-10">
-        <div className="mx-auto max-w-sm">
-          <WeatherWidget />
         </div>
       </section>
 
