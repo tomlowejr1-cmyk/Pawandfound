@@ -1,0 +1,131 @@
+@import "tailwindcss";
+
+@layer base {
+  html,
+  body {
+    @apply bg-[#FFF8F0] text-[#2D2D2D] antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  body, p, span, li, a, label {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  ::selection {
+    @apply bg-[#FF7F5C]/20 text-[#2D2D2D];
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-lg bg-[#FF7F5C] px-6 py-3 font-semibold text-white shadow-sm transition-all hover:bg-[#FF7F5C]/90 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[#FF7F5C]/50 focus:ring-offset-2 active:scale-[0.98];
+    font-family: 'Poppins', 'Inter', sans-serif;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center rounded-lg border-2 border-[#2A9D8F] bg-white px-6 py-3 font-semibold text-[#2A9D8F] shadow-sm transition-all hover:bg-[#2A9D8F]/5 focus:outline-none focus:ring-2 focus:ring-[#2A9D8F]/50 focus:ring-offset-2 active:scale-[0.98];
+    font-family: 'Poppins', 'Inter', sans-serif;
+  }
+
+  .card {
+    @apply overflow-hidden rounded-xl bg-white shadow-sm transition-all hover:shadow-md;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+
+  .badge {
+    @apply inline-flex items-center rounded-full bg-[#F4A261]/15 px-3 py-1 text-xs font-medium text-[#8B5E3C];
+    font-family: 'Poppins', 'Inter', sans-serif;
+  }
+
+  .badge-sale {
+    @apply inline-flex items-center rounded-full bg-[#FF7F5C]/15 px-3 py-1 text-xs font-medium text-[#FF7F5C];
+    font-family: 'Poppins', 'Inter', sans-serif;
+  }
+
+  .section-title {
+    @apply text-3xl font-bold tracking-tight text-[#2D2D2D] sm:text-4xl;
+    font-family: 'Poppins', 'Inter', sans-serif;
+  }
+
+  .section-subtitle {
+    @apply text-[#6B7280];
+  }
+
+  .nav-link {
+    @apply font-semibold transition-colors;
+    font-family: 'Poppins', 'Inter', sans-serif;
+  }
+
+  .blog-content h1,
+  .blog-content h2,
+  .blog-content h3,
+  .blog-content h4,
+  .blog-content h5,
+  .blog-content h6 {
+    @apply mt-8 mb-4 font-bold text-[#2D2D2D] leading-tight;
+    font-family: 'Poppins', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+
+  .blog-content h1 { @apply text-3xl; }
+  .blog-content h2 { @apply text-2xl; }
+  .blog-content h3 { @apply text-xl; }
+
+  .blog-content p {
+    @apply mb-4 leading-relaxed text-[#4A4A4A];
+  }
+
+  .blog-content ul,
+  .blog-content ol {
+    @apply mb-4 pl-6 space-y-1;
+  }
+
+  .blog-content ul { @apply list-disc; }
+  .blog-content ol { @apply list-decimal; }
+
+  .blog-content li {
+    @apply text-[#4A4A4A] leading-relaxed;
+  }
+
+  .blog-content a {
+    @apply text-[#FF7F5C] font-medium underline hover:text-[#FF7F5C]/80 transition-colors;
+  }
+
+  .blog-content strong {
+    @apply font-bold text-[#2D2D2D];
+  }
+
+  .blog-content em {
+    @apply italic;
+  }
+
+  .blog-content code {
+    @apply bg-[#E9EDDE] px-1.5 py-0.5 rounded text-sm font-mono text-[#2D2D2D];
+  }
+
+  .blog-content hr {
+    @apply my-8 border-[#E9EDDE];
+  }
+
+  .blog-content table {
+    @apply w-full mb-6 border-collapse;
+  }
+
+  .blog-content td {
+    @apply border border-[#E9EDDE] px-3 py-2 text-sm text-[#4A4A4A];
+  }
+
+  .blog-content img {
+    @apply rounded-lg my-6 max-w-full;
+  }
+
+  .blog-content input[type="checkbox"] {
+    @apply mr-2 accent-[#FF7F5C];
+  }
+
+  .blog-content blockquote {
+    @apply border-l-4 border-[#FF7F5C] pl-4 italic text-[#6B7280] my-6;
+  }
+}

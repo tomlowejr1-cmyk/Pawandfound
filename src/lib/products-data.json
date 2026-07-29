@@ -1,0 +1,189 @@
+[
+  {
+    "id": "app-001",
+    "name": "Good Dog Club T-Shirt",
+    "slug": "good-dog-club-tshirt",
+    "category": "Apparel",
+    "price": 19.99,
+    "description": "A soft, breathable cotton T-shirt for your pup. Features the iconic 'Good Dog Club' paw print design. Available in sizes XS-XL. Machine washable.",
+    "image": "/images/product-tshirt-good-dog.jpg",
+    "featured": true,
+    "tags": ["t-shirt", "cotton", "dog", "top seller"]
+  },
+  {
+    "id": "app-002",
+    "name": "Paw & Found Logo Tee",
+    "slug": "paw-found-logo-tee",
+    "category": "Apparel",
+    "price": 22.99,
+    "description": "Rep your favorite pet store with our signature logo tee. Lightweight, tagless, and super soft — perfect for daily walks. Available in 5 colors.",
+    "image": "/images/product-tshirt-logo.jpg",
+    "featured": false,
+    "tags": ["t-shirt", "logo", "dog", "cat"]
+  },
+  {
+    "id": "app-003",
+    "name": "Adventure Pup Graphic Tee",
+    "slug": "adventure-pup-graphic-tee",
+    "category": "Apparel",
+    "price": 24.99,
+    "description": "A playful graphic tee featuring a mountain adventure scene. Made from 100% organic cotton with a comfortable oversized fit. Your dog will look ready for any trail.",
+    "image": "/images/product-tshirt-adventure.jpg",
+    "featured": true,
+    "tags": ["t-shirt", "graphic", "organic", "dog"]
+  },
+  {
+    "id": "app-004",
+    "name": "Classic Plaid Bandana",
+    "slug": "classic-plaid-bandana",
+    "category": "Apparel",
+    "price": 12.99,
+    "description": "A timeless plaid bandana that adds instant style. Double-sided design, soft cotton, and easy slip-on loop. One size fits most dogs and cats.",
+    "image": "/images/product-bandana-plaid.jpg",
+    "featured": false,
+    "tags": ["bandana", "cotton", "dog", "cat", "accessory"]
+  },
+  {
+    "id": "app-005",
+    "name": "Cozy Hoodie Pullover",
+    "slug": "cozy-hoodie-pullover",
+    "category": "Apparel",
+    "price": 34.99,
+    "description": "Keep your pup warm and stylish with our fleece-lined hoodie. Features a functional hood, front pocket, and adjustable chest strap. Perfect for chilly morning walks.",
+    "image": "/images/product-hoodie-cozy.jpg",
+    "featured": true,
+    "tags": ["hoodie", "fleece", "warm", "dog", "winter"]
+  },
+  {
+    "id": "ess-001",
+    "name": "Stainless Steel Bowl Set",
+    "slug": "stainless-steel-bowl-set",
+    "category": "Essentials",
+    "price": 24.99,
+    "description": "A durable 2-bowl set (food + water) with non-slip silicone base. Rust-resistant, dishwasher-safe, and available in 3 sizes. No more sliding bowls!",
+    "image": "/images/product-bowl-set.jpg",
+    "featured": true,
+    "tags": ["bowl", "food", "water", "stainless", "dog", "cat"]
+  },
+  {
+    "id": "ess-002",
+    "name": "Nylon Reflective Leash",
+    "slug": "nylon-reflective-leash",
+    "category": "Essentials",
+    "price": 16.99,
+    "description": "A sturdy 6-foot leash with reflective stitching for night visibility. Padded handle for comfort, strong clip. Available in 6 colors. Built to last.",
+    "image": "/images/product-leash-reflective.jpg",
+    "featured": false,
+    "tags": ["leash", "nylon", "reflective", "dog", "walk"]
+  },
+  {
+    "id": "ess-003",
+    "name": "Adjustable Collar (Leather)",
+    "slug": "adjustable-collar-leather",
+    "category": "Essentials",
+    "price": 28.99,
+    "description": "Full-grain leather collar with brushed nickel hardware. Adjustable from 10-16 inches. Hand-stitched and built to patina beautifully over time. Includes D-ring for tags.",
+    "image": "/images/product-collar-leather.jpg",
+    "featured": true,
+    "tags": ["collar", "leather", "adjustable", "dog", "premium"]
+  },
+  {
+    "id": "ess-004",
+    "name": "Squeaky Tennis Ball 3-Pack",
+    "slug": "squeaky-tennis-ball-3-pack",
+    "category": "Essentials",
+    "price": 9.99,
+    "description": "Extra-durable tennis balls with built-in squeakers. Non-toxic, felt-covered, and designed to withstand enthusiastic fetch sessions. Bright neon colors for easy spotting.",
+    "image": "/images/product-ball-squeaky.jpg",
+    "featured": false,
+    "tags": ["toy", "ball", "squeaky", "fetch", "dog"]
+  },
+  {
+    "id": "ess-005",
+    "name": "Plush Squeaky Fox Toy",
+    "slug": "plush-squeaky-fox-toy",
+    "category": "Essentials",
+    "price": 14.99,
+    "description": "An ultra-soft plush fox with hidden squeaker and crinkle paper inside. Double-stitched seams for durability. Perfect for cuddling and play. Machine washable.",
+    "image": "/images/product-toy-fox.jpg",
+    "featured": true,
+    "tags": ["toy", "plush", "squeaky", "dog", "cat"]
+  },
+  {
+    "id": "sup-001",
+    "name": "Premium Clumping Cat Litter (40lb)",
+    "slug": "premium-clumping-cat-litter",
+    "category": "Supplies",
+    "price": 22.99,
+    "description": "Superior clumping cat litter made from natural clay. 99.9% dust-free, odor-locking technology keeps your home fresh. One 40lb bag lasts up to 30 days for one cat. Unscented.",
+    "image": "/images/product-cat-litter.jpg",
+    "featured": true,
+    "tags": ["cat litter", "clumping", "odor control", "bulk", "cat"]
+  },
+  {
+    "id": "sup-002",
+    "name": "Eco-Friendly Poop Bags (120ct)",
+    "slug": "eco-friendly-poop-bags-120ct",
+    "category": "Supplies",
+    "price": 11.99,
+    "description": "Plant-based, compostable poop bags that are strong and leak-proof. Each roll has 15 bags, 8 rolls per pack. Lavender-scented to mask odors. Certified compostable.",
+    "image": "/images/product-poop-bags.jpg",
+    "featured": false,
+    "tags": ["poop bags", "eco-friendly", "compostable", "dog", "walk"]
+  },
+  {
+    "id": "sup-003",
+    "name": "Slicker Grooming Brush",
+    "slug": "slicker-grooming-brush",
+    "category": "Supplies",
+    "price": 15.99,
+    "description": "Professional-grade slicker brush with fine bent wires that gently remove mats, tangles, and loose fur. Ergonomic non-slip handle. Suitable for all coat types.",
+    "image": "/images/product-grooming-brush.jpg",
+    "featured": false,
+    "tags": ["grooming", "brush", "slicker", "dog", "cat", "shedding"]
+  },
+  {
+    "id": "sup-004",
+    "name": "Gentle Pet Shampoo (16oz)",
+    "slug": "gentle-pet-shampoo-16oz",
+    "category": "Supplies",
+    "price": 13.99,
+    "description": "Oatmeal and aloe vera formula that soothes dry, itchy skin while leaving coats soft and shiny. Tearless, pH-balanced, and free from parabens and sulfates.",
+    "image": "/images/product-shampoo-gentle.jpg",
+    "featured": true,
+    "tags": ["shampoo", "grooming", "oatmeal", "aloe", "dog", "cat"]
+  },
+  {
+    "id": "acc-001",
+    "name": "Personalized Engraved ID Tag",
+    "slug": "personalized-engraved-id-tag",
+    "category": "Accessories",
+    "price": 9.99,
+    "description": "Stainless steel ID tag with deep engraving that won't fade. Includes your pet's name and your phone number. Choose from bone, circle, or heart shape. Comes with a split ring.",
+    "image": "/images/product-id-tag.jpg",
+    "featured": true,
+    "tags": ["id tag", "personalized", "engraved", "dog", "cat", "safety"]
+  },
+  {
+    "id": "acc-002",
+    "name": "Ventilated Travel Carrier",
+    "slug": "ventilated-travel-carrier",
+    "category": "Accessories",
+    "price": 49.99,
+    "description": "A lightweight, airline-approved pet carrier with mesh ventilation on all sides. Padded shoulder strap, fleece bedding, and secure zipper closures. Fits pets up to 15 lbs.",
+    "image": "/images/product-travel-carrier.jpg",
+    "featured": true,
+    "tags": ["carrier", "travel", "airline", "cat", "small dog", "ventilated"]
+  },
+  {
+    "id": "acc-003",
+    "name": "Orthopedic Pet Bed (Medium)",
+    "slug": "orthopedic-pet-bed-medium",
+    "category": "Accessories",
+    "price": 59.99,
+    "description": "Memory foam pet bed with a washable, plush cover. Raised rim for head and neck support. Non-slip bottom. Medium size fits dogs up to 45 lbs. Available in 3 colors.",
+    "image": "/images/product-pet-bed.jpg",
+    "featured": true,
+    "tags": ["bed", "orthopedic", "memory foam", "dog", "cat", "comfort"]
+  }
+]

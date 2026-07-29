@@ -1,0 +1,20 @@
+{
+  "framework": "vite",
+  "buildCommand": "bash ./build-vercel.sh",
+  "outputDirectory": ".vercel/output",
+  "installCommand": "bun install",
+  "functions": {
+    "render.func": {
+      "runtime": "nodejs22.x",
+      "includeFiles": "dist/**"
+    }
+  },
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/render" }
+  ],
+  "github": {
+    "enabled": true,
+    "autoAlias": true,
+    "productionBranch": "main"
+  }
+}
