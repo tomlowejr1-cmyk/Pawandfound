@@ -5,6 +5,7 @@ import { useCart } from "~/lib/cart-context";
 import { ProductReviews } from "~/components/product-reviews";
 import type { Product } from "~/lib/types";
 import { SUBSCRIBABLE_CATEGORIES, SUBSCRIPTION_DISCOUNT } from "~/lib/types";
+import subscriptionLinks from "~/lib/subscription-links.json";
 
 const SITE_URL = "https://pawandfound.store";
 
@@ -105,6 +106,7 @@ function ProductDetailPage() {
 
   const isSubscribable = SUBSCRIBABLE_CATEGORIES.includes(product.category);
   const discountedPrice = product.price * (1 - SUBSCRIPTION_DISCOUNT);
+  const subscriptionUrl = (subscriptionLinks as Record<string, string>)[product.slug] || null;
 
   const handleAddToCart = () => {
     const isSubscription = purchaseType === "subscription";
@@ -114,8 +116,9 @@ function ProductDetailPage() {
   };
 
   const handleBuyNow = () => {
-    if (stripeUrl) {
-      window.open(stripeUrl, "_blank", "noopener,noreferrer");
+    const checkoutUrl = purchaseType === "subscription" && subscriptionUrl ? subscriptionUrl : stripeUrl;
+    if (checkoutUrl) {
+      window.open(checkoutUrl, "_blank", "noopener,noreferrer");
     }
   };
 
@@ -208,7 +211,7 @@ function ProductDetailPage() {
                     <p className="text-sm font-bold text-[#2A9D8F]">
                       ${discountedPrice.toFixed(2)} <span className="text-xs font-normal text-[#6B7280] line-through">${product.price.toFixed(2)}</span>
                     </p>
-                    <p className="mt-0.5 text-xs text-[#6B7280]">Auto-delivery every 4 weeks. Cancel or change anytime.</p>
+                    <p className="mt-0.5 text-xs text-[#6B7280]">Auto-delivery every 4 weeks. You can manage, pause, or cancel anytime from your Stripe customer portal.</p>
                   </div>
                 </label>
               </div>
@@ -224,7 +227,7 @@ function ProductDetailPage() {
               View Cart
             </Link>
             {stripeUrl && (
-              <a href={stripeUrl} target="_blank" rel="noopener noreferrer" className="btn-secondary border-[#FF7F5C] text-[#FF7F5C] hover:bg-[#FF7F5C]/5 inline-block text-center">
+              <a href={purchaseType === "subscription" && subscriptionUrl ? subscriptionUrl : stripeUrl} target="_blank" rel="noopener noreferrer" className="btn-secondary border-[#FF7F5C] text-[#FF7F5C] hover:bg-[#FF7F5C]/5 inline-block text-center">
                 ⚡ Buy Now with Stripe
               </a>
             )}
@@ -232,7 +235,7 @@ function ProductDetailPage() {
 
           <p className="mt-4 text-sm text-[#6B7280]">
             ✓ Free shipping on orders over $50 &bull; 30-day returns
-            {stripeUrl && <><br />⚡ Secure checkout via Stripe</>}
+            {(stripeUrl || subscriptionUrl) && <><br />⚡ Secure checkout via Stripe</>}
           </p>
         </div>
       </div>
