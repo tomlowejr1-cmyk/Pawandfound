@@ -13,6 +13,20 @@ import { Analytics } from "@vercel/analytics/react";
 import appCss from "~/styles/app.css?url";
 
 const SITE_URL = "https://pawandfound.store";
+const GA_MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID as string | undefined;
+
+function ga4Scripts(): Array<Record<string, unknown>> {
+  if (!GA_MEASUREMENT_ID) return [];
+  return [
+    {
+      src: `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`,
+      async: true,
+    },
+    {
+      children: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${GA_MEASUREMENT_ID}');`,
+    },
+  ];
+}
 
 export const Route = createRootRoute({
   head: () => ({
@@ -53,6 +67,7 @@ export const Route = createRootRoute({
         defer: true,
         "data-website-id": "2603f067-8baf-4463-a091-f83f28f3cb49",
       },
+      ...ga4Scripts(),
       {
         type: "application/ld+json",
         children: JSON.stringify({
