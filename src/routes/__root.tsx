@@ -91,7 +91,6 @@ export const Route = createRootRoute({
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-      { rel: "canonical", href: SITE_URL },
       {
         rel: "preconnect",
         href: "https://fonts.googleapis.com",
