@@ -77,6 +77,38 @@ function CartPage() {
         </button>
       </div>
 
+      {/* Free Shipping Progress Bar */}
+      <div className="mt-4 rounded-xl border border-[#E9EDDE] bg-white p-4">
+        {total >= 50 ? (
+          <div className="flex items-center gap-3">
+            <span className="text-2xl">🎉</span>
+            <div className="flex-1">
+              <p className="font-heading text-sm font-semibold text-[#2A9D8F]">
+                You qualify for free shipping!
+              </p>
+              <div className="mt-1.5 h-2.5 w-full rounded-full bg-[#E9EDDE] overflow-hidden">
+                <div className="h-full rounded-full bg-[#2A9D8F] w-full transition-all duration-500" />
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div>
+            <div className="flex items-center justify-between mb-1.5">
+              <p className="text-sm font-medium text-[#2D2D2D]">
+                Add <strong className="text-[#FF7F5C]">${(50 - total).toFixed(2)}</strong> more for free shipping!
+              </p>
+              <span className="text-xs text-[#6B7280]">${total.toFixed(2)} of $50.00</span>
+            </div>
+            <div className="h-2.5 w-full rounded-full bg-[#E9EDDE] overflow-hidden">
+              <div
+                className="h-full rounded-full bg-[#FF7F5C] transition-all duration-500"
+                style={{ width: `${Math.min((total / 50) * 100, 100)}%` }}
+              />
+            </div>
+          </div>
+        )}
+      </div>
+
       <div className="mt-8 space-y-4">
         {items.map((item) => {
           const itemPrice = getItemPrice(item);

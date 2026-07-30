@@ -86,7 +86,17 @@ function Home() {
               From trendy pet T-shirts to everyday essentials like cat litter — find exactly what
               you need with zero fuss. Spend less time searching, more time with your pet.
             </p>
-            <div className="mt-8 flex flex-wrap gap-4">
+            {/* First-purchase offer badge */}
+            <div className="mt-6 inline-flex items-center gap-2 rounded-xl bg-white/15 backdrop-blur-sm px-5 py-3 text-white border border-white/20">
+              <span className="text-2xl">🎁</span>
+              <div>
+                <p className="text-sm font-bold">First order? Take 15% off!</p>
+                <p className="text-xs text-white/70">
+                  Use code <span className="inline-block rounded bg-white/25 px-1.5 py-0.5 font-mono text-xs font-bold tracking-wider">WELCOME15</span> at checkout
+                </p>
+              </div>
+            </div>
+            <div className="mt-6 flex flex-wrap gap-4">
               <a href="/products" className="btn-primary bg-white text-[#FF7F5C] hover:bg-white/90">
                 Shop Pet Supplies Now
               </a>

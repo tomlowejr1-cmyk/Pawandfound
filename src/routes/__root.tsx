@@ -5,6 +5,7 @@ import {
   createRootRoute,
 } from "@tanstack/react-router";
 import type { ReactNode } from "react";
+import { useState, useEffect } from "react";
 import { CartProvider } from "~/lib/cart-context";
 import { NewsletterSignup } from "~/components/newsletter-signup";
 import { AbandonedCartBanner } from "~/components/abandoned-cart-banner";
@@ -147,9 +148,50 @@ function RootDocument({ children }: { children: ReactNode }) {
 }
 
 function PromoBanner() {
+  const DISMISS_KEY = "pawandfound-promo-dismissed";
+  const [dismissed, setDismissed] = useState(false);
+
+  useEffect(() => {
+    try {
+      const stored = localStorage.getItem(DISMISS_KEY);
+      if (stored) {
+        const ts = parseInt(stored, 10);
+        if (Date.now() - ts < 24 * 60 * 60 * 1000) {
+          setDismissed(true);
+        } else {
+          localStorage.removeItem(DISMISS_KEY);
+        }
+      }
+    } catch { /* ignore */ }
+  }, []);
+
+  if (dismissed) return null;
+
+  function handleDismiss() {
+    try {
+      localStorage.setItem(DISMISS_KEY, String(Date.now()));
+    } catch { /* ignore */ }
+    setDismissed(true);
+  }
+
   return (
-    <div className="bg-[#FF7F5C] px-4 py-2 text-center text-sm font-medium text-white">
-      🎁 <strong>FREE gift with purchase!</strong> Use code <strong>Welcometo</strong> at checkout for 10% off your first order. <a href="/products" className="underline hover:text-white/80">Shop now →</a>
+    <div className="relative bg-gradient-to-r from-[#FF7F5C] via-[#FF7F5C] to-[#F4A261] px-4 py-2.5 text-center text-sm font-medium text-white animate-pulse">
+      <span className="inline-flex items-center gap-1.5">
+        🐾 <strong>Welcome!</strong> Take <strong>15% off</strong> your first order with code{" "}
+        <span className="inline-block rounded bg-white/20 px-2 py-0.5 font-mono font-bold tracking-wider">
+          WELCOME15
+        </span>
+      </span>{" "}
+      <a href="/products" className="underline decoration-white/50 hover:text-white/90">Shop now →</a>
+      <button
+        onClick={handleDismiss}
+        className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full p-1 text-white/70 hover:bg-white/20 hover:text-white transition-colors"
+        aria-label="Dismiss banner"
+      >
+        <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
     </div>
   );
 }
