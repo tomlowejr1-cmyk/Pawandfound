@@ -76,7 +76,10 @@ const subscribeToNewsletter = createServerFn({ method: "POST" })
         message: "Something went wrong. Please try again later.",
       };
     } catch (error) {
-      console.error("Mailchimp request failed:", error);
+      console.error("Mailchimp request failed:", error instanceof Error ? error.message : String(error));
+      console.error("Mailchimp URL:", url.substring(0, 50) + "...");
+      console.error("Mailchimp DC:", dc);
+      console.error("Mailchimp List ID length:", listId?.length);
       return {
         success: false,
         message: "Something went wrong. Please try again later.",
