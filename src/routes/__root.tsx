@@ -35,6 +35,8 @@ export const Route = createRootRoute({
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { name: "msvalidate.01", content: "1FBCC58E80A8CCC2899FC7AFDD1B2CBE" },
+      // Google Business Profile verification — replace content with your code from business.google.com
+      { name: "google-site-verification", content: "REPLACE_WITH_GBP_VERIFICATION_CODE" },
       { title: "Paw & Found — Pet Supplies & Apparel" },
       {
         name: "description",
