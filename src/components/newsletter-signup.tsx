@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from "react";
-import { subscribeToNewsletter } from "~/lib/mailchimp";
+
+const MAILCHIMP_ACTION = "https://store.us12.list-manage.com/subscribe/post?u=1ec97266f4e8fd1074b70e466&amp;id=7bfe8105f2";
 
 interface NewsletterSignupProps {
   /** Where the form is displayed — controls styling */
@@ -24,17 +25,30 @@ export function NewsletterSignup({
     setStatus("loading");
     setMessage("");
 
-    try {
-      const result = await subscribeToNewsletter({ data: { email } });
-      setStatus(result.success ? "success" : "error");
-      setMessage(result.message);
-      if (result.success) {
-        setEmail("");
-      }
-    } catch (err) {
-      setStatus("error");
-      setMessage("Something went wrong. Please try again later.");
-    }
+    // Mailchimp embedded form — submit via hidden iframe to avoid redirect
+    const iframe = document.createElement("iframe");
+    iframe.name = "mc-hidden-frame";
+    iframe.style.display = "none";
+    document.body.appendChild(iframe);
+
+    const form = document.createElement("form");
+    form.action = MAILCHIMP_ACTION.replace(/&amp;/g, "&");
+    form.method = "POST";
+    form.target = "mc-hidden-frame";
+    form.innerHTML = `<input type="email" name="EMAIL" value="${email}">`;
+
+    document.body.appendChild(form);
+    form.submit();
+
+    // Clean up after submission
+    setTimeout(() => {
+      document.body.removeChild(form);
+      document.body.removeChild(iframe);
+    }, 500);
+
+    setStatus("success");
+    setMessage("You're subscribed! Welcome to the Paw & Found pack. 🐾");
+    setEmail("");
   }
 
   const isHomepage = variant === "homepage";
