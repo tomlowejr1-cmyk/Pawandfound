@@ -8,7 +8,7 @@ const crossSellMap: Record<string, string[]> = {
   "paw-found-logo-tee": ["personalized-engraved-id-tag", "eco-friendly-poop-bags-120ct"],
   "adventure-pup-graphic-tee": ["nylon-reflective-leash", "squeaky-tennis-ball-3-pack"],
   "classic-plaid-bandana": ["good-dog-club-tshirt", "personalized-engraved-id-tag"],
-  "cozy-hoodie-pullover": ["orthopedic-pet-bed-medium", "gentle-pet-shampoo-16oz"],
+  "cozy-hoodie-pullover": ["orthopedic-pet-bed-medium", "adjustable-collar-leather"],
 
   // Essentials
   "stainless-steel-bowl-set": ["premium-clumping-cat-litter", "gentle-pet-shampoo-16oz"],
