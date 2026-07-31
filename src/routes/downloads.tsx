@@ -511,6 +511,24 @@ function DownloadsPage() {
             </div>
           </div>
         </div>
+
+        {/* Freebies cross-promo */}
+        <div className="mt-12 rounded-2xl border-2 border-dashed border-[#FF7F5C]/40 bg-[#FFF8F0] p-6 text-center">
+          <span className="text-3xl">🎁</span>
+          <h3 className="font-heading mt-2 text-lg font-semibold text-[#2D2D2D]">
+            Looking for freebies?
+          </h3>
+          <p className="mt-1 text-sm text-[#6B7280]">
+            Grab a free printable pet birthday card — perfect for any pet-loving friend!
+          </p>
+          <a
+            href="/freebies/pet-birthday-card"
+            className="btn-primary mt-3 inline-block"
+          >
+            🎂 Get Free Birthday Card
+          </a>
+        </div>
+
       </div>
     </div>
   );

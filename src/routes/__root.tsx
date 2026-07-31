@@ -209,6 +209,7 @@ function Header() {
     { href: "/blog", label: "Blog" },
     { href: "/quiz", label: "Quiz" },
     { href: "/downloads", label: "Digital Guides" },
+    { href: "/freebies/pet-birthday-card", label: "Freebies" },
     { href: "/faq", label: "FAQ" },
   ];
 
@@ -318,6 +319,7 @@ function Footer() {
               <li><a href="/about" className="hover:text-white">About Us</a></li>
               <li><a href="/blog" className="hover:text-white">Blog</a></li>
               <li><a href="/downloads" className="hover:text-white">Digital Guides</a></li>
+              <li><a href="/freebies/pet-birthday-card" className="hover:text-white">Freebies</a></li>
               <li><a href="/faq" className="hover:text-white">FAQ</a></li>
               <li><a href="/about" className="hover:text-white">Contact</a></li>
             </ul>
