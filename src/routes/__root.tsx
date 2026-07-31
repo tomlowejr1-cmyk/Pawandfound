@@ -209,6 +209,7 @@ function Header() {
     { href: "/blog", label: "Blog" },
     { href: "/quiz", label: "Quiz" },
     { href: "/downloads", label: "Digital Guides" },
+    { href: "/downloads#premium-ebooks", label: "eBooks" },
     { href: "/freebies/pet-birthday-card", label: "Freebies" },
     { href: "/adopt", label: "Adopt ❤️" },
     { href: "/faq", label: "FAQ" },
@@ -320,6 +321,7 @@ function Footer() {
               <li><a href="/about" className="hover:text-white">About Us</a></li>
               <li><a href="/blog" className="hover:text-white">Blog</a></li>
               <li><a href="/downloads" className="hover:text-white">Digital Guides</a></li>
+              <li><a href="/downloads#premium-ebooks" className="hover:text-white">eBooks</a></li>
               <li><a href="/freebies/pet-birthday-card" className="hover:text-white">Freebies</a></li>
               <li><a href="/adopt" className="hover:text-white">Adopt a Pet ❤️</a></li>
               <li><a href="/faq" className="hover:text-white">FAQ</a></li>
