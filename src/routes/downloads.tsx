@@ -282,6 +282,26 @@ const digitalProducts: DigitalProduct[] = [
       "Veterinarian-reviewed format",
     ],
   },
+  {
+    id: "dig-012",
+    title: "2027 Pet Lover's Printable Calendar",
+    slug: "pet-calendar-2027",
+    price: 12.99,
+    description:
+      "Beautiful printable 2027 wall calendar with 12 illustrated pet designs. Print at home, use year after year.",
+    longDescription:
+      "Brighten up your 2027 with twelve months of adorable pet illustrations! Each month features a charming seasonal scene with dogs, cats, or both — from a golden retriever puppy in January snow to a husky celebrating the December holidays. Every month includes pet care tips, important pet-related dates, and a notes section for vet appointments and milestones. US Letter size (8.5×11\"), prints beautifully on any home printer. Download once, print as many copies as you want — perfect for home, office, and gifting to fellow pet lovers!",
+    image: "/images/pet-calendar-cover.jpg",
+    stripePaymentLink: "https://buy.stripe.com/00w28r2bs3ug9YZ9iw2cg0Q",
+    features: [
+      "12 beautifully illustrated monthly pages",
+      "Seasonal pet-themed designs for every month",
+      "Monthly pet care tips & important dates",
+      "Notes section on every page",
+      "US Letter size (8.5×11\") — print at home",
+      "Instant download — print unlimited copies",
+    ],
+  },
 ];
 
 export const Route = createFileRoute("/downloads")({
