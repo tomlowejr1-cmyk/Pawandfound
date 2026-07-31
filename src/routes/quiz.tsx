@@ -1,7 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { loadProducts, getProductBySlug } from "~/lib/products";
 import type { Product } from "~/lib/types";
+
+const GIVEAWAY_STORAGE_KEY = "pawandfound_quiz_giveaway_seen";
 
 const SITE_URL = "https://pawandfound.store";
 
@@ -222,6 +224,75 @@ function getSummary(answers: QuizAnswer): string {
   return `Your perfect match: a ${vibeLabels[answers.vibe]} ${getBreedLabel(answers.breed)} looking for ${answers.lookingFor}!`;
 }
 
+function GiveawayCard() {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== "undefined" && !localStorage.getItem(GIVEAWAY_STORAGE_KEY)) {
+      setVisible(true);
+    }
+  }, []);
+
+  function handleDismiss() {
+    localStorage.setItem(GIVEAWAY_STORAGE_KEY, "1");
+    setVisible(false);
+  }
+
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const input = (e.target as HTMLFormElement).querySelector("input");
+    if (input?.value) {
+      alert("🎉 You're entered! Check your inbox for a confirmation email and welcome gift.");
+      input.value = "";
+      localStorage.setItem(GIVEAWAY_STORAGE_KEY, "1");
+      setVisible(false);
+    }
+  }
+
+  if (!visible) return null;
+
+  return (
+    <div className="mt-8 rounded-2xl border-2 border-[#FF7F5C] bg-gradient-to-br from-[#FFF8F0] via-white to-[#E8F8F5] p-6 shadow-lg relative overflow-hidden">
+      {/* Decorative confetti blobs */}
+      <div className="absolute -top-4 -right-4 text-5xl opacity-20 select-none pointer-events-none">🎊</div>
+      <div className="absolute -bottom-2 -left-2 text-4xl opacity-20 select-none pointer-events-none">🎁</div>
+
+      <div className="relative text-center">
+        <span className="text-4xl">🎁</span>
+        <h3 className="font-heading mt-3 text-xl font-bold text-[#2D2D2D]">
+          Win a Paw & Found Gift Box!
+        </h3>
+        <p className="mt-2 text-sm text-[#6B7280] max-w-md mx-auto">
+          Enter your email for a chance to win a curated box of treats, toys, and essentials — plus you'll get
+          our weekly pet care tips and exclusive deals.
+        </p>
+
+        <form
+          className="mt-4 flex flex-col items-center gap-3 sm:flex-row sm:justify-center"
+          onSubmit={handleSubmit}
+        >
+          <input
+            type="email"
+            placeholder="you@example.com"
+            required
+            className="w-64 rounded-xl border border-[#E9EDDE] px-4 py-2.5 text-sm text-[#2D2D2D] placeholder:text-[#6B7280] focus:border-[#FF7F5C] focus:outline-none"
+          />
+          <button type="submit" className="btn-primary">
+            🎉 Enter to Win
+          </button>
+        </form>
+
+        <button
+          onClick={handleDismiss}
+          className="mt-3 text-xs text-[#6B7280] hover:text-[#FF7F5C] underline underline-offset-2"
+        >
+          No thanks, just show me my results
+        </button>
+      </div>
+    </div>
+  );
+}
+
 export const Route = createFileRoute("/quiz")({
   loader: async () => {
     const products = await loadProducts();
@@ -233,7 +304,7 @@ export const Route = createFileRoute("/quiz")({
       { title: "Pet Product Finder Quiz — Paw & Found" },
       { name: "description", content: "Find the perfect products for your pet in 5 quick questions!" },
       { property: "og:title", content: "Pet Product Finder Quiz — Paw & Found" },
-      { property: "og:description", content: "Find the perfect products for your pet in 5 quick questions!" },
+      { property: "og:description", content: "Find the perfect products for your pet in 5 quick questions — plus enter to win a Paw & Found gift box!" },
       { property: "og:url", content: `${SITE_URL}/quiz` },
     ],
     links: [{ rel: "canonical", href: `${SITE_URL}/quiz` }],
@@ -322,6 +393,9 @@ function QuizPage() {
             </a>
           ))}
         </div>
+
+        {/* Giveaway Email Capture Card */}
+        <GiveawayCard />
 
         {/* Why these picks */}
         <div className="mt-6 rounded-xl border border-[#E9EDDE] bg-white p-5">
