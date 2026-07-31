@@ -302,6 +302,46 @@ const digitalProducts: DigitalProduct[] = [
       "Instant download — print unlimited copies",
     ],
   },
+  {
+    id: "dig-013",
+    title: "Dog Walking Etiquette Guide",
+    slug: "dog-walking-etiquette-guide",
+    price: 6.99,
+    description:
+      "Master polite leash manners and avoid common walking mistakes. Covers leash laws, passing other dogs, and trail etiquette.",
+    longDescription:
+      "Walking your dog should be the best part of both of your days — not a stressful tug-of-war. This guide covers everything you need to know about dog walking etiquette: how to pass other dogs safely, understanding leash laws in your area, trail and park etiquette, what to do when off-leash dogs approach, night walking safety, and how to handle reactive dogs with confidence. Also includes a section on gear recommendations (leashes, harnesses, lights) and a quick-reference etiquette checklist for your phone. Whether you're a new dog owner or just want to brush up, this guide makes every walk smoother.",
+    image: "/images/dog-walking-guide.jpg",
+    stripePaymentLink: "https://buy.stripe.com/9B6cN56rI4ykc777ao2cg0R",
+    features: [
+      "Passing other dogs safely",
+      "Leash laws & trail etiquette explained",
+      "Handling off-leash dog encounters",
+      "Night walking safety tips",
+      "Gear recommendations checklist",
+      "Reactive dog confidence guide",
+    ],
+  },
+  {
+    id: "dig-014",
+    title: "Pet Sitter Planner & Checklist",
+    slug: "pet-sitter-planner-checklist",
+    price: 7.99,
+    description:
+      "Leave your pet sitter fully prepared. Printable planner with feeding schedules, emergency contacts, vet info, and daily checklists.",
+    longDescription:
+      "Travel with peace of mind knowing your pet sitter has everything they need. This comprehensive planner includes: detailed feeding and medication schedules, emergency contact sheets (vet, nearest ER, trusted neighbor), daily care checklists for dogs and cats, house rules and quirks section (\"the back door sticks, push hard\"), a what-to-do-if section for common scenarios, and space for your pet's personality notes. Print a fresh copy for every trip — your sitter will thank you, and you'll actually relax on vacation. Designed with input from professional pet sitters who know exactly what information makes a sit go smoothly.",
+    image: "/images/pet-sitter-planner.jpg",
+    stripePaymentLink: "https://buy.stripe.com/9B628r9DU7Kw4EFgKY2cg0S",
+    features: [
+      "Feeding & medication schedule templates",
+      "Emergency contacts & vet info sheet",
+      "Daily care checklists for dogs & cats",
+      "House rules & quirks section",
+      "What-to-do-if scenario guide",
+      "Printable — use for every trip",
+    ],
+  },
 ];
 
 export const Route = createFileRoute("/downloads")({
