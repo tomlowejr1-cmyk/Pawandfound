@@ -157,9 +157,13 @@ export function ProductReviews({ productId, productName }: ProductReviewsProps) 
   const [rating, setRating] = useState(5);
   const [text, setText] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [sortBy, setSortBy] = useState<"recent" | "highest" | "lowest">("recent");
+  const [filterRating, setFilterRating] = useState<number | null>(null);
 
   useEffect(() => {
     setReviews(loadReviews(productId));
+    setFilterRating(null);
+    setSortBy("recent");
   }, [productId]);
 
   function handleSubmit(e: React.FormEvent) {
@@ -189,6 +193,25 @@ export function ProductReviews({ productId, productName }: ProductReviewsProps) 
     : null;
 
   const totalCount = reviews.length;
+
+  // Rating breakdown counts
+  const ratingCounts = [5, 4, 3, 2, 1].map(star => ({
+    star,
+    count: reviews.filter(r => r.rating === star).length,
+  }));
+  const maxCount = Math.max(...ratingCounts.map(r => r.count), 1);
+
+  // Sort and filter reviews
+  let filteredReviews = filterRating !== null
+    ? reviews.filter(r => r.rating === filterRating)
+    : [...reviews];
+
+  if (sortBy === "highest") {
+    filteredReviews.sort((a, b) => b.rating - a.rating);
+  } else if (sortBy === "lowest") {
+    filteredReviews.sort((a, b) => a.rating - b.rating);
+  }
+  // "recent" is already in order (newest first from loadReviews)
 
   return (
     <div className="mt-12 border-t border-[#E9EDDE] pt-8">
@@ -255,14 +278,73 @@ export function ProductReviews({ productId, productName }: ProductReviewsProps) 
         <p className="mt-3 text-sm text-[#2A9D8F] font-medium">✅ Thank you for your review!</p>
       )}
 
+      {/* Rating Breakdown + Sort (only when reviews exist) */}
+      {reviews.length > 0 && (
+        <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:gap-6">
+          {/* Rating Breakdown Bars */}
+          <div className="flex-1 space-y-1.5">
+            {ratingCounts.map(({ star, count }) => (
+              <button
+                key={star}
+                onClick={() => setFilterRating(filterRating === star ? null : star)}
+                className={`flex w-full items-center gap-2 rounded px-1 py-0.5 text-xs transition-colors hover:bg-[#FFF8F0] ${
+                  filterRating === star ? "bg-[#FFF8F0] ring-1 ring-[#FF7F5C]/30" : ""
+                }`}
+              >
+                <span className="w-14 text-right font-medium tabular-nums text-[#6B7280]">
+                  {star === 5 ? "★★★★★" : star === 4 ? "★★★★☆" : star === 3 ? "★★★☆☆" : star === 2 ? "★★☆☆☆" : "★☆☆☆☆"}
+                </span>
+                <span className="flex-1 h-3 rounded-full bg-[#E9EDDE] overflow-hidden">
+                  <span
+                    className="block h-full rounded-full bg-[#FF7F5C] transition-all duration-300"
+                    style={{ width: `${(count / maxCount) * 100}%` }}
+                  />
+                </span>
+                <span className="w-5 text-left tabular-nums text-[#6B7280]">{count}</span>
+              </button>
+            ))}
+          </div>
+
+          {/* Sort Dropdown */}
+          <div className="sm:w-44">
+            <label className="block text-xs font-medium text-[#6B7280] mb-1">Sort by</label>
+            <select
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value as "recent" | "highest" | "lowest")}
+              className="w-full rounded-lg border border-[#E9EDDE] bg-white px-3 py-2 text-sm text-[#2D2D2D] focus:border-[#FF7F5C] focus:outline-none focus:ring-1 focus:ring-[#FF7F5C]/30"
+            >
+              <option value="recent">Most Recent</option>
+              <option value="highest">Highest Rated</option>
+              <option value="lowest">Lowest Rated</option>
+            </select>
+          </div>
+        </div>
+      )}
+
+      {/* Active Filter Indicator */}
+      {filterRating !== null && (
+        <div className="mt-3 flex items-center gap-2 text-sm">
+          <span className="inline-flex items-center gap-1 rounded-full bg-[#FFF8F0] px-3 py-1 text-xs font-medium text-[#FF7F5C]">
+            Showing {filterRating}★ reviews only
+            <button
+              onClick={() => setFilterRating(null)}
+              className="ml-1 text-[#6B7280] hover:text-[#FF7F5C] font-bold"
+              aria-label="Clear filter"
+            >
+              ×
+            </button>
+          </span>
+        </div>
+      )}
+
       {/* Reviews list */}
       {reviews.length === 0 && !showForm && (
         <p className="mt-4 text-sm text-[#6B7280]">Be the first to review this product!</p>
       )}
 
-      {reviews.length > 0 && (
-        <div className="mt-6 space-y-4">
-          {reviews.map((review, i) => (
+      {filteredReviews.length > 0 && (
+        <div className="mt-4 space-y-4">
+          {filteredReviews.map((review, i) => (
             <div key={i} className="rounded-xl border border-[#E9EDDE] bg-white p-4 transition-shadow hover:shadow-sm">
               <div className="flex flex-wrap items-center gap-2">
                 <span className="font-heading text-sm font-semibold text-[#2D2D2D]">{review.name}</span>
@@ -276,6 +358,10 @@ export function ProductReviews({ productId, productName }: ProductReviewsProps) 
             </div>
           ))}
         </div>
+      )}
+
+      {filteredReviews.length === 0 && reviews.length > 0 && (
+        <p className="mt-4 text-sm text-[#6B7280]">No reviews match this filter.</p>
       )}
     </div>
   );
