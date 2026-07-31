@@ -320,6 +320,101 @@ function DownloadsPage() {
         </div>
       </div>
 
+      {/* Premium eBooks */}
+      <div className="mx-auto max-w-4xl px-4 pt-12 sm:px-6 lg:px-8">
+        <div className="mb-6 text-center">
+          <span className="inline-flex items-center rounded-full bg-[#2D2D2D] px-3 py-1 text-xs font-bold text-[#F4A261]">📚 PREMIUM eBOOKS</span>
+          <h2 className="section-title mt-3">Premium Pet Care eBooks</h2>
+          <p className="section-subtitle mt-2">In-depth guides written by pet experts. One purchase, lifetime access.</p>
+        </div>
+
+        {/* Bundle Card — Featured */}
+        <div className="mb-6 overflow-hidden rounded-2xl border-2 border-[#F4A261] bg-white shadow-lg relative">
+          <div className="absolute -top-px left-1/2 -translate-x-1/2 rounded-b-xl bg-[#F4A261] px-6 py-1 text-xs font-bold text-white shadow-md z-10">
+            ⭐ BEST VALUE
+          </div>
+          <div className="grid gap-0 md:grid-cols-5">
+            <div className="flex items-center justify-center bg-gradient-to-br from-[#FFF8F0] to-[#F4A261]/10 p-6 md:col-span-2">
+              <div className="relative flex gap-2">
+                <img src="/images/ebook-puppy-handbook.jpg" alt="" className="w-20 rounded-lg shadow-md md:w-24 -rotate-3" />
+                <img src="/images/ebook-cat-care.jpg" alt="" className="w-20 rounded-lg shadow-md md:w-24 rotate-3 z-10 -ml-4" />
+                <img src="/images/ebook-survival-guide.jpg" alt="" className="w-20 rounded-lg shadow-md md:w-24 -rotate-2 -ml-4" />
+              </div>
+            </div>
+            <div className="p-6 md:col-span-3">
+              <h3 className="font-heading text-xl font-bold text-[#2D2D2D]">Complete Pet Library — eBook Bundle</h3>
+              <p className="mt-2 text-sm text-[#6B7280]">
+                All three premium eBooks in one purchase. The Complete Puppy Handbook, The Ultimate Cat Care Guide, and Pet Parent's Survival Guide — everything you need to be an amazing pet parent.
+              </p>
+              <ul className="mt-4 space-y-1 text-sm text-[#4A4A4A]">
+                <li className="flex items-center gap-2"><span className="text-[#2A9D8F]">✓</span> The Complete Puppy Handbook ($19.99)</li>
+                <li className="flex items-center gap-2"><span className="text-[#2A9D8F]">✓</span> The Ultimate Cat Care Guide ($19.99)</li>
+                <li className="flex items-center gap-2"><span className="text-[#2A9D8F]">✓</span> Pet Parent's Survival Guide ($24.99)</li>
+              </ul>
+              <div className="mt-5 flex flex-wrap items-center gap-3">
+                <span className="text-lg text-[#6B7280] line-through">$64.97</span>
+                <span className="font-heading text-3xl font-bold text-[#FF7F5C]">$49.99</span>
+                <span className="inline-flex items-center rounded-full bg-[#2A9D8F]/10 px-3 py-1 text-xs font-bold text-[#2A9D8F]">Save $14.98</span>
+              </div>
+              <a href="https://buy.stripe.com/8x28wPg2i9SE6MN7ao2cg0K" className="btn-primary mt-4 inline-block text-sm">
+                Buy Bundle — Instant Download
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* Individual eBook Cards */}
+        <div className="grid gap-6 sm:grid-cols-3">
+          {[
+            {
+              title: "The Complete Puppy Handbook",
+              price: "$19.99",
+              desc: "Week-by-week roadmap for raising a happy, healthy puppy. Training, health, nutrition — 12 chapters.",
+              img: "/images/ebook-puppy-handbook.jpg",
+              link: "https://buy.stripe.com/14A3cv5nE5Co0op1Q42cg0H",
+              slug: "/ebooks/puppy-handbook",
+            },
+            {
+              title: "The Ultimate Cat Care Guide",
+              price: "$19.99",
+              desc: "Master cat behavior, health, and enrichment. 10 chapters covering everything from litter boxes to senior care.",
+              img: "/images/ebook-cat-care.jpg",
+              link: "https://buy.stripe.com/aFafZh9DUgh21stfGU2cg0I",
+              slug: "/ebooks/cat-care-guide",
+            },
+            {
+              title: "Pet Parent's Survival Guide",
+              price: "$24.99",
+              desc: "The comprehensive reference for dogs and cats. Emergencies, travel, multi-pet homes — 14 chapters.",
+              img: "/images/ebook-survival-guide.jpg",
+              link: "https://buy.stripe.com/14AdR94jA0i45IJ2U82cg0J",
+              slug: "/ebooks/survival-guide",
+            },
+          ].map((ebook) => (
+            <div key={ebook.title} className="group rounded-xl border border-[#E9EDDE] bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-md overflow-hidden">
+              <a href={ebook.slug} className="block">
+                <div className="flex justify-center bg-[#FFF8F0] py-5">
+                  <img src={ebook.img} alt={ebook.title} className="h-48 rounded-lg shadow-md transition-transform group-hover:scale-105" />
+                </div>
+              </a>
+              <div className="p-5">
+                <a href={ebook.slug} className="block">
+                  <h3 className="font-heading font-semibold text-[#2D2D2D] group-hover:text-[#FF7F5C] transition-colors">{ebook.title}</h3>
+                </a>
+                <p className="mt-1 text-xs text-[#6B7280] leading-relaxed">{ebook.desc}</p>
+                <div className="mt-3 flex items-center justify-between">
+                  <span className="font-heading text-lg font-bold text-[#FF7F5C]">{ebook.price}</span>
+                  <div className="flex gap-2">
+                    <a href={ebook.slug} className="text-xs font-medium text-[#2A9D8F] hover:text-[#FF7F5C]">Details</a>
+                    <a href={ebook.link} className="btn-primary text-xs px-3 py-1.5">Buy Now</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
       {/* Bundle & Save */}
       <div className="mx-auto max-w-4xl px-4 pt-12 sm:px-6 lg:px-8">
         <div className="mb-6 text-center">
