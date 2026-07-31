@@ -324,6 +324,7 @@ function Footer() {
               <li><a href="/downloads#premium-ebooks" className="hover:text-white">eBooks</a></li>
               <li><a href="/freebies/pet-birthday-card" className="hover:text-white">Freebies</a></li>
               <li><a href="/adopt" className="hover:text-white">Adopt a Pet ❤️</a></li>
+              <li><a href="/suggest" className="hover:text-white">Request a Product 💡</a></li>
               <li><a href="/faq" className="hover:text-white">FAQ</a></li>
               <li><a href="/about" className="hover:text-white">Contact</a></li>
             </ul>

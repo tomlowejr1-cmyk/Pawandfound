@@ -200,6 +200,69 @@ function ProductsPage() {
           <span className="font-heading font-semibold text-[#2D2D2D] group-hover:text-[#FF7F5C]">Find the Perfect Products for Your Pet →</span>
         </a>
       </div>
+
+      {/* Suggest a Product Banner */}
+      <div className="mt-8 rounded-2xl border-2 border-dashed border-[#2A9D8F]/30 bg-gradient-to-br from-[#FFF8F0] to-white p-6 text-center sm:p-8">
+        <span className="text-3xl">🐾</span>
+        <h3 className="font-heading mt-2 text-lg font-semibold text-[#2D2D2D]">
+          Didn't find what you're looking for?
+        </h3>
+        <p className="mt-1 text-sm text-[#6B7280]">
+          We'd love to hear what you need — drop a suggestion below!
+        </p>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            const form = e.currentTarget;
+            const input = form.querySelector("input") as HTMLInputElement;
+            const textarea = form.querySelector("textarea") as HTMLTextAreaElement;
+            if (!input.value.trim() || !textarea.value.trim()) return;
+            const key = "pawandfound-suggestions";
+            try {
+              const existing = JSON.parse(localStorage.getItem(key) || "[]");
+              existing.push({
+                productName: input.value.trim(),
+                description: textarea.value.trim(),
+                category: "Other",
+                name: "",
+                email: "",
+                date: new Date().toISOString(),
+              });
+              localStorage.setItem(key, JSON.stringify(existing));
+            } catch { /* ignore */ }
+            input.value = "";
+            textarea.value = "";
+            const msg = form.querySelector(".suggest-success") as HTMLElement;
+            if (msg) { msg.style.display = "block"; setTimeout(() => { msg.style.display = "none"; }, 4000); }
+          }}
+          className="mt-4 mx-auto max-w-md"
+        >
+          <input
+            type="text"
+            required
+            placeholder="Product name (e.g., 'Cooling mat for large dogs')"
+            className="w-full rounded-lg border border-[#E9EDDE] bg-white px-3 py-2.5 text-sm text-[#2D2D2D] focus:border-[#FF7F5C] focus:outline-none focus:ring-1 focus:ring-[#FF7F5C]/30 mb-3"
+          />
+          <textarea
+            required
+            rows={2}
+            placeholder="Brief description — brand, size, why your pet needs it..."
+            className="w-full rounded-lg border border-[#E9EDDE] bg-white px-3 py-2.5 text-sm text-[#2D2D2D] focus:border-[#FF7F5C] focus:outline-none focus:ring-1 focus:ring-[#FF7F5C]/30 resize-none mb-3"
+          />
+          <button type="submit" className="btn-primary text-sm px-6 py-2.5">
+            Submit Suggestion 🐾
+          </button>
+          <p className="suggest-success mt-2 text-sm font-medium text-[#2A9D8F]" style={{ display: "none" }}>
+            ✅ Thanks! We'll look into it.
+          </p>
+        </form>
+        <p className="mt-3 text-xs text-[#6B7280]">
+          Want more room?{" "}
+          <a href="/suggest" className="font-medium text-[#2A9D8F] hover:text-[#FF7F5C]">
+            Use the full suggestion form →
+          </a>
+        </p>
+      </div>
     </div>
   );
 }
