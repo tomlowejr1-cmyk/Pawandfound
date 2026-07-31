@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { loadProducts, loadPaymentLinks, getProductBySlug, getPaymentLink } from "~/lib/products";
 import { useCart } from "~/lib/cart-context";
 import { ProductReviews } from "~/components/product-reviews";
+import { FrequentlyBoughtTogether } from "~/components/frequently-bought-together";
 import type { Product } from "~/lib/types";
 import { SUBSCRIBABLE_CATEGORIES, SUBSCRIPTION_DISCOUNT } from "~/lib/types";
 import subscriptionLinks from "~/lib/subscription-links.json";
@@ -12,6 +13,7 @@ const SITE_URL = "https://pawandfound.store";
 interface ProductDetailData {
   product: Product;
   related: Product[];
+  allProducts: Product[];
   stripeUrl: string | undefined;
 }
 
@@ -28,7 +30,7 @@ export const Route = createFileRoute("/product/$slug")({
       (p) => p.category === product.category && p.id !== product.id
     ).slice(0, 4);
 
-    return { product, related, stripeUrl };
+    return { product, related, allProducts: products, stripeUrl };
   },
   component: ProductDetailPage,
   head: ({ loaderData }: { loaderData: ProductDetailData }) => {
@@ -85,7 +87,7 @@ export const Route = createFileRoute("/product/$slug")({
 });
 
 function ProductDetailPage() {
-  const { product, related, stripeUrl } = Route.useLoaderData();
+  const { product, related, allProducts, stripeUrl } = Route.useLoaderData();
   const { addItem } = useCart();
   const [purchaseType, setPurchaseType] = useState<"one-time" | "subscription">("one-time");
   const [reviewSummary, setReviewSummary] = useState<{ avg: string; count: number } | null>(null);
@@ -282,6 +284,7 @@ function ProductDetailPage() {
           </div>
         </section>
       )}
+      <FrequentlyBoughtTogether currentSlug={product.slug} allProducts={allProducts} />
       <ProductReviews productId={product.id} productName={product.name} />
     </div>
   );

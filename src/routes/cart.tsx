@@ -1,18 +1,22 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useState, useMemo } from "react";
+import type { Product } from "~/lib/types";
 import { useCart } from "~/lib/cart-context";
-import { loadPaymentLinks, getPaymentLink } from "~/lib/products";
+import { getCartUpsells } from "~/lib/cross-sells";
+import { loadProducts, loadPaymentLinks, getPaymentLink } from "~/lib/products";
 
 const SITE_URL = "https://pawandfound.store";
 
 interface CartData {
   paymentLinks: Record<string, string>;
+  allProducts: Product[];
 }
 
 export const Route = createFileRoute("/cart")({
   loader: async (): Promise<CartData> => {
     const paymentLinks = await loadPaymentLinks();
-    return { paymentLinks };
+    const allProducts = await loadProducts();
+    return { paymentLinks, allProducts };
   },
   component: CartPage,
   head: () => ({
@@ -32,7 +36,7 @@ export const Route = createFileRoute("/cart")({
 });
 
 function CartPage() {
-  const { paymentLinks } = Route.useLoaderData();
+  const { paymentLinks, allProducts } = Route.useLoaderData();
   const { items, removeItem, updateQuantity, toggleSubscription, clearCart, itemCount, total, getItemPrice } = useCart();
   const [checkoutMessage, setCheckoutMessage] = useState<string | null>(null);
 
@@ -271,7 +275,11 @@ function CartPage() {
           </button>
         </div>
 
-        {/* Blog Tips Sidebar */}
+  
+      {/* You Might Also Like — Upsells */}
+      <YouMightAlsoLike items={items} allProducts={allProducts} />
+
+      {/* Blog Tips Sidebar */}
         <aside className="mt-12 border-t border-[#E9EDDE] pt-6 text-center">
           <h3 className="font-heading text-lg font-semibold text-[#2D2D2D]">🐾 While You Wait</h3>
           <p className="mt-1 text-sm text-[#6B7280]">Check out our latest pet care tips!</p>
@@ -287,3 +295,62 @@ function CartPage() {
   );
 }
 
+function YouMightAlsoLike({ items, allProducts }: { items: { product: Product }[]; allProducts: Product[] }) {
+  const cartSlugs = items.map((i) => i.product.slug);
+  const upsellSlugs = useMemo(() => getCartUpsells(cartSlugs), [cartSlugs]);
+  const upsellProducts = upsellSlugs
+    .map((slug) => allProducts.find((p) => p.slug === slug))
+    .filter((p): p is Product => p !== undefined)
+    .slice(0, 4);
+
+  if (upsellProducts.length === 0) return null;
+
+  const { addItem } = useCart();
+
+  return (
+    <section className="mt-8 rounded-2xl border border-[#E9EDDE] bg-white p-6">
+      <div className="flex items-center gap-2 mb-4">
+        <span className="text-xl">🎁</span>
+        <h2 className="font-heading text-lg font-bold text-[#2D2D2D]">
+          You Might Also Like
+        </h2>
+      </div>
+      <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+        {upsellProducts.map((product) => (
+          <div
+            key={product.id}
+            className="group rounded-xl border border-[#E9EDDE] bg-[#FFF8F0] overflow-hidden hover:shadow-md transition-shadow"
+          >
+            <a href={`/product/${product.slug}`} className="block">
+              <div className="aspect-square overflow-hidden bg-white">
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  loading="lazy"
+                />
+              </div>
+            </a>
+            <div className="p-3">
+              <a
+                href={`/product/${product.slug}`}
+                className="block font-heading text-xs font-semibold text-[#2D2D2D] hover:text-[#FF7F5C] line-clamp-2"
+              >
+                {product.name}
+              </a>
+              <p className="mt-1 text-sm font-bold text-[#FF7F5C]">
+                ${product.price.toFixed(2)}
+              </p>
+              <button
+                onClick={() => addItem(product, false)}
+                className="mt-2 w-full rounded-lg bg-[#FF7F5C] px-2 py-1.5 text-xs font-semibold text-white hover:bg-[#FF7F5C]/90 transition-colors"
+              >
+                + Add to Cart
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
