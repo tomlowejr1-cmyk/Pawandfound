@@ -323,6 +323,26 @@ const digitalProducts: DigitalProduct[] = [
     ],
   },
   {
+    id: "dig-015",
+    title: "Basic Obedience Training Guide",
+    slug: "basic-obedience-training-guide",
+    price: 7.99,
+    description:
+      "Build a well-behaved dog with step-by-step training plans. Covers sit, stay, come, down, leave it, and loose leash walking — all in one guide.",
+    longDescription:
+      "Every dog should master the basics — and this guide makes it easy. Covers six essential commands with clear, step-by-step training plans: Sit, Stay, Come When Called, Down, Leave It, and Loose Leash Walking. Each command includes a breakdown of prerequisite skills, training steps from introduction to proofing, common troubleshooting tips, and a progress tracker so you can see how far you've come. Whether you're starting with a new puppy or brushing up an adult dog's skills, this guide gives you a structured path to a well-mannered companion. Includes printable daily training logs, a 4-week training schedule, and tips for training in distracting environments.",
+    image: "/images/basic-obedience-guide.jpg",
+    stripePaymentLink: "https://buy.stripe.com/00wcN57vM2qcb337ao2cg0T",
+    features: [
+      "6 essential commands — sit, stay, come, down, leave it, loose leash",
+      "Step-by-step training plans with progress trackers",
+      "Common mistakes & troubleshooting tips",
+      "Printable daily training logs",
+      "4-week training schedule template",
+      "Proofing exercises for real-world reliability",
+    ],
+  },
+  {
     id: "dig-014",
     title: "Pet Sitter Planner & Checklist",
     slug: "pet-sitter-planner-checklist",
