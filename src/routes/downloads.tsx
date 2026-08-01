@@ -401,7 +401,7 @@ function DownloadsPage() {
       </div>
 
       {/* Premium eBooks */}
-      <div className="mx-auto max-w-4xl px-4 pt-12 sm:px-6 lg:px-8">
+      <div id="premium-ebooks" className="mx-auto max-w-4xl px-4 pt-12 sm:px-6 lg:px-8">
         <div className="mb-6 text-center">
           <span className="inline-flex items-center rounded-full bg-[#2D2D2D] px-3 py-1 text-xs font-bold text-[#F4A261]">📚 PREMIUM eBOOKS</span>
           <h2 className="section-title mt-3">Premium Pet Care eBooks</h2>
@@ -424,17 +424,18 @@ function DownloadsPage() {
             <div className="p-6 md:col-span-3">
               <h3 className="font-heading text-xl font-bold text-[#2D2D2D]">Complete Pet Library — eBook Bundle</h3>
               <p className="mt-2 text-sm text-[#6B7280]">
-                All three premium eBooks in one purchase. The Complete Puppy Handbook, The Ultimate Cat Care Guide, and Pet Parent's Survival Guide — everything you need to be an amazing pet parent.
+                All four premium eBooks in one purchase. The Complete Puppy Handbook, The Ultimate Cat Care Guide, Pet Parent's Survival Guide, and The Senior Pet Care Guide — everything you need for every stage of your pet's life.
               </p>
               <ul className="mt-4 space-y-1 text-sm text-[#4A4A4A]">
                 <li className="flex items-center gap-2"><span className="text-[#2A9D8F]">✓</span> The Complete Puppy Handbook ($19.99)</li>
                 <li className="flex items-center gap-2"><span className="text-[#2A9D8F]">✓</span> The Ultimate Cat Care Guide ($19.99)</li>
                 <li className="flex items-center gap-2"><span className="text-[#2A9D8F]">✓</span> Pet Parent's Survival Guide ($24.99)</li>
+                <li className="flex items-center gap-2"><span className="text-[#2A9D8F]">✓</span> The Senior Pet Care Guide ($14.99)</li>
               </ul>
               <div className="mt-5 flex flex-wrap items-center gap-3">
-                <span className="text-lg text-[#6B7280] line-through">$64.97</span>
+                <span className="text-lg text-[#6B7280] line-through">$79.96</span>
                 <span className="font-heading text-3xl font-bold text-[#FF7F5C]">$49.99</span>
-                <span className="inline-flex items-center rounded-full bg-[#2A9D8F]/10 px-3 py-1 text-xs font-bold text-[#2A9D8F]">Save $14.98</span>
+                <span className="inline-flex items-center rounded-full bg-[#2A9D8F]/10 px-3 py-1 text-xs font-bold text-[#2A9D8F]">Save $29.97</span>
               </div>
               <a href="https://buy.stripe.com/8x28wPg2i9SE6MN7ao2cg0K" className="btn-primary mt-4 inline-block text-sm">
                 Buy Bundle — Instant Download
@@ -444,7 +445,7 @@ function DownloadsPage() {
         </div>
 
         {/* Individual eBook Cards */}
-        <div className="grid gap-6 sm:grid-cols-3">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {[
             {
               title: "The Complete Puppy Handbook",
@@ -470,6 +471,14 @@ function DownloadsPage() {
               link: "https://buy.stripe.com/14AdR94jA0i45IJ2U82cg0J",
               slug: "/ebooks/survival-guide",
             },
+            {
+              title: "The Senior Pet Care Guide",
+              price: "$14.99",
+              desc: "Compassionate guidance for your pet's golden years. Health, mobility, nutrition, and end-of-life care — 8 chapters.",
+              img: "/images/ebook-senior-pet-care.jpg",
+              link: "https://buy.stripe.com/7sY6oH4jA3ug8UV0M02cg0U",
+              slug: "/ebooks/senior-pet-care",
+            },
           ].map((ebook) => (
             <div key={ebook.title} className="group rounded-xl border border-[#E9EDDE] bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-md overflow-hidden">
               <a href={ebook.slug} className="block">
@@ -492,6 +501,44 @@ function DownloadsPage() {
               </div>
             </div>
           ))}
+        </div>
+      </div>
+
+      {/* Featured: Senior Pet Care Guide */}
+      <div className="mx-auto max-w-3xl px-4 pt-8 sm:px-6 lg:px-8">
+        <div className="overflow-hidden rounded-2xl bg-gradient-to-r from-[#FFF8F0] to-[#F4A261]/10 border border-[#F4A261]/30 shadow-md">
+          <div className="flex flex-col items-center gap-6 p-6 sm:flex-row">
+            <div className="flex-shrink-0">
+              <img
+                src="/images/ebook-senior-pet-care.jpg"
+                alt="The Senior Pet Care Guide"
+                className="w-32 rounded-xl shadow-lg"
+              />
+            </div>
+            <div className="flex-1 text-center sm:text-left">
+              <span className="inline-flex items-center rounded-full bg-[#F4A261] px-3 py-1 text-xs font-bold text-white">
+                ⭐ NEW & FEATURED
+              </span>
+              <h3 className="font-heading mt-2 text-xl font-bold text-[#2D2D2D]">
+                The Senior Pet Care Guide
+              </h3>
+              <p className="mt-1 text-sm text-[#6B7280]">
+                Compassionate, practical guidance for your pet's golden years. Health changes, mobility, nutrition, cognitive care, and end-of-life planning — 8 chapters of expert support.
+              </p>
+              <div className="mt-4 flex flex-wrap items-center gap-3 justify-center sm:justify-start">
+                <span className="font-heading text-2xl font-bold text-[#FF7F5C]">$14.99</span>
+                <a href="/ebooks/senior-pet-care" className="text-sm font-medium text-[#2A9D8F] hover:text-[#FF7F5C] transition-colors">
+                  Learn more →
+                </a>
+                <a
+                  href="https://buy.stripe.com/7sY6oH4jA3ug8UV0M02cg0U"
+                  className="btn-primary text-sm px-4 py-2"
+                >
+                  Buy Now — Instant Download
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
