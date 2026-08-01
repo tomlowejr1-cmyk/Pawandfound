@@ -424,18 +424,23 @@ function DownloadsPage() {
             <div className="p-6 md:col-span-3">
               <h3 className="font-heading text-xl font-bold text-[#2D2D2D]">Complete Pet Library — eBook Bundle</h3>
               <p className="mt-2 text-sm text-[#6B7280]">
-                All four premium eBooks in one purchase. The Complete Puppy Handbook, The Ultimate Cat Care Guide, Pet Parent's Survival Guide, and The Senior Pet Care Guide — everything you need for every stage of your pet's life.
+                All nine premium eBooks in one purchase — from puppy training to senior care, rescue rehab to travel adventures.
               </p>
               <ul className="mt-4 space-y-1 text-sm text-[#4A4A4A]">
                 <li className="flex items-center gap-2"><span className="text-[#2A9D8F]">✓</span> The Complete Puppy Handbook ($19.99)</li>
                 <li className="flex items-center gap-2"><span className="text-[#2A9D8F]">✓</span> The Ultimate Cat Care Guide ($19.99)</li>
                 <li className="flex items-center gap-2"><span className="text-[#2A9D8F]">✓</span> Pet Parent's Survival Guide ($24.99)</li>
                 <li className="flex items-center gap-2"><span className="text-[#2A9D8F]">✓</span> The Senior Pet Care Guide ($14.99)</li>
+                <li className="flex items-center gap-2"><span className="text-[#2A9D8F]">✓</span> Rescue Dog Rehabilitation ($14.99)</li>
+                <li className="flex items-center gap-2"><span className="text-[#2A9D8F]">✓</span> Pet First Aid & Emergency ($14.99)</li>
+                <li className="flex items-center gap-2"><span className="text-[#2A9D8F]">✓</span> Seasonal Pet Care ($12.99)</li>
+                <li className="flex items-center gap-2"><span className="text-[#2A9D8F]">✓</span> DIY Pet Enrichment ($12.99)</li>
+                <li className="flex items-center gap-2"><span className="text-[#2A9D8F]">✓</span> Pet Travel & Adventure ($14.99)</li>
               </ul>
               <div className="mt-5 flex flex-wrap items-center gap-3">
-                <span className="text-lg text-[#6B7280] line-through">$79.96</span>
+                <span className="text-lg text-[#6B7280] line-through">$150.91</span>
                 <span className="font-heading text-3xl font-bold text-[#FF7F5C]">$49.99</span>
-                <span className="inline-flex items-center rounded-full bg-[#2A9D8F]/10 px-3 py-1 text-xs font-bold text-[#2A9D8F]">Save $29.97</span>
+                <span className="inline-flex items-center rounded-full bg-[#2A9D8F]/10 px-3 py-1 text-xs font-bold text-[#2A9D8F]">Save $100.92</span>
               </div>
               <a href="https://buy.stripe.com/8x28wPg2i9SE6MN7ao2cg0K" className="btn-primary mt-4 inline-block text-sm">
                 Buy Bundle — Instant Download
@@ -445,7 +450,7 @@ function DownloadsPage() {
         </div>
 
         {/* Individual eBook Cards */}
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-6 sm:grid-cols-3">
           {[
             {
               title: "The Complete Puppy Handbook",
@@ -478,6 +483,46 @@ function DownloadsPage() {
               img: "/images/ebook-senior-pet-care.jpg",
               link: "https://buy.stripe.com/7sY6oH4jA3ug8UV0M02cg0U",
               slug: "/ebooks/senior-pet-care",
+            },
+            {
+              title: "Rescue Dog Rehabilitation Guide",
+              price: "$14.99",
+              desc: "Help your rescue dog heal and thrive. Decompression, trust-building, routines, and behavior challenges — 7 chapters.",
+              img: "/images/ebook-rescue-dog-rehab.jpg",
+              link: "https://buy.stripe.com/7sYeVd03kfcY2wx7ao2cg15",
+              slug: "/ebooks/rescue-dog-rehab",
+            },
+            {
+              title: "Pet First Aid & Emergency Handbook",
+              price: "$14.99",
+              desc: "Be prepared for anything. Wound care, choking, poisoning, heatstroke, CPR — 8 chapters of emergency know-how.",
+              img: "/images/ebook-pet-first-aid-handbook.jpg",
+              link: "https://buy.stripe.com/fZu28rbM27Kw9YZfGU2cg12",
+              slug: "/ebooks/pet-first-aid-handbook",
+            },
+            {
+              title: "The Seasonal Pet Care Guide",
+              price: "$12.99",
+              desc: "Year-round care for every season. Allergies, heat safety, holiday hazards, paw care, grooming — 7 chapters.",
+              img: "/images/ebook-seasonal-pet-care.jpg",
+              link: "https://buy.stripe.com/fZu9AT03k0i42wxcuI2cg11",
+              slug: "/ebooks/seasonal-pet-care",
+            },
+            {
+              title: "The DIY Pet Enrichment Guide",
+              price: "$12.99",
+              desc: "Keep pets happy with homemade toys, puzzles, scent games, and activities — all using household items. 7 chapters.",
+              img: "/images/ebook-diy-pet-enrichment.jpg",
+              link: "https://buy.stripe.com/3cIaEX17o2qc1st3Yc2cg13",
+              slug: "/ebooks/diy-pet-enrichment",
+            },
+            {
+              title: "The Pet Travel & Adventure Guide",
+              price: "$14.99",
+              desc: "Road trips, flying, camping, hiking — everything you need to adventure with your pet. 7 chapters.",
+              img: "/images/ebook-pet-travel-adventure.jpg",
+              link: "https://buy.stripe.com/8x25kD7vM9SE8UV1Q42cg14",
+              slug: "/ebooks/pet-travel-adventure",
             },
           ].map((ebook) => (
             <div key={ebook.title} className="group rounded-xl border border-[#E9EDDE] bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-md overflow-hidden">
