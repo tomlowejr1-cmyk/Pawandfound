@@ -424,18 +424,24 @@ function DownloadsPage() {
             <div className="p-6 md:col-span-3">
               <h3 className="font-heading text-xl font-bold text-[#2D2D2D]">Complete Pet Library — eBook Bundle</h3>
               <p className="mt-2 text-sm text-[#6B7280]">
-                All four premium eBooks in one purchase. The Complete Puppy Handbook, The Ultimate Cat Care Guide, Pet Parent's Survival Guide, and The Senior Pet Care Guide — everything you need for every stage of your pet's life.
+                All ten premium eBooks in one purchase — from puppy training to senior care, breed handbooks to advanced training paths.
               </p>
               <ul className="mt-4 space-y-1 text-sm text-[#4A4A4A]">
                 <li className="flex items-center gap-2"><span className="text-[#2A9D8F]">✓</span> The Complete Puppy Handbook ($19.99)</li>
                 <li className="flex items-center gap-2"><span className="text-[#2A9D8F]">✓</span> The Ultimate Cat Care Guide ($19.99)</li>
                 <li className="flex items-center gap-2"><span className="text-[#2A9D8F]">✓</span> Pet Parent's Survival Guide ($24.99)</li>
                 <li className="flex items-center gap-2"><span className="text-[#2A9D8F]">✓</span> The Senior Pet Care Guide ($14.99)</li>
+                <li className="flex items-center gap-2"><span className="text-[#2A9D8F]">✓</span> Multi-Pet Household Harmony ($14.99)</li>
+                <li className="flex items-center gap-2"><span className="text-[#2A9D8F]">✓</span> Advanced Training Paths ($16.99)</li>
+                <li className="flex items-center gap-2"><span className="text-[#2A9D8F]">✓</span> Pet Nutrition & Feeding ($14.99)</li>
+                <li className="flex items-center gap-2"><span className="text-[#2A9D8F]">✓</span> Dog Breed Handbook ($14.99)</li>
+                <li className="flex items-center gap-2"><span className="text-[#2A9D8F]">✓</span> Cat Breed Handbook ($14.99)</li>
+                <li className="flex items-center gap-2"><span className="text-[#2A9D8F]">✓</span> Puppy Training Fundamentals ($14.99)</li>
               </ul>
               <div className="mt-5 flex flex-wrap items-center gap-3">
-                <span className="text-lg text-[#6B7280] line-through">$79.96</span>
+                <span className="text-lg text-[#6B7280] line-through">$171.90</span>
                 <span className="font-heading text-3xl font-bold text-[#FF7F5C]">$49.99</span>
-                <span className="inline-flex items-center rounded-full bg-[#2A9D8F]/10 px-3 py-1 text-xs font-bold text-[#2A9D8F]">Save $29.97</span>
+                <span className="inline-flex items-center rounded-full bg-[#2A9D8F]/10 px-3 py-1 text-xs font-bold text-[#2A9D8F]">Save $121.91</span>
               </div>
               <a href="https://buy.stripe.com/8x28wPg2i9SE6MN7ao2cg0K" className="btn-primary mt-4 inline-block text-sm">
                 Buy Bundle — Instant Download
@@ -445,7 +451,7 @@ function DownloadsPage() {
         </div>
 
         {/* Individual eBook Cards */}
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
           {[
             {
               title: "The Complete Puppy Handbook",
@@ -478,6 +484,54 @@ function DownloadsPage() {
               img: "/images/ebook-senior-pet-care.jpg",
               link: "https://buy.stripe.com/7sY6oH4jA3ug8UV0M02cg0U",
               slug: "/ebooks/senior-pet-care",
+            },
+            {
+              title: "The Multi-Pet Household Harmony Guide",
+              price: "$14.99",
+              desc: "Peaceful coexistence for multi-pet homes. Introductions, conflict resolution, resource management — 8 chapters.",
+              img: "/images/ebook-multi-pet-harmony.jpg",
+              link: "https://buy.stripe.com/bJe8wPg2i0i41stgKY2cg0V",
+              slug: "/ebooks/multi-pet-harmony",
+            },
+            {
+              title: "Advanced Training Paths",
+              price: "$16.99",
+              desc: "Beyond basic obedience — off-leash reliability, scent work, therapy certification, competition prep — 8 chapters.",
+              img: "/images/ebook-advanced-training.jpg",
+              link: "https://buy.stripe.com/dRmbJ12bsfcY5IJdyM2cg0X",
+              slug: "/ebooks/advanced-training",
+            },
+            {
+              title: "The Pet Nutrition & Feeding Guide",
+              price: "$14.99",
+              desc: "Safe foods, balanced diets, portion control, picky eaters, and special diet management — 8 chapters.",
+              img: "/images/ebook-pet-nutrition.jpg",
+              link: "https://buy.stripe.com/aFa14n9DUd4Q1stgKY2cg0W",
+              slug: "/ebooks/pet-nutrition-guide",
+            },
+            {
+              title: "The Complete Dog Breed Handbook",
+              price: "$14.99",
+              desc: "30+ dog breeds profiled — personality, exercise, grooming, health, and honest lifestyle-fit assessments.",
+              img: "/images/ebook-dog-breeds.jpg",
+              link: "https://buy.stripe.com/cNi7sLbM20i48UVfGU2cg0Z",
+              slug: "/ebooks/dog-breed-handbook",
+            },
+            {
+              title: "The Complete Cat Breed Handbook",
+              price: "$14.99",
+              desc: "20+ cat breeds profiled — personality, care needs, health, and which breed fits your lifestyle.",
+              img: "/images/ebook-cat-breeds.jpg",
+              link: "https://buy.stripe.com/dRmcN517o2qcc777ao2cg0Y",
+              slug: "/ebooks/cat-breed-handbook",
+            },
+            {
+              title: "Puppy Training Fundamentals",
+              price: "$14.99",
+              desc: "90-day roadmap, house training, crate training, basic commands, socialization, and bite inhibition — 8 chapters.",
+              img: "/images/ebook-puppy-training.jpg",
+              link: "https://buy.stripe.com/14A14neYefcY3AB9iw2cg10",
+              slug: "/ebooks/puppy-training-fundamentals",
             },
           ].map((ebook) => (
             <div key={ebook.title} className="group rounded-xl border border-[#E9EDDE] bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-md overflow-hidden">
