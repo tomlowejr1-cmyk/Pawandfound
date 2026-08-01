@@ -27,11 +27,11 @@ const categories: VideoCategory[] = [
     videos: [
       {
         id: "basic-sit-stay",
-        title: "How to Teach Your Dog to Sit & Stay",
+        title: "How to Teach Your Puppy to Sit and Stay",
         description:
           "Master the two most essential commands every dog should know. Step-by-step guidance for reliable sits and stays in any environment.",
         trainer: "Zak George",
-        youtubeId: "w6qK8jOVj2A",
+        youtubeId: "DPNz6reMVXY",
         relatedGuide: {
           title: "Puppy Training Checklist & Milestone Tracker",
           url: "/downloads",
@@ -40,11 +40,11 @@ const categories: VideoCategory[] = [
       },
       {
         id: "basic-recall",
-        title: "Come When Called — Reliable Recall Training",
+        title: "Come When Called — First Training Session",
         description:
-          "Teach your dog to come running every single time. Covers building value in the recall cue and proofing against distractions.",
+          "Teach your dog to come running every single time. Covers building value in the recall cue from the very first session.",
         trainer: "Kikopup",
-        youtubeId: "PLX6fJxAHhM",
+        youtubeId: "VuyjjkSPRfU",
         relatedGuide: {
           title: "Puppy Starter Pack (Bundle)",
           url: "/downloads",
@@ -53,11 +53,16 @@ const categories: VideoCategory[] = [
       },
       {
         id: "basic-down",
-        title: "Teaching the 'Down' Command from Scratch",
+        title: "How to Train ANY Dog to Lie Down",
         description:
-          "A calm, reliable down is a game-changer for every dog. Learn how to lure, shape, and proof the behavior so it sticks.",
+          "A calm, reliable down is a game-changer for every dog. Learn how to lure, shape, and proof the behavior so it sticks — fast.",
         trainer: "Zak George",
-        youtubeId: "MeyCia0Jf_k",
+        youtubeId: "DYWTarzD2u4",
+        relatedGuide: {
+          title: "Basic Obedience Training Guide",
+          url: "/downloads",
+          price: "$7.99",
+        },
       },
     ],
   },
@@ -70,7 +75,7 @@ const categories: VideoCategory[] = [
         id: "leash-loose",
         title: "Loose Leash Walking — Stop the Pulling",
         description:
-          "Transform your walks from a tug-of-war into a enjoyable stroll. Covers equipment setup, engagement exercises, and real-world practice.",
+          "Transform your walks from a tug-of-war into an enjoyable stroll. Covers equipment setup, engagement exercises, and real-world practice.",
         trainer: "Zak George",
         youtubeId: "sFgtqgiAKoQ",
         relatedGuide: {
@@ -81,19 +86,24 @@ const categories: VideoCategory[] = [
       },
       {
         id: "leash-heel",
-        title: "Heel Training: Walk Politely by Your Side",
+        title: "The MOST Important 20 ft. in Leash Walking",
         description:
-          "Take leash skills to the next level with focused heel training. Perfect for busy sidewalks, vet visits, and anywhere you need close control.",
+          "Take leash skills to the next level with focused control. Perfect for busy sidewalks, vet visits, and anywhere you need your dog close.",
         trainer: "McCann Dogs",
-        youtubeId: "OTiKVY6cKkU",
+        youtubeId: "POzOVrh8dSU",
       },
       {
         id: "leash-pulling",
-        title: "How to Stop Your Dog from Pulling on Leash",
+        title: "Leash Walking for Dogs That Are ALWAYS Pulling",
         description:
           "If your arm is sore after every walk, this one's for you. A practical, force-free method to end pulling for good.",
-        trainer: "Zak George",
-        youtubeId: "JfAPQ_ZmgqM",
+        trainer: "McCann Dogs",
+        youtubeId: "y2yj2xtCo-k",
+        relatedGuide: {
+          title: "Dog Walking Etiquette Guide",
+          url: "/downloads",
+          price: "$6.99",
+        },
       },
     ],
   },
@@ -116,20 +126,25 @@ const categories: VideoCategory[] = [
         },
       },
       {
-        id: "behavior-barking",
-        title: "How to Stop Excessive Barking",
+        id: "behavior-walking",
+        title: "How to Teach Your Dog to Walk Like a Pro",
         description:
-          "Get to the root of why your dog barks and learn targeted strategies to quiet the noise — without yelling or punishment.",
-        trainer: "Zak George",
-        youtubeId: "JShkU8kzHwM",
+          "Go beyond basic leash skills. A complete walking makeover covering pace, focus, and navigating real-world distractions.",
+        trainer: "McCann Dogs",
+        youtubeId: "DBMeIfC0KFo",
       },
       {
-        id: "behavior-leave-it",
-        title: "Teach 'Leave It' and 'Drop It'",
+        id: "behavior-stay",
+        title: "A 5-Minute Training Plan for Teaching STAY",
         description:
-          "Two commands that could save your dog's life. Teach rock-solid impulse control around food, trash, and anything dangerous.",
-        trainer: "Kikopup",
-        youtubeId: "NDK-CX5MByY",
+          "A focused, fast training plan for a reliable stay. Perfect for busy owners who want results without hours of practice.",
+        trainer: "McCann Dogs",
+        youtubeId: "2EGY6fNHESc",
+        relatedGuide: {
+          title: "Puppy Training Checklist & Milestone Tracker",
+          url: "/downloads",
+          price: "$4.99",
+        },
       },
     ],
   },
@@ -139,12 +154,12 @@ const categories: VideoCategory[] = [
     slug: "puppy-essentials",
     videos: [
       {
-        id: "puppy-crate",
-        title: "Crate Training Made Easy",
+        id: "puppy-sit-stay-intro",
+        title: "How to Teach Your Puppy to Sit and Stay",
         description:
-          "Turn the crate into your puppy's favorite spot. Step-by-step crate training that builds positive associations from day one.",
+          "Start your puppy's training journey with the foundation command. Gentle, positive methods perfect for young pups.",
         trainer: "Zak George",
-        youtubeId: "C6XkC3CwnV8",
+        youtubeId: "DPNz6reMVXY",
         relatedGuide: {
           title: "Puppy Starter Pack (Bundle)",
           url: "/downloads",
@@ -152,20 +167,25 @@ const categories: VideoCategory[] = [
         },
       },
       {
-        id: "puppy-potty",
-        title: "Potty Training: A Complete Guide",
+        id: "puppy-leash-intro",
+        title: "STOP Doing Traditional Puppy Leash Training",
         description:
-          "The potty training system that actually works. Covers scheduling, crate use, accident management, and celebrating success.",
-        trainer: "Zak George",
-        youtubeId: "QvPiFcG7ROk",
+          "Modern puppy leash training that actually works. Skip the frustration and start your pup off right from the first walk.",
+        trainer: "McCann Dogs",
+        youtubeId: "BCBA0nJXYOc",
       },
       {
-        id: "puppy-biting",
-        title: "How to Stop Puppy Biting & Mouthing",
+        id: "puppy-recall-intro",
+        title: "Come When Called — Recall Foundation",
         description:
-          "Those needle-sharp teeth won't last forever, but the habit might. Teach bite inhibition and redirect mouthing the right way.",
+          "Build a recall your puppy can't resist. Start early and build a lifetime of reliable come-when-called behavior.",
         trainer: "Kikopup",
-        youtubeId: "JRl8gB7xpZM",
+        youtubeId: "VuyjjkSPRfU",
+        relatedGuide: {
+          title: "Puppy Training Checklist & Milestone Tracker",
+          url: "/downloads",
+          price: "$4.99",
+        },
       },
     ],
   },
@@ -186,9 +206,9 @@ const crossSells = [
     url: "/downloads",
   },
   {
-    title: "Dog Walking Etiquette Guide",
-    price: "$6.99",
-    description: "Master polite leash manners and trail etiquette",
+    title: "Basic Obedience Training Guide",
+    price: "$7.99",
+    description: "6 essential commands with step-by-step training plans",
     url: "/downloads",
   },
 ];
