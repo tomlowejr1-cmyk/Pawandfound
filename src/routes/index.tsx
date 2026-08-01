@@ -3,6 +3,7 @@ import { loadProducts } from "~/lib/products";
 import type { Product } from "~/lib/types";
 import { CATEGORIES } from "~/lib/types";
 import { NewsletterSignup } from "~/components/newsletter-signup";
+import { SpinWheel } from "~/components/spin-wheel";
 const SITE_URL = "https://pawandfound.store";
 
 /** Deterministic shuffle using week number as seed */
@@ -103,6 +104,60 @@ function Home() {
               <a href="/products?category=Apparel" className="btn-secondary border-white/50 bg-white/20 text-white backdrop-blur-sm hover:bg-white/30">
                 Browse Pet Apparel
               </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Spin & Win Section */}
+      <section className="bg-[#FFF8F0] py-16">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid items-center gap-10 lg:grid-cols-2">
+            {/* Wheel */}
+            <div className="flex justify-center">
+              <SpinWheel />
+            </div>
+
+            {/* Copy */}
+            <div className="text-center lg:text-left">
+              <span className="inline-flex items-center rounded-full bg-[#FF7F5C]/15 px-4 py-1.5 text-sm font-semibold text-[#FF7F5C]">
+                🎡 Daily giveaway wheel
+              </span>
+              <h2 className="font-heading mt-5 text-3xl font-bold tracking-tight text-[#2D2D2D] sm:text-4xl">
+                Spin &amp; Win! 🎡
+              </h2>
+              <p className="mt-3 text-lg text-[#6B7280]">
+                Try your luck for discounts, freebies, and more!
+              </p>
+              <ul className="mt-6 space-y-2.5 text-left">
+                <li className="flex items-start gap-2.5 text-sm text-[#4A4A4A]">
+                  <span className="text-base leading-none">🎁</span>
+                  Discount codes from 10% to 25% off
+                </li>
+                <li className="flex items-start gap-2.5 text-sm text-[#4A4A4A]">
+                  <span className="text-base leading-none">🚚</span>
+                  Free shipping on your order
+                </li>
+                <li className="flex items-start gap-2.5 text-sm text-[#4A4A4A]">
+                  <span className="text-base leading-none">📖</span>
+                  A free digital guide of your choice
+                </li>
+                <li className="flex items-start gap-2.5 text-sm text-[#4A4A4A]">
+                  <span className="text-base leading-none">🐾</span>
+                  A free Puppy Starter Pack or Cat Essentials Kit
+                </li>
+              </ul>
+              <p className="mt-5 text-xs text-[#9CA3AF]">
+                One spin per day. No purchase necessary.
+              </p>
+              <div className="mt-6 flex flex-wrap justify-center gap-3 lg:justify-start">
+                <a href="/products" className="btn-primary">
+                  Shop the Store
+                </a>
+                <a href="/downloads" className="btn-secondary">
+                  Browse Freebies
+                </a>
+              </div>
             </div>
           </div>
         </div>
