@@ -31,7 +31,7 @@ const categories: VideoCategory[] = [
         description:
           "Master the two most essential commands every dog should know. Step-by-step guidance for reliable sits and stays in any environment.",
         trainer: "Zak George",
-        youtubeId: "w6qK8jOVj2A",
+        youtubeId: "DPNz6reMVXY",
         relatedGuide: {
           title: "Puppy Training Checklist & Milestone Tracker",
           url: "/downloads",
@@ -44,7 +44,7 @@ const categories: VideoCategory[] = [
         description:
           "Teach your dog to come running every single time. Covers building value in the recall cue and proofing against distractions.",
         trainer: "Kikopup",
-        youtubeId: "PLX6fJxAHhM",
+        youtubeId: "VuyjjkSPRfU",
         relatedGuide: {
           title: "Puppy Starter Pack (Bundle)",
           url: "/downloads",
@@ -57,7 +57,7 @@ const categories: VideoCategory[] = [
         description:
           "A calm, reliable down is a game-changer for every dog. Learn how to lure, shape, and proof the behavior so it sticks.",
         trainer: "Zak George",
-        youtubeId: "MeyCia0Jf_k",
+        youtubeId: "DYWTarzD2u4",
       },
     ],
   },
@@ -85,7 +85,7 @@ const categories: VideoCategory[] = [
         description:
           "Take leash skills to the next level with focused heel training. Perfect for busy sidewalks, vet visits, and anywhere you need close control.",
         trainer: "McCann Dogs",
-        youtubeId: "OTiKVY6cKkU",
+        youtubeId: "POzOVrh8dSU",
       },
       {
         id: "leash-pulling",
@@ -93,7 +93,7 @@ const categories: VideoCategory[] = [
         description:
           "If your arm is sore after every walk, this one's for you. A practical, force-free method to end pulling for good.",
         trainer: "Zak George",
-        youtubeId: "JfAPQ_ZmgqM",
+        youtubeId: "y2yj2xtCo-k",
       },
     ],
   },
@@ -121,7 +121,7 @@ const categories: VideoCategory[] = [
         description:
           "Get to the root of why your dog barks and learn targeted strategies to quiet the noise — without yelling or punishment.",
         trainer: "Zak George",
-        youtubeId: "JShkU8kzHwM",
+        youtubeId: "DBMeIfC0KFo",
       },
       {
         id: "behavior-leave-it",
@@ -129,7 +129,7 @@ const categories: VideoCategory[] = [
         description:
           "Two commands that could save your dog's life. Teach rock-solid impulse control around food, trash, and anything dangerous.",
         trainer: "Kikopup",
-        youtubeId: "NDK-CX5MByY",
+        youtubeId: "2EGY6fNHESc",
       },
     ],
   },
@@ -144,7 +144,7 @@ const categories: VideoCategory[] = [
         description:
           "Turn the crate into your puppy's favorite spot. Step-by-step crate training that builds positive associations from day one.",
         trainer: "Zak George",
-        youtubeId: "C6XkC3CwnV8",
+        youtubeId: "BCBA0nJXYOc",
         relatedGuide: {
           title: "Puppy Starter Pack (Bundle)",
           url: "/downloads",
@@ -157,7 +157,7 @@ const categories: VideoCategory[] = [
         description:
           "The potty training system that actually works. Covers scheduling, crate use, accident management, and celebrating success.",
         trainer: "Zak George",
-        youtubeId: "QvPiFcG7ROk",
+        youtubeId: "DPNz6reMVXY",
       },
       {
         id: "puppy-biting",
@@ -165,7 +165,7 @@ const categories: VideoCategory[] = [
         description:
           "Those needle-sharp teeth won't last forever, but the habit might. Teach bite inhibition and redirect mouthing the right way.",
         trainer: "Kikopup",
-        youtubeId: "JRl8gB7xpZM",
+        youtubeId: "VuyjjkSPRfU",
       },
     ],
   },
