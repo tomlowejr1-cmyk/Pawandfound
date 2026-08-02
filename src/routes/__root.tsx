@@ -213,6 +213,7 @@ function Header() {
     { href: "/downloads", label: "Digital Guides" },
     { href: "/downloads#premium-ebooks", label: "eBooks" },
     { href: "/freebies/pet-birthday-card", label: "Freebies" },
+    { href: "/gift-cards", label: "Gift Cards 🎁" },
     { href: "/adopt", label: "Adopt ❤️" },
     { href: "/faq", label: "FAQ" },
   ];
