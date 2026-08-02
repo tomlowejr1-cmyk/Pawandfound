@@ -134,6 +134,22 @@ function RootDocument({ children }: { children: ReactNode }) {
     <html lang="en">
       <head>
         <HeadContent />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "PetStore",
+              name: "Paw & Found",
+              url: "https://pawandfound.store",
+              description:
+                "A pet product store with curated supplies, apparel, accessories, and digital guides for pet owners.",
+              sameAs: [
+                "https://instagram.com/explore/tags/pawandfoundpets",
+              ],
+            }),
+          }}
+        />
       </head>
       <body>
         <PromoBanner />
