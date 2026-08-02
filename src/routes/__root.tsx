@@ -209,6 +209,7 @@ function Header() {
     { href: "/blog", label: "Blog" },
     { href: "/quiz", label: "Quiz" },
     { href: "/training", label: "Training Videos 🎓" },
+    { href: "/budget-tracker", label: "Budget Tracker 💰" },
     { href: "/downloads", label: "Digital Guides" },
     { href: "/downloads#premium-ebooks", label: "eBooks" },
     { href: "/freebies/pet-birthday-card", label: "Freebies" },
