@@ -7,6 +7,7 @@ import { NewsletterSignup } from "~/components/newsletter-signup";
 import { SpinWheel } from "~/components/spin-wheel";
 import { LiveClock } from "~/components/live-clock";
 import { WeatherWidget } from "~/components/weather-widget";
+import { DailyPetTip } from "~/components/daily-pet-tip";
 const SITE_URL = "https://pawandfound.store";
 
 /** Deterministic shuffle using week number as seed */
@@ -147,6 +148,7 @@ function Home() {
       <div className="border-b border-[#E9EDDE] bg-white">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-x-6 gap-y-1 px-4 py-2 sm:px-6 lg:px-8">
           <WeatherWidget compact />
+          <DailyPetTip />
           <LiveClock />
         </div>
       </div>
