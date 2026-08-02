@@ -146,7 +146,7 @@ function Home() {
 
       {/* Live date/time + weather bar */}
       <div className="border-b border-[#E9EDDE] bg-white">
-        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-x-6 gap-y-1 px-4 py-2 sm:px-6 lg:px-8">
+        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-6 gap-y-1 px-4 py-2 sm:px-6 lg:px-8">
           <WeatherWidget compact />
           <DailyPetTip />
           <LiveClock />
