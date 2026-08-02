@@ -495,6 +495,14 @@ function DownloadsPage() {
               link: "https://buy.stripe.com/eVqfZh5nE6Gs1stgKY2cg17",
               slug: "/ebooks/cat-encyclopedia-for-kids",
             },
+            {
+              title: "Cat vs. Cat: Multi-Cat Harmony Guide",
+              price: "$12.99",
+              desc: "Stop the hissing and restore peace. Introductions, territory, resource sharing, stress signals, and safe fight interventions — 8 chapters.",
+              img: "/images/ebook-cat-vs-cat.jpg",
+              link: "https://buy.stripe.com/fZu3cvaHY2qcb33cuI2cg18",
+              slug: "/ebooks/cat-vs-cat",
+            },
           ].map((ebook) => (
             <div key={ebook.title} className="group rounded-xl border border-[#E9EDDE] bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-md overflow-hidden">
               <a href={ebook.slug} className="block">
