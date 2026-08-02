@@ -479,6 +479,22 @@ function DownloadsPage() {
               link: "https://buy.stripe.com/7sY6oH4jA3ug8UV0M02cg0U",
               slug: "/ebooks/senior-pet-care",
             },
+            {
+              title: "The Dog Encyclopedia for Kids",
+              price: "$12.99",
+              desc: "40+ dog breeds A to Z, fun facts, a family breed quiz, dog jobs, and amazing records — a playful guide for young dog lovers.",
+              img: "/images/ebook-dog-encyclopedia-kids.jpg",
+              link: "https://buy.stripe.com/14A9AT5nE0i4fjjgKY2cg16",
+              slug: "/ebooks/dog-encyclopedia-for-kids",
+            },
+            {
+              title: "The Cat Encyclopedia for Kids",
+              price: "$12.99",
+              desc: "25+ cat breeds A to Z, fun facts, a family breed quiz, famous cats in history, and amazing records — a purr-fect guide for young cat fans.",
+              img: "/images/ebook-cat-encyclopedia-kids.jpg",
+              link: "https://buy.stripe.com/eVqfZh5nE6Gs1stgKY2cg17",
+              slug: "/ebooks/cat-encyclopedia-for-kids",
+            },
           ].map((ebook) => (
             <div key={ebook.title} className="group rounded-xl border border-[#E9EDDE] bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-md overflow-hidden">
               <a href={ebook.slug} className="block">
@@ -537,6 +553,60 @@ function DownloadsPage() {
                   Buy Now — Instant Download
                 </a>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Featured: Kids' Encyclopedias */}
+      <div className="mx-auto max-w-4xl px-4 pt-8 sm:px-6 lg:px-8">
+        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#FF7F5C] via-[#FF9F7E] to-[#2A9D8F] shadow-lg">
+          <span className="absolute left-4 top-4 text-3xl opacity-50 select-none" aria-hidden="true">⭐</span>
+          <span className="absolute right-6 bottom-4 text-2xl opacity-40 select-none" aria-hidden="true">🐾</span>
+          <span className="absolute right-16 top-6 text-xl opacity-40 select-none" aria-hidden="true">✨</span>
+          <div className="p-6 sm:p-8">
+            <span className="inline-flex items-center rounded-full bg-white px-3 py-1 text-xs font-bold text-[#FF7F5C] shadow-sm">
+              🧒 NEW! FOR KIDS AGES 6-12
+            </span>
+            <h3 className="font-heading mt-3 text-xl font-bold text-white sm:text-2xl">
+              The Dog & Cat Encyclopedias for Kids
+            </h3>
+            <p className="mt-1 max-w-xl text-sm text-white/90">
+              Bright, playful, and packed with fun — breeds A to Z, amazing facts, family quizzes, and record-breaking pets. Perfect first reference books for young animal lovers.
+            </p>
+            <div className="mt-6 grid gap-4 sm:grid-cols-2">
+              {[
+                {
+                  title: "The Dog Encyclopedia for Kids",
+                  img: "/images/ebook-dog-encyclopedia-kids.jpg",
+                  price: "$12.99",
+                  slug: "/ebooks/dog-encyclopedia-for-kids",
+                  link: "https://buy.stripe.com/14A9AT5nE0i4fjjgKY2cg16",
+                },
+                {
+                  title: "The Cat Encyclopedia for Kids",
+                  img: "/images/ebook-cat-encyclopedia-kids.jpg",
+                  price: "$12.99",
+                  slug: "/ebooks/cat-encyclopedia-for-kids",
+                  link: "https://buy.stripe.com/eVqfZh5nE6Gs1stgKY2cg17",
+                },
+              ].map((book) => (
+                <div key={book.title} className="flex items-center gap-4 rounded-xl bg-white/95 p-4 shadow-md">
+                  <img src={book.img} alt={book.title} className="w-16 h-20 object-cover rounded-lg shadow-sm sm:w-20 sm:h-24" />
+                  <div className="min-w-0">
+                    <h4 className="font-heading text-sm font-bold text-[#2D2D2D] leading-snug">{book.title}</h4>
+                    <p className="mt-1 font-heading text-lg font-bold text-[#FF7F5C]">{book.price}</p>
+                    <div className="mt-1.5 flex flex-wrap items-center gap-2">
+                      <a href={book.slug} className="text-xs font-medium text-[#2A9D8F] hover:text-[#FF7F5C] transition-colors">
+                        Details
+                      </a>
+                      <a href={book.link} className="btn-primary text-xs px-3 py-1.5 !bg-[#2A9D8F] hover:!bg-[#23877B] !text-white">
+                        Buy Now
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
