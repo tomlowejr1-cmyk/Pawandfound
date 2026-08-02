@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 interface WeatherData {
   temp: number;
@@ -62,11 +62,24 @@ function getRecommendations(temp: number, condition: string): { text: string; it
   };
 }
 
-export function WeatherWidget() {
+/**
+ * Weather widget for Paw & Found.
+ * - `compact` (default false): renders a small chip (city · temp · condition)
+ *   suitable for the homepage utility bar next to the live clock. Clicking it
+ *   expands a dropdown with weather-driven pet product recommendations.
+ * - default: a full card with the same info + recommendations inline.
+ *
+ * Uses the free OpenWeatherMap API (VITE_WEATHER_API_KEY). Tries the visitor's
+ * geolocation and falls back to NYC. Renders a skeleton until the first
+ * response so there's no layout shift / hydration mismatch.
+ */
+export function WeatherWidget({ compact = false }: { compact?: boolean }) {
   const [weather, setWeather] = useState<WeatherData | null>(null);
   const [recommendations, setRecommendations] = useState<{ text: string; items: Recommendation[] } | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [open, setOpen] = useState(false);
+  const rootRef = useRef<HTMLDivElement>(null);
 
   async function fetchWeatherForCoords(lat: number, lon: number) {
     const key = import.meta.env.VITE_WEATHER_API_KEY;
@@ -127,8 +140,32 @@ export function WeatherWidget() {
     init();
   }, []);
 
-  // Loading skeleton
+  // Close the compact dropdown on outside click or Escape
+  useEffect(() => {
+    if (!compact || !open) return;
+    function onPointerDown(e: MouseEvent | TouchEvent) {
+      if (rootRef.current && !rootRef.current.contains(e.target as Node)) setOpen(false);
+    }
+    function onKey(e: KeyboardEvent) {
+      if (e.key === "Escape") setOpen(false);
+    }
+    document.addEventListener("pointerdown", onPointerDown);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("pointerdown", onPointerDown);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [compact, open]);
+
+  // Loading states
   if (loading) {
+    if (compact) {
+      return (
+        <p className="text-xs font-normal text-[#6B7280] tabular-nums animate-pulse" aria-hidden="true">
+          <span className="inline-block h-4 w-44" />
+        </p>
+      );
+    }
     return (
       <div className="rounded-xl border border-[#E9EDDE] bg-white p-4 shadow-sm animate-pulse">
         <div className="flex items-center gap-3">
@@ -146,6 +183,91 @@ export function WeatherWidget() {
     );
   }
 
+  // Compact chip + expandable dropdown (homepage utility bar)
+  if (compact) {
+    return (
+      <div className="relative" ref={rootRef}>
+        <button
+          type="button"
+          onClick={() => setOpen((v) => !v)}
+          aria-expanded={open}
+          aria-haspopup="true"
+          aria-label={`Weather in ${weather?.city ?? "your area"}: ${weather ? `${weather.temp}°F, ${weather.condition}` : "unavailable"}. Click for pet tips.`}
+          className="flex items-center gap-1.5 rounded-full border border-[#E9EDDE] bg-white px-2.5 py-1 text-xs font-normal text-[#6B7280] tabular-nums transition-colors hover:border-[#FF7F5C]/40 hover:text-[#2D2D2D]"
+        >
+          {weather?.icon && (
+            <img
+              src={`https://openweathermap.org/img/wn/${weather.icon}@2x.png`}
+              alt=""
+              className="h-4 w-4"
+              loading="lazy"
+            />
+          )}
+          <span className="max-w-[7rem] truncate font-medium text-[#2D2D2D] sm:max-w-[9rem]">
+            {weather?.city || "Your Area"}
+          </span>
+          <span className="text-[#D1D5DB]" aria-hidden="true">·</span>
+          <span>{weather ? `${weather.temp}°F` : "--°"}</span>
+          <svg
+            className={`h-3 w-3 text-[#9CA3AF] transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={2.5}
+            aria-hidden="true"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+
+        {open && (
+          <div className="absolute left-0 top-full z-40 mt-2 w-72 rounded-xl border border-[#E9EDDE] bg-white p-4 shadow-lg">
+            {weather && (
+              <div className="flex items-center gap-2">
+                {weather.icon && (
+                  <img
+                    src={`https://openweathermap.org/img/wn/${weather.icon}@2x.png`}
+                    alt=""
+                    className="h-8 w-8"
+                    loading="lazy"
+                  />
+                )}
+                <div className="min-w-0">
+                  <p className="text-xs font-medium text-[#6B7280] truncate">{weather.city}</p>
+                  <p className="font-heading text-lg font-bold text-[#2D2D2D]">
+                    {weather.temp}°F <span className="text-xs font-normal text-[#6B7280]">{weather.condition}</span>
+                  </p>
+                </div>
+              </div>
+            )}
+            {error && !weather && (
+              <p className="text-xs text-[#9CA3AF]">{error} — showing general pet tips.</p>
+            )}
+            {recommendations && (
+              <div className="mt-3 border-t border-[#E9EDDE] pt-3">
+                <p className="text-xs text-[#6B7280] leading-relaxed">{recommendations.text}</p>
+                <div className="mt-2 flex flex-wrap gap-2">
+                  {recommendations.items.map((rec) => (
+                    <a
+                      key={rec.label}
+                      href={rec.href}
+                      onClick={() => setOpen(false)}
+                      className="inline-flex items-center gap-1.5 rounded-full bg-[#FFF8F0] px-3 py-1 text-xs font-medium text-[#2D2D2D] hover:bg-[#FF7F5C]/10 hover:text-[#FF7F5C] transition-colors border border-[#E9EDDE]"
+                    >
+                      <span>{rec.icon}</span>
+                      <span>{rec.label}</span>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  // Full card (default)
   return (
     <div className="rounded-xl border border-[#E9EDDE] bg-white p-4 shadow-sm">
       {/* Weather Row */}
@@ -155,6 +277,7 @@ export function WeatherWidget() {
             src={`https://openweathermap.org/img/wn/${weather.icon}@2x.png`}
             alt={weather.condition}
             className="h-10 w-10"
+            loading="lazy"
           />
         )}
         <div className="min-w-0">
