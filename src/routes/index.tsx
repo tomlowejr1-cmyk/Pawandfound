@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { loadProducts } from "~/lib/products";
 import type { Product } from "~/lib/types";
 import { CATEGORIES } from "~/lib/types";
@@ -71,7 +71,30 @@ export const Route = createFileRoute("/")({
 function Home() {
   const { featured, categories } = Route.useLoaderData();
   const [hashtagCopied, setHashtagCopied] = useState(false);
+  const [referred, setReferred] = useState(false);
   const BRAND_HASHTAG = "#PawAndFoundPets";
+  const REF_BANNER_KEY = "pawandfound_ref_banner_dismissed";
+
+  // Show a "you were referred" welcome when arriving via a referral link (?ref=…)
+  useEffect(() => {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get("ref") && !sessionStorage.getItem(REF_BANNER_KEY)) {
+        setReferred(true);
+      }
+    } catch {
+      // ignore
+    }
+  }, []);
+
+  function dismissReferralBanner() {
+    setReferred(false);
+    try {
+      sessionStorage.setItem(REF_BANNER_KEY, "1");
+    } catch {
+      // ignore
+    }
+  }
 
   async function copyBrandHashtag() {
     try {
@@ -104,6 +127,22 @@ function Home() {
 
   return (
     <div>
+      {/* Referral welcome banner */}
+      {referred && (
+        <div className="bg-[#2A9D8F] px-4 py-3 text-center text-sm text-white">
+          🎉 You were referred by a Paw &amp; Found friend! Use code{" "}
+          <strong className="font-semibold">PAWFRIEND10</strong> at checkout for 10% off
+          your first order.
+          <button
+            onClick={dismissReferralBanner}
+            aria-label="Dismiss referral banner"
+            className="ml-3 font-semibold text-white/70 hover:text-white"
+          >
+            ✕
+          </button>
+        </div>
+      )}
+
       {/* Live date/time + weather bar */}
       <div className="border-b border-[#E9EDDE] bg-white">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-x-6 gap-y-1 px-4 py-2 sm:px-6 lg:px-8">

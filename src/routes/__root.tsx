@@ -214,6 +214,7 @@ function Header() {
     { href: "/downloads#premium-ebooks", label: "eBooks" },
     { href: "/freebies/pet-birthday-card", label: "Freebies" },
     { href: "/gift-cards", label: "Gift Cards 🎁" },
+    { href: "/refer-a-friend", label: "Refer a Friend 💌" },
     { href: "/adopt", label: "Adopt ❤️" },
     { href: "/faq", label: "FAQ" },
   ];
