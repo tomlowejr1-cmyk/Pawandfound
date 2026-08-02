@@ -10,10 +10,10 @@ const SITE_URL = "https://pawandfound.store";
  * the /gift-cards page activates automatically as soon as a link is present.
  */
 const GIFT_CARD_LINKS: Record<number, string> = {
-  25: "",
-  50: "",
-  75: "",
-  100: "",
+  25: "https://buy.stripe.com/aFa4gzaHY2qc4EF1Q42cg1c",
+  50: "https://buy.stripe.com/eVq8wP2bs1m8c77dyM2cg19",
+  75: "https://buy.stripe.com/28E00jbM23ug0op1Q42cg1a",
+  100: "https://buy.stripe.com/dRmfZhbM25Co4EFeCQ2cg1b",
 };
 
 const GIFT_CARD_AMOUNTS = [
