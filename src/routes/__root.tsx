@@ -218,6 +218,7 @@ function Header() {
     { href: "/birthday-club", label: "Birthday Club 🎂" },
     { href: "/pet-reminders", label: "Pet Reminders ⏰" },
     { href: "/pet-name-generator", label: "Pet Name Generator ✨" },
+    { href: "/cat-corner", label: "Cat Corner 🐱" },
     { href: "/adopt", label: "Adopt ❤️" },
     { href: "/faq", label: "FAQ" },
   ];
