@@ -219,6 +219,7 @@ function Header() {
     { href: "/pet-reminders", label: "Pet Reminders ⏰" },
     { href: "/pet-name-generator", label: "Pet Name Generator ✨" },
     { href: "/cat-corner", label: "Cat Corner 🐱" },
+    { href: "/reviews", label: "Reviews ⭐" },
     { href: "/adopt", label: "Adopt ❤️" },
     { href: "/faq", label: "FAQ" },
   ];
