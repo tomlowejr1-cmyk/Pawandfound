@@ -82,7 +82,7 @@ export function WeatherWidget({ compact = false }: { compact?: boolean }) {
   const rootRef = useRef<HTMLDivElement>(null);
 
   async function fetchWeatherForCoords(lat: number, lon: number) {
-    const key = import.meta.env.VITE_WEATHER_API_KEY;
+    const key = import.meta.env.VITE_WEATHER_API_KEY || '99afae35077054a748b03ad273c7372a';
     if (!key || key === "your_api_key_here") {
       setError("API key not configured");
       setRecommendations({
