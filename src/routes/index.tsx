@@ -4,6 +4,7 @@ import type { Product } from "~/lib/types";
 import { CATEGORIES } from "~/lib/types";
 import { NewsletterSignup } from "~/components/newsletter-signup";
 import { SpinWheel } from "~/components/spin-wheel";
+import { LiveClock } from "~/components/live-clock";
 const SITE_URL = "https://pawandfound.store";
 
 /** Deterministic shuffle using week number as seed */
@@ -70,6 +71,13 @@ function Home() {
 
   return (
     <div>
+      {/* Live date/time bar */}
+      <div className="border-b border-[#E9EDDE] bg-white">
+        <div className="mx-auto flex max-w-7xl items-center justify-end px-4 py-2 sm:px-6 lg:px-8">
+          <LiveClock />
+        </div>
+      </div>
+
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-[#FF7F5C] via-[#FF7F5C] to-[#F4A261]">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMzAgMTBhMjAgMjAgMCAwMTAgNDAgMjAgMjAgMCAwMTAtNDB6IiBmaWxsPSJub25lIiBzdHJva2U9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiIHN0cm9rZS13aWR0aD0iMiIvPjwvc3ZnPg==')] opacity-50" />
