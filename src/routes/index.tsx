@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
 import { loadProducts } from "~/lib/products";
 import type { Product } from "~/lib/types";
 import { CATEGORIES } from "~/lib/types";
@@ -69,6 +70,37 @@ export const Route = createFileRoute("/")({
 
 function Home() {
   const { featured, categories } = Route.useLoaderData();
+  const [hashtagCopied, setHashtagCopied] = useState(false);
+  const BRAND_HASHTAG = "#PawAndFoundPets";
+
+  async function copyBrandHashtag() {
+    try {
+      await navigator.clipboard.writeText(BRAND_HASHTAG);
+    } catch {
+      // Clipboard API unavailable (http/non-secure context) — fall back to a textarea copy
+      const ta = document.createElement("textarea");
+      ta.value = BRAND_HASHTAG;
+      ta.style.position = "fixed";
+      ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand("copy");
+      document.body.removeChild(ta);
+    }
+    setHashtagCopied(true);
+    window.setTimeout(() => setHashtagCopied(false), 2000);
+  }
+
+  const starterHashtags = [
+    "#PetLovers",
+    "#DogMom",
+    "#CatDad",
+    "#PetSupplies",
+    "#PetStore",
+    "#DogsofInstagram",
+    "#CatsofInstagram",
+    "#PetFashion",
+  ];
 
   return (
     <div>
@@ -475,26 +507,86 @@ function Home() {
         </div>
       </section>
 
-      {/* Pet Community Section */}
-      <section className="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
-        <div className="rounded-2xl bg-gradient-to-br from-[#FF7F5C] via-[#FF7F5C] to-[#F4A261] p-8 text-center text-white shadow-lg sm:p-12">
-          <span className="text-4xl">📸</span>
-          <h2 className="font-heading mt-4 text-2xl font-bold sm:text-3xl">
-            Share Your Pet!
+      {/* Share With Us — Hashtag Community Section */}
+      <section className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
+        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#FF7F5C] via-[#FF7F5C] to-[#F4A261] p-8 text-center text-white shadow-lg sm:p-12">
+          {/* Decorative paw prints */}
+          <span aria-hidden="true" className="absolute -left-4 -top-4 rotate-[-20deg] text-7xl opacity-15">🐾</span>
+          <span aria-hidden="true" className="absolute -right-6 top-1/3 rotate-[20deg] text-8xl opacity-10">🐾</span>
+          <span aria-hidden="true" className="absolute bottom-2 left-1/4 rotate-12 text-6xl opacity-15">🐾</span>
+
+          <span className="relative inline-flex h-16 w-16 items-center justify-center rounded-full bg-white/15 text-4xl backdrop-blur-sm">
+            📸
+          </span>
+          <h2 className="font-heading relative mt-4 text-2xl font-bold sm:text-3xl">
+            Share With Us!
           </h2>
-          <p className="mt-3 max-w-md mx-auto text-white/80">
-            Tag your photos with <strong className="text-white">#PawAndFoundPets</strong> on Instagram for a chance to be featured.
+          <p className="relative mx-auto mt-3 max-w-lg text-white/85">
+            Show off your furry (or feathery!) best friend. Post a photo on Instagram and tag{" "}
+            <strong className="text-white">#PawAndFoundPets</strong> for a chance to be featured
+            right here and in our newsletter. We love seeing our pack! 🐶🐱
           </p>
+
+          {/* Copyable brand hashtag */}
+          <button
+            type="button"
+            onClick={copyBrandHashtag}
+            aria-label="Copy #PawAndFoundPets to clipboard"
+            className="group relative mx-auto mt-6 inline-flex items-center gap-3 rounded-2xl border-2 border-dashed border-white/50 bg-white/15 px-6 py-3 transition-colors hover:bg-white/25"
+          >
+            <span className="font-heading text-xl font-bold tracking-wide sm:text-2xl">
+              {BRAND_HASHTAG}
+            </span>
+            <span className="flex items-center gap-1 rounded-full bg-white/25 px-2 py-1 text-[10px] font-semibold uppercase tracking-wide text-white/90">
+              {hashtagCopied ? (
+                <>✓ Copied!</>
+              ) : (
+                <>
+                  <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                  </svg>
+                  Copy
+                </>
+              )}
+            </span>
+          </button>
+          <p className="relative mt-2 text-xs text-white/70">
+            Tap the hashtag to copy it — paste it into your caption!
+          </p>
+
+          {/* Starter hashtags */}
+          <div className="relative mt-6">
+            <p className="text-xs font-semibold uppercase tracking-widest text-white/70">
+              Starter hashtags
+            </p>
+            <div className="mt-3 flex flex-wrap justify-center gap-2">
+              {starterHashtags.map((tag) => (
+                <a
+                  key={tag}
+                  href={`https://instagram.com/explore/tags/${tag.slice(1).toLowerCase()}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-full border border-white/30 bg-white/10 px-3 py-1.5 text-sm font-medium text-white transition-colors hover:bg-white hover:text-[#FF7F5C]"
+                >
+                  {tag}
+                </a>
+              ))}
+            </div>
+            <p className="mt-3 text-xs text-white/70">
+              Mix and match — the more tags, the more fellow pet lovers will find your pup!
+            </p>
+          </div>
+
           <a
             href="https://instagram.com/explore/tags/pawandfoundpets"
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-primary mt-6 inline-flex items-center gap-2 bg-white text-[#FF7F5C] hover:bg-white/90"
+            className="btn-primary relative mt-7 inline-flex items-center gap-2 bg-white text-[#FF7F5C] hover:bg-white/90"
           >
             <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
               <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
             </svg>
-            View on Instagram
+            View #PawAndFoundPets on Instagram
           </a>
         </div>
       </section>
