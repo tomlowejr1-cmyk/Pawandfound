@@ -247,7 +247,7 @@ function Header() {
           <span className="font-heading text-xl font-bold text-[#2A9D8F]">Paw & Found</span>
         </a>
 
-        <nav className="hidden items-center gap-1 md:flex">
+        <nav className="hidden items-center gap-1 md:flex ml-6">
           {navLinks.map((link) => (
             <a
               key={link.href}
