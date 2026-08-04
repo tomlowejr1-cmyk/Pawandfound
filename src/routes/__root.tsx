@@ -241,13 +241,13 @@ function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-[#E9EDDE] bg-white/90 backdrop-blur-md">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+      <div className="mx-auto flex max-w-7xl items-center px-4 py-3 sm:px-6 lg:px-8">
         <a href="/" className="flex items-center gap-2">
           <img src="/images/logo.png" alt="Paw & Found — Pet Supplies Store Logo" className="h-8 w-auto" />
           <span className="font-heading text-xl font-bold text-[#2A9D8F]">Paw & Found</span>
         </a>
 
-        <nav className="hidden items-center gap-1 md:flex ml-6">
+        <nav className="hidden items-center gap-1 md:flex mr-4">
           {navLinks.map((link) => (
             <a
               key={link.href}
@@ -259,7 +259,7 @@ function Header() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 ml-auto">
           <MobileMenu navLinks={navLinks} />
           <CartButton />
         </div>
