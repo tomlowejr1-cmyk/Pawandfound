@@ -476,11 +476,30 @@ function BlogPage() {
       document.head.appendChild(scriptEl);
     }
     scriptEl.textContent = jsonld;
-
+    // BreadcrumbList for rich results (Home > Blog > Post)
+    const breadcrumbJson = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": `${SITE_URL}/` },
+        { "@type": "ListItem", "position": 2, "name": "Blog", "item": `${SITE_URL}/blog` },
+        { "@type": "ListItem", "position": 3, "name": post.title, "item": postUrl },
+      ],
+    });
+    let breadcrumbEl = document.getElementById("blog-breadcrumb-jsonld") as HTMLScriptElement | null;
+    if (!breadcrumbEl) {
+      breadcrumbEl = document.createElement("script");
+      breadcrumbEl.type = "application/ld+json";
+      breadcrumbEl.id = "blog-breadcrumb-jsonld";
+      document.head.appendChild(breadcrumbEl);
+    }
+    breadcrumbEl.textContent = breadcrumbJson;
     // Cleanup: remove post-specific JSON-LD on unmount
     return () => {
       const el = document.getElementById("blog-post-jsonld");
       if (el) el.remove();
+      const bcel = document.getElementById("blog-breadcrumb-jsonld");
+      if (bcel) bcel.remove();
       document.title = "Paw & Found Blog — Pet Care Tips & Guides";
     };
   }, [post]);
