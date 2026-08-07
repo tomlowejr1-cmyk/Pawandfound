@@ -503,6 +503,22 @@ function DownloadsPage() {
               link: "https://buy.stripe.com/fZu3cvaHY2qcb33cuI2cg18",
               slug: "/ebooks/cat-vs-cat",
             },
+            {
+              title: "Reactive Dog Guidebook",
+              price: "$14.99",
+              desc: "Understand and manage leash reactivity, barking, and fear-based responses. Threshold management, counter-conditioning, and confidence building — for walks you both enjoy.",
+              img: "/images/ebook-reactive-dog.jpg",
+              link: "https://buy.stripe.com/9B6cN54jA0i45IJ1Q42cg1e",
+              slug: "/downloads",
+            },
+            {
+              title: "Cat Training Handbook",
+              price: "$14.99",
+              desc: "Yes, cats CAN be trained! Clicker training, harness walking, tricks, and solving problem behaviors with positive reinforcement adapted for felines.",
+              img: "/images/ebook-cat-training.jpg",
+              link: "https://buy.stripe.com/5kQ5kDbM25Co5IJ66k2cg1f",
+              slug: "/downloads",
+            },
           ].map((ebook) => (
             <div key={ebook.title} className="group rounded-xl border border-[#E9EDDE] bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-md overflow-hidden">
               <a href={ebook.slug} className="block">
