@@ -5,7 +5,6 @@ import type { Product } from "~/lib/types";
 const SITE_URL = "https://pawandfound.store";
 
 const SEASONAL_SLUGS = ["halloween-boo-pet-tshirt", "pumpkin-spice-bandana", "holiday-plaid-bowtie-collar"];
-const FALL_SLUGS = ["classic-plaid-bandana", "cozy-hoodie-pullover", "plush-squeaky-fox-toy"];
 
 const SAFETY_POSTS = [
   {
@@ -40,7 +39,6 @@ const SAFETY_POSTS = [
 
 interface HalloweenData {
   seasonal: { product: Product; stripeUrl: string | undefined }[];
-  fall: Product[];
 }
 
 export const Route = createFileRoute("/halloween")({
@@ -53,10 +51,7 @@ export const Route = createFileRoute("/halloween")({
     }))
       .filter((x): x is { product: Product; stripeUrl: string | undefined } => Boolean(x.product))
       .map((x) => ({ product: x.product as Product, stripeUrl: x.stripeUrl }));
-    const fall = FALL_SLUGS.map((slug) => getProductBySlug(products, slug)).filter(
-      (p): p is Product => Boolean(p)
-    );
-    return { seasonal, fall };
+    return { seasonal };
   },
   component: HalloweenPage,
   head: () => ({
@@ -89,7 +84,7 @@ export const Route = createFileRoute("/halloween")({
 });
 
 function HalloweenPage() {
-  const { seasonal, fall } = Route.useLoaderData();
+  const { seasonal } = Route.useLoaderData();
 
   return (
     <div className="bg-gradient-to-b from-[#FFF8F0] to-white">
@@ -183,42 +178,6 @@ function HalloweenPage() {
           ))}
         </div>
       </section>
-
-      {/* Fall favorites tie-in */}
-      {fall.length > 0 && (
-        <section className="bg-[#FFF3E2]/60 py-12">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <h2 className="font-heading text-2xl font-bold text-[#2D2D2D]">
-              🍂 Fall Favorites
-            </h2>
-            <p className="mt-1 text-sm text-[#6B7280]">
-              Year-round staples that fit the season perfectly.
-            </p>
-            <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {fall.map((product) => (
-                <a key={product.id} href={`/product/${product.slug}`} className="card group flex items-center gap-4 p-4">
-                  <div className="h-20 w-20 flex-shrink-0 overflow-hidden rounded-xl bg-[#FFF8F0]">
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                      loading="lazy"
-                    />
-                  </div>
-                  <div>
-                    <h3 className="font-heading font-semibold text-[#2D2D2D] group-hover:text-[#FF7F5C]">
-                      {product.name}
-                    </h3>
-                    <p className="mt-1 text-sm font-bold text-[#FF7F5C]">
-                      ${product.price.toFixed(2)}
-                    </p>
-                  </div>
-                </a>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
 
       {/* Seasonal safety blog cards */}
       <section id="safety" className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
