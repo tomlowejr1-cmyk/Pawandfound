@@ -407,319 +407,92 @@ const blogPosts: BlogPost[] = [
     relatedSlugs: [],
     content: `<p>Independence Day is the most dangerous holiday of the year for pets — more animals go missing on July 4th than any other day, and shelters see a massive influx in the days that follow. Fireworks, heat, and holiday chaos combine into a perfect storm. Here's how to keep your pet safe.</p><h2>Fireworks: The #1 Reason Pets Bolt</h2><p>Fireworks sound like the end of the world to a dog or cat — their hearing is far more sensitive than ours, and the sudden booms trigger a primal flight response. Pets who would never normally run can panic, dig under fences, and bolt. The most important step: <strong>keep pets inside during fireworks</strong>, even if they've been fine before. Close windows and curtains, turn on a TV or white noise machine to mask the sound, and stay with them if you can.</p><p>For pets with true noise phobia, plan ahead: <strong>anxiety wraps</strong> (like a snug thunder shirt), <strong>calming treats</strong>, or prescription anxiety medication from your vet can make a huge difference — but start these before the fireworks begin, not mid-panic. Create a safe den — a covered crate or a quiet closet with their bed and a <a href="/products?category=Toys">favorite toy</a> — where they can hide.</p><h2>ID and Microchip: Your Pet's Ticket Home</h2><p>Before the holiday, double-check that your pet's <strong>collar fits</strong> and the <strong>ID tag is current</strong> with your phone number. If your pet is microchipped, confirm the registry has your up-to-date contact info — a microchip is useless if the database is out of date. These two things are the difference between a lost pet coming home and a lost pet spending the holiday in a shelter.</p><h2>Heat, BBQ, and Holiday Hazards</h2><p>July heat is brutal. <strong>Never leave pets in a parked car</strong> — even with windows cracked, temperatures soar in minutes. Walk early or late, and check pavement temperature with the back of your hand. Provide endless fresh water and shade.</p><p>BBQs bring their own risks: <strong>corn cobs</strong> are a choking and blockage hazard, <strong>cooked bones</strong> splinter, and <strong>onions, garlic, grapes, chocolate, and alcohol</strong> are all toxic. <strong>Citronella candles and insect repellent</strong> can also cause stomach upset if ingested. And <strong>glow sticks</strong> are a chew magnet — the liquid inside is irritating but rarely serious; rinse the mouth and offer water if your pet gets one.</p><p>If the worst happens and your pet escapes, act fast: post to local lost-pet groups immediately, alert your microchip company, and check nearby shelters daily. For a full emergency reference, our <a href="/downloads">Pet First Aid Guide</a> ($7.99) covers heatstroke, poisoning, and first-aid basics every pet owner should have on hand.</p>`
   },
+  {
+    slug: "why-does-my-dog-eat-grass",
+    title: "Why Does My Dog Eat Grass? When It's Normal and When to Worry",
+    date: "2026-08-12",
+    author: "Paw & Found Team",
+    excerpt: "Dogs eat grass for a lot of reasons — most of them perfectly harmless. Here's what's actually going on, what's not normal, and when to call the vet.",
+    image: "/images/blog-why-does-my-dog-eat-grass.jpg",
+    tags: ["dogs", "health", "behavior"],
+    relatedSlugs: ["eco-friendly-poop-bags-120ct", "stainless-steel-bowl-set"],
+    content: `<p>If you've ever watched your dog happily munch on the backyard lawn and wondered, "Should I stop this?" — you're not alone. Grass eating is one of the most common (and most misunderstood) dog behaviors. The short answer: it's usually completely normal. Let's look at why dogs do it and when it deserves a second look.</p><h2>Why Do Dogs Eat Grass?</h2><p>Veterinarians have studied grass eating for years, and the picture is reassuring. Most grass eating is <strong>normal exploratory behavior</strong> — dogs are curious, and grass has a texture and smell that interests them. Puppies especially will taste-test anything. Some experts believe grass provides <strong>fiber and roughage</strong> that helps digestion, while others think dogs simply enjoy the flavor, especially in spring when the new growth is sweet. The old myth that "dogs eat grass to make themselves vomit" holds true for only a small minority of cases — most dogs that eat grass don't vomit afterward.</p><h2>When Grass Eating Is a Problem</h2><p>Grass eating becomes a concern when it's <strong>sudden and frantic</strong> — if your dog is gulping grass urgently, drooling, or repeatedly vomiting afterward, that can signal nausea, an upset stomach, or a dietary issue. Also watch for:</p><ul><li><strong>Pesticides and chemicals:</strong> if your lawn or your neighbor's is treated, keep your dog off it — fertilizer and weed killers are toxic when ingested.</li><li><strong>Parasites:</strong> grass near wildlife droppings can carry intestinal parasites.</li><li><strong>Compulsive eating:</strong> if your dog can't stop and it's interfering with walks or meals, that's worth a vet chat.</li></ul><h2>What You Can Do</h2><p>For the average healthy dog, a little grass is fine — it passes through harmlessly. You can reduce the habit by offering more <a href='/blog?post=picking-the-best-dog-food'>fiber-rich dog food</a>, keeping your dog busy with <a href='/blog?post=signs-dog-needs-more-exercise'>more exercise and enrichment</a>, and making sure they get plenty of fresh water. If you're worried about what they're grazing on, keep walks to pesticide-free areas and consider a basket muzzle during off-leash time as a short-term tool.</p><p>Concerned about something your dog ate? Our <a href='/downloads'>Pet First Aid Guide</a> ($7.99) covers what to do for dietary mishaps, plus a printable list of foods that are toxic to dogs. And a sturdy <a href='/product/stainless-steel-bowl-set'>stainless steel bowl set</a> keeps water fresh and tempting — hydrated dogs are less likely to snack on lawn.</p>`,
+  },
+  {
+    slug: "best-cat-litter-odor-control",
+    title: "Best Cat Litter for Odor Control: How to Choose and Keep the Smell Out for Good",
+    date: "2026-08-12",
+    author: "Paw & Found Team",
+    excerpt: "Odor control starts with the right litter — but it also depends on your routine. Here's how to pick the best cat litter and keep your whole home fresh.",
+    image: "/images/blog-best-cat-litter-odor-control.jpg",
+    tags: ["cats", "essentials", "litter"],
+    relatedSlugs: ["premium-clumping-cat-litter", "eco-friendly-poop-bags-120ct"],
+    content: `<p>Let's be honest: no one wants a house that smells like the litter box. The good news is that stubborn litter-box odor is almost always fixable — and it starts with the litter itself, backed up by a routine. Here's how to choose the best cat litter for odor control and keep the smell out for good.</p><h2>What Makes a Litter Good at Controlling Odor?</h2><p>Three things matter: <strong>clumping power</strong>, <strong>absorption</strong>, and <strong>odor neutralization</strong>. Clumping litter traps urine in a solid scoopable mass so it doesn't spread and bake into the box. Premium clumping clay litters — like our <a href='/product/premium-clumping-cat-litter'>premium clumping cat litter</a> — use fine granules that form tight clumps within seconds and lock ammonia smells inside. Look for litters with activated charcoal or natural plant-based neutralizers for an extra layer of defense.</p><h2>Odor Control Is 80% Routine</h2><p>Even the best litter fails if the box isn't maintained. The golden rules:</p><ul><li><strong>Scoop daily</strong> — this single habit does more for odor than any litter upgrade. Use <a href='/product/eco-friendly-poop-bags-120ct'>eco-friendly poop bags</a> for easy, hygienic disposal.</li><li><strong>Deep-clean monthly</strong> — dump everything, wash the box with mild soap (never harsh chemicals), dry it fully, then refill.</li><li><strong>Keep 2-3 inches deep</strong> — too shallow and urine hits the plastic and smells; too deep and cats won't dig comfortably.</li><li><strong>One box per cat, plus one</strong> — a single box for multiple cats is the #1 cause of both odor and <a href='/blog?post=cat-not-using-litter-box'>litter box avoidance</a>.</li></ul><h2>How Often Should You Change It?</h2><p>Clumping litter needs a full change every <strong>2-4 weeks</strong> (weekly for multiple cats). Non-clumping litter needs changing far more often — usually twice a week — which is why most owners find clumping worth the price. For the full breakdown on changing schedules, see our guide on <a href='/blog?post=how-often-should-you-change-cat-litter'>how often to change cat litter</a>.</p><p>If odor lingers even with a great routine, your cat may be trying to tell you something — check for signs of a <a href='/blog?post=cat-not-using-litter-box'>litter box problem</a> or watch a <a href='/cat-corner'>Jackson Galaxy Cat Corner video</a> on litter box troubleshooting. And to keep every aspect of care on track, grab our <a href='/downloads'>Ultimate Pet Care Planner</a> ($9.99) with a built-in cleaning schedule and health tracker.</p>`,
+  },
+  {
+    slug: "how-long-do-hamsters-live",
+    title: "How Long Do Hamsters Live? Lifespans by Breed + Tips to Help Them Thrive",
+    date: "2026-08-12",
+    author: "Paw & Found Team",
+    excerpt: "Hamster lifespans vary a lot by breed — from about 1.5 years up to 3.5. Here's what to expect, and how to give your hamster the longest, happiest life.",
+    image: "/images/blog-how-long-do-hamsters-live.jpg",
+    tags: ["hamsters", "small-pets"],
+    relatedSlugs: ["eco-friendly-poop-bags-120ct", "plush-squeaky-fox-toy"],
+    content: `<p>One of the first questions new hamster owners ask is also the hardest to hear: how long will my little friend live? The honest answer is that hamsters have short lifespans, but the exact number depends heavily on the breed. Knowing what to expect helps you enjoy every month — and make sure you're giving them the best care possible.</p><h2>Average Lifespans by Breed</h2><ul><li><strong>Syrian (golden) hamsters</strong> — 2 to 3 years. The most common pet hamster and the longest-lived.</li><li><strong>Roborovski hamsters</strong> — 2.5 to 3.5 years. The tiny speedsters, and the longest-lived of the dwarf breeds.</li><li><strong>Winter white (Russian) hamsters</strong> — 1.5 to 2 years.</li><li><strong>Campbell's dwarf hamsters</strong> — 1.5 to 2 years.</li><li><strong>Chinese hamsters</strong> — 2 to 3 years.</li></ul><h2>What Shortens a Hamster's Life</h2><p>Most hamsters die from old age or common health issues, but several preventable problems cut lives short: <strong>obesity</strong> from sugary treats and too-small wheels, <strong>respiratory infections</strong> from dusty bedding or drafty cages, <strong>diabetes</strong> (dwarf breeds are especially prone), and <strong>stress</strong> from loud environments or improper handling. A proper habitat — the right size cage, deep bedding, and a correctly sized wheel — is the single biggest factor in helping a hamster live out its full lifespan. Our guide to <a href='/blog?post=hamster-enrichment-ideas'>hamster enrichment</a> covers the essentials, and the <a href='/blog?post=rabbit-care-101-first-time-owners'>rabbit care guide</a> is handy if you're planning a multi-species small-pet household.</p><h2>How to Help Your Hamster Live Longer</h2><ul><li><strong>Feed a high-quality pellet mix</strong> and limit fruits — a blueberry once a week is plenty.</li><li><strong>Provide 6+ inches of paper bedding</strong> for burrowing, changed regularly.</li><li><strong>Keep the cage out of direct sun and drafts</strong>, with stable temperatures.</li><li><strong>Handle gently and regularly</strong> so your hamster trusts you — stress is a silent life-shortener.</li><li><strong>Watch for signs of illness</strong> (lethargy, wet tail, appetite loss) and see a vet early.</li></ul><p>Want the complete small-pet care toolkit? Grab the <a href='/downloads'>Small Pet Starter Kit</a> ($9.99) — an instant PDF download covering housing, feeding, and health checklists for hamsters, rabbits, and guinea pigs.</p>`,
+  },
+  {
+    slug: "dog-separation-anxiety-solutions",
+    title: "Dog Separation Anxiety: 7 Solutions That Actually Work",
+    date: "2026-08-12",
+    author: "Paw & Found Team",
+    excerpt: "Is your dog panicking every time you leave? Separation anxiety is stressful for both of you — but these 7 vet-approved strategies really help.",
+    image: "/images/blog-dog-separation-anxiety-solutions.jpg",
+    tags: ["dogs", "behavior", "training"],
+    relatedSlugs: ["plush-squeaky-fox-toy", "squeaky-tennis-ball-3-pack"],
+    content: `<p>Coming home to chewed doorframes, puddles, and a trembling dog isn't just frustrating — it's heartbreaking. Separation anxiety is a genuine panic response, not "bad behavior" or spite. The good news: it's highly treatable with the right combination of management, training, and patience. Here are seven strategies that actually work.</p><h2>1. Make Departures Boring</h2><p>Dogs read your routine. If grabbing your keys triggers a meltdown before you've even left, start desensitizing: pick up keys, put them down. Put on shoes, sit back down. Repeat until your dog is calm through the whole routine. When you actually leave, don't make a fuss — no long goodbyes. Departures that are boring teach your dog that leaving is no big deal.</p><h2>2. Build Independence with Alone-Time Training</h2><p>Practice being apart while you're still home. Have your dog settle in another room with a <a href='/product/plush-squeaky-fox-toy'>plush chew toy</a> while you work, gradually lengthening the distance and time. Short, positive separations build confidence. The same principles that fix <a href='/blog?post=stop-dog-jumping-on-guests'>excited greetings</a> — calm in, calm out — apply here.</p><h2>3. Exercise Before You Go</h2><p>A tired dog is a calmer dog. A solid walk or fetch session before you leave burns the nervous energy that fuels anxious pacing. Check our guide on <a href='/blog?post=signs-dog-needs-more-exercise'>how much exercise your dog really needs</a> to get the dose right.</p><h2>4. Leave a Puzzle</h2><p>Stuff a <a href='/product/squeaky-tennis-ball-3-pack'>favorite toy</a> or a Kong-style feeder with treats and leave it right as you walk out. The first 20 minutes are the anxiety peak — a rewarding distraction during that window rewires the association.</p><h2>5. Try a Calming Cue</h2><p>White noise, calming music, or a pheromone diffuser can all take the edge off. Consistency matters — use the same cue every time so your dog associates it with safety, not with being left.</p><h2>6. Consider Medication (With Your Vet)</h2><p>Severe anxiety is a medical condition. Vets can prescribe anti-anxiety medication or recommend supplements — this isn't a failure, it's treatment. Ask your vet if your dog's symptoms (<a href='/blog?post=budget-for-new-puppy'>budget for vet care</a> included) warrant it.</p><h2>7. Get Professional Help</h2><p>For intense cases, work with a certified behaviorist. Our <a href='/downloads'>Reactive Dog Guidebook</a> ($14.99) covers separation anxiety and other stress behaviors with step-by-step protocols you can start today.</p><p>Separation anxiety takes time — celebrate the small wins, and never punish the panic. With consistency, your dog can learn that you always come back.</p>`,
+  },
+  {
+    slug: "how-to-clean-dog-ears-at-home",
+    title: "How to Clean Dog Ears at Home: A Step-by-Step Guide",
+    date: "2026-08-12",
+    author: "Paw & Found Team",
+    excerpt: "Ear cleaning is a simple grooming skill every dog owner should know. Here's the safe, step-by-step method — plus the signs of an infection you should never ignore.",
+    image: "/images/blog-how-to-clean-dog-ears-at-home.jpg",
+    tags: ["dogs", "grooming", "health"],
+    relatedSlugs: ["gentle-pet-shampoo-16oz", "slicker-grooming-brush"],
+    content: `<p>Dirty ears are the #1 gateway to ear infections in dogs — and ear infections are painful, smelly, and expensive to treat. The good news: regular cleaning at home is easy, takes five minutes, and prevents most problems before they start. Here's the safe, vet-approved way to do it.</p><h2>Before You Start: Know the Signs of Infection</h2><p>Never clean an ear that looks infected — you can push the infection deeper. Call your vet if you see: <strong>redness or swelling</strong>, <strong>a bad smell</strong>, <strong>yellow/brown/black discharge</strong>, <strong>head shaking or ear scratching</strong>, or <strong>pain when you touch the ear</strong>. Those are infection signs, not dirt. If you're ever unsure, our guide on <a href='/blog?post=dog-itching-causes-vet'>why dogs itch and scratch</a> helps you tell grooming from a medical issue.</p><h2>What You'll Need</h2><ul><li>A vet-approved ear cleaning solution (never water or vinegar — they disrupt the ear's natural balance)</li><li>Cotton balls or gauze (never cotton swabs — they push wax deeper and can rupture the eardrum)</li><li>Towels and treats for positive reinforcement</li></ul><h2>Step-by-Step Cleaning</h2><p><strong>Step 1:</strong> Let your dog sniff the bottle and sit calmly. Reward generously — this should feel like a spa day, not a wrestling match.</p><p><strong>Step 2:</strong> Fill the ear canal with solution — don't touch the tip to the ear. Gently massage the base of the ear for 20-30 seconds. You'll hear a squishy sound; that's the solution loosening wax.</p><p><strong>Step 3:</strong> Let your dog shake. They'll fling out the loosened gunk — stand back and use a towel as a splash guard.</p><p><strong>Step 4:</strong> Wipe the visible part of the ear with a cotton ball until clean. Never probe deeper than your finger can reach.</p><p><strong>Step 5:</strong> Repeat on the other ear, then give a big reward and a towel rub. Follow with a <a href='/product/gentle-pet-shampoo-16oz'>gentle pet shampoo</a> bath day if your dog is due for one — clean ears stay cleaner on a clean dog.</p><h2>How Often?</h2><p>Once a month for most dogs; weekly for floppy-eared breeds (cocker spaniels, bassets, labs) and swimmers. Combine ear cleaning with <a href='/blog?post=how-often-bathe-dog'>a proper bathing schedule</a> and <a href='/blog?post=dog-teeth-cleaning-tips'>teeth brushing</a>, and grab a <a href='/product/slicker-grooming-brush'>slicker grooming brush</a> to round out your grooming toolkit. Our <a href='/downloads'>Pet First Aid Guide</a> ($7.99) includes an ear-health quick-reference card for spotting problems early.</p>`,
+  },
+  {
+    slug: "best-treats-for-training-puppies",
+    title: "Best Treats for Training Puppies: What to Use, How Much, and When",
+    date: "2026-08-12",
+    author: "Paw & Found Team",
+    excerpt: "The right training treats make puppy training faster and more fun — but the wrong ones cause tummy trouble. Here's how to pick, size, and use treats without overfeeding.",
+    image: "/images/blog-best-treats-for-training-puppies.jpg",
+    tags: ["puppies", "training"],
+    relatedSlugs: ["stainless-steel-bowl-set", "squeaky-tennis-ball-3-pack"],
+    content: `<p>Puppy training runs on treats. The treat you choose — its size, softness, and value — directly affects how fast your puppy learns and how much fun the process is for both of you. Here's what to look for in a training treat and how to use them like a pro.</p><h2>What Makes a Great Training Treat</h2><p>The ideal training treat is <strong>soft</strong> (so it's eaten in 2 seconds and you're back to training), <strong>small</strong> (pea-sized or smaller — a 10-pound puppy needs treats the size of a pea), <strong>high-value to your puppy</strong> (it should beat the world around them — usually means meaty or cheesy), and <strong>low-calorie</strong>. Training sessions involve dozens of repetitions, so calories add up fast — treats should be no more than 10% of your puppy's daily food.</p><h2>Kibble Works Too</h2><p>Don't overlook plain kibble as the default "low-value" treat — use your puppy's regular <a href='/blog?post=picking-the-best-dog-food'>high-quality food</a> for easy commands in quiet settings, and reserve the smelly, irresistible stuff for distracting environments. This is called a <strong>reward hierarchy</strong>, and it keeps training interesting without blowing your puppy's diet.</p><h2>How Much Is Too Much?</h2><p>Count every treat. If your puppy gets 50 treats in a training session, set aside an equivalent amount of food from their meals so they don't overeat. Factor treats into their daily calorie total. And when your puppy graduates to <a href='/blog?post=when-to-switch-puppy-to-adult-dog-food'>adult dog food</a>, adjust treat portions accordingly — adult dogs need far fewer.</p><h2>Timing and Technique</h2><p>The treat must arrive within <strong>one second</strong> of the correct behavior — that's what builds the association. Mark the moment with a clicker or a "yes!" and then deliver the treat. For leash work, practice in low-distraction areas first; our <a href='/blog?post=loose-leash-walking-training'>loose leash walking guide</a> shows exactly how to use treats for heel position. And if your puppy jumps up for treats, teach calm greetings instead — see our post on <a href='/blog?post=stop-dog-jumping-on-guests'>stopping puppy jumping</a>.</p><h2>Stock Your Puppy Toolkit</h2><p>Keep training treats in a <a href='/product/stainless-steel-bowl-set'>stainless steel bowl</a> in the training area and rotate in <a href='/product/squeaky-tennis-ball-3-pack'>interactive toys</a> as non-food rewards. Track your puppy's milestones with our <a href='/downloads'>Puppy Training Checklist & Milestone Tracker</a> ($4.99), and for deeper behavioral training, the <a href='/downloads'>Complete Puppy Handbook</a> ($19.99) has a full treat-based training curriculum.</p>`,
+  },
+  {
+    slug: "cat-scratching-post-vs-pad",
+    title: "Cat Scratching Post vs. Scratching Pad: Which Does Your Cat Really Need?",
+    date: "2026-08-12",
+    author: "Paw & Found Team",
+    excerpt: "Posts and pads serve different scratching styles — and choosing wrong means shredded furniture. Learn which one your cat will actually use, and how to make it stick.",
+    image: "/images/blog-cat-scratching-post-vs-pad.jpg",
+    tags: ["cats", "behavior", "furniture"],
+    relatedSlugs: ["orthopedic-pet-bed-medium", "premium-clumping-cat-litter"],
+    content: `<p>You've bought the scratcher. Your cat has ignored it and chosen the sofa instead. Sound familiar? The problem is usually a mismatch: cats scratch in different ways, and the scratcher has to match the style. Here's how to tell whether your cat needs a post or a pad — and how to make either one irresistible.</p><h2>Why Cats Scratch</h2><p>Scratching isn't spite — it's a biological need. Cats scratch to <strong>mark territory</strong> (they have scent glands in their paws), <strong>stretch and strengthen</strong> their back and shoulder muscles, <strong>maintain their claws</strong> by peeling off dull outer sheaths, and <strong>relieve stress</strong>. If you remove the ability to scratch without providing an alternative, you'll get shredded curtains. Our guide on <a href='/blog?post=signs-cat-loves-you'>how cats show affection</a> explains why claw-marking is actually a compliment of sorts.</p><h2>Post vs. Pad: Match the Style</h2><p><strong>Vertical scratching (posts):</strong> Cats that scratch doorframes, chair backs, and sofa arms are vertical scratchers — they like to stretch tall while digging in. A tall, sturdy post (at least 3 feet, with a sisal surface) that lets them stretch to full length is the match. Anchor it well — a wobbly post is a dealbreaker.</p><p><strong>Horizontal scratching (pads):</strong> Cats that scratch rugs, carpet, and mattress corners are horizontal scratchers. A flat cardboard or sisal pad on the floor suits them perfectly. Place pads near where they already scratch — you're giving them a legal version of their favorite spot.</p><p><strong>Most cats want both.</strong> The ideal home has one of each, placed in high-traffic areas where your cat actually spends time — not tucked in a corner. And always near the <a href='/blog?post=cat-not-using-litter-box'>litter box area</a>? Not necessarily — scratching posts near sleeping and entry points get the most use.</p><h2>How to Make the Switch Stick</h2><ul><li><strong>Rub catnip on the new scratcher</strong> to make it instantly attractive.</li><li><strong>Play near it</strong> — dangle a toy so claws hit the post during play.</li><li><strong>Never punish</strong> scratching; redirect instead.</li><li><strong>Cover the old target</strong> temporarily with double-sided tape or foil while the new scratcher becomes the habit.</li></ul><p>Multi-cat households need multiple scratchers in different styles — check our <a href='/blog?post=introducing-second-cat-no-drama'>guide to introducing a second cat</a> for territory management tips, and watch the <a href='/cat-corner'>Jackson Galaxy Cat Corner</a> for expert scratching advice. For a full breakdown of cat behavior, the <a href='/downloads'>Cat Behavior Decoder</a> ($5.99) and <a href='/downloads'>Cat vs. Cat eBook</a> ($12.99) are excellent next steps.</p>`,
+  },
+  {
+    slug: "signs-your-pet-needs-a-vet",
+    title: "10 Signs Your Pet Needs a Vet (Even When Everything Seems Fine)",
+    date: "2026-08-12",
+    author: "Paw & Found Team",
+    excerpt: "Pets are experts at hiding illness — it's a survival instinct. Here are 10 subtle warning signs that warrant a vet visit, plus what to do while you wait.",
+    image: "/images/blog-signs-your-pet-needs-a-vet.jpg",
+    tags: ["dogs", "cats", "health", "safety"],
+    relatedSlugs: ["gentle-pet-shampoo-16oz", "eco-friendly-poop-bags-120ct"],
+    content: `<p>Cats and dogs are descended from wild animals that learned to hide weakness — a limping or sick animal was an easy target. That instinct is still hardwired in your pet today, which means by the time symptoms are obvious, the problem may be advanced. Knowing the subtle signs is the single most valuable skill a pet owner can build. Here are 10 signs that warrant a veterinary visit.</p><h2>The Big 10</h2><ul><li><strong>1. Changes in appetite or thirst</strong> — suddenly ravenous, drinking constantly, or refusing food for more than 24 hours.</li><li><strong>2. Changes in bathroom habits</strong> — straining, accidents in the house, blood in urine or stool, or <a href='/blog?post=cat-not-using-litter-box'>litter box avoidance</a>.</li><li><strong>3. Lethargy</strong> — sleeping more, no interest in walks or play. It's the #1 general illness signal.</li><li><strong>4. Weight loss without dieting</strong> — especially rapid, in senior pets.</li><li><strong>5. Bad breath, drooling, or pawing at the mouth</strong> — often dental disease, which affects most pets by age 3.</li><li><strong>6. Persistent scratching, licking, or head shaking</strong> — could be allergies, parasites, or <a href='/blog?post=dog-itching-causes-vet'>an ear infection</a>.</li><li><strong>7. Coughing, wheezing, or heavy panting</strong> at rest.</li><li><strong>8. Vomiting or diarrhea</strong> that lasts more than 24 hours — or any episode with blood.</li><li><strong>9. Lumps or bumps</strong> that grow, change, or don't go away.</li><li><strong>10. Stiffness or limping</strong> — don't wait for your pet to "walk it off."</li></ul><h2>Trust Your Gut</h2><p>You know your pet better than anyone. If something feels off but you can't name it, that's a valid reason for a checkup — "well pet" visits catch problems early, when they're cheaper and easier to treat. Regular prevention like <a href='/blog?post=flea-tick-prevention-guide'>flea and tick prevention</a> dramatically reduces the chance of bigger problems down the line.</p><h2>While You Wait for the Vet</h2><p>Keep your pet comfortable, restrict food if they're vomiting (water always available), and don't give human medications — many are toxic to pets. If it's an emergency, call your vet's emergency line immediately. Keep the <a href='/downloads'>Pet First Aid Guide</a> ($7.99) and <a href='/downloads'>Vet Visit Prep Kit</a> ($4.99) on hand — both include symptom checklists, normal vital ranges, and what-to-bring lists that make every vet trip smoother. And a clean, fresh setup with our <a href='/product/eco-friendly-poop-bags-120ct'>poop bags</a> and <a href='/product/gentle-pet-shampoo-16oz'>gentle shampoo</a> keeps everyday care easy so health changes stand out.</p>`,
+  },
 ];
-
-export const Route = createFileRoute("/blog")({
-  component: BlogPage,
-  loader: async () => {
-    const products = await loadProducts();
-    return { products };
-  },
-  head: () => {
-    // Blog listing JSON-LD
-    const blogListJson = JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "Blog",
-      "name": "Paw & Found Blog",
-      "description": "Pet care tips, product guides, and advice from the Paw & Found team.",
-      "url": `${SITE_URL}/blog`,
-      "blogPost": blogPosts.map(p => ({
-        "@type": "BlogPosting",
-        "headline": p.title,
-        "url": `${SITE_URL}/blog?post=${p.slug}`,
-        "datePublished": p.date,
-        "author": { "@type": "Person", "name": p.author },
-        "image": p.image.startsWith("http") ? p.image : `${SITE_URL}${p.image}`,
-      })),
-    });
-
-    return {
-      meta: [
-        { title: "Paw & Found Blog — Pet Care Tips & Guides" },
-        { name: "description", content: "Read the Paw & Found blog for pet care tips, product guides, and advice." },
-        { property: "og:title", content: "Paw & Found Blog" },
-        { property: "og:description", content: "Pet care tips, product guides, and advice." },
-        { property: "og:url", content: `${SITE_URL}/blog` },
-      ],
-      links: [{ rel: "canonical", href: `${SITE_URL}/blog` }],
-      scripts: [
-        { type: "application/ld+json", children: blogListJson },
-      ],
-    };
-  },
-  staleTime: 60_000,
-});
-
-function BlogPage() {
-  const { products } = Route.useLoaderData();
-  // Read the ?post= param on initial load so deep links (sitemap, cross-post
-  // links, social shares) open the article directly instead of the listing.
-  const [selectedPost, setSelectedPost] = React.useState<string | null>(() => {
-    if (typeof window === "undefined") return null;
-    return new URLSearchParams(window.location.search).get("post");
-  });
-  const post = selectedPost ? blogPosts.find(p => p.slug === selectedPost) : null;
-  // Keep the URL in sync with the open article so each post has a shareable
-  // deep link, and support browser back/forward via popstate.
-  const openPost = (slug: string) => {
-    setSelectedPost(slug);
-    const url = new URL(window.location.href);
-    url.searchParams.set("post", slug);
-    window.history.replaceState(null, "", url.pathname + url.search);
-    window.scrollTo(0, 0);
-  };
-  const closePost = () => {
-    setSelectedPost(null);
-    window.history.replaceState(null, "", "/blog");
-  };
-  React.useEffect(() => {
-    const onPop = () => {
-      setSelectedPost(new URLSearchParams(window.location.search).get("post"));
-    };
-    window.addEventListener("popstate", onPop);
-    return () => window.removeEventListener("popstate", onPop);
-  }, []);
-
-  // Dynamically update meta tags and JSON-LD for individual posts
-  React.useEffect(() => {
-    if (!post) {
-      // Reset title on listing view
-      document.title = "Paw & Found Blog — Pet Care Tips & Guides";
-      return;
-    }
-
-    // Set page title
-    document.title = `${post.title} — Paw & Found Blog`;
-
-    // Set or update OG meta tags
-    const setMeta = (property: string, content: string) => {
-      let el = document.querySelector(`meta[property="${property}"]`) as HTMLMetaElement | null;
-      if (!el) {
-        el = document.createElement("meta");
-        el.setAttribute("property", property);
-        document.head.appendChild(el);
-      }
-      el.setAttribute("content", content);
-    };
-    const setNameMeta = (name: string, content: string) => {
-      let el = document.querySelector(`meta[name="${name}"]`) as HTMLMetaElement | null;
-      if (!el) {
-        el = document.createElement("meta");
-        el.setAttribute("name", name);
-        document.head.appendChild(el);
-      }
-      el.setAttribute("content", content);
-    };
-
-    const imageUrl = post.image.startsWith("http") ? post.image : `${SITE_URL}${post.image}`;
-    const postUrl = `${SITE_URL}/blog?post=${post.slug}`;
-
-    setMeta("og:title", `${post.title} — Paw & Found Blog`);
-    setMeta("og:description", post.excerpt);
-    setMeta("og:image", imageUrl);
-    setMeta("og:url", postUrl);
-    setMeta("og:type", "article");
-    setMeta("article:published_time", post.date);
-    setMeta("twitter:title", `${post.title} — Paw & Found Blog`);
-    setMeta("twitter:description", post.excerpt);
-    setMeta("twitter:image", imageUrl);
-    setNameMeta("description", post.excerpt);
-
-    // Add/update JSON-LD for this post
-    const jsonld = JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "BlogPosting",
-      "headline": post.title,
-      "datePublished": post.date,
-      "author": { "@type": "Person", "name": post.author },
-      "image": imageUrl,
-      "url": postUrl,
-      "description": post.excerpt,
-    });
-
-    let scriptEl = document.getElementById("blog-post-jsonld") as HTMLScriptElement | null;
-    if (!scriptEl) {
-      scriptEl = document.createElement("script");
-      scriptEl.type = "application/ld+json";
-      scriptEl.id = "blog-post-jsonld";
-      document.head.appendChild(scriptEl);
-    }
-    scriptEl.textContent = jsonld;
-    // BreadcrumbList for rich results (Home > Blog > Post)
-    const breadcrumbJson = JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Home", "item": `${SITE_URL}/` },
-        { "@type": "ListItem", "position": 2, "name": "Blog", "item": `${SITE_URL}/blog` },
-        { "@type": "ListItem", "position": 3, "name": post.title, "item": postUrl },
-      ],
-    });
-    let breadcrumbEl = document.getElementById("blog-breadcrumb-jsonld") as HTMLScriptElement | null;
-    if (!breadcrumbEl) {
-      breadcrumbEl = document.createElement("script");
-      breadcrumbEl.type = "application/ld+json";
-      breadcrumbEl.id = "blog-breadcrumb-jsonld";
-      document.head.appendChild(breadcrumbEl);
-    }
-    breadcrumbEl.textContent = breadcrumbJson;
-    // Cleanup: remove post-specific JSON-LD on unmount
-    return () => {
-      const el = document.getElementById("blog-post-jsonld");
-      if (el) el.remove();
-      const bcel = document.getElementById("blog-breadcrumb-jsonld");
-      if (bcel) bcel.remove();
-      document.title = "Paw & Found Blog — Pet Care Tips & Guides";
-    };
-  }, [post]);
-
-  if (post) {
-    return (
-      <article className="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
-        <button onClick={closePost} className="mb-8 inline-flex items-center gap-1 text-sm font-medium text-[#2A9D8F] hover:text-[#2A9D8F]/80 transition-colors">
-          <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-          </svg>
-          Back to Blog
-        </button>
-        <div className="aspect-[16/9] overflow-hidden rounded-xl bg-[#E9EDDE]">
-          <img src={post.image} alt={post.title} className="h-full w-full object-cover" />
-        </div>
-        <div className="mt-6 flex flex-wrap items-center gap-3 text-sm text-[#6B7280]">
-          <time dateTime={post.date} className="font-medium">
-            {new Date(post.date).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
-          </time>
-          <span>&middot;</span>
-          <span>{post.author}</span>
-        </div>
-        <h1 className="font-heading mt-2 text-3xl font-bold tracking-tight text-[#2D2D2D] sm:text-4xl">{post.title}</h1>
-        <div className="mt-4 flex flex-wrap gap-2">
-          {post.tags.map((tag) => (<span key={tag} className="badge">{tag}</span>))}
-        </div>
-        <div className="blog-content mt-8" dangerouslySetInnerHTML={{ __html: post.content }} />
-        
-        {/* Shop This Article */}
-        {(() => {
-          // First check explicit relatedSlugs, then fall back to tag-based matching
-          let relatedProducts: Product[] = [];
-          if (post.relatedSlugs) {
-            relatedProducts = post.relatedSlugs
-              .map(slug => products.find(p => p.slug === slug))
-              .filter(Boolean) as Product[];
-          } else {
-            // Auto-match based on post tags
-            const tags = post.tags;
-            const scored = products.map(p => {
-              let score = 0;
-              for (const tag of tags) {
-                if (tag === "dogs" || tag === "dog") {
-                  if (p.tags?.some((t: string) => ["dog", "collar", "leash", "t-shirt", "hoodie", "toy", "chew"].some(k => t.includes(k)))) score += 3;
-                }
-                if (tag === "cats" || tag === "cat") {
-                  if (p.tags?.some((t: string) => ["cat", "litter", "carrier", "toy"].some(k => t.includes(k)))) score += 3;
-                }
-                if (tag === "essentials" || tag === "food" || tag === "nutrition") {
-                  if (p.tags?.some((t: string) => ["bowl", "food", "treats", "litter"].some(k => t.includes(k)))) score += 2;
-                }
-                if (tag === "supplies" || tag === "tips" || tag === "health") {
-                  if (p.tags?.some((t: string) => ["grooming", "brush", "shampoo", "bed", "safety"].some(k => t.includes(k)))) score += 2;
-                }
-                if (tag === "guides") {
-                  if (p.featured) score += 2;
-                }
-              }
-              return { product: p, score };
-            });
-            relatedProducts = scored
-              .filter(s => s.score > 0)
-              .sort((a, b) => b.score - a.score)
-              .slice(0, 4)
-              .map(s => s.product);
-          }
-          if (relatedProducts.length > 0) {
-            return <ShopTheLook products={relatedProducts} />;
-          }
-          return null;
-        })()}
-
-        {/* Comments section */}
-        <div className="mt-12 border-t border-[#E9EDDE] pt-8">
-          <h2 className="font-heading text-xl font-semibold text-[#2D2D2D]">Leave a Comment</h2>
-          <p className="mt-1 text-sm text-[#6B7280]">We'd love to hear from you!</p>
-          <form className="mt-6 space-y-4" onSubmit={(e) => { e.preventDefault(); alert("Thanks for your comment! It will be reviewed before posting."); }}>
-            <div className="grid gap-4 sm:grid-cols-2">
-              <input type="text" placeholder="Your name" required className="w-full rounded-lg border border-[#E9EDDE] px-4 py-2.5 text-sm text-[#2D2D2D] placeholder:text-[#6B7280] focus:border-[#2A9D8F] focus:outline-none" />
-              <input type="email" placeholder="Your email" required className="w-full rounded-lg border border-[#E9EDDE] px-4 py-2.5 text-sm text-[#2D2D2D] placeholder:text-[#6B7280] focus:border-[#2A9D8F] focus:outline-none" />
-            </div>
-            <textarea rows={4} placeholder="Write your comment..." required className="w-full rounded-lg border border-[#E9EDDE] px-4 py-2.5 text-sm text-[#2D2D2D] placeholder:text-[#6B7280] focus:border-[#2A9D8F] focus:outline-none" />
-            <button type="submit" className="btn-primary">Post Comment</button>
-          </form>
-        </div>
-        
-        <div className="mt-8 border-t border-[#E9EDDE] pt-8 text-center">
-          <p className="text-[#6B7280]">Thanks for reading!</p>
-          <div className="mt-4 flex flex-wrap justify-center gap-4">
-            <a href="/products" className="btn-primary">Shop Pet Supplies</a>
-            <button onClick={closePost} className="btn-secondary">More Blog Posts</button>
-          </div>
-        </div>
-      </article>
-    );
-  }
-
-  return (
-    <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-      <div className="text-center">
-        <h1 className="section-title">Paw & Found Blog</h1>
-        <p className="section-subtitle mt-2 max-w-2xl mx-auto">
-          Pet care tips, product guides, and advice from our team.
-        </p>
-      </div>
-
-      {blogPosts.length === 0 ? (
-        <div className="mt-16 text-center">
-          <span className="text-5xl">📝</span>
-          <h2 className="font-heading mt-4 text-xl font-semibold text-[#2D2D2D]">Coming soon</h2>
-          <p className="mt-2 text-[#6B7280]">Check back for blog posts!</p>
-        </div>
-      ) : (
-        <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {blogPosts.map((post) => (
-            <button
-              key={post.slug}
-              onClick={() => openPost(post.slug)}
-              className="card group flex flex-col text-left transition-all hover:-translate-y-1"
-            >
-              <div className="aspect-[16/9] overflow-hidden bg-[#E9EDDE]">
-                <img
-                  src={post.image}
-                  alt={post.title}
-                  className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                  loading="lazy"
-                />
-              </div>
-              <div className="flex flex-1 flex-col p-5">
-                <div className="flex items-center gap-2 text-xs text-[#6B7280]">
-                  <time dateTime={post.date}>
-                    {new Date(post.date).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
-                  </time>
-                  <span>&middot;</span>
-                  <span>{post.author}</span>
-                </div>
-                <h2 className="font-heading mt-2 text-lg font-semibold text-[#2D2D2D] group-hover:text-[#FF7F5C] transition-colors">
-                  {post.title}
-                </h2>
-                <p className="mt-2 flex-1 text-sm text-[#6B7280]">{post.excerpt}</p>
-                <div className="mt-3 flex flex-wrap gap-1.5">
-                  {post.tags.slice(0, 3).map((tag) => (
-                    <span key={tag} className="badge text-[10px]">{tag}</span>
-                  ))}
-                </div>
-              </div>
-            </button>
-          ))}
-        </div>
-      )}
-    </div>
-  );
-}
