@@ -64,6 +64,28 @@ const VIDEOS = [
   },
 ];
 
+const EXPERT_VIDEOS = [
+  { id: "WzuhuaeS0aQ", expert: "Jackson Galaxy", title: "Cat Body Language 101", desc: "Learn to read ears, tails, and whiskers — the basics of understanding what your cat is really saying." },
+  { id: "PxhJZcrh74I", expert: "Dr. Pol", title: "Kitten With a Cold", desc: "Dr. Pol treats a tiny kitten with a cold — a real-world peek at kitten care from a working vet." },
+  { id: "LxhT_q9oUf8", expert: "Jackson Galaxy", title: "Cat Vocalizations and What They Mean", desc: "Meows, trills, chirps, and yowls — decode the sounds your cat makes and respond like a pro." },
+  { id: "A2F04RN6DDc", expert: "Dr. Pol", title: "This Kitten Has Mittens", desc: "A polydactyl kitten (extra toes!) visits the clinic — cute and fascinating anatomy in action." },
+  { id: "UWohxDOXsl4", expert: "Jackson Galaxy", title: "Can My Cats Get Along? Cat-to-Cat Basics", desc: "Introduction tips and cat-to-cat body language basics for multi-cat households." },
+  { id: "a8Q9XrubDMc", expert: "Dr. Pol", title: "Kitty Needs Some Love", desc: "A shy cat gets the care and attention it needs at Pol Veterinary Services." },
+  { id: "W50bQopoQic", expert: "Jackson Galaxy", title: "How to Get Your Cats to Stop... Everything You Hate", desc: "Everything-proof your home: why cats misbehave and how to redirect them with love, not punishment." },
+  { id: "qtD24WTCbOw", expert: "Dr. Pol", title: "One Lucky Kitten", desc: "A lucky kitten gets a second chance — emergency care straight from the vet's chair." },
+  { id: "RS5aI8zdHAY", expert: "Jackson Galaxy", title: "8 Types of Cat Aggression Explained", desc: "Play aggression, redirected aggression, fear aggression — know the type, fix the cause." },
+  { id: "K7wGvxMPqtI", expert: "Dr. Pol", title: "Dr. Pol Rescues a Kitten", desc: "A roadside rescue becomes a clinic case — Dr. Pol at his most caring." },
+];
+/** Day of year (0-365), same pattern as Daily Pet Tip. */
+function dayOfYear(date: Date): number {
+  const start = new Date(date.getFullYear(), 0, 0);
+  const diff = date.getTime() - start.getTime();
+  return Math.floor(diff / 86_400_000);
+}
+/** Week bucket (changes every 7 days), used to rotate the featured video weekly. */
+function weekOfYear(date: Date): number {
+  return Math.floor(dayOfYear(date) / 7);
+}
 const EBOOKS = [
   {
     title: "Cat Behavior Decoder",
@@ -114,6 +136,10 @@ export const Route = createFileRoute("/cat-corner")({
 });
 
 function CatCornerPage() {
+  const weekIdx = weekOfYear(new Date()) % EXPERT_VIDEOS.length;
+  const videoOfWeek = EXPERT_VIDEOS[weekIdx];
+  const nextVideo = EXPERT_VIDEOS[(weekIdx + 1) % EXPERT_VIDEOS.length];
+
   return (
     <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6 lg:px-8">
       {/* Hero */}
@@ -149,6 +175,39 @@ function CatCornerPage() {
               <p className="mt-1.5 text-sm leading-relaxed text-[#6B7280]">{tip.body}</p>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* Featured Expert Video of the Week (rotates weekly across experts) */}
+      <section className="mt-12">
+        <div className="rounded-3xl bg-gradient-to-br from-[#E8F8F5] to-white p-6 shadow-sm ring-1 ring-[#CFE8E2] sm:p-8">
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <h2 className="font-heading text-2xl font-bold text-[#2D2D2D]">🎥 Featured Expert Video of the Week</h2>
+            <span className="rounded-full bg-[#FF7F5C] px-3 py-1 text-xs font-semibold text-white">{videoOfWeek.expert}</span>
+          </div>
+          <p className="mt-1 text-sm text-[#6B7280]">
+            We rotate expert picks weekly — cat behavior with Jackson Galaxy, real vet care with Dr. Pol.
+          </p>
+          <div className="mt-5 overflow-hidden rounded-2xl border border-[#E9EDDE] bg-white shadow-sm">
+            <div className="aspect-video w-full bg-[#F7FAF9]">
+              <iframe
+                src={`https://www.youtube-nocookie.com/embed/${videoOfWeek.id}?rel=0`}
+                title={videoOfWeek.title}
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+                className="h-full w-full"
+              />
+            </div>
+            <div className="p-5">
+              <h3 className="font-heading text-lg font-bold text-[#2D2D2D]">▶ {videoOfWeek.title}</h3>
+              <p className="mt-1 text-sm leading-relaxed text-[#6B7280]">{videoOfWeek.desc}</p>
+              <div className="mt-4 rounded-xl bg-[#FFF6EC] px-4 py-3 text-xs text-[#6B7280] ring-1 ring-[#F4E3CD]">
+                <span className="font-semibold text-[#2D2D2D]">Coming next week:</span> {nextVideo.expert} — “{nextVideo.title}”
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
