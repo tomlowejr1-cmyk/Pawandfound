@@ -453,6 +453,7 @@ function DownloadsPage() {
               desc: "Week-by-week roadmap for raising a happy, healthy puppy. Training, health, nutrition — 12 chapters.",
               img: "/images/ebook-puppy-handbook.jpg",
               link: "https://buy.stripe.com/14A3cv5nE5Co0op1Q42cg0H",
+              gumroad: "https://tomlowe8.gumroad.com/l/httpswwwpawandfoundstoreebookspuppy-handbook",
               slug: "/ebooks/puppy-handbook",
             },
             {
@@ -461,6 +462,7 @@ function DownloadsPage() {
               desc: "Master cat behavior, health, and enrichment. 10 chapters covering everything from litter boxes to senior care.",
               img: "/images/ebook-cat-care.jpg",
               link: "https://buy.stripe.com/aFafZh9DUgh21stfGU2cg0I",
+              gumroad: "https://tomlowe8.gumroad.com/l/httpswwwpawandfoundstoreebookscat-care-guide",
               slug: "/ebooks/cat-care-guide",
             },
             {
@@ -469,6 +471,7 @@ function DownloadsPage() {
               desc: "The comprehensive reference for dogs and cats. Emergencies, travel, multi-pet homes — 14 chapters.",
               img: "/images/ebook-survival-guide.jpg",
               link: "https://buy.stripe.com/14AdR94jA0i45IJ2U82cg0J",
+              gumroad: "https://tomlowe8.gumroad.com/l/httpswwwpawandfoundstoreebookssurvival-guide",
               slug: "/ebooks/survival-guide",
             },
             {
@@ -477,6 +480,7 @@ function DownloadsPage() {
               desc: "Compassionate guidance for your pet's golden years. Health, mobility, nutrition, and end-of-life care — 8 chapters.",
               img: "/images/ebook-senior-pet-care.jpg",
               link: "https://buy.stripe.com/7sY6oH4jA3ug8UV0M02cg0U",
+              gumroad: "https://tomlowe8.gumroad.com/l/httpswwwpawandfoundstoreebookssenior-pet-care",
               slug: "/ebooks/senior-pet-care",
             },
             {
@@ -485,6 +489,7 @@ function DownloadsPage() {
               desc: "40+ dog breeds A to Z, fun facts, a family breed quiz, dog jobs, and amazing records — a playful guide for young dog lovers.",
               img: "/images/ebook-dog-encyclopedia-kids.jpg",
               link: "https://buy.stripe.com/14A9AT5nE0i4fjjgKY2cg16",
+              gumroad: "https://tomlowe8.gumroad.com/l/httpswwwpawandfoundstoreebooksdog-encyclopedia-for-kids",
               slug: "/ebooks/dog-encyclopedia-for-kids",
             },
             {
@@ -493,6 +498,7 @@ function DownloadsPage() {
               desc: "25+ cat breeds A to Z, fun facts, a family breed quiz, famous cats in history, and amazing records — a purr-fect guide for young cat fans.",
               img: "/images/ebook-cat-encyclopedia-kids.jpg",
               link: "https://buy.stripe.com/eVqfZh5nE6Gs1stgKY2cg17",
+              gumroad: "https://tomlowe8.gumroad.com/l/httpswwwpawandfoundstoreebookscat-encyclopedia-for-kids",
               slug: "/ebooks/cat-encyclopedia-for-kids",
             },
             {
@@ -501,7 +507,26 @@ function DownloadsPage() {
               desc: "Stop the hissing and restore peace. Introductions, territory, resource sharing, stress signals, and safe fight interventions — 8 chapters.",
               img: "/images/ebook-cat-vs-cat.jpg",
               link: "https://buy.stripe.com/fZu3cvaHY2qcb33cuI2cg18",
+              gumroad: "https://tomlowe8.gumroad.com/l/httpswwwpawandfoundstoreebookscat-vs-cat",
               slug: "/ebooks/cat-vs-cat",
+            },
+            {
+              title: "Reactive Dog Guidebook",
+              price: "$14.99",
+              desc: "Understand and manage leash reactivity, barking, and fear-based responses. Threshold management, counter-conditioning, and confidence building — for walks you both enjoy.",
+              img: "/images/ebook-reactive-dog.jpg",
+              link: "https://buy.stripe.com/9B6cN54jA0i45IJ1Q42cg1e",
+              gumroad: "https://tomlowe8.gumroad.com/l/httpswwwpawandfoundstoredownloads",
+              slug: "/downloads",
+            },
+            {
+              title: "Cat Training Handbook",
+              price: "$14.99",
+              desc: "Yes, cats CAN be trained! Clicker training, harness walking, tricks, and solving problem behaviors with positive reinforcement adapted for felines.",
+              img: "/images/ebook-cat-training.jpg",
+              link: "https://buy.stripe.com/5kQ5kDbM25Co5IJ66k2cg1f",
+              gumroad: "https://tomlowe8.gumroad.com/l/httpsbuystripecom5kQ5kDbM25Co5IJ66k2cg1f",
+              slug: "/downloads",
             },
           ].map((ebook) => (
             <div key={ebook.title} className="group rounded-xl border border-[#E9EDDE] bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-md overflow-hidden">
@@ -520,6 +545,9 @@ function DownloadsPage() {
                   <div className="flex gap-2">
                     <a href={ebook.slug} className="text-xs font-medium text-[#2A9D8F] hover:text-[#FF7F5C]">Details</a>
                     <a href={ebook.link} className="btn-primary text-xs px-3 py-1.5">Buy Now</a>
+                    {ebook.gumroad && (
+                      <a href={ebook.gumroad} target="_blank" rel="noopener" className="rounded-full border border-[#FF90E8] px-3 py-1.5 text-xs font-semibold text-[#FF7F5C] hover:bg-[#FFF0F5] transition-colors">Gumroad</a>
+                    )}
                   </div>
                 </div>
               </div>

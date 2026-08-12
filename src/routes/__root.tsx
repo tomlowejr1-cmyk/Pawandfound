@@ -134,6 +134,22 @@ function RootDocument({ children }: { children: ReactNode }) {
     <html lang="en">
       <head>
         <HeadContent />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "PetStore",
+              name: "Paw & Found",
+              url: "https://pawandfound.store",
+              description:
+                "A pet product store with curated supplies, apparel, accessories, and digital guides for pet owners.",
+              sameAs: [
+                "https://instagram.com/explore/tags/pawandfoundpets",
+              ],
+            }),
+          }}
+        />
       </head>
       <body>
         <PromoBanner />
@@ -218,19 +234,20 @@ function Header() {
     { href: "/birthday-club", label: "Birthday Club 🎂" },
     { href: "/pet-reminders", label: "Pet Reminders ⏰" },
     { href: "/pet-name-generator", label: "Pet Name Generator ✨" },
+    { href: "/cat-corner", label: "Cat Corner 🐱" },
     { href: "/adopt", label: "Adopt ❤️" },
     { href: "/faq", label: "FAQ" },
   ];
 
   return (
     <header className="sticky top-0 z-50 border-b border-[#E9EDDE] bg-white/90 backdrop-blur-md">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+      <div className="mx-auto flex max-w-7xl items-center px-4 py-3 sm:px-6 lg:px-8">
         <a href="/" className="flex items-center gap-2">
           <img src="/images/logo.png" alt="Paw & Found — Pet Supplies Store Logo" className="h-8 w-auto" />
           <span className="font-heading text-xl font-bold text-[#2A9D8F]">Paw & Found</span>
         </a>
 
-        <nav className="hidden items-center gap-1 md:flex">
+        <nav className="hidden items-center gap-1 md:flex mr-4">
           {navLinks.map((link) => (
             <a
               key={link.href}
@@ -242,7 +259,7 @@ function Header() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 ml-auto">
           <MobileMenu navLinks={navLinks} />
           <CartButton />
         </div>
