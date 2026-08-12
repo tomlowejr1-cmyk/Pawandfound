@@ -544,10 +544,8 @@ function DownloadsPage() {
                   <span className="font-heading text-lg font-bold text-[#FF7F5C]">{ebook.price}</span>
                   <div className="flex gap-2">
                     <a href={ebook.slug} className="text-xs font-medium text-[#2A9D8F] hover:text-[#FF7F5C]">Details</a>
-                    <a href={ebook.link} className="btn-primary text-xs px-3 py-1.5">Buy Now</a>
-                    {ebook.gumroad && (
-                      <a href={ebook.gumroad} target="_blank" rel="noopener" className="rounded-full border border-[#FF90E8] px-3 py-1.5 text-xs font-semibold text-[#FF7F5C] hover:bg-[#FFF0F5] transition-colors">Gumroad</a>
-                    )}
+                    <a href={ebook.gumroad} target="_blank" rel="noopener" className="rounded-full border border-[#FF90E8] px-3 py-1.5 text-xs font-semibold text-[#FF7F5C] hover:bg-[#FFF0F5] transition-colors">Buy on Gumroad</a>
+                    <a href={ebook.link} className="btn-primary text-xs px-3 py-1.5">Buy with Card</a>
                   </div>
                 </div>
               </div>
