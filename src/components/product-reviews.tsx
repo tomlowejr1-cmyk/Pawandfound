@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-
-interface Review {
+export interface Review {
   name: string;
   rating: number;
   text: string;
@@ -8,7 +7,7 @@ interface Review {
 }
 
 /** Pre-seeded realistic reviews by product ID so pages don't look empty at launch. */
-const SEED_REVIEWS: Record<string, Review[]> = {
+export const SEED_REVIEWS: Record<string, Review[]> = {
   "app-001": [
     { name: "Sarah M.", rating: 5, text: "My golden retriever looks adorable in this! The cotton is super soft and it's held up after 5+ washes. True to size.", date: "June 12, 2026" },
     { name: "Mike T.", rating: 4, text: "Great quality shirt, runs a tad small for my bulldog. Size up if your pup is between sizes. The print is crisp and hasn't faded.", date: "May 28, 2026" },
