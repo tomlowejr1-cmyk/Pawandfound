@@ -516,7 +516,7 @@ function DownloadsPage() {
               desc: "Understand and manage leash reactivity, barking, and fear-based responses. Threshold management, counter-conditioning, and confidence building — for walks you both enjoy.",
               img: "/images/ebook-reactive-dog.jpg",
               link: "https://buy.stripe.com/9B6cN54jA0i45IJ1Q42cg1e",
-              gumroad: "https://tomlowe8.gumroad.com/l/httpswwwpawandfoundstoreebooksreactive-dog-guidebook",
+              gumroad: "https://tomlowe8.gumroad.com/l/httpswwwpawandfoundstoredownloads",
               slug: "/downloads",
             },
             {
@@ -525,7 +525,7 @@ function DownloadsPage() {
               desc: "Yes, cats CAN be trained! Clicker training, harness walking, tricks, and solving problem behaviors with positive reinforcement adapted for felines.",
               img: "/images/ebook-cat-training.jpg",
               link: "https://buy.stripe.com/5kQ5kDbM25Co5IJ66k2cg1f",
-              gumroad: "https://tomlowe8.gumroad.com/l/httpswwwpawandfoundstoreebookscat-training-handbook",
+              gumroad: "https://tomlowe8.gumroad.com/l/httpsbuystripecom5kQ5kDbM25Co5IJ66k2cg1f",
               slug: "/downloads",
             },
           ].map((ebook) => (
