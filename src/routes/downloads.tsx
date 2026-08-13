@@ -362,6 +362,26 @@ const digitalProducts: DigitalProduct[] = [
       "Printable — use for every trip",
     ],
   },
+  {
+    id: "dig-016",
+    title: "Small Pet Starter Kit",
+    slug: "small-pet-starter-kit",
+    price: 9.99,
+    description:
+      "The complete starter guide for rabbits, guinea pigs, and hamsters — housing, feeding, health, enrichment, and bonding for all three species.",
+    longDescription:
+      "Thinking about a small pet? This complete starter kit covers everything you need for the three most popular small pets — rabbits, guinea pigs, and hamsters. Each species gets its own deep dive: proper housing sizes (including the C&C cage gold standard for guinea pigs and bin-cage setups for hamsters), diet and feeding guidelines (hay-first nutrition for rabbits and guinea pigs, scatter feeding for hamsters), enrichment ideas, health warning signs, and bonding tips. Includes printable setup checklists and a quick-reference care sheet for each species — everything you need to start right.",
+    image: "/images/small-pet-starter-kit-preview.png",
+    stripePaymentLink: "https://buy.stripe.com/5kQ00j4jA8OA2wx9iw2cg1q",
+    features: [
+      "Covers rabbits, guinea pigs & hamsters",
+      "Housing size guides for each species",
+      "Diet & feeding cheat sheets",
+      "Health warning signs & vet checklist",
+      "Enrichment & bonding tips",
+      "Instant PDF download — lifetime access",
+    ],
+  },
 ];
 
 export const Route = createFileRoute("/downloads")({
