@@ -67,10 +67,14 @@ const VIDEOS = [
 const EXPERT_VIDEOS = [
   { id: "WzuhuaeS0aQ", expert: "Jackson Galaxy", title: "Cat Body Language 101", desc: "Learn to read ears, tails, and whiskers — the basics of understanding what your cat is really saying." },
   { id: "PxhJZcrh74I", expert: "Dr. Pol", title: "Kitten With a Cold", desc: "Dr. Pol treats a tiny kitten with a cold — a real-world peek at kitten care from a working vet." },
+  { id: "bxUDxs2WzjM", expert: "Dr. Oakley", title: "Kittens Galore", desc: "A houseful of kittens gets a checkup in the Yukon — real kitten care from Dr. Oakley, Yukon Vet." },
+  { id: "eAR6NaLf0CQ", expert: "Dr. Jeff", title: "Dr. Jeff Saves Kitten Abandoned At Construction Site", desc: "A tiny kitten abandoned at a construction site gets a second chance — rescue and emergency care from Dr. Jeff." },
   { id: "LxhT_q9oUf8", expert: "Jackson Galaxy", title: "Cat Vocalizations and What They Mean", desc: "Meows, trills, chirps, and yowls — decode the sounds your cat makes and respond like a pro." },
   { id: "A2F04RN6DDc", expert: "Dr. Pol", title: "This Kitten Has Mittens", desc: "A polydactyl kitten (extra toes!) visits the clinic — cute and fascinating anatomy in action." },
   { id: "UWohxDOXsl4", expert: "Jackson Galaxy", title: "Can My Cats Get Along? Cat-to-Cat Basics", desc: "Introduction tips and cat-to-cat body language basics for multi-cat households." },
   { id: "a8Q9XrubDMc", expert: "Dr. Pol", title: "Kitty Needs Some Love", desc: "A shy cat gets the care and attention it needs at Pol Veterinary Services." },
+  { id: "sCVoh5d9d0k", expert: "Dr. Oakley", title: "Attack of the Feral Cat", desc: "Dr. Oakley safely traps and examines a wary feral cat — feral-cat handling from a working vet." },
+  { id: "MtSA5H2YGC0", expert: "Dr. Jeff", title: "3 Week Old Kittens Rushed To The Clinic For Emergency Care", desc: "Three-week-old kittens arrive at the clinic in crisis — critical kitten care from Dr. Jeff's team." },
   { id: "W50bQopoQic", expert: "Jackson Galaxy", title: "How to Get Your Cats to Stop... Everything You Hate", desc: "Everything-proof your home: why cats misbehave and how to redirect them with love, not punishment." },
   { id: "qtD24WTCbOw", expert: "Dr. Pol", title: "One Lucky Kitten", desc: "A lucky kitten gets a second chance — emergency care straight from the vet's chair." },
   { id: "RS5aI8zdHAY", expert: "Jackson Galaxy", title: "8 Types of Cat Aggression Explained", desc: "Play aggression, redirected aggression, fear aggression — know the type, fix the cause." },
@@ -186,7 +190,7 @@ function CatCornerPage() {
             <span className="rounded-full bg-[#FF7F5C] px-3 py-1 text-xs font-semibold text-white">{videoOfWeek.expert}</span>
           </div>
           <p className="mt-1 text-sm text-[#6B7280]">
-            We rotate expert picks weekly — cat behavior with Jackson Galaxy, real vet care with Dr. Pol.
+            We rotate expert picks weekly — cat behavior with Jackson Galaxy, real vet care with Dr. Pol, Dr. Oakley, and Dr. Jeff.
           </p>
           <div className="mt-5 overflow-hidden rounded-2xl border border-[#E9EDDE] bg-white shadow-sm">
             <div className="aspect-video w-full bg-[#F7FAF9]">
@@ -307,7 +311,8 @@ function CatCornerPage() {
       <p className="mt-8 text-center text-xs text-[#B0B7A3]">
         The Cat Corner is an independent, fan-style homage to cat-whisperer techniques popularized
         by Jackson Galaxy. Paw & Found is not affiliated with, sponsored by, or endorsed by Jackson
-        Galaxy or his channels. Embedded videos remain the property of their creators.
+        Galaxy, Dr. Pol, Dr. Oakley, Dr. Jeff, or their channels. Embedded videos remain the
+        property of their creators.
       </p>
     </div>
   );
