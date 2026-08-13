@@ -224,6 +224,8 @@ function Header() {
     { href: "/about", label: "About" },
     { href: "/blog", label: "Blog" },
     { href: "/halloween", label: "🎃 Halloween" },
+    { href: "/thanksgiving", label: "🦃 Thanksgiving" },
+    { href: "/christmas", label: "🎄 Christmas" },
     { href: "/quiz", label: "Quiz" },
     { href: "/training", label: "Training Videos 🎓" },
     { href: "/budget-tracker", label: "Budget Tracker 💰" },
