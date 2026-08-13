@@ -496,3 +496,317 @@ const blogPosts: BlogPost[] = [
     content: `<p>Cats and dogs are descended from wild animals that learned to hide weakness — a limping or sick animal was an easy target. That instinct is still hardwired in your pet today, which means by the time symptoms are obvious, the problem may be advanced. Knowing the subtle signs is the single most valuable skill a pet owner can build. Here are 10 signs that warrant a veterinary visit.</p><h2>The Big 10</h2><ul><li><strong>1. Changes in appetite or thirst</strong> — suddenly ravenous, drinking constantly, or refusing food for more than 24 hours.</li><li><strong>2. Changes in bathroom habits</strong> — straining, accidents in the house, blood in urine or stool, or <a href='/blog?post=cat-not-using-litter-box'>litter box avoidance</a>.</li><li><strong>3. Lethargy</strong> — sleeping more, no interest in walks or play. It's the #1 general illness signal.</li><li><strong>4. Weight loss without dieting</strong> — especially rapid, in senior pets.</li><li><strong>5. Bad breath, drooling, or pawing at the mouth</strong> — often dental disease, which affects most pets by age 3.</li><li><strong>6. Persistent scratching, licking, or head shaking</strong> — could be allergies, parasites, or <a href='/blog?post=dog-itching-causes-vet'>an ear infection</a>.</li><li><strong>7. Coughing, wheezing, or heavy panting</strong> at rest.</li><li><strong>8. Vomiting or diarrhea</strong> that lasts more than 24 hours — or any episode with blood.</li><li><strong>9. Lumps or bumps</strong> that grow, change, or don't go away.</li><li><strong>10. Stiffness or limping</strong> — don't wait for your pet to "walk it off."</li></ul><h2>Trust Your Gut</h2><p>You know your pet better than anyone. If something feels off but you can't name it, that's a valid reason for a checkup — "well pet" visits catch problems early, when they're cheaper and easier to treat. Regular prevention like <a href='/blog?post=flea-tick-prevention-guide'>flea and tick prevention</a> dramatically reduces the chance of bigger problems down the line.</p><h2>While You Wait for the Vet</h2><p>Keep your pet comfortable, restrict food if they're vomiting (water always available), and don't give human medications — many are toxic to pets. If it's an emergency, call your vet's emergency line immediately. Keep the <a href='/downloads'>Pet First Aid Guide</a> ($7.99) and <a href='/downloads'>Vet Visit Prep Kit</a> ($4.99) on hand — both include symptom checklists, normal vital ranges, and what-to-bring lists that make every vet trip smoother. And a clean, fresh setup with our <a href='/product/eco-friendly-poop-bags-120ct'>poop bags</a> and <a href='/product/gentle-pet-shampoo-16oz'>gentle shampoo</a> keeps everyday care easy so health changes stand out.</p>`,
   },
 ];
+export const Route = createFileRoute("/blog")({
+  component: BlogPage,
+  loader: async () => {
+    const products = await loadProducts();
+    return { products };
+  },
+  head: () => {
+    // Blog listing JSON-LD
+    const blogListJson = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Blog",
+      "name": "Paw & Found Blog",
+      "description": "Pet care tips, product guides, and advice from the Paw & Found team.",
+      "url": `${SITE_URL}/blog`,
+      "blogPost": blogPosts.map(p => ({
+        "@type": "BlogPosting",
+        "headline": p.title,
+        "url": `${SITE_URL}/blog?post=${p.slug}`,
+        "datePublished": p.date,
+        "author": { "@type": "Person", "name": p.author },
+        "image": p.image.startsWith("http") ? p.image : `${SITE_URL}${p.image}`,
+      })),
+    });
+
+    return {
+      meta: [
+        { title: "Paw & Found Blog — Pet Care Tips & Guides" },
+        { name: "description", content: "Read the Paw & Found blog for pet care tips, product guides, and advice." },
+        { property: "og:title", content: "Paw & Found Blog" },
+        { property: "og:description", content: "Pet care tips, product guides, and advice." },
+        { property: "og:url", content: `${SITE_URL}/blog` },
+      ],
+      links: [{ rel: "canonical", href: `${SITE_URL}/blog` }],
+      scripts: [
+        { type: "application/ld+json", children: blogListJson },
+      ],
+    };
+  },
+  staleTime: 60_000,
+});
+
+function BlogPage() {
+  const { products } = Route.useLoaderData();
+  // Read the ?post= param on initial load so deep links (sitemap, cross-post
+  // links, social shares) open the article directly instead of the listing.
+  const [selectedPost, setSelectedPost] = React.useState<string | null>(() => {
+    if (typeof window === "undefined") return null;
+    return new URLSearchParams(window.location.search).get("post");
+  });
+  const post = selectedPost ? blogPosts.find(p => p.slug === selectedPost) : null;
+  // Keep the URL in sync with the open article so each post has a shareable
+  // deep link, and support browser back/forward via popstate.
+  const openPost = (slug: string) => {
+    setSelectedPost(slug);
+    const url = new URL(window.location.href);
+    url.searchParams.set("post", slug);
+    window.history.replaceState(null, "", url.pathname + url.search);
+    window.scrollTo(0, 0);
+  };
+  const closePost = () => {
+    setSelectedPost(null);
+    window.history.replaceState(null, "", "/blog");
+  };
+  React.useEffect(() => {
+    const onPop = () => {
+      setSelectedPost(new URLSearchParams(window.location.search).get("post"));
+    };
+    window.addEventListener("popstate", onPop);
+    return () => window.removeEventListener("popstate", onPop);
+  }, []);
+
+  // Dynamically update meta tags and JSON-LD for individual posts
+  React.useEffect(() => {
+    if (!post) {
+      // Reset title on listing view
+      document.title = "Paw & Found Blog — Pet Care Tips & Guides";
+      return;
+    }
+
+    // Set page title
+    document.title = `${post.title} — Paw & Found Blog`;
+
+    // Set or update OG meta tags
+    const setMeta = (property: string, content: string) => {
+      let el = document.querySelector(`meta[property="${property}"]`) as HTMLMetaElement | null;
+      if (!el) {
+        el = document.createElement("meta");
+        el.setAttribute("property", property);
+        document.head.appendChild(el);
+      }
+      el.setAttribute("content", content);
+    };
+    const setNameMeta = (name: string, content: string) => {
+      let el = document.querySelector(`meta[name="${name}"]`) as HTMLMetaElement | null;
+      if (!el) {
+        el = document.createElement("meta");
+        el.setAttribute("name", name);
+        document.head.appendChild(el);
+      }
+      el.setAttribute("content", content);
+    };
+
+    const imageUrl = post.image.startsWith("http") ? post.image : `${SITE_URL}${post.image}`;
+    const postUrl = `${SITE_URL}/blog?post=${post.slug}`;
+
+    setMeta("og:title", `${post.title} — Paw & Found Blog`);
+    setMeta("og:description", post.excerpt);
+    setMeta("og:image", imageUrl);
+    setMeta("og:url", postUrl);
+    setMeta("og:type", "article");
+    setMeta("article:published_time", post.date);
+    setMeta("twitter:title", `${post.title} — Paw & Found Blog`);
+    setMeta("twitter:description", post.excerpt);
+    setMeta("twitter:image", imageUrl);
+    setNameMeta("description", post.excerpt);
+
+    // Add/update JSON-LD for this post
+    const jsonld = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": post.title,
+      "datePublished": post.date,
+      "author": { "@type": "Person", "name": post.author },
+      "image": imageUrl,
+      "url": postUrl,
+      "description": post.excerpt,
+    });
+
+    let scriptEl = document.getElementById("blog-post-jsonld") as HTMLScriptElement | null;
+    if (!scriptEl) {
+      scriptEl = document.createElement("script");
+      scriptEl.type = "application/ld+json";
+      scriptEl.id = "blog-post-jsonld";
+      document.head.appendChild(scriptEl);
+    }
+    scriptEl.textContent = jsonld;
+    // BreadcrumbList for rich results (Home > Blog > Post)
+    const breadcrumbJson = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": `${SITE_URL}/` },
+        { "@type": "ListItem", "position": 2, "name": "Blog", "item": `${SITE_URL}/blog` },
+        { "@type": "ListItem", "position": 3, "name": post.title, "item": postUrl },
+      ],
+    });
+    let breadcrumbEl = document.getElementById("blog-breadcrumb-jsonld") as HTMLScriptElement | null;
+    if (!breadcrumbEl) {
+      breadcrumbEl = document.createElement("script");
+      breadcrumbEl.type = "application/ld+json";
+      breadcrumbEl.id = "blog-breadcrumb-jsonld";
+      document.head.appendChild(breadcrumbEl);
+    }
+    breadcrumbEl.textContent = breadcrumbJson;
+    // Cleanup: remove post-specific JSON-LD on unmount
+    return () => {
+      const el = document.getElementById("blog-post-jsonld");
+      if (el) el.remove();
+      const bcel = document.getElementById("blog-breadcrumb-jsonld");
+      if (bcel) bcel.remove();
+      document.title = "Paw & Found Blog — Pet Care Tips & Guides";
+    };
+  }, [post]);
+
+  if (post) {
+    return (
+      <article className="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
+        <button onClick={closePost} className="mb-8 inline-flex items-center gap-1 text-sm font-medium text-[#2A9D8F] hover:text-[#2A9D8F]/80 transition-colors">
+          <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+          </svg>
+          Back to Blog
+        </button>
+        <div className="aspect-[16/9] overflow-hidden rounded-xl bg-[#E9EDDE]">
+          <img src={post.image} alt={post.title} className="h-full w-full object-cover" />
+        </div>
+        <div className="mt-6 flex flex-wrap items-center gap-3 text-sm text-[#6B7280]">
+          <time dateTime={post.date} className="font-medium">
+            {new Date(post.date).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
+          </time>
+          <span>&middot;</span>
+          <span>{post.author}</span>
+        </div>
+        <h1 className="font-heading mt-2 text-3xl font-bold tracking-tight text-[#2D2D2D] sm:text-4xl">{post.title}</h1>
+        <div className="mt-4 flex flex-wrap gap-2">
+          {post.tags.map((tag) => (<span key={tag} className="badge">{tag}</span>))}
+        </div>
+        <div className="blog-content mt-8" dangerouslySetInnerHTML={{ __html: post.content }} />
+        
+        {/* Shop This Article */}
+        {(() => {
+          // First check explicit relatedSlugs, then fall back to tag-based matching
+          let relatedProducts: Product[] = [];
+          if (post.relatedSlugs) {
+            relatedProducts = post.relatedSlugs
+              .map(slug => products.find(p => p.slug === slug))
+              .filter(Boolean) as Product[];
+          } else {
+            // Auto-match based on post tags
+            const tags = post.tags;
+            const scored = products.map(p => {
+              let score = 0;
+              for (const tag of tags) {
+                if (tag === "dogs" || tag === "dog") {
+                  if (p.tags?.some((t: string) => ["dog", "collar", "leash", "t-shirt", "hoodie", "toy", "chew"].some(k => t.includes(k)))) score += 3;
+                }
+                if (tag === "cats" || tag === "cat") {
+                  if (p.tags?.some((t: string) => ["cat", "litter", "carrier", "toy"].some(k => t.includes(k)))) score += 3;
+                }
+                if (tag === "essentials" || tag === "food" || tag === "nutrition") {
+                  if (p.tags?.some((t: string) => ["bowl", "food", "treats", "litter"].some(k => t.includes(k)))) score += 2;
+                }
+                if (tag === "supplies" || tag === "tips" || tag === "health") {
+                  if (p.tags?.some((t: string) => ["grooming", "brush", "shampoo", "bed", "safety"].some(k => t.includes(k)))) score += 2;
+                }
+                if (tag === "guides") {
+                  if (p.featured) score += 2;
+                }
+              }
+              return { product: p, score };
+            });
+            relatedProducts = scored
+              .filter(s => s.score > 0)
+              .sort((a, b) => b.score - a.score)
+              .slice(0, 4)
+              .map(s => s.product);
+          }
+          if (relatedProducts.length > 0) {
+            return <ShopTheLook products={relatedProducts} />;
+          }
+          return null;
+        })()}
+
+        {/* Comments section */}
+        <div className="mt-12 border-t border-[#E9EDDE] pt-8">
+          <h2 className="font-heading text-xl font-semibold text-[#2D2D2D]">Leave a Comment</h2>
+          <p className="mt-1 text-sm text-[#6B7280]">We'd love to hear from you!</p>
+          <form className="mt-6 space-y-4" onSubmit={(e) => { e.preventDefault(); alert("Thanks for your comment! It will be reviewed before posting."); }}>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <input type="text" placeholder="Your name" required className="w-full rounded-lg border border-[#E9EDDE] px-4 py-2.5 text-sm text-[#2D2D2D] placeholder:text-[#6B7280] focus:border-[#2A9D8F] focus:outline-none" />
+              <input type="email" placeholder="Your email" required className="w-full rounded-lg border border-[#E9EDDE] px-4 py-2.5 text-sm text-[#2D2D2D] placeholder:text-[#6B7280] focus:border-[#2A9D8F] focus:outline-none" />
+            </div>
+            <textarea rows={4} placeholder="Write your comment..." required className="w-full rounded-lg border border-[#E9EDDE] px-4 py-2.5 text-sm text-[#2D2D2D] placeholder:text-[#6B7280] focus:border-[#2A9D8F] focus:outline-none" />
+            <button type="submit" className="btn-primary">Post Comment</button>
+          </form>
+        </div>
+        
+        <div className="mt-8 border-t border-[#E9EDDE] pt-8 text-center">
+          <p className="text-[#6B7280]">Thanks for reading!</p>
+          <div className="mt-4 flex flex-wrap justify-center gap-4">
+            <a href="/products" className="btn-primary">Shop Pet Supplies</a>
+            <button onClick={closePost} className="btn-secondary">More Blog Posts</button>
+          </div>
+        </div>
+      </article>
+    );
+  }
+
+  return (
+    <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <div className="text-center">
+        <h1 className="section-title">Paw & Found Blog</h1>
+        <p className="section-subtitle mt-2 max-w-2xl mx-auto">
+          Pet care tips, product guides, and advice from our team.
+        </p>
+      </div>
+
+      {blogPosts.length === 0 ? (
+        <div className="mt-16 text-center">
+          <span className="text-5xl">📝</span>
+          <h2 className="font-heading mt-4 text-xl font-semibold text-[#2D2D2D]">Coming soon</h2>
+          <p className="mt-2 text-[#6B7280]">Check back for blog posts!</p>
+        </div>
+      ) : (
+        <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          {blogPosts.map((post) => (
+            <button
+              key={post.slug}
+              onClick={() => openPost(post.slug)}
+              className="card group flex flex-col text-left transition-all hover:-translate-y-1"
+            >
+              <div className="aspect-[16/9] overflow-hidden bg-[#E9EDDE]">
+                <img
+                  src={post.image}
+                  alt={post.title}
+                  className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  loading="lazy"
+                />
+              </div>
+              <div className="flex flex-1 flex-col p-5">
+                <div className="flex items-center gap-2 text-xs text-[#6B7280]">
+                  <time dateTime={post.date}>
+                    {new Date(post.date).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
+                  </time>
+                  <span>&middot;</span>
+                  <span>{post.author}</span>
+                </div>
+                <h2 className="font-heading mt-2 text-lg font-semibold text-[#2D2D2D] group-hover:text-[#FF7F5C] transition-colors">
+                  {post.title}
+                </h2>
+                <p className="mt-2 flex-1 text-sm text-[#6B7280]">{post.excerpt}</p>
+                <div className="mt-3 flex flex-wrap gap-1.5">
+                  {post.tags.slice(0, 3).map((tag) => (
+                    <span key={tag} className="badge text-[10px]">{tag}</span>
+                  ))}
+                </div>
+              </div>
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
