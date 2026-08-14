@@ -661,7 +661,7 @@ function BudgetTrackerPage() {
             <p className="mt-1 text-sm text-[#6B7280]">
               Check your breakdown each month and adjust. New to pet parenting? Start with
               our{" "}
-              <a href="/blog/new-pet-preparation-tips" className="font-medium text-[#2A9D8F] hover:text-[#FF7F5C]">
+              <a href="/blog?post=introducing-new-pet-to-your-home" className="font-medium text-[#2A9D8F] hover:text-[#FF7F5C]">
                 new pet preparation guide
               </a>
               .

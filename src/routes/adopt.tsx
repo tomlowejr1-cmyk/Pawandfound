@@ -238,7 +238,7 @@ function AdoptPage() {
           <li>✅ Budget for food, vet visits, supplies, and unexpected care</li>
           <li>✅ Plan for the first few weeks of adjustment — patience is key</li>
           <li>✅ Check out our{" "}
-            <a href="/blog/new-pet-preparation-tips" className="font-medium text-[#2A9D8F] hover:text-[#FF7F5C]">
+            <a href="/blog?post=introducing-new-pet-to-your-home" className="font-medium text-[#2A9D8F] hover:text-[#FF7F5C]">
               new pet preparation guide
             </a>{" "}
             and{" "}
