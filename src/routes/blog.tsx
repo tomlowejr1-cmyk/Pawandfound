@@ -498,28 +498,81 @@ const blogPosts: BlogPost[] = [
 ];
 export const Route = createFileRoute("/blog")({
   component: BlogPage,
-  loader: async () => {
+  loader: async ({ location }) => {
     const products = await loadProducts();
-    return { products };
+    const postSlug = new URLSearchParams(location.search).get("post") ?? undefined;
+    return { products, postSlug };
   },
-  head: () => {
-    // Blog listing JSON-LD
-    const blogListJson = JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "Blog",
-      "name": "Paw & Found Blog",
-      "description": "Pet care tips, product guides, and advice from the Paw & Found team.",
-      "url": `${SITE_URL}/blog`,
-      "blogPost": blogPosts.map(p => ({
+  head: ({ match }) => {
+    const selected = match.loaderData.postSlug
+      ? blogPosts.find(p => p.slug === match.loaderData.postSlug)
+      : undefined;
+    if (selected) {
+      // Per-post head: unique title/desc/OG/canonical + exactly one BlogPosting JSON-LD in SSR
+      const postUrl = `${SITE_URL}/blog?post=${selected.slug}`;
+      const imageUrl = selected.image.startsWith("http") ? selected.image : `${SITE_URL}${selected.image}`;
+      const blogPostJson = JSON.stringify({
+        "@context": "https://schema.org",
         "@type": "BlogPosting",
-        "headline": p.title,
-        "url": `${SITE_URL}/blog?post=${p.slug}`,
-        "datePublished": p.date,
-        "author": { "@type": "Person", "name": p.author },
-        "image": p.image.startsWith("http") ? p.image : `${SITE_URL}${p.image}`,
-      })),
-    });
-
+        "headline": selected.title,
+        "datePublished": selected.date,
+        "author": { "@type": "Person", "name": selected.author },
+        "image": imageUrl,
+        "url": postUrl,
+        "description": selected.excerpt,
+        "mainEntityOfPage": postUrl,
+      });
+      const breadcrumbJson = JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": `${SITE_URL}/` },
+          { "@type": "ListItem", "position": 2, "name": "Blog", "item": `${SITE_URL}/blog` },
+          { "@type": "ListItem", "position": 3, "name": selected.title, "item": postUrl },
+        ],
+      });
+      return {
+        meta: [
+          { title: `${selected.title} — Paw & Found Blog` },
+          { name: "description", content: selected.excerpt },
+          { property: "og:title", content: `${selected.title} — Paw & Found Blog` },
+          { property: "og:description", content: selected.excerpt },
+          { property: "og:url", content: postUrl },
+          { property: "og:image", content: imageUrl },
+          { property: "og:type", content: "article" },
+          { property: "article:published_time", content: selected.date },
+          { property: "twitter:card", content: "summary_large_image" },
+          { property: "twitter:title", content: `${selected.title} — Paw & Found Blog` },
+          { property: "twitter:description", content: selected.excerpt },
+          { property: "twitter:image", content: imageUrl },
+        ],
+        links: [{ rel: "canonical", href: postUrl }],
+        scripts: [
+          { type: "application/ld+json", id: "blog-post-jsonld", children: blogPostJson },
+          { type: "application/ld+json", id: "blog-breadcrumb-jsonld", children: breadcrumbJson },
+        ],
+      };
+    }
+    // Blog index head: Blog + ItemList (no 44-entry blogPost array)
+    const blogIndexJson = JSON.stringify([
+      {
+        "@context": "https://schema.org",
+        "@type": "Blog",
+        "name": "Paw & Found Blog",
+        "description": "Pet care tips, product guides, and advice from the Paw & Found team.",
+        "url": `${SITE_URL}/blog`,
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "All Blog Posts",
+        "itemListElement": blogPosts.map((p, i) => ({
+          "@type": "ListItem",
+          "position": i + 1,
+          "url": `${SITE_URL}/blog?post=${p.slug}`,
+        })),
+      },
+    ]);
     return {
       meta: [
         { title: "Paw & Found Blog — Pet Care Tips & Guides" },
@@ -530,7 +583,7 @@ export const Route = createFileRoute("/blog")({
       ],
       links: [{ rel: "canonical", href: `${SITE_URL}/blog` }],
       scripts: [
-        { type: "application/ld+json", children: blogListJson },
+        { type: "application/ld+json", children: blogIndexJson },
       ],
     };
   },
@@ -538,13 +591,10 @@ export const Route = createFileRoute("/blog")({
 });
 
 function BlogPage() {
-  const { products } = Route.useLoaderData();
+  const { products, postSlug } = Route.useLoaderData();
   // Read the ?post= param on initial load so deep links (sitemap, cross-post
   // links, social shares) open the article directly instead of the listing.
-  const [selectedPost, setSelectedPost] = React.useState<string | null>(() => {
-    if (typeof window === "undefined") return null;
-    return new URLSearchParams(window.location.search).get("post");
-  });
+  const [selectedPost, setSelectedPost] = React.useState<string | null>(() => postSlug ?? null);
   const post = selectedPost ? blogPosts.find(p => p.slug === selectedPost) : null;
   // Keep the URL in sync with the open article so each post has a shareable
   // deep link, and support browser back/forward via popstate.
@@ -570,8 +620,10 @@ function BlogPage() {
   // Dynamically update meta tags and JSON-LD for individual posts
   React.useEffect(() => {
     if (!post) {
-      // Reset title on listing view
+      // Reset title + canonical on listing view
       document.title = "Paw & Found Blog — Pet Care Tips & Guides";
+      const canonicalEl = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
+      if (canonicalEl) canonicalEl.setAttribute("href", `${SITE_URL}/blog`);
       return;
     }
 
@@ -598,6 +650,15 @@ function BlogPage() {
       el.setAttribute("content", content);
     };
 
+    const setCanonical = (href: string) => {
+      let el = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
+      if (!el) {
+        el = document.createElement("link");
+        el.setAttribute("rel", "canonical");
+        document.head.appendChild(el);
+      }
+      el.setAttribute("href", href);
+    };
     const imageUrl = post.image.startsWith("http") ? post.image : `${SITE_URL}${post.image}`;
     const postUrl = `${SITE_URL}/blog?post=${post.slug}`;
 
@@ -605,6 +666,7 @@ function BlogPage() {
     setMeta("og:description", post.excerpt);
     setMeta("og:image", imageUrl);
     setMeta("og:url", postUrl);
+    setCanonical(postUrl);
     setMeta("og:type", "article");
     setMeta("article:published_time", post.date);
     setMeta("twitter:title", `${post.title} — Paw & Found Blog`);
@@ -656,6 +718,8 @@ function BlogPage() {
       if (el) el.remove();
       const bcel = document.getElementById("blog-breadcrumb-jsonld");
       if (bcel) bcel.remove();
+      const canonicalReset = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
+      if (canonicalReset) canonicalReset.setAttribute("href", `${SITE_URL}/blog`);
       document.title = "Paw & Found Blog — Pet Care Tips & Guides";
     };
   }, [post]);
@@ -663,12 +727,12 @@ function BlogPage() {
   if (post) {
     return (
       <article className="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
-        <button onClick={closePost} className="mb-8 inline-flex items-center gap-1 text-sm font-medium text-[#2A9D8F] hover:text-[#2A9D8F]/80 transition-colors">
+        <a href="/blog" onClick={(e) => { e.preventDefault(); closePost(); }} className="mb-8 inline-flex items-center gap-1 text-sm font-medium text-[#2A9D8F] hover:text-[#2A9D8F]/80 transition-colors">
           <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
           </svg>
           Back to Blog
-        </button>
+        </a>
         <div className="aspect-[16/9] overflow-hidden rounded-xl bg-[#E9EDDE]">
           <img src={post.image} alt={post.title} className="h-full w-full object-cover" />
         </div>
@@ -772,9 +836,13 @@ function BlogPage() {
       ) : (
         <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {blogPosts.map((post) => (
-            <button
+            <a
               key={post.slug}
-              onClick={() => openPost(post.slug)}
+              href={`/blog?post=${post.slug}`}
+              onClick={(e) => {
+                e.preventDefault();
+                openPost(post.slug);
+              }}
               className="card group flex flex-col text-left transition-all hover:-translate-y-1"
             >
               <div className="aspect-[16/9] overflow-hidden bg-[#E9EDDE]">
@@ -803,7 +871,7 @@ function BlogPage() {
                   ))}
                 </div>
               </div>
-            </button>
+            </a>
           ))}
         </div>
       )}
