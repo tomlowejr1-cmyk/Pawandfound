@@ -111,7 +111,7 @@ const digitalProducts: DigitalProduct[] = [
       "24 hand-drawn pet-themed digital stickers for tablet journaling apps. Cute, colorful designs of dogs, cats, and pet parent life.",
     longDescription:
       "Decorate your digital journal, planner, or notes with these adorable hand-drawn pet stickers! This pack includes 24 individual PNG stickers featuring dogs, cats, paw prints, pet care icons, and fun pet-parent sayings. All stickers have transparent backgrounds and high resolution — perfect for GoodNotes, Notability, Zoom whiteboards, and any app that supports image imports. Just import and start decorating!",
-    image: "/images/sticker-cover.png",
+    image: "/images/sticker-cover.jpg",
     stripePaymentLink: "https://buy.stripe.com/9B6bJ19DU6Gs0op2U82cg0j",
     features: [
       "24 individual PNG stickers",
@@ -371,7 +371,7 @@ const digitalProducts: DigitalProduct[] = [
       "The complete starter guide for rabbits, guinea pigs, and hamsters — housing, feeding, health, enrichment, and bonding for all three species.",
     longDescription:
       "Thinking about a small pet? This complete starter kit covers everything you need for the three most popular small pets — rabbits, guinea pigs, and hamsters. Each species gets its own deep dive: proper housing sizes (including the C&C cage gold standard for guinea pigs and bin-cage setups for hamsters), diet and feeding guidelines (hay-first nutrition for rabbits and guinea pigs, scatter feeding for hamsters), enrichment ideas, health warning signs, and bonding tips. Includes printable setup checklists and a quick-reference care sheet for each species — everything you need to start right.",
-    image: "/images/small-pet-starter-kit-preview.png",
+    image: "/images/small-pet-starter-kit-preview.jpg",
     stripePaymentLink: "https://buy.stripe.com/5kQ00j4jA8OA2wx9iw2cg1q",
     features: [
       "Covers rabbits, guinea pigs & hamsters",

@@ -558,7 +558,7 @@ function Home() {
             <div className="card group flex flex-col transition-all hover:-translate-y-1">
               <div className="aspect-square overflow-hidden bg-[#FFF8F0]">
                 <img
-                  src="/images/sticker-cover.png"
+                  src="/images/sticker-cover.jpg"
                   alt="Paw & Found Digital Sticker Pack"
                   className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
                   loading="lazy"
