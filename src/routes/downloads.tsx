@@ -263,6 +263,26 @@ const digitalProducts: DigitalProduct[] = [
     ],
   },
   {
+    id: "dig-017",
+    title: "My First Pet Coloring Book",
+    slug: "my-first-pet-coloring-book",
+    price: 5.99,
+    description:
+      "18 adorable, big-shape coloring pages of dogs, cats, bunnies, and more — designed just for kids, with thick outlines and large interiors.",
+    longDescription:
+      "A delightful first coloring book for little hands! Featuring 18 original, kid-friendly pet designs — from a sleeping puppy and a smiling kitten to a bunny, hamster, and goldfish — each with thick, easy-to-color outlines and big open spaces. Single-sided pages mean no bleed-through, so kids can use crayons, markers, or colored pencils without worry. Sized 8.5 x 11 inches, perfect for small artists. A screen-free creative activity and a sweet, screen-free gift for any child who loves animals.",
+    image: "/images/my-first-pet-coloring-book-cover.png",
+    stripePaymentLink: "https://buy.stripe.com/5kQfZh2bs7Kw5IJfGU2cg1u",
+    features: [
+      "18 original kid-friendly pet designs",
+      "Thick outlines & big open spaces for small hands",
+      "Dogs, cats, bunnies & more (single-sided pages)",
+      "Works with crayons, markers & colored pencils",
+      "US Letter size (8.5×11\")",
+      "Instant PDF download — print as often as you like",
+    ],
+  },
+  {
     id: "dig-011",
     title: "Vet Visit Prep Kit",
     slug: "vet-visit-prep-kit",
