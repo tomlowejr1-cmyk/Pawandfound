@@ -21,7 +21,7 @@ export const Route = createFileRoute("/cart")({
   component: CartPage,
   head: () => ({
     meta: [
-      { title: "Shopping Cart — Paw & Found" },
+      { title: "Your Shopping Cart — Pet Supplies | Paw & Found" },
       {
         name: "description",
         content:

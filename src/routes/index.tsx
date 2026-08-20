@@ -48,7 +48,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Shop Paw & Found for the best pet supplies, apparel, and accessories. From trendy dog t-shirts to premium cat litter, find everything your pet needs in one place. Free shipping over $50.",
+          "Shop Paw & Found for the best pet supplies, apparel, and accessories — from dog t-shirts to premium cat litter. Find everything your pet needs in one place. Free shipping over $50.",
       },
       { property: "og:title", content: "Paw & Found — Pet Supplies & Apparel for Dogs & Cats" },
       {

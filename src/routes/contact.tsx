@@ -4,7 +4,7 @@ export const Route = createFileRoute("/contact")({
   component: ContactPage,
   head: () => ({
     meta: [
-      { title: "Contact Us | Paw & Found" },
+      { title: "Contact Us — Orders, Products & Support | Paw & Found" },
       {
         name: "description",
         content:

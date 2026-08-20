@@ -10,7 +10,9 @@ export const Route = createFileRoute("/thank-you")({
         name: "description",
         content: "Your order has been placed successfully! Thank you for shopping with Paw & Found.",
       },
+      { name: "robots", content: "noindex, nofollow" },
     ],
+    links: [{ rel: "canonical", href: "https://pawandfound.store/thank-you" }],
   }),
 });
 

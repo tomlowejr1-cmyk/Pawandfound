@@ -125,7 +125,7 @@ export const Route = createFileRoute("/cat-corner")({
       {
         name: "description",
         content:
-          "A fun, educational hub for cat owners: bite-sized cat behavior tips in the cat-whisperer style, curated YouTube videos on body language and vocalizations, and Paw & Found's cat eBooks — Cat Behavior Decoder, Cat vs. Cat, and more.",
+          "A fun, educational hub for cat owners: bite-sized cat behavior tips, curated YouTube videos on body language and vocalizations, and Paw & Found's cat eBooks.",
       },
       { property: "og:title", content: "Cat Corner — Cat Behavior Tips & Videos | Paw & Found 🐱" },
       {

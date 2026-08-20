@@ -9,11 +9,11 @@ export const Route = createFileRoute("/adopt")({
   component: AdoptPage,
   head: () => ({
     meta: [
-    { title: "Adopt a Pet — Paw & Found ❤️" },
+    { title: "Adoptable Dogs & Cats — Paw & Found ❤️" },
     {
       name: "description",
       content:
-        "Find your new best friend through Voorhees Animal Orphanage and Tri State Canine Response Team. Browse adoptable dogs and cats, learn about the adoption process, and give a shelter pet a loving home.",
+        "Browse adoptable dogs and cats from Voorhees Animal Orphanage and Tri State Canine Response Team — and give a shelter pet a loving home.",
     },
     { property: "og:title", content: "Adopt a Pet — Paw & Found ❤️" },
     {

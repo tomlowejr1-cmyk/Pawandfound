@@ -30,6 +30,11 @@ const PRODUCT_JSON_LD = JSON.stringify({
     priceCurrency: "USD",
     availability: "https://schema.org/InStock",
     url: "https://buy.stripe.com/aFafZh8zQ7Kw4EFbqE2cg1p",
+    shippingDetails: {
+      "@type": "OfferShippingDetails",
+      shippingRate: { "@type": "MonetaryAmount", value: "0", currency: "USD" },
+      shippingDestination: { "@type": "DefinedRegion", addressCountry: "US" },
+    },
   },
 });
 
@@ -56,7 +61,7 @@ export const Route = createFileRoute("/christmas")({
       {
         name: "description",
         content:
-          "Shop the Paw & Found Christmas Collection — the Holiday Plaid bowtie for holiday photos — plus the seasonal safety guide that keeps your dog and cat safe through the festivities.",
+          "Shop Paw & Found's Christmas Collection — the Holiday Plaid bowtie for holiday photos — plus seasonal pet-safety guides for your dog and cat.",
       },
       { property: "og:title", content: "Christmas Collection | Paw & Found 🎄" },
       {

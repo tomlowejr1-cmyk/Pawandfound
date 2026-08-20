@@ -6,7 +6,7 @@ export const Route = createFileRoute("/faq")({
   component: FaqPage,
   head: () => ({
     meta: [
-      { title: "FAQ — Shipping, Returns & Pet Product Questions | Paw & Found" },
+      { title: "FAQ — Shipping, Returns & Pet Questions | Paw & Found" },
       {
         name: "description",
         content:

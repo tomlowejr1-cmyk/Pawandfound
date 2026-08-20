@@ -302,7 +302,7 @@ export const Route = createFileRoute("/quiz")({
   head: () => ({
     meta: [
       { title: "Pet Product Finder Quiz — Paw & Found" },
-      { name: "description", content: "Find the perfect products for your pet in 5 quick questions!" },
+      { name: "description", content: "Find the perfect products for your pet in 5 quick questions. Answer about your pet's breed, size, and habits to get personalized product and digital-guide recommendations from Paw & Found." },
       { property: "og:title", content: "Pet Product Finder Quiz — Paw & Found" },
       { property: "og:description", content: "Find the perfect products for your pet in 5 quick questions — plus enter to win a Paw & Found gift box!" },
       { property: "og:url", content: `${SITE_URL}/quiz` },
@@ -431,6 +431,10 @@ function QuizPage() {
 
   return (
     <div className="mx-auto max-w-2xl px-4 py-12 sm:px-6 lg:px-8">
+      {/* Page heading for landing + question states */}
+      <h1 className="font-heading mb-6 text-center text-3xl font-bold text-[#2D2D2D]">
+        Find the Perfect Products for Your Pet
+      </h1>
       {/* Progress Bar */}
       <div className="mb-8">
         <div className="flex items-center justify-between text-sm text-[#6B7280] mb-2">

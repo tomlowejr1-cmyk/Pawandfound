@@ -40,11 +40,11 @@ export const Route = createFileRoute("/reviews")({
   },
   head: () => ({
     meta: [
-      { title: "Reviews & Testimonials — Paw & Found | Real Words From Pet Parents" },
+      { title: "Paw & Found Reviews — Real Ratings from Pet Parents" },
       {
         name: "description",
         content:
-          "See why pet parents love Paw & Found. Star ratings and reviews across apparel, essentials, supplies, and accessories — read what happy dog and cat owners say about our products.",
+          "See why pet parents love Paw & Found. Star ratings and reviews across apparel, essentials, supplies, and accessories from happy dog and cat owners.",
       },
       { property: "og:title", content: "Reviews & Testimonials — Paw & Found ⭐" },
       {

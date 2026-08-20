@@ -30,6 +30,11 @@ const PRODUCT_JSON_LD = JSON.stringify({
     priceCurrency: "USD",
     availability: "https://schema.org/InStock",
     url: "https://buy.stripe.com/bJe00jcQ63ug7QRcuI2cg1o",
+    shippingDetails: {
+      "@type": "OfferShippingDetails",
+      shippingRate: { "@type": "MonetaryAmount", value: "0", currency: "USD" },
+      shippingDestination: { "@type": "DefinedRegion", addressCountry: "US" },
+    },
   },
 });
 
@@ -56,7 +61,7 @@ export const Route = createFileRoute("/thanksgiving")({
       {
         name: "description",
         content:
-          "Shop the Paw & Found Thanksgiving Collection — the Pumpkin Spice bandana for holiday photos — plus the seasonal safety guide that keeps your dog and cat safe through the feast.",
+          "Shop Paw & Found's Thanksgiving Collection — the Pumpkin Spice bandana for holiday photos — plus seasonal pet-safety guides for your dog and cat.",
       },
       { property: "og:title", content: "Thanksgiving Collection | Paw & Found 🦃" },
       {
