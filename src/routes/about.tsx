@@ -10,7 +10,7 @@ export const Route = createFileRoute("/about")({
       {
         name: "description",
         content:
-          "Learn about Paw & Found, the pet store that makes it simple to find quality pet supplies, apparel, and accessories. Pet-first, sustainable, and community-driven.",
+          "Learn about Paw & Found, the pet store that makes it simple to find quality pet supplies, apparel, and accessories — pet-first, sustainable, and community-driven.",
       },
       { property: "og:title", content: "About Paw & Found — Pet Store for Dogs & Cats" },
       {

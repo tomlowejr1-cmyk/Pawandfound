@@ -49,25 +49,29 @@ export const Route = createFileRoute("/products")({
   },
   component: ProductsPage,
   head: () => {
-    const categoryName = "All Products";
+    const search = Route.useSearch();
+    const category = typeof search.category === "string" ? search.category : null;
+    const categoryName = category ?? "All Products";
+    const canonical = category
+      ? `${SITE_URL}/products?category=${encodeURIComponent(category)}`
+      : `${SITE_URL}/products`;
+    const metaTitle = `Shop Pet Supplies — ${categoryName} | Paw & Found`;
+    const metaDesc = category
+      ? `Shop the ${category} collection at Paw & Found — tees, bandanas, litter, grooming tools, and more for your dog and cat.`
+      : "Browse our full selection of pet supplies, apparel, and accessories. From dog t-shirts and bandanas to cat litter and grooming tools — find quality pet products at Paw & Found.";
+    const ogDesc = category
+      ? `Shop the ${category} collection at Paw & Found for dogs and cats.`
+      : "Browse our full selection of pet supplies, apparel, and accessories for dogs and cats.";
     return {
       meta: [
-        { title: `Shop Pet Supplies — ${categoryName} | Paw & Found` },
-        {
-          name: "description",
-          content:
-            "Browse our full selection of pet supplies, apparel, and accessories. From dog t-shirts and bandanas to cat litter and grooming tools — find quality pet products at Paw & Found.",
-        },
-        { property: "og:title", content: `Shop Pet Supplies — ${categoryName} | Paw & Found` },
-        {
-          property: "og:description",
-          content:
-            "Browse our full selection of pet supplies, apparel, and accessories for dogs and cats.",
-        },
-        { property: "og:url", content: `${SITE_URL}/products` },
+        { title: metaTitle },
+        { name: "description", content: metaDesc },
+        { property: "og:title", content: metaTitle },
+        { property: "og:description", content: ogDesc },
+        { property: "og:url", content: canonical },
         { property: "og:image", content: `${SITE_URL}/images/logo.png` },
       ],
-      links: [{ rel: "canonical", href: `${SITE_URL}/products` }],
+      links: [{ rel: "canonical", href: canonical }],
     };
   },
   staleTime: 60_000,
@@ -174,6 +178,12 @@ function ProductsPage() {
             {cat.icon} {cat.name}
           </a>
         ))}
+        <a
+          href="/products/pet-calendar"
+          className="rounded-lg px-4 py-2 text-sm font-medium transition-colors bg-[#E9EDDE] text-[#6B7280] hover:bg-[#F4A261]/30 hover:text-[#2D2D2D]"
+        >
+          🗓️ 2027 Pet Calendar
+        </a>
       </div>
 
       {/* Product Grid */}

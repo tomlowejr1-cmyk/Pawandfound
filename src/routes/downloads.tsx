@@ -436,9 +436,9 @@ function DownloadsPage() {
           <div className="grid gap-0 md:grid-cols-5">
             <div className="flex items-center justify-center bg-gradient-to-br from-[#FFF8F0] to-[#F4A261]/10 p-6 md:col-span-2">
               <div className="relative flex gap-2">
-                <img src="/images/ebook-puppy-handbook.jpg" alt="" className="w-20 rounded-lg shadow-md md:w-24 -rotate-3" />
-                <img src="/images/ebook-cat-care.jpg" alt="" className="w-20 rounded-lg shadow-md md:w-24 rotate-3 z-10 -ml-4" />
-                <img src="/images/ebook-survival-guide.jpg" alt="" className="w-20 rounded-lg shadow-md md:w-24 -rotate-2 -ml-4" />
+                <img src="/images/ebook-puppy-handbook.jpg" alt="The Complete Puppy Handbook — Paw & Found" className="w-20 rounded-lg shadow-md md:w-24 -rotate-3" />
+                <img src="/images/ebook-cat-care.jpg" alt="The Ultimate Cat Care Guide — Paw & Found" className="w-20 rounded-lg shadow-md md:w-24 rotate-3 z-10 -ml-4" />
+                <img src="/images/ebook-survival-guide.jpg" alt="Pet Parent's Survival Guide — Paw & Found" className="w-20 rounded-lg shadow-md md:w-24 -rotate-2 -ml-4" />
               </div>
             </div>
             <div className="p-6 md:col-span-3">

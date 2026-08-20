@@ -106,16 +106,21 @@ export const Route = createRootRoute({
       },
     ],
   }),
-  notFoundComponent: () => (
-    <div className="flex min-h-dvh flex-col items-center justify-center gap-4 bg-[#FFF8F0] px-6 text-center">
-      <span className="text-6xl">🐾</span>
-      <h1 className="font-heading text-2xl font-bold text-[#2D2D2D]">Page not found</h1>
-      <p className="text-[#6B7280]">Looks like this page wandered off!</p>
-      <a href="/" className="btn-primary mt-2">
-        Back to Home
-      </a>
-    </div>
-  ),
+  notFoundComponent: () => {
+    useEffect(() => {
+      document.title = "Page Not Found | Paw & Found";
+    }, []);
+    return (
+      <div className="flex min-h-dvh flex-col items-center justify-center gap-4 bg-[#FFF8F0] px-6 text-center">
+        <span className="text-6xl">🐾</span>
+        <h1 className="font-heading text-2xl font-bold text-[#2D2D2D]">Page not found</h1>
+        <p className="text-[#6B7280]">Looks like this page wandered off!</p>
+        <a href="/" className="btn-primary mt-2">
+          Back to Home
+        </a>
+      </div>
+    );
+  },
   component: RootComponent,
 });
 
@@ -355,7 +360,7 @@ function Footer() {
               <li><a href="/adopt" className="hover:text-white">Adopt a Pet ❤️</a></li>
               <li><a href="/suggest" className="hover:text-white">Request a Product 💡</a></li>
               <li><a href="/faq" className="hover:text-white">FAQ</a></li>
-              <li><a href="/about" className="hover:text-white">Contact</a></li>
+              <li><a href="/contact" className="hover:text-white">Contact</a></li>
             </ul>
           </div>
         </div>

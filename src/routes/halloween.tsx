@@ -36,6 +36,28 @@ const SAFETY_POSTS = [
       "More pets go missing on July 4th than any other day. How to keep your dog and cat calm during fireworks, safe in the heat, and home where they belong.",
   },
 ];
+const PRODUCT_JSON_LD = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Product",
+  name: "Halloween Boo Pet T-Shirt",
+  image: `${SITE_URL}/images/product-tshirt-halloween.jpg`,
+  description:
+    "A spooky-but-cozy Boo t-shirt for dogs and cats. Soft, breathable cotton, one size fits most — perfect for Halloween photos and fall fun.",
+  brand: { "@type": "Brand", name: "Paw & Found" },
+  category: "Apparel",
+  offers: {
+    "@type": "Offer",
+    price: "21.99",
+    priceCurrency: "USD",
+    availability: "https://schema.org/InStock",
+    url: "https://buy.stripe.com/4gM8wP17o1m84EFfGU2cg1n",
+    shippingDetails: {
+      "@type": "OfferShippingDetails",
+      shippingRate: { "@type": "MonetaryAmount", value: "0", currency: "USD" },
+      shippingDestination: { "@type": "DefinedRegion", addressCountry: "US" },
+    },
+  },
+});
 
 interface HalloweenData {
   seasonal: { product: Product; stripeUrl: string | undefined }[];
@@ -60,7 +82,7 @@ export const Route = createFileRoute("/halloween")({
       {
         name: "description",
         content:
-          "Shop the Paw & Found Halloween Collection — spooky-but-cozy pet tees, bandanas, and bowties — plus seasonal pet-safety guides to keep your dog and cat safe through the holidays.",
+          "Shop Paw & Found's Halloween Collection — spooky-but-cozy pet tees, bandanas, and bowties — plus seasonal pet-safety guides for your dog and cat.",
       },
       { property: "og:title", content: "Halloween Collection | Paw & Found 🎃" },
       {
@@ -80,6 +102,7 @@ export const Route = createFileRoute("/halloween")({
       { name: "twitter:image", content: `${SITE_URL}/images/product-tshirt-halloween.jpg` },
     ],
     links: [{ rel: "canonical", href: `${SITE_URL}/halloween` }],
+    scripts: [{ type: "application/ld+json", children: PRODUCT_JSON_LD }],
   }),
 });
 

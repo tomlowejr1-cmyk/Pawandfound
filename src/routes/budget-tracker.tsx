@@ -76,7 +76,7 @@ export const Route = createFileRoute("/budget-tracker")({
       {
         name: "description",
         content:
-          "Track your pet's food, vet, grooming, toy, and supply expenses with the free Paw & Found pet budget tracker. See monthly and yearly spending breakdowns — all saved in your browser.",
+          "Track your pet's food, vet, grooming, toy, and supply expenses with the free Paw & Found pet budget tracker. Monthly and yearly breakdowns, saved in your browser.",
       },
       { property: "og:title", content: "Pet Budget Tracker — Paw & Found 💰" },
       {
