@@ -850,6 +850,78 @@ function DownloadsPage() {
         ))}
       </div>
 
+      {/* WISHES5 Loyalty */}
+      <section className="mx-auto max-w-4xl px-4 py-10 sm:px-6 lg:px-8">
+        <div className="rounded-3xl bg-gradient-to-br from-[#FFF8F0] to-white p-6 ring-1 ring-[#F4E3CD] sm:p-8">
+          <div className="text-center">
+            <span className="text-3xl">🎨</span>
+            <h2 className="font-heading mt-2 text-2xl font-bold text-[#2D2D2D] sm:text-3xl">
+              Love your coloring books? <span className="text-[#FF7F5C]">$5 off your next one</span>
+            </h2>
+            <p className="mx-auto mt-2 max-w-xl text-[#6B7280]">
+              A thank-you for our repeat buyers — grab another Colorful Wishes coloring book at a
+              discounted price. Just a small reward. No code needed.
+            </p>
+          </div>
+          <div className="mt-6 grid gap-4 sm:grid-cols-3">
+            <a
+              href="https://buy.stripe.com/eVq7sL8zQ3uggnn7ao2cg1w"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="card group flex flex-col items-center gap-3 p-5 text-center transition-all hover:-translate-y-1"
+            >
+              <span className="text-2xl">🎂</span>
+              <span className="font-heading font-semibold text-[#2D2D2D]">
+                Colorful Wishes: Birthday Card
+              </span>
+              <span className="mt-auto">
+                <span className="text-sm text-[#6B7280] line-through">$9.99</span>{" "}
+                <span className="font-heading text-xl font-bold text-[#FF7F5C]">$4.99</span>
+              </span>
+              <span className="btn-primary mt-2 w-full px-4 py-2 text-center text-sm">
+                Buy for $4.99
+              </span>
+            </a>
+            <a
+              href="https://buy.stripe.com/6oUfZh3fw5Cofjj3Yc2cg1x"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="card group flex flex-col items-center gap-3 p-5 text-center transition-all hover:-translate-y-1"
+            >
+              <span className="text-2xl">🦖</span>
+              <span className="font-heading font-semibold text-[#2D2D2D]">
+                Colorful Wishes: Dinosaur Adventure
+              </span>
+              <span className="mt-auto">
+                <span className="text-sm text-[#6B7280] line-through">$9.99</span>{" "}
+                <span className="font-heading text-xl font-bold text-[#FF7F5C]">$4.99</span>
+              </span>
+              <span className="btn-primary mt-2 w-full px-4 py-2 text-center text-sm">
+                Buy for $4.99
+              </span>
+            </a>
+            <a
+              href="https://buy.stripe.com/bJe5kD2bs7Kwb333Yc2cg1y"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="card group flex flex-col items-center gap-3 p-5 text-center transition-all hover:-translate-y-1"
+            >
+              <span className="text-2xl">🌊</span>
+              <span className="font-heading font-semibold text-[#2D2D2D]">
+                Colorful Wishes: Ocean Party
+              </span>
+              <span className="mt-auto">
+                <span className="text-sm text-[#6B7280] line-through">$9.99</span>{" "}
+                <span className="font-heading text-xl font-bold text-[#FF7F5C]">$4.99</span>
+              </span>
+              <span className="btn-primary mt-2 w-full px-4 py-2 text-center text-sm">
+                Buy for $4.99
+              </span>
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* How It Works */}
       <div className="border-t border-[#E9EDDE] bg-[#FFF8F0]/50 py-12">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
