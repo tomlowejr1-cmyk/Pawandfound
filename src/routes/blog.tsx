@@ -515,11 +515,17 @@ export const Route = createFileRoute("/blog")({
         "@context": "https://schema.org",
         "@type": "BlogPosting",
         "headline": selected.title,
-        "datePublished": selected.date,
-        "author": { "@type": "Person", "name": selected.author },
+        "description": selected.excerpt,
         "image": imageUrl,
         "url": postUrl,
-        "description": selected.excerpt,
+        "datePublished": selected.date,
+        "dateModified": selected.date,
+        "author": { "@type": "Person", "name": selected.author },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Paw & Found",
+          "logo": { "@type": "ImageObject", "url": `${SITE_URL}/images/logo.png` },
+        },
         "mainEntityOfPage": postUrl,
       });
       const breadcrumbJson = JSON.stringify({
