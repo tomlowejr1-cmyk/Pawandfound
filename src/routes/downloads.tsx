@@ -283,6 +283,46 @@ const digitalProducts: DigitalProduct[] = [
     ],
   },
   {
+    id: "dig-018",
+    title: "Colorful Wishes: Valentine's (Hugs & Kisses) Coloring Book",
+    slug: "colorful-wishes-valentine-coloring-book",
+    price: 9.99,
+    description:
+      "20 cute pet-and-love coloring scenes that double as fold-and-give cards — each page has To:/From: lines and a message space. Perfect for kids ages 3-8.",
+    longDescription:
+      "Color, fold, and give! This Valentine's coloring book is 20 adorable pet-and-love scenes that are also giftable cards — each page has a To:/From: line and a short message space. Little artists can color a puppy holding a heart, a kitty with a 'be mine' balloon, bunnies, paw-print hearts and more, then fold and hand them to someone they love. Great for ages 3-8 and lovely for Valentine's, Grandparents' Day, or any 'I love you.' Single-sided pages mean no bleed-through, so crayons, markers, or colored pencils all work. Sized 8.5 x 11 inches and print-at-home friendly.",
+    image: "/downloads/kdp-coloring-book-valentine/Colorful-Wishes-Valentine-preview.png",
+    stripePaymentLink: "https://buy.stripe.com/fZu6oHcQ64yk2wxeCQ2cg1H",
+    features: [
+      "20 color-fold-and-give Valentine card pages",
+      "To:/From: lines & message space on every card",
+      "Puppies, kitties, bunnies & paw-print hearts",
+      "Single-sided pages — no bleed-through",
+      "US Letter size (8.5x11\") — print at home",
+      "Lovely pick for kids ages 3-8",
+    ],
+  },
+  {
+    id: "dig-019",
+    title: "Printable Pet Gift Tags & Wrapping Set",
+    slug: "pet-gift-tags-wrapping-set",
+    price: 4.99,
+    description:
+      "Adorable printable gift tags and wrapping extras for all your pet-themed gifts — paw prints, pawfect puns, and more. Print as many as you need.",
+    longDescription:
+      "Add a furry finishing touch to every gift! This printable set includes a sheet of charming pet-themed gift tags (paw prints, 'pawfect for you', dog and cat designs), plus matching wrapping extras like gift-card holders, a mini 'to/from' flag set, and coordinating patterns. Print as many copies as you need for birthdays, holidays, and adoption celebrations alike. Everything is designed for US Letter paper, with clean cut lines and an easy print-at-home layout.",
+    image: "/downloads/pet-gift-tags-set/Pet-Gift-Tags-Wrapping-Set-preview.png",
+    stripePaymentLink: "https://buy.stripe.com/9B69ATbM24yk6MN3Yc2cg1I",
+    features: [
+      "Pet-themed gift tags with paw prints & puns",
+      "Matching gift-card holders & wrapping extras",
+      "Prints on US Letter paper at home",
+      "Print as many copies as you need",
+      "Perfect for birthdays, holidays & adoptions",
+      "Instant PDF download",
+    ],
+  },
+  {
     id: "dig-011",
     title: "Vet Visit Prep Kit",
     slug: "vet-visit-prep-kit",
