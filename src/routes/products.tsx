@@ -1,4 +1,4 @@
-import { createFileRoute, useNavigate, useSearch } from "@tanstack/react-router";
+import { createFileRoute, useNavigate, useLocation, Outlet } from "@tanstack/react-router";
 import { useState, useEffect, useRef } from "react";
 import { loadProducts, getProductsByCategory } from "~/lib/products";
 import type { Product } from "~/lib/types";
@@ -48,9 +48,8 @@ export const Route = createFileRoute("/products")({
     };
   },
   component: ProductsPage,
-  head: () => {
-    const search = Route.useSearch();
-    const category = typeof search.category === "string" ? search.category : null;
+  head: ({ match }) => {
+    const category = match.loaderData.selectedCategory;
     const categoryName = category ?? "All Products";
     const canonical = category
       ? `${SITE_URL}/products?category=${encodeURIComponent(category)}`
@@ -80,8 +79,16 @@ export const Route = createFileRoute("/products")({
 function ProductsPage() {
   const { products, selectedCategory, searchQuery } = Route.useLoaderData();
   const navigate = useNavigate();
+  const pathname = useLocation().pathname;
   const [searchInput, setSearchInput] = useState(searchQuery ?? "");
   const debounceRef = useRef<ReturnType<typeof setTimeout>>();
+
+  // Child routes of /products (e.g. /products/pet-calendar) render their own
+  // standalone page; when one is active we render it via <Outlet /> instead of
+  // the listing so it is not shadowed by this component.
+  if (pathname !== "/products") {
+    return <Outlet />;
+  }
 
   const categoryName = selectedCategory
     ? CATEGORIES.find((c) => c.id === selectedCategory)?.name ?? selectedCategory
