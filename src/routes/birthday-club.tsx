@@ -4,7 +4,6 @@ import { subscribeToNewsletter } from "~/lib/mailchimp";
 
 const SITE_URL = "https://pawandfound.store";
 const STORAGE_KEY = "pawandfound_birthday_club_v1";
-const BIRTHDAY_CODE = "BIRTHDAY10";
 
 type PetType = "dog" | "cat" | "small" | "other";
 
@@ -78,13 +77,13 @@ export const Route = createFileRoute("/birthday-club")({
       {
         name: "description",
         content:
-          "Join the free Paw & Found Pet Birthday Club: add your pet's birthday and get a special discount code on the big day. Sign up for email reminders today!",
+          "Join the free Paw & Found Pet Birthday Club: add your pet's birthday for a birthday reminder and party-planning help. Sign up for email reminders today!",
       },
       { property: "og:title", content: "Pet Birthday Club — Paw & Found 🎂" },
       {
         property: "og:description",
         content:
-          "Never miss your pet's birthday! Join the free Pet Birthday Club for a special discount code on the big day.",
+          "Never miss your pet's birthday! Join the free Pet Birthday Club for a birthday reminder and party-planning help.",
       },
       { property: "og:url", content: `${SITE_URL}/birthday-club` },
     ],
@@ -102,7 +101,6 @@ function BirthdayClubPage() {
   const [email, setEmail] = useState("");
   const [formError, setFormError] = useState<string | null>(null);
   const [status, setStatus] = useState<string | null>(null);
-  const [codeCopied, setCodeCopied] = useState(false);
   const [today, setToday] = useState<Date | null>(null);
 
   // Load saved pets + today's date on mount (client-only)
@@ -122,27 +120,7 @@ function BirthdayClubPage() {
     }
   }, [pets, hydrated]);
 
-  useEffect(() => {
-    if (!codeCopied) return;
-    const t = setTimeout(() => setCodeCopied(false), 2000);
-    return () => clearTimeout(t);
-  }, [codeCopied]);
 
-  async function copyCode() {
-    try {
-      await navigator.clipboard.writeText(BIRTHDAY_CODE);
-    } catch {
-      const ta = document.createElement("textarea");
-      ta.value = BIRTHDAY_CODE;
-      ta.style.position = "fixed";
-      ta.style.opacity = "0";
-      document.body.appendChild(ta);
-      ta.select();
-      document.execCommand("copy");
-      document.body.removeChild(ta);
-    }
-    setCodeCopied(true);
-  }
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -208,8 +186,8 @@ function BirthdayClubPage() {
         </h1>
         <p className="mx-auto mt-3 max-w-2xl text-[#6B7280]">
           Every pet deserves a birthday party. Add your furry friend's birthday and we'll
-          show you a special discount code on the big day — plus (optionally) email you a
-          reminder so you never miss the cake. 🎉
+          help you celebrate on the big day — plus (optionally) email you a reminder so
+          you never miss the cake. 🎉
         </p>
       </div>
 
@@ -304,23 +282,14 @@ function BirthdayClubPage() {
                 Happy Birthday, {celebrants.map((p) => p.name).join(" & ")}!
               </h2>
               <p className="mt-2 text-white/90">
-                Today's the big day! Enjoy <strong className="text-white">10% off</strong> your next
-                Paw &amp; Found order with this special code:
+                Today's the big day! 🎉 Here's a free party-planning guide to make it pawsome:
               </p>
-              <button
-                type="button"
-                onClick={copyCode}
-                aria-label="Copy BIRTHDAY10 discount code"
-                className="mx-auto mt-4 flex items-center gap-3 rounded-2xl border-2 border-dashed border-white/60 bg-white/15 px-6 py-3 transition-colors hover:bg-white/25"
+              <a
+                href="/blog?post=pet-birthday-party-checklist"
+                className="mx-auto mt-4 inline-flex items-center gap-2 rounded-2xl border-2 border-white/60 bg-white/15 px-6 py-3 font-heading text-base font-bold transition-colors hover:bg-white/25"
               >
-                <span className="font-heading text-xl font-bold tracking-[0.15em]">
-                  {BIRTHDAY_CODE}
-                </span>
-                <span className="rounded-full bg-white/25 px-2 py-1 text-[10px] font-semibold uppercase tracking-wide">
-                  {codeCopied ? "✓ Copied!" : "Copy"}
-                </span>
-              </button>
-              <p className="mt-2 text-xs text-white/75">Tap to copy — use at checkout.</p>
+                Get the Party-Planning Guide →
+              </a>
             </div>
           )}
 
@@ -377,7 +346,7 @@ function BirthdayClubPage() {
                       </p>
                       {isToday ? (
                         <p className="text-sm font-semibold text-[#FF7F5C]">
-                          🎉 It's birthday day! Use code {BIRTHDAY_CODE} for 10% off.
+                          🎉 It's birthday day!{" "}<a href="/blog?post=pet-birthday-party-checklist" className="underline">Party-planning guide →</a>
                         </p>
                       ) : (
                         <p className="text-sm text-[#6B7280]">
@@ -404,7 +373,7 @@ function BirthdayClubPage() {
           <div className="mt-6 rounded-2xl bg-[#FFF8F0] p-5 text-sm text-[#6B7280]">
             <p className="font-heading font-semibold text-[#2D2D2D]">🎁 Club Perks</p>
             <ul className="mt-2 space-y-1.5">
-              <li>• A special discount code revealed on your pet's birthday</li>
+              <li>• A free party-planning guide for your pet's big day</li>
               <li>• Optional email reminder so you never miss the cake</li>
               <li>• Ideas &amp; goodies all year — like our{" "}
                 <a href="/downloads" className="font-medium text-[#2A9D8F] hover:text-[#FF7F5C]">

@@ -48,7 +48,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Shop Paw & Found for the best pet supplies, apparel, and accessories — from dog t-shirts to premium cat litter. Find everything your pet needs in one place. Free shipping over $50.",
+          "Shop Paw & Found for the best pet supplies, apparel, and accessories — from dog t-shirts to premium cat litter. Find everything your pet needs in one place.",
       },
       { property: "og:title", content: "Paw & Found — Pet Supplies & Apparel for Dogs & Cats" },
       {
@@ -132,9 +132,7 @@ function Home() {
       {/* Referral welcome banner */}
       {referred && (
         <div className="bg-[#2A9D8F] px-4 py-3 text-center text-sm text-white">
-          🎉 You were referred by a Paw &amp; Found friend! Use code{" "}
-          <strong className="font-semibold">PAWFRIEND10</strong> at checkout for 10% off
-          your first order.
+          🎉 Welcome! A friend thought you'd love Paw &amp; Found — happy browsing!
           <button
             onClick={dismissReferralBanner}
             aria-label="Dismiss referral banner"
@@ -172,14 +170,12 @@ function Home() {
               From trendy pet T-shirts to everyday essentials like cat litter — find exactly what
               you need with zero fuss. Spend less time searching, more time with your pet.
             </p>
-            {/* First-purchase offer badge */}
+            {/* Curated badge */}
             <div className="mt-6 inline-flex items-center gap-2 rounded-xl bg-white/15 backdrop-blur-sm px-5 py-3 text-white border border-white/20">
-              <span className="text-2xl">🎁</span>
+              <span className="text-2xl">🐾</span>
               <div>
-                <p className="text-sm font-bold">First order? Take 15% off!</p>
-                <p className="text-xs text-white/70">
-                  Use code <span className="inline-block rounded bg-white/25 px-1.5 py-0.5 font-mono text-xs font-bold tracking-wider">WELCOME15</span> at checkout
-                </p>
+                <p className="text-sm font-bold">Curated for pets, chosen by you</p>
+                <p className="text-xs text-white/70">Apparel, essentials &amp; digital guides — all in one place</p>
               </div>
             </div>
             <div className="mt-6 flex flex-wrap gap-4">
@@ -272,24 +268,24 @@ function Home() {
                 Spin &amp; Win! 🎡
               </h2>
               <p className="mt-3 text-lg text-[#6B7280]">
-                Try your luck for discounts, freebies, and more!
+                Give the wheel a spin — every prize is a real link you can use right away!
               </p>
               <ul className="mt-6 space-y-2.5 text-left">
                 <li className="flex items-start gap-2.5 text-sm text-[#4A4A4A]">
-                  <span className="text-base leading-none">🎁</span>
-                  Discount codes from 10% to 25% off
-                </li>
-                <li className="flex items-start gap-2.5 text-sm text-[#4A4A4A]">
-                  <span className="text-base leading-none">🚚</span>
-                  Free shipping on your order
+                  <span className="text-base leading-none">🛒</span>
+                  Save 10% with Subscribe &amp; Save on essentials
                 </li>
                 <li className="flex items-start gap-2.5 text-sm text-[#4A4A4A]">
                   <span className="text-base leading-none">📖</span>
-                  A free digital guide of your choice
+                  A free pet-care guide to get started
                 </li>
                 <li className="flex items-start gap-2.5 text-sm text-[#4A4A4A]">
-                  <span className="text-base leading-none">🐾</span>
-                  A free Puppy Starter Pack or Cat Essentials Kit
+                  <span className="text-base leading-none">🎨</span>
+                  A $4.99 Colorful Wishes coloring book
+                </li>
+                <li className="flex items-start gap-2.5 text-sm text-[#4A4A4A]">
+                  <span className="text-base leading-none">💳</span>
+                  Gift cards from $25
                 </li>
               </ul>
               <p className="mt-5 text-xs text-[#9CA3AF]">
@@ -702,9 +698,9 @@ function Home() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-8 text-center sm:grid-cols-3">
             <div>
-              <span className="text-3xl">🚚</span>
-              <h3 className="font-heading mt-2 font-semibold text-[#2D2D2D]">Free Shipping</h3>
-              <p className="mt-1 text-sm text-[#6B7280]">On orders over $50</p>
+              <span className="text-3xl">⚡</span>
+              <h3 className="font-heading mt-2 font-semibold text-[#2D2D2D]">Secure Checkout</h3>
+              <p className="mt-1 text-sm text-[#6B7280]">Processed via Stripe</p>
             </div>
             <div>
               <span className="text-3xl">🔄</span>

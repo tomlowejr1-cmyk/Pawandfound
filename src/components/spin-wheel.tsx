@@ -1,20 +1,21 @@
 import { useEffect, useRef, useState, type FormEvent } from "react";
 
 /* ------------------------------------------------------------------ */
-/* Spin & Win — weighted discount wheel                                */
+/* Spin & Win — honest wheel: every prize is a real link, no codes
 /* ------------------------------------------------------------------ */
 
 const SPIN_DATE_KEY = "pawandfound_spin_date";
 const MAILCHIMP_ACTION =
   "https://store.us12.list-manage.com/subscribe/post?u=1ec97266f4e8fd1074b70e466&id=7bfe8105f2";
 
-type PrizeKind = "discount" | "shipping" | "guide" | "bundle" | "try-again";
+type PrizeKind = "subscribe" | "wishes" | "guide" | "gift-card" | "try-again";
 
 interface Prize {
   kind: PrizeKind;
   title: string;
   detail: string;
-  code?: string;
+  href?: string;
+  cta?: string;
 }
 
 interface Segment {
@@ -30,94 +31,62 @@ interface Segment {
    "Try Again" + 10% hit most often and the free bundle is rarest. */
 const SEGMENTS: Segment[] = [
   {
-    lines: ["10%", "OFF"],
+    lines: ["SAVE", "10%"],
     color: "#FF7F5C",
     textColor: "#FFFFFF",
-    weight: 30,
+    weight: 25,
     prize: {
-      kind: "discount",
-      title: "10% Off Your Order",
-      code: "LUCKY10",
-      detail: "Use code LUCKY10 at checkout to save 10% on your order.",
+      kind: "subscribe",
+      title: "Save 10% with Subscribe & Save",
+      detail: "Real subscribe-and-save pricing on Essentials & Supplies — you'll see the toggle at checkout.",
+      href: "/products?category=Essentials",
+      cta: "Shop Essentials",
     },
   },
   {
-    lines: ["15%", "OFF"],
-    color: "#F4A261",
-    textColor: "#3A2A14",
+    lines: ["$4.99", "BOOK"],
+    color: "#2A9D8F",
+    textColor: "#FFFFFF",
     weight: 20,
     prize: {
-      kind: "discount",
-      title: "15% Off Your Order",
-      code: "LUCKY15",
-      detail: "Use code LUCKY15 at checkout to save 15% on your order.",
-    },
-  },
-  {
-    lines: ["20%", "OFF"],
-    color: "#2A9D8F",
-    textColor: "#FFFFFF",
-    weight: 12,
-    prize: {
-      kind: "discount",
-      title: "20% Off Your Order",
-      code: "LUCKY20",
-      detail: "Use code LUCKY20 at checkout to save 20% on your order.",
-    },
-  },
-  {
-    lines: ["25%", "OFF"],
-    color: "#E76F51",
-    textColor: "#FFFFFF",
-    weight: 5,
-    prize: {
-      kind: "discount",
-      title: "25% Off Your Order",
-      code: "SPIN25",
-      detail: "Use code SPIN25 at checkout to save 25% on your order.",
-    },
-  },
-  {
-    lines: ["FREE", "SHIPPING"],
-    color: "#2A9D8F",
-    textColor: "#FFFFFF",
-    weight: 10,
-    prize: {
-      kind: "shipping",
-      title: "Free Shipping",
-      code: "FREESHIP",
-      detail: "Use code FREESHIP at checkout for free standard shipping on your order.",
+      kind: "wishes",
+      title: "A $4.99 Colorful Wishes Book",
+      detail: "Grab one of our Colorful Wishes coloring books — real pre-priced links on the Downloads page.",
+      href: "/downloads",
+      cta: "Browse Downloads",
     },
   },
   {
     lines: ["FREE", "GUIDE"],
     color: "#264653",
     textColor: "#FFFFFF",
-    weight: 4,
+    weight: 15,
     prize: {
       kind: "guide",
-      title: "Free Digital Guide",
-      detail:
-        "Pick any $4.99–$7.99 guide from our Downloads page, then email hello@pawandfound.com with your name and this prize to redeem.",
+      title: "Free Pet-Care Guide",
+      detail: "Start with a free pet-care guide on our blog — no signup, no code needed.",
+      href: "/blog?post=picking-the-best-dog-food",
+      cta: "Read the Guide",
     },
   },
   {
-    lines: ["FREE", "BUNDLE"],
-    color: "#FF7F5C",
-    textColor: "#FFFFFF",
-    weight: 2,
+    lines: ["GIFT", "CARDS"],
+    color: "#F4A261",
+    textColor: "#3A2A14",
+    weight: 10,
     prize: {
-      kind: "bundle",
-      title: "Free Bundle — Your Choice!",
-      detail:
-        "Choose the Puppy Starter Pack or Cat Essentials Kit from our Downloads page, then email hello@pawandfound.com with your name and this prize to redeem.",
+      kind: "gift-card",
+      title: "Gift Cards from $25",
+      detail: "Explore real digital gift cards — the perfect present for any pet parent.",
+      href: "/gift-cards",
+      cta: "Explore Gift Cards",
     },
   },
   {
     lines: ["TRY", "AGAIN"],
     color: "#E9EDDE",
     textColor: "#2D2D2D",
-    weight: 25,
+    weight: 30,
     prize: {
       kind: "try-again",
       title: "So Close!",
@@ -125,7 +94,6 @@ const SEGMENTS: Segment[] = [
     },
   },
 ];
-
 const WHEEL_SIZE = 400;
 const CX = WHEEL_SIZE / 2;
 const CY = WHEEL_SIZE / 2;
@@ -201,7 +169,6 @@ export function SpinWheel() {
   const [confetti, setConfetti] = useState<ConfettiPiece[]>([]);
   const [email, setEmail] = useState("");
   const [emailStatus, setEmailStatus] = useState<"idle" | "loading" | "success">("idle");
-  const [copied, setCopied] = useState(false);
 
   const rotationRef = useRef(0);
   const spinTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -272,7 +239,6 @@ export function SpinWheel() {
       fireConfetti();
       setEmail("");
       setEmailStatus("idle");
-      setCopied(false);
       try {
         localStorage.setItem(SPIN_DATE_KEY, todayStr());
       } catch {
@@ -287,15 +253,6 @@ export function SpinWheel() {
     setConfetti([]);
   }
 
-  async function copyCode(code: string) {
-    try {
-      await navigator.clipboard.writeText(code);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 1800);
-    } catch {
-      /* clipboard unavailable — code stays visible for manual copy */
-    }
-  }
 
   /* Mailchimp embedded form — same endpoint as the site newsletter */
   function submitEmail(e: FormEvent) {
@@ -500,7 +457,7 @@ export function SpinWheel() {
                     So close! Come back tomorrow for another spin!
                   </h3>
                   <p className="mt-2 text-sm text-[#6B7280]">
-                    No luck today — but tomorrow's a fresh chance at discounts, freebies, and more.
+                    No luck today — but tomorrow's a fresh chance at real perks for pet parents.
                   </p>
                 </>
               ) : (
@@ -513,20 +470,15 @@ export function SpinWheel() {
                     {result.title}
                   </h3>
                   <p className="mt-2 text-sm text-[#6B7280]">{result.detail}</p>
-
-                  {result.code && (
-                    <div className="mt-4 inline-flex items-center gap-2 rounded-xl border-2 border-dashed border-[#2A9D8F] bg-[#2A9D8F]/5 px-4 py-2.5">
-                      <span className="font-mono text-lg font-bold tracking-wider text-[#2A9D8F]">
-                        {result.code}
-                      </span>
-                      <button
-                        type="button"
-                        onClick={() => copyCode(result.code!)}
-                        className="rounded-md bg-[#2A9D8F] px-2.5 py-1 text-xs font-semibold text-white transition-colors hover:bg-[#2A9D8F]/85"
-                      >
-                        {copied ? "Copied ✓" : "Copy"}
-                      </button>
-                    </div>
+                  {result.href && (
+                    <a
+                      href={result.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-primary mt-4 inline-block"
+                    >
+                      {result.cta} →
+                    </a>
                   )}
                 </>
               )}
@@ -535,9 +487,7 @@ export function SpinWheel() {
               {emailStatus !== "success" ? (
                 <form onSubmit={submitEmail} className="mt-6">
                   <p className="text-sm font-semibold text-[#2D2D2D]">
-                    {result.kind === "try-again"
-                      ? "Join the Paw & Found Pack for deals & pet tips"
-                      : "Claim your prize & join the Paw & Found Pack"}
+                    Join the Paw & Found Pack for pet tips & new arrivals
                   </p>
                   <div className="mt-3 flex flex-col gap-2 sm:flex-row">
                     <input
@@ -554,7 +504,7 @@ export function SpinWheel() {
                       disabled={emailStatus === "loading"}
                       className="btn-primary px-5 py-2.5 text-sm disabled:opacity-60"
                     >
-                      {emailStatus === "loading" ? "Sending…" : "Claim Your Prize"}
+                      {emailStatus === "loading" ? "Sending…" : "Subscribe"}
                     </button>
                   </div>
                   <p className="mt-2 text-xs text-[#9CA3AF]">No spam, ever. Unsubscribe anytime.</p>
@@ -564,15 +514,15 @@ export function SpinWheel() {
                   <p className="text-sm font-semibold text-[#2D2D2D]">
                     🐾 You're in — welcome to the Paw & Found Pack!
                   </p>
-                  {result.kind === "guide" || result.kind === "bundle" ? (
-                    <p className="mt-1 text-xs text-[#6B7280]">
-                      To redeem, email <span className="font-semibold text-[#2A9D8F]">hello@pawandfound.com</span> with
-                      your name and this prize.
-                    </p>
-                  ) : (
-                    <p className="mt-1 text-xs text-[#6B7280]">
-                      Use code <span className="font-semibold text-[#FF7F5C]">{result.code}</span> at checkout.
-                    </p>
+                  {result.href && (
+                    <a
+                      href={result.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-primary mt-3 inline-block text-sm"
+                    >
+                      {result.cta} →
+                    </a>
                   )}
                 </div>
               )}
@@ -615,14 +565,14 @@ export function SpinWheel() {
 
 function prizeEmoji(kind: PrizeKind): string {
   switch (kind) {
-    case "discount":
-      return "🎁";
-    case "shipping":
-      return "🚚";
+    case "subscribe":
+      return "🛒";
+    case "wishes":
+      return "🎨";
     case "guide":
       return "📖";
-    case "bundle":
-      return "🐾";
+    case "gift-card":
+      return "💳";
     case "try-again":
       return "🍀";
   }

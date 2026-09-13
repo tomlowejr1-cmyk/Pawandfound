@@ -10,7 +10,7 @@ export const Route = createFileRoute("/faq")({
       {
         name: "description",
         content:
-          "Find answers to common questions about Paw & Found pet supplies: shipping, returns, sizing, subscriptions, payment, and pet safety. Free shipping over $50.",
+          "Find answers to common questions about Paw & Found pet supplies: shipping, returns, sizing, subscriptions, payment, and pet safety.",
       },
       { property: "og:title", content: "FAQ — Shipping, Returns & Pet Product Questions | Paw & Found" },
       {
@@ -47,7 +47,7 @@ const faqSections = [
     questions: [
       {
         q: "How much does shipping cost?",
-        a: "We offer free shipping on all orders over $50. For orders under $50, shipping is a flat rate of $5.99 within the continental US.",
+        a: "Orders are checked out securely via Stripe. For questions about shipping or delivery on a specific order, email hello@pawandfound.com and we'll help you out.",
       },
       {
         q: "How long does delivery take?",

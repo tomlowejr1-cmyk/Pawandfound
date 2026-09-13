@@ -45,7 +45,7 @@ function ThankYouPage() {
           </li>
           <li className="flex items-start gap-2">
             <span className="mt-0.5 text-[#2A9D8F]">✓</span>
-            <span><strong>Free shipping</strong> on orders over $50</span>
+            <span><strong>Secure checkout</strong> — Your payment was processed via Stripe</span>
           </li>
           <li className="flex items-start gap-2">
             <span className="mt-0.5 text-[#2A9D8F]">✓</span>
