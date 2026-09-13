@@ -120,7 +120,7 @@ function AboutPage() {
           Have questions or suggestions? We'd love to hear from you!
         </p>
         <div className="mt-4 flex justify-center gap-8 text-sm text-[#6B7280]">
-          <span>📧 hello@pawandfound.com</span>
+          <span>📧 paw-found-0da97568@ctomail.io</span>
           <span>📞 (555) 123-PAWS</span>
         </div>
       </section>

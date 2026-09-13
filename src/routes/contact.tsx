@@ -49,10 +49,10 @@ function ContactPage() {
               For order questions, product inquiries, or general support:
             </p>
             <a
-              href="mailto:hello@pawandfound.store"
+              href="mailto:paw-found-0da97568@ctomail.io"
               className="mt-3 inline-block font-medium text-[#2A9D8F] hover:underline"
             >
-              hello@pawandfound.store
+              paw-found-0da97568@ctomail.io
             </a>
           </div>
 
