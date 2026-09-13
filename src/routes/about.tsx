@@ -78,7 +78,7 @@ function AboutPage() {
                 <span>✓</span> Products tested by real pet owners
               </li>
               <li className="flex items-center gap-2">
-                <span>✓</span> Free shipping on orders over $50
+                <span>✓</span> Secure checkout via Stripe
               </li>
             </ul>
           </div>

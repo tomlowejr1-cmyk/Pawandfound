@@ -236,7 +236,7 @@ function ProductDetailPage() {
           </div>
 
           <p className="mt-4 text-sm text-[#6B7280]">
-            ✓ Free shipping on orders over $50 &bull; 30-day returns
+            ✓ Secure checkout via Stripe &bull; 30-day returns
             {(stripeUrl || subscriptionUrl) && <><br />⚡ Secure checkout via Stripe</>}
           </p>
         </div>

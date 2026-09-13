@@ -199,10 +199,7 @@ function PromoBanner() {
   return (
     <div className="relative bg-gradient-to-r from-[#FF7F5C] via-[#FF7F5C] to-[#F4A261] px-4 py-2.5 text-center text-sm font-medium text-white animate-pulse">
       <span className="inline-flex items-center gap-1.5">
-        🐾 <strong>Welcome!</strong> Take <strong>15% off</strong> your first order with code{" "}
-        <span className="inline-block rounded bg-white/20 px-2 py-0.5 font-mono font-bold tracking-wider">
-          WELCOME15
-        </span>
+        🐾 <strong>Welcome!</strong> Apparel, essentials &amp; digital guides — shop the collection
       </span>{" "}
       <a href="/products" className="underline decoration-white/50 hover:text-white/90">Shop now →</a>
       <button

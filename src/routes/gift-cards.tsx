@@ -41,7 +41,7 @@ const GIFT_CARD_AMOUNTS = [
 ];
 
 const FEATURES = [
-  "Instant email delivery",
+  "Digital delivery after checkout",
   "Redeemable on everything in the store",
   "No expiry date",
 ];
@@ -54,8 +54,8 @@ const STEPS = [
   },
   {
     emoji: "📧",
-    title: "We email it",
-    text: "Your digital gift card code is delivered straight to your inbox — no plastic, no postage.",
+    title: "Get your code",
+    text: "After checkout, your digital gift card code is sent to you — easy to gift or forward. No plastic, no postage.",
   },
   {
     emoji: "🎁",
@@ -67,7 +67,7 @@ const STEPS = [
 const FAQS = [
   {
     q: "How do I receive my gift card?",
-    a: "Immediately after checkout, your gift card code is emailed to the address you use at checkout. If it's a gift, you can forward the email to the lucky pet parent.",
+    a: "After checkout, your gift card code is delivered to the email on your order. If it's a gift, you can forward it to the lucky pet parent. If your code hasn't arrived, email hello@pawandfound.com and we'll get it to you right away.",
   },
   {
     q: "What can the gift card be used for?",
@@ -91,13 +91,13 @@ export const Route = createFileRoute("/gift-cards")({
       {
         name: "description",
         content:
-          "Give the gift of treats, toys, and tail wags. Paw & Found digital gift cards from $25 — delivered instantly by email, redeemable on everything in the store.",
+          "Give the gift of treats, toys, and tail wags. Paw & Found digital gift cards from $25 — delivered after checkout, redeemable on everything in the store.",
       },
       { property: "og:title", content: "Gift Cards — Paw & Found 🎁" },
       {
         property: "og:description",
         content:
-          "Digital Paw & Found gift cards in $25, $50, $75, and $100 — delivered by email, redeemable on everything in the store.",
+          "Digital Paw & Found gift cards in $25, $50, $75, and $100 — delivered after checkout, redeemable on everything in the store.",
       },
       { property: "og:url", content: `${SITE_URL}/gift-cards` },
     ],
@@ -116,7 +116,7 @@ function GiftCardsPage() {
         </h1>
         <p className="mx-auto mt-3 max-w-2xl text-[#6B7280]">
           The perfect gift for every pet parent — treats, toys, apparel, and digital guides.
-          Delivered instantly by email, redeemable on anything in the store. No physical
+          Delivered digitally after checkout, redeemable on anything in the store. No physical
           card needed. 🐶🐱
         </p>
       </div>

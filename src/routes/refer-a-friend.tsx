@@ -2,7 +2,6 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 
 const SITE_URL = "https://pawandfound.store";
-const DISCOUNT_CODE = "PAWFRIEND10";
 const STORAGE_KEY = "pawandfound_ref_code_v1";
 
 function makeRefCode(): string {
@@ -38,17 +37,17 @@ export const Route = createFileRoute("/refer-a-friend")({
   component: ReferAFriendPage,
   head: () => ({
     meta: [
-      { title: "Refer a Friend — Get 10% Off — Paw & Found 💌" },
+      { title: "Share Paw & Found with a Friend — Paw & Found 💌" },
       {
         name: "description",
         content:
-          "Share Paw & Found with a friend: they get 10% off their first order with code PAWFRIEND10, and you get 10% off your next order. Win-win for pet parents!",
+          "Found a great pet store? Share Paw & Found with a friend — apparel, essentials, and digital guides for pet parents, all in one place.",
       },
-      { property: "og:title", content: "Refer a Friend — Get 10% Off — Paw & Found 💌" },
+      { property: "og:title", content: "Share Paw & Found with a Friend — Paw & Found 💌" },
       {
         property: "og:description",
         content:
-          "Give 10%, get 10%. Share your referral link and both you and your friend save on pet goodies at Paw & Found.",
+          "Share Paw & Found with a friend — apparel, essentials, and digital guides for pet parents.",
       },
       { property: "og:url", content: `${SITE_URL}/refer-a-friend` },
     ],
@@ -60,7 +59,6 @@ function ReferAFriendPage() {
   const [refState, setRefState] = useState<RefState>({ code: "", shareCount: 0 });
   const [hydrated, setHydrated] = useState(false);
   const [linkCopied, setLinkCopied] = useState(false);
-  const [codeCopied, setCodeCopied] = useState(false);
 
   useEffect(() => {
     const state = loadRefState();
@@ -113,18 +111,13 @@ function ReferAFriendPage() {
     }
   }
 
-  async function copyCode() {
-    await copyText(DISCOUNT_CODE);
-    setCodeCopied(true);
-    window.setTimeout(() => setCodeCopied(false), 2000);
-  }
 
   const shareText = encodeURIComponent(
-    `🐾 I'm a Paw & Found fan! Get 10% off your first order with code ${DISCOUNT_CODE}. 🎁`,
+    `🐾 Found a great pet store — Paw & Found. Apparel, essentials & digital guides for pet parents!`,
   );
   const shareLink = encodeURIComponent(referralLink);
   const shareBody = encodeURIComponent(
-    `Hey! I found this awesome pet store — Paw & Found. Use my referral link for 10% off your first order: ${referralLink} (code ${DISCOUNT_CODE})`,
+    `Hey! I found this awesome pet store — Paw & Found. Apparel, essentials & digital guides for pet parents. ${referralLink}`,
   );
 
   const shareButtons = [
@@ -148,7 +141,7 @@ function ReferAFriendPage() {
     },
     {
       label: "Email",
-      href: `mailto:?subject=${encodeURIComponent("10% off at Paw & Found 🐾")}&body=${shareBody}`,
+      href: `mailto:?subject=${encodeURIComponent("Check out Paw & Found 🐾")}&body=${shareBody}`,
       bg: "hover:bg-[#FF7F5C]/10 hover:text-[#FF7F5C]",
       icon: "✉️",
     },
@@ -161,23 +154,21 @@ function ReferAFriendPage() {
       text: "Copy your personal referral link below and send it to a fellow pet parent — by text, DM, or email.",
     },
     {
-      emoji: "🎉",
-      title: "They save 10%",
-      text: `Your friend uses your link (or code ${DISCOUNT_CODE}) at checkout and saves 10% on their first order.`,
+      emoji: "🛍️",
+      title: "They explore the store",
+      text: "Apparel, essentials, accessories, and digital guides — something for every pet parent.",
     },
     {
-      emoji: "💸",
-      title: "You save too",
-      text: "Once their first order is placed, you get 10% off your next order — our thank-you for spreading the word.",
+      emoji: "🐾",
+      title: "Good vibes all around",
+      text: "Passing along a store you love — from one pet parent to another.",
     },
   ];
 
   const terms = [
-    "Friends get 10% off their first order with code PAWFRIEND10 at checkout.",
-    "Referrer earns 10% off their next order after their friend's first order is placed.",
-    "Each friend can use the code once; one referral credit per order.",
-    "Cannot be combined with other discount codes or offers.",
-    "Applies to products and digital guides across the store.",
+    "Curated pet apparel, essentials, accessories, and digital guides — a one-stop shop.",
+    "Secure checkout via Stripe on every order.",
+    "Free pet-care content and interactive tools on our blog and in the store.",
   ];
 
   return (
@@ -186,11 +177,11 @@ function ReferAFriendPage() {
       <div className="text-center">
         <span className="text-5xl">🐾💌🐾</span>
         <h1 className="font-heading mt-4 text-3xl font-bold text-[#2D2D2D] sm:text-4xl">
-          Give 10%. Get 10%.
+          Share Paw &amp; Found with a Friend
         </h1>
         <p className="mx-auto mt-3 max-w-2xl text-[#6B7280]">
-          Love Paw & Found? Share it with a friend. They save 10% on their first order,
-          and you save 10% on your next one. Happy pets, happy humans. 🐶🐱
+          Love Paw &amp; Found? Pass it on. Send a friend a link and help them discover
+          apparel, essentials, and digital guides — all in one place. Happy pets, happy humans. 🐶🐱
         </p>
       </div>
 
@@ -230,31 +221,22 @@ function ReferAFriendPage() {
           )}
         </div>
 
-        {/* Discount code */}
+        {/* What they’ll find */}
         <div className="flex flex-col rounded-2xl border-2 border-[#FF7F5C] bg-gradient-to-br from-[#FFF6EC] to-white p-6 shadow-sm">
           <div className="flex items-center gap-2">
-            <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#FF7F5C]/10 text-lg">🏷️</span>
-            <h2 className="font-heading font-bold text-[#2D2D2D]">Your Discount Code</h2>
+            <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#FF7F5C]/10 text-lg">🛍️</span>
+            <h2 className="font-heading font-bold text-[#2D2D2D]">What They’ll Find</h2>
           </div>
           <p className="mt-2 text-sm text-[#6B7280]">
-            Prefer a code? Your friend can use this at checkout instead — same 10% off
-            their first order.
+            A curated shop for pet parents — from trendy tees and bandanas to everyday
+            essentials like cat litter, plus digital guides and helpful tools.
           </p>
-
-          <div className="mt-4 flex flex-1 items-center">
-            <div className="w-full rounded-lg border-2 border-dashed border-[#FF7F5C] bg-white px-4 py-3 text-center">
-              <span className="font-heading text-xl font-bold tracking-[0.15em] text-[#FF7F5C]">
-                {DISCOUNT_CODE}
-              </span>
-            </div>
+          <div className="mt-4 flex flex-1 flex-col justify-center gap-2">
+            <a href="/products" className="btn-primary text-center">Browse the Store →</a>
+            <a href="/downloads" className="btn-secondary text-center">Explore Digital Guides</a>
           </div>
-
-          <button onClick={copyCode} className="btn-secondary mt-3">
-            {codeCopied ? "✓ Code Copied!" : "Copy Code"}
-          </button>
         </div>
       </div>
-
       {/* Share buttons */}
       <div className="mt-6 rounded-2xl border border-[#E9EDDE] bg-white p-6 text-center shadow-sm">
         <h2 className="font-heading font-semibold text-[#2D2D2D]">Share it your way</h2>
@@ -297,7 +279,7 @@ function ReferAFriendPage() {
 
       {/* Terms */}
       <section className="mx-auto mt-10 max-w-2xl rounded-2xl border border-[#E9EDDE] bg-white p-6">
-        <h2 className="font-heading font-semibold text-[#2D2D2D]">📋 The Fine Print</h2>
+        <h2 className="font-heading font-semibold text-[#2D2D2D]">🤝 Why Share Paw &amp; Found?</h2>
         <ul className="mt-3 space-y-1.5 text-sm text-[#6B7280]">
           {terms.map((t) => (
             <li key={t} className="flex items-start gap-2">
