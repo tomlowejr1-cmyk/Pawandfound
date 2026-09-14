@@ -47,7 +47,7 @@ const faqSections = [
     questions: [
       {
         q: "How much does shipping cost?",
-        a: "Orders are checked out securely via Stripe. For questions about shipping or delivery on a specific order, email paw-found-0da97568@ctomail.io and we'll help you out.",
+        a: "Orders are checked out securely via Stripe. For questions about shipping or delivery on a specific order, email hello@pawandfound.store and we'll help you out.",
       },
       {
         q: "How long does delivery take?",
@@ -72,7 +72,7 @@ const faqSections = [
       },
       {
         q: "How do I return an item?",
-        a: "Simply email us at paw-found-0da97568@ctomail.io with your order number and the items you'd like to return. We'll send you a prepaid return label. Refunds are processed within 5-7 business days after we receive the return.",
+        a: "Simply email us at hello@pawandfound.store with your order number and the items you'd like to return. We'll send you a prepaid return label. Refunds are processed within 5-7 business days after we receive the return.",
       },
       {
         q: "Can I exchange an item for a different size?",
@@ -214,7 +214,7 @@ function FaqPage() {
           We're here to help! Reach out and we'll get back to you within 24 hours.
         </p>
         <div className="mt-4 flex justify-center gap-8 text-sm">
-          <span>📧 paw-found-0da97568@ctomail.io</span>
+          <span>📧 hello@pawandfound.store</span>
           <span>📞 (555) 123-PAWS</span>
         </div>
       </section>
