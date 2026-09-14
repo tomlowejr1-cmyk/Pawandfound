@@ -67,7 +67,7 @@ const STEPS = [
 const FAQS = [
   {
     q: "How do I receive my gift card?",
-    a: "After checkout, your gift card code is delivered to the email on your order. If it's a gift, you can forward it to the lucky pet parent. If your code hasn't arrived, email paw-found-0da97568@ctomail.io and we'll get it to you right away.",
+    a: "After checkout, your gift card code is delivered to the email on your order. If it's a gift, you can forward it to the lucky pet parent. If your code hasn't arrived, email hello@pawandfound.store and we'll get it to you right away.",
   },
   {
     q: "What can the gift card be used for?",
