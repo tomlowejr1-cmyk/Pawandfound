@@ -12,7 +12,7 @@ export const Route = createFileRoute("/thank-you")({
       },
       { name: "robots", content: "noindex, nofollow" },
     ],
-    links: [{ rel: "canonical", href: "https://pawandfound.store/thank-you" }],
+    links: [{ rel: "canonical", href: "https://www.pawandfound.store/thank-you" }],
   }),
 });
 

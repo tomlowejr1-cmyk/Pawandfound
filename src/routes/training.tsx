@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 
-const SITE_URL = "https://pawandfound.store";
+const SITE_URL = "https://www.pawandfound.store";
 
 interface Video {
   id: string;

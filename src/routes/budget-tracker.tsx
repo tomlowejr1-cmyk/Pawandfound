@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, useEffect, useMemo } from "react";
 
-const SITE_URL = "https://pawandfound.store";
+const SITE_URL = "https://www.pawandfound.store";
 const STORAGE_KEY = "pawandfound_budget_v1";
 
 type Frequency = "monthly" | "one-time";

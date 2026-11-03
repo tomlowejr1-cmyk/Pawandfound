@@ -13,7 +13,7 @@ import { Analytics } from "@vercel/analytics/react";
 
 import appCss from "~/styles/app.css?url";
 
-const SITE_URL = "https://pawandfound.store";
+const SITE_URL = "https://www.pawandfound.store";
 const GA_MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID as string | undefined;
 
 function ga4Scripts(): Array<Record<string, unknown>> {
@@ -146,7 +146,7 @@ function RootDocument({ children }: { children: ReactNode }) {
               "@context": "https://schema.org",
               "@type": "PetStore",
               name: "Paw & Found",
-              url: "https://pawandfound.store",
+              url: "https://www.pawandfound.store",
               description:
                 "A pet product store with curated supplies, apparel, accessories, and digital guides for pet owners.",
               sameAs: [

@@ -1,7 +1,7 @@
 import { createFileRoute, useSearch } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 
-const SITE_URL = "https://pawandfound.store";
+const SITE_URL = "https://www.pawandfound.store";
 const FAVES_KEY = "pawandfound_name_faves_v1";
 
 type PetType = "dog" | "cat" | "other";

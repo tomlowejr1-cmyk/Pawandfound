@@ -4,7 +4,7 @@ import { loadProducts } from "~/lib/products";
 import type { Product } from "~/lib/types";
 import { ShopTheLook } from "~/components/shop-the-look";
 
-const SITE_URL = "https://pawandfound.store";
+const SITE_URL = "https://www.pawandfound.store";
 
 interface BlogPost {
   slug: string;

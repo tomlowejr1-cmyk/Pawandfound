@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-const SITE_URL = "https://pawandfound.store";
+const SITE_URL = "https://www.pawandfound.store";
 
 const EBOOK_PAYMENT_LINK = "https://buy.stripe.com/14A9AT5nE0i4fjjgKY2cg16";
 const CAT_ENYCLOPEDIA_LINK = "https://buy.stripe.com/eVqfZh5nE6Gs1stgKY2cg17";

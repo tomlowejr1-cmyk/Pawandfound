@@ -4,7 +4,7 @@ import { loadProducts, getProductsByCategory } from "~/lib/products";
 import type { Product } from "~/lib/types";
 import { CATEGORIES } from "~/lib/types";
 
-const SITE_URL = "https://pawandfound.store";
+const SITE_URL = "https://www.pawandfound.store";
 
 interface ProductsSearch {
   category?: string;
