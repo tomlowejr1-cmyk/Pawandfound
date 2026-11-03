@@ -11,15 +11,6 @@ const SITE_URL = "https://pawandfound.store";
 
 const HOLIDAYS = [
   {
-    slug: "halloween",
-    label: "Halloween",
-    emoji: "🎃",
-    title: "Spooky Pet Style",
-    copy: "Boo tees, Pumpkin Spice bandanas & Halloween safety guides.",
-    image: "/images/product-tshirt-halloween.jpg",
-    cta: "Shop Halloween",
-  },
-  {
     slug: "thanksgiving",
     label: "Thanksgiving",
     emoji: "🦃",
@@ -36,6 +27,15 @@ const HOLIDAYS = [
     copy: "Plaid bowties & festive style + tinsel-and-tree safety.",
     image: "/images/product-bowtie-holiday.jpg",
     cta: "Shop Christmas",
+  },
+  {
+    slug: "halloween",
+    label: "Halloween (back next October)",
+    emoji: "🎃",
+    title: "Spooky Pet Style",
+    copy: "Boo tees, Pumpkin Spice bandanas & Halloween safety guides.",
+    image: "/images/product-tshirt-halloween.jpg",
+    cta: "Shop Halloween",
   },
 ];
 

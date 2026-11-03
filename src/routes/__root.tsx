@@ -225,7 +225,6 @@ function Header() {
     { href: "/products?category=Accessories", label: "Accessories" },
     { href: "/about", label: "About" },
     { href: "/blog", label: "Blog" },
-    { href: "/halloween", label: "🎃 Halloween" },
     { href: "/thanksgiving", label: "🦃 Thanksgiving" },
     { href: "/christmas", label: "🎄 Christmas" },
     { href: "/quiz", label: "Quiz" },
