@@ -5,7 +5,7 @@ import type { Product } from "~/lib/types";
 
 const GIVEAWAY_STORAGE_KEY = "pawandfound_quiz_giveaway_seen";
 
-const SITE_URL = "https://pawandfound.store";
+const SITE_URL = "https://www.pawandfound.store";
 
 interface QuizAnswer {
   pet: "dog" | "cat";

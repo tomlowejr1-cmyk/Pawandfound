@@ -9,7 +9,7 @@ import { LiveClock } from "~/components/live-clock";
 import { WeatherWidget } from "~/components/weather-widget";
 import { DailyPetTip } from "~/components/daily-pet-tip";
 import { PetFactOfTheDay } from "~/components/pet-fact-of-the-day";
-const SITE_URL = "https://pawandfound.store";
+const SITE_URL = "https://www.pawandfound.store";
 
 /** Deterministic shuffle using week number as seed */
 function seededShuffle(arr: Product[], seed: number): Product[] {

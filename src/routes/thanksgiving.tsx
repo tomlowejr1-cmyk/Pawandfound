@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { loadProducts, loadPaymentLinks, getProductBySlug, getPaymentLink } from "~/lib/products";
 import type { Product } from "~/lib/types";
 
-const SITE_URL = "https://pawandfound.store";
+const SITE_URL = "https://www.pawandfound.store";
 
 const SEASONAL_SLUGS = ["pumpkin-spice-bandana"];
 

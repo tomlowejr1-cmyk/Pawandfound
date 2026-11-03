@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 
-const SITE_URL = "https://pawandfound.store";
+const SITE_URL = "https://www.pawandfound.store";
 const STORAGE_KEY = "pawandfound_reminders_v1";
 
 type CategoryKey = "vet" | "meds" | "grooming" | "nails" | "supplies" | "other";

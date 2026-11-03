@@ -17,9 +17,9 @@ export const Route = createFileRoute("/contact")({
           "Get in touch with Paw & Found — questions about products, orders, or just want to say hi?",
       },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://pawandfound.store/contact" },
+      { property: "og:url", content: "https://www.pawandfound.store/contact" },
     ],
-    links: [{ rel: "canonical", href: "https://pawandfound.store/contact" }],
+    links: [{ rel: "canonical", href: "https://www.pawandfound.store/contact" }],
   }),
 });
 

@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { subscribeToNewsletter } from "~/lib/mailchimp";
 
-const SITE_URL = "https://pawandfound.store";
+const SITE_URL = "https://www.pawandfound.store";
 const STORAGE_KEY = "pawandfound_birthday_club_v1";
 
 type PetType = "dog" | "cat" | "small" | "other";

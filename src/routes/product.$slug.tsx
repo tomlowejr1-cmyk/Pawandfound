@@ -8,7 +8,7 @@ import type { Product } from "~/lib/types";
 import { SUBSCRIBABLE_CATEGORIES, SUBSCRIPTION_DISCOUNT } from "~/lib/types";
 import subscriptionLinks from "~/lib/subscription-links.json";
 
-const SITE_URL = "https://pawandfound.store";
+const SITE_URL = "https://www.pawandfound.store";
 
 interface ProductDetailData {
   product: Product;

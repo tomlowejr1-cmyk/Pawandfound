@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-const SITE_URL = "https://pawandfound.store";
+const SITE_URL = "https://www.pawandfound.store";
 const SHELTER_URL = "https://www.petfinder.com/member/us/nj/voorhees/voorhees-animal-orphanage-nj110/";
 const SHELTER_SEARCH_URL = "https://www.petfinder.com/search/pets-for-adoption/?shelter_id%5B0%5D=NJ110";
 const TRISTATE_SEARCH_URL = "https://www.petfinder.com/search/dogs-for-adoption/?location=08003";

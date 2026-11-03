@@ -4,7 +4,7 @@ import { loadProducts } from "~/lib/products";
 import type { Product } from "~/lib/types";
 import { SEED_REVIEWS, type Review } from "~/components/product-reviews";
 
-const SITE_URL = "https://pawandfound.store";
+const SITE_URL = "https://www.pawandfound.store";
 
 interface ReviewItem {
   product: Product;

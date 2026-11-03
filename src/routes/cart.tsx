@@ -5,7 +5,7 @@ import { useCart } from "~/lib/cart-context";
 import { getCartUpsells } from "~/lib/cross-sells";
 import { loadProducts, loadPaymentLinks, getPaymentLink } from "~/lib/products";
 
-const SITE_URL = "https://pawandfound.store";
+const SITE_URL = "https://www.pawandfound.store";
 
 interface CartData {
   paymentLinks: Record<string, string>;

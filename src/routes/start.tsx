@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { NewsletterSignup } from "~/components/newsletter-signup";
 
-const SITE_URL = "https://pawandfound.store";
+const SITE_URL = "https://www.pawandfound.store";
 
 // Lightweight "link in bio" landing page. The bio link on Instagram/TikTok/Pinterest
 // points to /start so ONE static URL serves every seasonal post across the whole

@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-const SITE_URL = "https://pawandfound.store";
+const SITE_URL = "https://www.pawandfound.store";
 
 /**
  * ⚠️ OWNER ACTION NEEDED — one-time setup (~2 minutes):

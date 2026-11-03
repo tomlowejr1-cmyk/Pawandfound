@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-const SITE_URL = "https://pawandfound.store";
+const SITE_URL = "https://www.pawandfound.store";
 const PAYMENT_LINK = "https://buy.stripe.com/00w28r2bs3ug9YZ9iw2cg0Q";
 
 export const Route = createFileRoute("/products/pet-calendar")({
