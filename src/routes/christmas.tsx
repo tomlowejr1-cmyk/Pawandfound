@@ -109,6 +109,12 @@ function ChristmasPage() {
                 Shop the Collection
               </a>
               <a
+                href="/gifts"
+                className="rounded-full bg-[#2A9D8F] px-6 py-3 text-sm font-semibold text-white transition-transform hover:scale-105"
+              >
+                🎁 Christmas Gift Guide
+              </a>
+              <a
                 href="#safety"
                 className="rounded-full border border-[#2A9D8F] px-6 py-3 text-sm font-semibold text-[#2A9D8F] transition-colors hover:bg-[#E8F8F5]"
               >
@@ -178,6 +184,20 @@ function ChristmasPage() {
             </div>
           ))}
         </div>
+      </section>
+
+      {/* Gift guide cross-link */}
+      <section className="mx-auto max-w-7xl px-4 pt-2 sm:px-6 lg:px-8">
+        <a
+          href="/gifts"
+          className="card group flex flex-col items-center gap-3 border-2 border-dashed border-[#FF7F5C]/30 bg-gradient-to-r from-[#FF7F5C]/10 to-[#2A9D8F]/10 p-6 text-center transition-all hover:-translate-y-1 hover:border-[#FF7F5C] sm:flex-row sm:justify-center"
+        >
+          <span className="text-2xl">🎁</span>
+          <span className="font-heading font-semibold text-[#2D2D2D] group-hover:text-[#FF7F5C]">
+            Shopping for someone else? See the full Christmas Gift Guide — gift picks, gift cards
+            &amp; instant digital guides →
+          </span>
+        </a>
       </section>
 
       {/* Seasonal safety blog cards */}
