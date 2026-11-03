@@ -196,16 +196,16 @@ function Home() {
           <span className="text-xl">🎄</span>
           <p className="text-sm font-medium text-[#2D2D2D]">
             Holiday gifting is here — plaid bowties, 2027 calendar & gift cards. Shop the{" "}
-            <a href="/christmas" className="font-bold text-[#FF7F5C] underline-offset-4 hover:underline">
-              Christmas Collection
+            <a href="/gifts" className="font-bold text-[#FF7F5C] underline-offset-4 hover:underline">
+              Christmas Gift Guide
             </a>
             .
           </p>
           <a
-            href="/christmas"
+            href="/gifts"
             className="rounded-full bg-[#FF7F5C] px-4 py-1.5 text-xs font-bold text-white transition-transform hover:scale-105"
           >
-            Shop Now
+            Shop Gifts
           </a>
         </div>
       </section>
@@ -223,26 +223,6 @@ function Home() {
           </p>
           <a
             href="/thanksgiving"
-            className="rounded-full bg-[#FF7F5C] px-4 py-1.5 text-xs font-bold text-white transition-transform hover:scale-105"
-          >
-            Shop Now
-          </a>
-        </div>
-      </section>
-
-      {/* Christmas seasonal strip */}
-      <section className="border-b border-[#F4E3CD] bg-gradient-to-r from-[#FFF3E2] via-[#FFF8F0] to-[#FFF3E2]">
-        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-4 gap-y-2 px-4 py-3 text-center sm:px-6 lg:px-8">
-          <span className="text-xl">🎄</span>
-          <p className="text-sm font-medium text-[#2D2D2D]">
-            Christmas is coming — shop the{" "}
-            <a href="/christmas" className="font-bold text-[#FF7F5C] underline-offset-4 hover:underline">
-              Christmas Collection
-            </a>{" "}
-            and keep your pet safe through the holidays.
-          </p>
-          <a
-            href="/christmas"
             className="rounded-full bg-[#FF7F5C] px-4 py-1.5 text-xs font-bold text-white transition-transform hover:scale-105"
           >
             Shop Now
