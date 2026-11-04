@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { loadProducts, loadPaymentLinks, getProductBySlug, getPaymentLink } from "~/lib/products";
 import { useCart } from "~/lib/cart-context";
 import { ProductReviews } from "~/components/product-reviews";
-import { FrequentlyBoughtTogether } from "~/components/frequently-bought-together";
 import type { Product } from "~/lib/types";
 import { SUBSCRIBABLE_CATEGORIES, SUBSCRIPTION_DISCOUNT } from "~/lib/types";
 import subscriptionLinks from "~/lib/subscription-links.json";
@@ -46,7 +45,7 @@ export const Route = createFileRoute("/product/$slug")({
         { property: "og:type", content: "product" },
         { property: "product:price:amount", content: String(product.price) },
         { property: "product:price:currency", content: "USD" },
-        { property: "product:availability", content: "instock" },
+        { property: "product:availability", content: "out of stock" },
         { property: "og:price:amount", content: String(product.price) },
         { property: "og:price:currency", content: "USD" },
         { name: "twitter:card", content: "summary_large_image" },
@@ -68,13 +67,10 @@ export const Route = createFileRoute("/product/$slug")({
               "@type": "Offer",
               priceCurrency: "USD",
               price: product.price,
-              availability: "https://schema.org/InStock",
+              // Physical products are not on sale — the store is digital-only
+              // until a supplier arrangement exists, so nothing is orderable here.
+              availability: "https://schema.org/OutOfStock",
               url: `${SITE_URL}/product/${product.slug}`,
-              shippingDetails: {
-                "@type": "OfferShippingDetails",
-                shippingRate: { "@type": "MonetaryAmount", value: "0", currency: "USD" },
-                shippingDestination: { "@type": "DefinedRegion", addressCountry: "US" },
-              },
             },
             brand: { "@type": "Brand", name: "Paw & Found" },
             category: product.category,
@@ -87,7 +83,7 @@ export const Route = createFileRoute("/product/$slug")({
 });
 
 function ProductDetailPage() {
-  const { product, related, allProducts, stripeUrl } = Route.useLoaderData();
+  const { product, related, stripeUrl } = Route.useLoaderData();
   const { addItem } = useCart();
   const [purchaseType, setPurchaseType] = useState<"one-time" | "subscription">("one-time");
   const [reviewSummary, setReviewSummary] = useState<{ avg: string; count: number } | null>(null);
@@ -176,7 +172,7 @@ function ProductDetailPage() {
           </div>
 
           {/* Subscribe & Save option (for eligible products) */}
-          {isSubscribable && (
+          {isSubscribable && stripeUrl && (
             <div className="mt-6 rounded-xl border border-[#E9EDDE] bg-[#FFF8F0] p-4">
               <h3 className="font-heading text-sm font-semibold text-[#2D2D2D]">
                 💰 Subscribe & Save
@@ -220,25 +216,41 @@ function ProductDetailPage() {
             </div>
           )}
 
-          {/* Actions */}
-          <div className="mt-6 flex flex-wrap gap-4">
-            <button onClick={handleAddToCart} className="btn-primary">
-              {addedToCart ? "✓ Added to Cart!" : `Add to Cart`}
-            </button>
-            <Link to="/cart" className="btn-secondary">
-              View Cart
-            </Link>
-            {stripeUrl && (
-              <a href={purchaseType === "subscription" && subscriptionUrl ? subscriptionUrl : stripeUrl} target="_blank" rel="noopener noreferrer" className="btn-secondary border-[#FF7F5C] text-[#FF7F5C] hover:bg-[#FF7F5C]/5 inline-block text-center">
-                ⚡ Buy Now with Stripe
-              </a>
-            )}
-          </div>
+          {/* Actions — purchase controls only render when a live checkout link exists.
+              Physical products are currently off sale (no inventory or supplier), so
+              these pages are browse-only and say so plainly. */}
+          {stripeUrl ? (
+            <>
+              <div className="mt-6 flex flex-wrap gap-4">
+                <button onClick={handleAddToCart} className="btn-primary">
+                  {addedToCart ? "✓ Added to Cart!" : `Add to Cart`}
+                </button>
+                <Link to="/cart" className="btn-secondary">
+                  View Cart
+                </Link>
+                <a href={purchaseType === "subscription" && subscriptionUrl ? subscriptionUrl : stripeUrl} target="_blank" rel="noopener noreferrer" className="btn-secondary border-[#FF7F5C] text-[#FF7F5C] hover:bg-[#FF7F5C]/5 inline-block text-center">
+                  ⚡ Buy Now with Stripe
+                </a>
+              </div>
 
-          <p className="mt-4 text-sm text-[#6B7280]">
-            ✓ Secure checkout via Stripe &bull; 30-day returns
-            {(stripeUrl || subscriptionUrl) && <><br />⚡ Secure checkout via Stripe</>}
-          </p>
+              <p className="mt-4 text-sm text-[#6B7280]">
+                ✓ Secure checkout via Stripe
+              </p>
+            </>
+          ) : (
+            <div className="mt-6 rounded-xl border border-[#E9EDDE] bg-[#FFF8F0] p-5">
+              <p className="font-heading text-base font-semibold text-[#2D2D2D]">
+                🕒 Not available for purchase yet
+              </p>
+              <p className="mt-2 text-sm leading-relaxed text-[#6B7280]">
+                This item isn't on sale right now, so it can't be ordered. Everything Paw &amp;
+                Found sells today is an instant digital download — no shipping, no waiting.
+              </p>
+              <a href="/downloads" className="btn-primary mt-4 inline-block text-sm">
+                Browse digital guides →
+              </a>
+            </div>
+          )}
         </div>
       </div>
 
@@ -284,7 +296,6 @@ function ProductDetailPage() {
           </div>
         </section>
       )}
-      <FrequentlyBoughtTogether currentSlug={product.slug} allProducts={allProducts} />
       <ProductReviews productId={product.id} productName={product.name} />
     </div>
   );

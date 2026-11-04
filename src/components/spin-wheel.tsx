@@ -37,10 +37,10 @@ const SEGMENTS: Segment[] = [
     weight: 25,
     prize: {
       kind: "subscribe",
-      title: "Save 10% with Subscribe & Save",
-      detail: "Real subscribe-and-save pricing on Essentials & Supplies — you'll see the toggle at checkout.",
-      href: "/products?category=Essentials",
-      cta: "Shop Essentials",
+      title: "Puppy Starter Pack — $12.99",
+      detail: "Three real guides in one instant download: training checklist, treat recipes and first aid.",
+      href: "/downloads",
+      cta: "See the Bundle",
     },
   },
   {
@@ -76,10 +76,10 @@ const SEGMENTS: Segment[] = [
     weight: 10,
     prize: {
       kind: "gift-card",
-      title: "Gift Cards from $25",
-      detail: "Explore real digital gift cards — the perfect present for any pet parent.",
-      href: "/gift-cards",
-      cta: "Explore Gift Cards",
+      title: "The Digital Gift Guide",
+      detail: "18 instant-download gift picks from $3.99 — nothing to ship, nothing to wrap.",
+      href: "/gifts",
+      cta: "Open the Gift Guide",
     },
   },
   {

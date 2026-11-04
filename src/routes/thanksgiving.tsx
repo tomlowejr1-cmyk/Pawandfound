@@ -28,13 +28,8 @@ const PRODUCT_JSON_LD = JSON.stringify({
     "@type": "Offer",
     price: "13.99",
     priceCurrency: "USD",
-    availability: "https://schema.org/InStock",
-    url: "https://buy.stripe.com/bJe00jcQ63ug7QRcuI2cg1o",
-    shippingDetails: {
-      "@type": "OfferShippingDetails",
-      shippingRate: { "@type": "MonetaryAmount", value: "0", currency: "USD" },
-      shippingDestination: { "@type": "DefinedRegion", addressCountry: "US" },
-    },
+    availability: "https://schema.org/OutOfStock",
+    // No shippingDetails: nothing on the store ships — every sale is a digital download.
   },
 });
 
@@ -61,13 +56,13 @@ export const Route = createFileRoute("/thanksgiving")({
       {
         name: "description",
         content:
-          "Shop Paw & Found's Thanksgiving Collection — the Pumpkin Spice bandana for holiday photos — plus seasonal pet-safety guides for your dog and cat.",
+          "Paw & Found's Thanksgiving Collection — the Pumpkin Spice bandana, currently not available for purchase — plus seasonal pet-safety guides for your dog and cat.",
       },
       { property: "og:title", content: "Thanksgiving Collection | Paw & Found 🦃" },
       {
         property: "og:description",
         content:
-          "Festive pet gear for Thanksgiving plus seasonal safety tips — one destination for holiday shopping.",
+          "Seasonal pet gear for Thanksgiving plus safety tips for the holiday.",
       },
       { property: "og:image", content: `${SITE_URL}/images/product-bandana-pumpkin.jpg` },
       { property: "og:url", content: `${SITE_URL}/thanksgiving` },
@@ -76,7 +71,7 @@ export const Route = createFileRoute("/thanksgiving")({
       { name: "twitter:title", content: "Thanksgiving Collection | Paw & Found 🦃" },
       {
         name: "twitter:description",
-        content: "Festive pet gear for Thanksgiving plus seasonal pet-safety tips.",
+        content: "Seasonal pet gear for Thanksgiving plus pet-safety tips.",
       },
       { name: "twitter:image", content: `${SITE_URL}/images/product-bandana-pumpkin.jpg` },
     ],
@@ -107,7 +102,7 @@ function ThanksgivingPage() {
             </p>
             <div className="mt-6 flex flex-wrap justify-center gap-3 lg:justify-start">
               <a href="#shop" className="btn-primary">
-                Shop the Collection
+                See the Collection
               </a>
               <a
                 href="#safety"
@@ -133,7 +128,7 @@ function ThanksgivingPage() {
           <div>
             <h2 className="font-heading text-3xl font-bold text-[#2D2D2D]">🦃 Seasonal Pick</h2>
             <p className="mt-2 text-[#6B7280]">
-              Limited-edition Thanksgiving gear — while the season lasts.
+              Thanksgiving gear — not available for purchase right now.
             </p>
           </div>
           <a href="/products" className="text-sm font-semibold text-[#2A9D8F] hover:text-[#FF7F5C]">
@@ -160,14 +155,20 @@ function ThanksgivingPage() {
                 </a>
                 <p className="mt-1 text-lg font-bold text-[#FF7F5C]">${product.price.toFixed(2)}</p>
                 <div className="mt-auto flex gap-2 pt-4">
-                  <a
-                    href={stripeUrl}
-                    target="_blank"
-                    rel="noopener"
-                    className="btn-primary flex-1 text-center text-xs px-3 py-2.5"
-                  >
-                    Buy Now
-                  </a>
+                  {stripeUrl ? (
+                    <a
+                      href={stripeUrl}
+                      target="_blank"
+                      rel="noopener"
+                      className="btn-primary flex-1 text-center text-xs px-3 py-2.5"
+                    >
+                      Buy Now
+                    </a>
+                  ) : (
+                    <span className="flex-1 rounded-lg border border-[#E9EDDE] bg-[#F9FAF5] px-3 py-2.5 text-center text-xs font-semibold text-[#B0B7A3]">
+                      Not available yet
+                    </span>
+                  )}
                   <a
                     href={`/product/${product.slug}`}
                     className="rounded-full border border-[#2A9D8F] px-4 py-2.5 text-xs font-semibold text-[#2A9D8F] transition-colors hover:bg-[#E8F8F5]"
@@ -233,7 +234,7 @@ function ThanksgivingPage() {
           </p>
           <div className="mt-6 flex flex-wrap justify-center gap-3">
             <a href="#shop" className="rounded-full bg-white px-8 py-3 text-sm font-bold text-[#FF7F5C] transition-transform hover:scale-105">
-              Shop the Collection
+              See the Collection
             </a>
             <a href="/blog" className="rounded-full border-2 border-white/70 px-8 py-3 text-sm font-bold text-white transition-colors hover:bg-white/10">
               Browse All Safety Guides
