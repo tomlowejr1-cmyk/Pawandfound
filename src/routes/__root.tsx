@@ -37,26 +37,26 @@ export const Route = createRootRoute({
       { name: "msvalidate.01", content: "1FBCC58E80A8CCC2899FC7AFDD1B2CBE" },
       // Google Business Profile verification — replace content with your code from business.google.com
       { name: "google-site-verification", content: "REPLACE_WITH_GBP_VERIFICATION_CODE" },
-      { title: "Paw & Found — Pet Supplies & Apparel" },
+      { title: "Paw & Found — Instant Pet Guides & Printables" },
       {
         name: "description",
         content:
-          "Your one-stop shop for pet apparel, essentials, supplies, and accessories. From trendy T-shirts to cat litter, find everything your pet needs.",
+          "Instant digital pet guides, printable planners, coloring books and eBooks — buy in two clicks and download straight away.",
       },
       // Open Graph defaults
       { property: "og:site_name", content: "Paw & Found" },
       { property: "og:type", content: "website" },
       { property: "og:url", content: SITE_URL },
-      { property: "og:title", content: "Paw & Found — Pet Supplies & Apparel" },
+      { property: "og:title", content: "Paw & Found — Instant Pet Guides & Printables" },
       {
         property: "og:description",
         content:
-          "Your one-stop shop for pet apparel, essentials, supplies, and accessories. From trendy T-shirts to cat litter, find everything your pet needs.",
+          "Instant digital pet guides, printable planners, coloring books and eBooks — buy in two clicks and download straight away.",
       },
       { property: "og:image", content: `${SITE_URL}/images/logo.png` },
       // Twitter Card
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Paw & Found — Pet Supplies & Apparel" },
+      { name: "twitter:title", content: "Paw & Found — Instant Pet Guides & Printables" },
       {
         name: "twitter:description",
         content:
@@ -80,11 +80,11 @@ export const Route = createRootRoute({
           url: SITE_URL,
           logo: `${SITE_URL}/images/logo.png`,
           description:
-            "Pet product store making it dead simple to find exactly what your pet needs — from trendy T-shirts to everyday essentials like cat litter.",
+            "Digital pet shop selling downloadable guides, printable planners, coloring books and eBooks — delivered instantly, nothing to ship.",
           contactPoint: {
             "@type": "ContactPoint",
-            telephone: "+1-555-123-7297",
-            contactType: "customer service",
+            email: "hello@pawandfound.store",
+            contactType: "customer support",
           },
         }),
       },
