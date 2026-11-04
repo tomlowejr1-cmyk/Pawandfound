@@ -159,7 +159,7 @@ function Home() {
         <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28 lg:px-8">
           <div className="max-w-2xl">
             <span className="inline-flex items-center rounded-full bg-white/30 px-4 py-1.5 text-sm font-medium text-white backdrop-blur-sm">
-              🐾 New arrivals every week
+              🐾 Digital-only store — instant downloads
             </span>
             <h1 className="mt-6 text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">
               Everything your
@@ -167,23 +167,24 @@ function Home() {
               needs, all in one place
             </h1>
             <p className="mt-4 max-w-lg text-lg text-white/80">
-              From trendy pet T-shirts to everyday essentials like cat litter — find exactly what
-              you need with zero fuss. Spend less time searching, more time with your pet.
+              Pet guides, planners, printables and coloring books you can download the second you
+              check out. Our physical range is on show to browse, but not on sale yet — what we sell
+              today lands in your inbox, not on a delivery van.
             </p>
             {/* Curated badge */}
             <div className="mt-6 inline-flex items-center gap-2 rounded-xl bg-white/15 backdrop-blur-sm px-5 py-3 text-white border border-white/20">
               <span className="text-2xl">🐾</span>
               <div>
                 <p className="text-sm font-bold">Curated for pets, chosen by you</p>
-                <p className="text-xs text-white/70">Apparel, essentials &amp; digital guides — all in one place</p>
+                <p className="text-xs text-white/70">Instant-download guides &amp; printables, on sale now</p>
               </div>
             </div>
             <div className="mt-6 flex flex-wrap gap-4">
-              <a href="/products" className="btn-primary bg-white text-[#FF7F5C] hover:bg-white/90">
-                Shop Pet Supplies Now
+              <a href="/downloads" className="btn-primary bg-white text-[#FF7F5C] hover:bg-white/90">
+                Shop Digital Guides
               </a>
-              <a href="/products?category=Apparel" className="btn-secondary border-white/50 bg-white/20 text-white backdrop-blur-sm hover:bg-white/30">
-                Browse Pet Apparel
+              <a href="/gifts" className="btn-secondary border-white/50 bg-white/20 text-white backdrop-blur-sm hover:bg-white/30">
+                See the Gift Guide
               </a>
             </div>
           </div>
@@ -195,7 +196,8 @@ function Home() {
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-4 gap-y-2 px-4 py-3 text-center sm:px-6 lg:px-8">
           <span className="text-xl">🎄</span>
           <p className="text-sm font-medium text-[#2D2D2D]">
-            Holiday gifting is here — plaid bowties, 2027 calendar & gift cards. Shop the{" "}
+            Holiday gifting is here — instant-download gift guides, planners &amp; printables from
+            $3.99. See the{" "}
             <a href="/gifts" className="font-bold text-[#FF7F5C] underline-offset-4 hover:underline">
               Christmas Gift Guide
             </a>
@@ -253,7 +255,7 @@ function Home() {
               <ul className="mt-6 space-y-2.5 text-left">
                 <li className="flex items-start gap-2.5 text-sm text-[#4A4A4A]">
                   <span className="text-base leading-none">🛒</span>
-                  Save 10% with Subscribe &amp; Save on essentials
+                  A $12.99 Puppy Starter Pack — three guides in one download
                 </li>
                 <li className="flex items-start gap-2.5 text-sm text-[#4A4A4A]">
                   <span className="text-base leading-none">📖</span>
@@ -265,18 +267,18 @@ function Home() {
                 </li>
                 <li className="flex items-start gap-2.5 text-sm text-[#4A4A4A]">
                   <span className="text-base leading-none">💳</span>
-                  Gift cards from $25
+                  The digital gift guide — 18 instant-download picks
                 </li>
               </ul>
               <p className="mt-5 text-xs text-[#9CA3AF]">
                 One spin per day. No purchase necessary.
               </p>
               <div className="mt-6 flex flex-wrap justify-center gap-3 lg:justify-start">
-                <a href="/products" className="btn-primary">
-                  Shop the Store
+                <a href="/downloads" className="btn-primary">
+                  Shop Digital Guides
                 </a>
-                <a href="/downloads" className="btn-secondary">
-                  Browse Freebies
+                <a href="/gifts" className="btn-secondary">
+                  See the Gift Guide
                 </a>
               </div>
             </div>
@@ -295,8 +297,10 @@ function Home() {
       {/* Categories Section */}
       <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="text-center">
-          <h2 className="section-title">Shop Pet Supplies by Category</h2>
-          <p className="section-subtitle mt-2">Find exactly what your pet needs — from apparel to essentials</p>
+          <h2 className="section-title">Browse Pet Supplies by Category</h2>
+          <p className="section-subtitle mt-2">
+            A look at the physical catalogue — these items aren't available for purchase yet
+          </p>
         </div>
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {categories.map((cat) => (
@@ -320,8 +324,10 @@ function Home() {
         <section className="bg-[#E9EDDE]/50 py-16">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="text-center">
-              <h2 className="section-title">This Week's Picks</h2>
-              <p className="section-subtitle mt-2">Our top products for your furry friend — fresh every Monday</p>
+              <h2 className="section-title">From the Catalogue</h2>
+              <p className="section-subtitle mt-2">
+                Browsable only for now — no physical product is on sale yet
+              </p>
             </div>
             <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {featured.map((product) => (
@@ -330,7 +336,7 @@ function Home() {
             </div>
             <div className="mt-10 text-center">
               <a href="/products" className="btn-secondary">
-                View All Pet Products
+                Browse the Full Catalogue
               </a>
             </div>
           </div>
@@ -716,6 +722,7 @@ function ProductCard({ product }: { product: Product }) {
           {product.name}
         </h3>
         <p className="mt-1 text-lg font-bold text-[#FF7F5C]">${product.price.toFixed(2)}</p>
+        <p className="mt-1 text-xs font-semibold text-[#B0B7A3]">Not available yet</p>
       </div>
     </a>
   );

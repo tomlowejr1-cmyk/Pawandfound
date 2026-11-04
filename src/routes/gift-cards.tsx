@@ -3,18 +3,13 @@ import { createFileRoute } from "@tanstack/react-router";
 const SITE_URL = "https://www.pawandfound.store";
 
 /**
- * ⚠️ OWNER ACTION NEEDED — one-time setup (~2 minutes):
- * Create 4 Stripe Payment Links in the Stripe Dashboard
- * (dashboard.stripe.com → Payment Links → Create payment link → one-time price).
- * Paste the resulting buy.stripe.com URLs below. The matching "Buy" button on
- * the /gift-cards page activates automatically as soon as a link is present.
+ * Gift cards are NOT on sale yet. Every physical product is off sale, so a
+ * gift card would have nothing to be redeemed against — the amounts below are
+ * shown for reference and marked "coming soon" until the store has something
+ * to spend them on. Add a live Stripe link to GIFT_CARD_LINKS only when that
+ * is true again.
  */
-const GIFT_CARD_LINKS: Record<number, string> = {
-  25: "https://buy.stripe.com/aFa4gzaHY2qc4EF1Q42cg1c",
-  50: "https://buy.stripe.com/eVq8wP2bs1m8c77dyM2cg19",
-  75: "https://buy.stripe.com/28E00jbM23ug0op1Q42cg1a",
-  100: "https://buy.stripe.com/dRmfZhbM25Co4EFeCQ2cg1b",
-};
+const GIFT_CARD_LINKS: Record<number, string> = {};
 
 const GIFT_CARD_AMOUNTS = [
   {
@@ -41,45 +36,45 @@ const GIFT_CARD_AMOUNTS = [
 ];
 
 const FEATURES = [
-  "Digital delivery after checkout",
-  "Redeemable on everything in the store",
+  "Delivered by email — no plastic, no postage",
   "No expiry date",
+  "Not on sale yet",
 ];
 
 const STEPS = [
   {
     emoji: "🛒",
     title: "Pick an amount",
-    text: "Choose a gift card amount below and check out securely with Stripe.",
+    text: "Amounts will run from $25 to $100. Checkout opens once the store has more to redeem against.",
   },
   {
     emoji: "📧",
     title: "Get your code",
-    text: "After checkout, your digital gift card code is sent to you — easy to gift or forward. No plastic, no postage.",
+    text: "The code arrives by email — easy to forward to the lucky pet parent. No plastic, no postage.",
   },
   {
     emoji: "🎁",
     title: "They shop",
-    text: "The lucky recipient redeems it on anything at pawandfound.store — products or digital guides.",
+    text: "The recipient spends it on whatever is on sale at pawandfound.store at the time.",
   },
 ];
 
 const FAQS = [
   {
-    q: "How do I receive my gift card?",
-    a: "After checkout, your gift card code is delivered to the email on your order. If it's a gift, you can forward it to the lucky pet parent. If your code hasn't arrived, email hello@pawandfound.store and we'll get it to you right away.",
+    q: "Can I buy a gift card right now?",
+    a: "No — gift cards are coming soon. Our physical products are off sale while we find a supplier, so a gift card would have almost nothing to be spent on. We'd rather not sell one we can't make good on.",
   },
   {
-    q: "What can the gift card be used for?",
-    a: "Anything in the store — pet apparel, supplies, accessories, cat litter, and digital guides like the Ultimate Pet Care Planner.",
+    q: "When will gift cards go on sale?",
+    a: "Once there's a range to redeem against. Until then, the digital guides, planners and bundles on the Downloads page are the real, instantly-delivered gift option.",
   },
   {
-    q: "Do gift cards expire?",
-    a: "No. Your gift card never expires, so it can be saved for a birthday, adoption day, or just because.",
+    q: "What will the gift card be worth?",
+    a: "The plan is $25, $50, $75 and $100. Nothing is being charged for them today.",
   },
   {
-    q: "Can I use my gift card with Subscribe & Save?",
-    a: "Yes — gift card balance can be applied toward recurring essentials purchases too.",
+    q: "What can I give instead?",
+    a: "A digital guide, a planner, a printable pack or a starter bundle — every one is an instant download and most are under $10.",
   },
 ];
 
@@ -87,17 +82,17 @@ export const Route = createFileRoute("/gift-cards")({
   component: GiftCardsPage,
   head: () => ({
     meta: [
-      { title: "Gift Cards — Paw & Found 🎁" },
+      { title: "Gift Cards — Coming Soon | Paw & Found 🎁" },
       {
         name: "description",
         content:
-          "Give the gift of treats, toys, and tail wags. Paw & Found digital gift cards from $25 — delivered after checkout, redeemable on everything in the store.",
+          "Paw & Found gift cards are coming soon — not on sale yet. Shop instant digital pet guides, planners and bundles from $3.99 in the meantime.",
       },
-      { property: "og:title", content: "Gift Cards — Paw & Found 🎁" },
+      { property: "og:title", content: "Gift Cards — Coming Soon | Paw & Found 🎁" },
       {
         property: "og:description",
         content:
-          "Digital Paw & Found gift cards in $25, $50, $75, and $100 — delivered after checkout, redeemable on everything in the store.",
+          "Gift cards are coming soon and are not on sale yet. Instant digital pet guides and bundles are available today.",
       },
       { property: "og:url", content: `${SITE_URL}/gift-cards` },
     ],
@@ -115,9 +110,9 @@ function GiftCardsPage() {
           Paw & Found Gift Cards
         </h1>
         <p className="mx-auto mt-3 max-w-2xl text-[#6B7280]">
-          The perfect gift for every pet parent — treats, toys, apparel, and digital guides.
-          Delivered digitally after checkout, redeemable on anything in the store. No physical
-          card needed. 🐶🐱
+          Paw &amp; Found gift cards are coming soon. We're not selling them yet: with our
+          physical products off sale, a gift card wouldn't have much to be spent on. In the
+          meantime, the digital guides below are instant, real, and ready to gift today. 🐶🐱
         </p>
       </div>
 
@@ -133,8 +128,8 @@ function GiftCardsPage() {
               }`}
             >
               {card.featured && (
-                <span className="mx-auto -mt-9 rounded-full bg-[#2A9D8F] px-3 py-1 text-xs font-semibold text-white">
-                  Most Popular
+                <span className="mx-auto -mt-9 rounded-full bg-[#E9EDDE] px-3 py-1 text-xs font-semibold text-[#6B7280]">
+                  Coming soon
                 </span>
               )}
               <span className="text-3xl">{card.emoji}</span>
@@ -165,9 +160,9 @@ function GiftCardsPage() {
                 ) : (
                   <span
                     className="block w-full rounded-lg border border-[#E9EDDE] bg-[#F9FAF5] px-4 py-2.5 text-sm text-[#B0B7A3]"
-                    title="Checkout for this amount is being set up"
+                    title="Gift cards are not on sale yet"
                   >
-                    Checkout link coming soon
+                    Coming soon
                   </span>
                 )}
               </div>
@@ -241,12 +236,12 @@ function GiftCardsPage() {
       <section className="mt-12 rounded-2xl bg-gradient-to-br from-[#2A9D8F] to-[#1E7A6F] p-8 text-center text-white sm:p-10">
         <h2 className="font-heading text-2xl font-bold">Not sure what they'd love?</h2>
         <p className="mx-auto mt-2 max-w-md text-white/85">
-          A gift card lets them pick their own favorite — but you can also browse the
-          store for inspiration first.
+          A gift card will let them pick their own favourite — but you can gift a guide
+          today, and it lands in their inbox straight away.
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-3">
-          <a href="/products" className="btn-primary bg-white text-[#2A9D8F] hover:bg-white/90">
-            Shop All Products
+          <a href="/downloads" className="btn-primary bg-white text-[#2A9D8F] hover:bg-white/90">
+            Shop Digital Guides
           </a>
           <a
             href="/downloads"

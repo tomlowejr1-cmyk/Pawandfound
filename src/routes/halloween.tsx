@@ -49,13 +49,8 @@ const PRODUCT_JSON_LD = JSON.stringify({
     "@type": "Offer",
     price: "21.99",
     priceCurrency: "USD",
-    availability: "https://schema.org/InStock",
-    url: "https://buy.stripe.com/4gM8wP17o1m84EFfGU2cg1n",
-    shippingDetails: {
-      "@type": "OfferShippingDetails",
-      shippingRate: { "@type": "MonetaryAmount", value: "0", currency: "USD" },
-      shippingDestination: { "@type": "DefinedRegion", addressCountry: "US" },
-    },
+    availability: "https://schema.org/OutOfStock",
+    // No shippingDetails: nothing on the store ships — every sale is a digital download.
   },
 });
 
@@ -82,13 +77,13 @@ export const Route = createFileRoute("/halloween")({
       {
         name: "description",
         content:
-          "Shop Paw & Found's Halloween Collection — spooky-but-cozy pet tees, bandanas, and bowties — plus seasonal pet-safety guides for your dog and cat.",
+          "Paw & Found's Halloween Collection — spooky-but-cozy pet tees, bandanas and bowties, currently not available for purchase — plus seasonal pet-safety guides for your dog and cat.",
       },
       { property: "og:title", content: "Halloween Collection | Paw & Found 🎃" },
       {
         property: "og:description",
         content:
-          "Festive pet apparel for Halloween plus seasonal safety guides — one destination for fall shopping.",
+          "Seasonal pet apparel for Halloween plus seasonal safety guides.",
       },
       { property: "og:image", content: `${SITE_URL}/images/product-tshirt-halloween.jpg` },
       { property: "og:url", content: `${SITE_URL}/halloween` },
@@ -97,7 +92,7 @@ export const Route = createFileRoute("/halloween")({
       { name: "twitter:title", content: "Halloween Collection | Paw & Found 🎃" },
       {
         name: "twitter:description",
-        content: "Festive pet apparel for Halloween plus seasonal pet-safety guides.",
+        content: "Seasonal pet apparel for Halloween plus pet-safety guides.",
       },
       { name: "twitter:image", content: `${SITE_URL}/images/product-tshirt-halloween.jpg` },
     ],
@@ -128,7 +123,7 @@ function HalloweenPage() {
             </p>
             <div className="mt-6 flex flex-wrap justify-center gap-3 lg:justify-start">
               <a href="#shop" className="btn-primary">
-                Shop the Collection
+                See the Collection
               </a>
               <a
                 href="#safety"
@@ -154,7 +149,7 @@ function HalloweenPage() {
           <div>
             <h2 className="font-heading text-3xl font-bold text-[#2D2D2D]">🎃 Seasonal Picks</h2>
             <p className="mt-2 text-[#6B7280]">
-              Limited-edition Halloween gear — while the season lasts.
+              Halloween gear — not available for purchase right now.
             </p>
           </div>
           <a href="/products" className="text-sm font-semibold text-[#2A9D8F] hover:text-[#FF7F5C]">
@@ -181,14 +176,20 @@ function HalloweenPage() {
                 </a>
                 <p className="mt-1 text-lg font-bold text-[#FF7F5C]">${product.price.toFixed(2)}</p>
                 <div className="mt-auto flex gap-2 pt-4">
-                  <a
-                    href={stripeUrl}
-                    target="_blank"
-                    rel="noopener"
-                    className="btn-primary flex-1 text-center text-xs px-3 py-2.5"
-                  >
-                    Buy Now
-                  </a>
+                  {stripeUrl ? (
+                    <a
+                      href={stripeUrl}
+                      target="_blank"
+                      rel="noopener"
+                      className="btn-primary flex-1 text-center text-xs px-3 py-2.5"
+                    >
+                      Buy Now
+                    </a>
+                  ) : (
+                    <span className="flex-1 rounded-lg border border-[#E9EDDE] bg-[#F9FAF5] px-3 py-2.5 text-center text-xs font-semibold text-[#B0B7A3]">
+                      Not available yet
+                    </span>
+                  )}
                   <a
                     href={`/product/${product.slug}`}
                     className="rounded-full border border-[#2A9D8F] px-4 py-2.5 text-xs font-semibold text-[#2A9D8F] transition-colors hover:bg-[#E8F8F5]"
@@ -254,7 +255,7 @@ function HalloweenPage() {
           </p>
           <div className="mt-6 flex flex-wrap justify-center gap-3">
             <a href="#shop" className="rounded-full bg-white px-8 py-3 text-sm font-bold text-[#FF7F5C] transition-transform hover:scale-105">
-              Shop the Collection
+              See the Collection
             </a>
             <a href="/blog" className="rounded-full border-2 border-white/70 px-8 py-3 text-sm font-bold text-white transition-colors hover:bg-white/10">
               Browse All Safety Guides

@@ -41,7 +41,7 @@ function ThankYouPage() {
           </li>
           <li className="flex items-start gap-2">
             <span className="mt-0.5 text-[#2A9D8F]">✓</span>
-            <span><strong>Shipping</strong> — We'll process and ship your order within 1-2 business days</span>
+            <span><strong>Instant download</strong> — Everything we sell is digital, so your file is ready the moment payment clears. The download link is in your email — nothing is being shipped.</span>
           </li>
           <li className="flex items-start gap-2">
             <span className="mt-0.5 text-[#2A9D8F]">✓</span>
@@ -49,23 +49,22 @@ function ThankYouPage() {
           </li>
           <li className="flex items-start gap-2">
             <span className="mt-0.5 text-[#2A9D8F]">✓</span>
-            <span><strong>Returns</strong> — 30-day return policy, no questions asked</span>
+            <span><strong>Something wrong with the file?</strong> — Email us and we'll make it right; digital downloads can't be posted back.</span>
           </li>
           <li className="flex items-start gap-2">
             <span className="mt-0.5 text-[#2A9D8F]">✓</span>
             <span>
-              <strong>Digital products</strong> — For digital guides and recipe books, check your email for the download link from Stripe.
-              If you don't see it, check your spam folder.
+              <strong>Can't find the link?</strong> — Check your spam or promotions folder, then email us and we'll resend it.
             </span>
           </li>
         </ul>
       </div>
       <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
         <a
-          href="/products"
+          href="/downloads"
           className="btn-primary"
         >
-          Continue Shopping
+          Browse More Digital Guides
         </a>
         <a
           href="/"

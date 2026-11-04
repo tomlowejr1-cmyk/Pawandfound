@@ -6,17 +6,17 @@ export const Route = createFileRoute("/faq")({
   component: FaqPage,
   head: () => ({
     meta: [
-      { title: "FAQ — Shipping, Returns & Pet Questions | Paw & Found" },
+      { title: "FAQ — Digital Downloads, Refunds & Pet Questions | Paw & Found" },
       {
         name: "description",
         content:
-          "Find answers to common questions about Paw & Found pet supplies: shipping, returns, sizing, subscriptions, payment, and pet safety.",
+          "Find answers about Paw & Found digital downloads: how instant delivery works, refunds, payment, bundles, and what is (and is not) on sale right now.",
       },
-      { property: "og:title", content: "FAQ — Shipping, Returns & Pet Product Questions | Paw & Found" },
+      { property: "og:title", content: "FAQ — Digital Downloads, Refunds & Pet Questions | Paw & Found" },
       {
         property: "og:description",
         content:
-          "Find answers about Paw & Found pet supplies: shipping, returns, sizing, subscriptions, payment, and pet safety.",
+          "Find answers about Paw & Found digital downloads: instant delivery, refunds, payment, bundles, and what is currently on sale.",
       },
       { property: "og:url", content: `${SITE_URL}/faq` },
     ],
@@ -43,65 +43,69 @@ export const Route = createFileRoute("/faq")({
 // ... rest of FAQ content stays the same
 const faqSections = [
   {
-    title: "Shipping & Delivery",
+    title: "Delivery & Downloads",
     questions: [
       {
-        q: "How much does shipping cost?",
-        a: "Orders are checked out securely via Stripe. For questions about shipping or delivery on a specific order, email hello@pawandfound.store and we'll help you out.",
+        q: "How do I get what I ordered?",
+        a: "Everything Paw & Found sells is a digital download. The moment your Stripe payment clears, the download link is emailed to the address you used at checkout — there is no shipping step and no delivery address to enter.",
       },
       {
         q: "How long does delivery take?",
-        a: "Standard delivery takes 3-7 business days within the continental US. We also offer expedited shipping (2-3 business days) for an additional $12.99.",
+        a: "There is no delivery window: your file is available immediately after checkout. If the email hasn't arrived within a few minutes, check your spam or promotions folder first, then email hello@pawandfound.store and we'll send the link again.",
       },
       {
-        q: "Can I track my order?",
-        a: "Yes! Once your order ships, you'll receive a tracking number via email. You can also track your order anytime by visiting your account page.",
+        q: "Do you sell physical products?",
+        a: "Not currently. Our physical range — apparel, toys, beds, bowls, litter and grooming supplies — is not on sale while we sort out a supplier. Those product pages stay up so you can browse them, and each one is marked as not available for purchase yet.",
       },
       {
         q: "Do you ship internationally?",
-        a: "Currently we ship within the United States only. We're working on expanding to Canada and other countries — stay tuned!",
+        a: "There is no shipping at all right now, so there are no country restrictions either. Digital downloads work anywhere — you just need an email address and a device to open the file on.",
+      },
+      {
+        q: "What format are the downloads in?",
+        a: "PDF files you can read on any phone, tablet or computer and print at home if you prefer paper. Digital sticker packs are PNG images for journaling apps.",
       },
     ],
   },
   {
-    title: "Returns & Exchanges",
+    title: "Returns & Refunds",
     questions: [
       {
-        q: "What is your return policy?",
-        a: "We offer a 30-day satisfaction guarantee. If you're not happy with your purchase for any reason, return it within 30 days for a full refund or exchange.",
+        q: "What is your refund policy?",
+        a: "If a download won't open, isn't what the listing described, or you bought it by mistake, email hello@pawandfound.store within 30 days and we'll make it right. There's nothing to post back — digital files can't be returned.",
       },
       {
-        q: "How do I return an item?",
-        a: "Simply email us at hello@pawandfound.store with your order number and the items you'd like to return. We'll send you a prepaid return label. Refunds are processed within 5-7 business days after we receive the return.",
+        q: "How do I get a refund?",
+        a: "Email us at hello@pawandfound.store with the email address you used at checkout. Refunds go back to the original payment method through Stripe.",
       },
       {
-        q: "Can I exchange an item for a different size?",
-        a: "Absolutely! We want your pet to be comfortable. If the size isn't right, just let us know and we'll exchange it for the correct size free of charge.",
+        q: "I bought the wrong guide — can I swap it?",
+        a: "Get in touch and we'll help you swap to the guide you meant to buy. Because everything is a file, a swap costs nobody a return label.",
       },
       {
         q: "What about subscription items?",
-        a: "You can cancel or modify your subscription anytime before the next billing date. For subscription items already shipped, our standard 30-day return policy applies.",
+        a: "Subscribe & Save applied to physical essentials, so it's paused while those products are off sale. Nothing recurring is being billed, and nothing needs cancelling.",
       },
     ],
   },
   {
-    title: "Products & Sizing",
+    title: "Products & Guides",
     questions: [
       {
-        q: "How do I find the right size for apparel?",
-        a: "Each product page has a size guide. As a general rule, measure your pet's chest girth (just behind the front legs) and back length (from neck to tail base). If you're between sizes, we recommend sizing up for a comfortable fit.",
+        q: "What can I actually buy today?",
+        a: "Digital guides, planners, printable packs, coloring books, sticker packs and bundles — from $3.99. You can browse the full library on the Downloads page, and the gift guide has 18 hand-picked options for the holidays.",
       },
       {
-        q: "Do you offer subscriptions for repeat purchases?",
-        a: "Yes! For eligible essentials (cat litter, dog food, treats, poop bags, etc.), you can subscribe and save 10%. Choose your delivery frequency (every 4 weeks by default), and you can cancel or change anytime.",
+        q: "Do you sell apparel, beds or litter?",
+        a: "Not right now. Every physical item in the catalogue is off sale until we have a supplier who can fulfil orders. Nothing on the site can be ordered as a physical delivery today.",
       },
       {
-        q: "Are your products safe for my pet?",
-        a: "Absolutely. Every product in our catalog is vetted by pet owners. We prioritize non-toxic materials, durable construction, and pet-safe designs. All apparel is tested for comfort and freedom of movement.",
+        q: "Do you carry guides for both dogs and cats?",
+        a: "Yes — the library covers dogs, cats, and small pets like rabbits, guinea pigs and hamsters. Each listing says which pets it's written for.",
       },
       {
-        q: "Do you carry products for both dogs and cats?",
-        a: "Yes! We carry products for both dogs and cats, and many of our accessories and supplies work for both. Check the tags on each product to see which pets it's suitable for.",
+        q: "Is the advice in your guides a substitute for a vet?",
+        a: "No. Our guides are written for pet owners to plan, prepare and understand — they don't replace veterinary advice. If your pet is unwell or injured, contact your vet or an emergency clinic.",
       },
     ],
   },
@@ -110,32 +114,32 @@ const faqSections = [
     questions: [
       {
         q: "What payment methods do you accept?",
-        a: "We accept all major credit cards (Visa, Mastercard, American Express, Discover), as well as PayPal and Apple Pay. All payments are processed securely.",
+        a: "Checkout runs through Stripe, which accepts all major credit and debit cards (Visa, Mastercard, American Express, Discover), plus Apple Pay and Google Pay where your device supports them.",
       },
       {
         q: "Is my payment information secure?",
-        a: "Yes. We use industry-standard SSL encryption to protect your data. We never store your full credit card details on our servers.",
+        a: "Yes. Payment details are entered on Stripe's secure checkout, not on our site — we never see or store your full card number.",
       },
       {
         q: "When will my card be charged?",
-        a: "For one-time purchases, your card is charged when you place the order. For subscription items, your card is charged at the start of each delivery cycle.",
+        a: "Once, at checkout. There are no recurring charges on the store right now.",
+      },
+      {
+        q: "Do I get a receipt?",
+        a: "Stripe emails a receipt to the address you used at checkout. Keep it — it's also the fastest way for us to find your order if a download link goes missing.",
       },
     ],
   },
   {
-    title: "Pet Safety & Product Quality",
+    title: "Gift Cards & Bundles",
     questions: [
       {
-        q: "How do you ensure product quality?",
-        a: "Every product is tested by our team of pet owners before it makes it to our catalog. We check for durability, safety, comfort, and ease of use. We only stock products we'd use with our own pets.",
+        q: "Can I buy a gift card?",
+        a: "Not yet. Gift cards are marked coming soon: with physical products off sale, a gift card wouldn't have much to be spent on, and we'd rather not sell one we can't make good on.",
       },
       {
-        q: "What if my pet has an allergic reaction?",
-        a: "Your pet's health is our top priority. If your pet has a reaction to any product, stop use immediately and contact your veterinarian. Then reach out to us and we'll make it right.",
-      },
-      {
-        q: "Are your products eco-friendly?",
-        a: "We prioritize sustainable options wherever possible. Our poop bags are compostable, our packaging is recyclable, and we're constantly working to reduce our environmental footprint.",
+        q: "What are the bundles?",
+        a: "The Puppy Starter Pack ($12.99) and Cat Essentials Kit ($11.99) each collect three guides in one download — a cheaper way to buy the set than picking them up one at a time.",
       },
     ],
   },
@@ -151,7 +155,7 @@ function FaqPage() {
           Frequently Asked Questions
         </h1>
         <p className="mx-auto mt-4 max-w-2xl text-lg text-[#6B7280]">
-          Everything you need to know about shopping at Paw & Found. Can't find what you're looking for?{" "}
+          Everything you need to know about buying from Paw & Found. Can't find what you're looking for?{" "}
           <a href="/about" className="text-[#2A9D8F] hover:underline">Contact us</a>.
         </p>
       </div>
@@ -215,7 +219,6 @@ function FaqPage() {
         </p>
         <div className="mt-4 flex justify-center gap-8 text-sm">
           <span>📧 hello@pawandfound.store</span>
-          <span>📞 (555) 123-PAWS</span>
         </div>
       </section>
 

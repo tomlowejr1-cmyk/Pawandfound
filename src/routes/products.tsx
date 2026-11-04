@@ -54,13 +54,13 @@ export const Route = createFileRoute("/products")({
     const canonical = category
       ? `${SITE_URL}/products?category=${encodeURIComponent(category)}`
       : `${SITE_URL}/products`;
-    const metaTitle = `Shop Pet Supplies — ${categoryName} | Paw & Found`;
+    const metaTitle = `Pet Products — ${categoryName} | Paw & Found`;
     const metaDesc = category
-      ? `Shop the ${category} collection at Paw & Found — tees, bandanas, litter, grooming tools, and more for your dog and cat.`
-      : "Browse our full selection of pet supplies, apparel, and accessories. From dog t-shirts and bandanas to cat litter and grooming tools — find quality pet products at Paw & Found.";
+      ? `Browse the ${category} collection at Paw & Found — tees, bandanas, litter, grooming tools and more. Currently not available for purchase; digital guides are on sale now.`
+      : "Browse Paw & Found's physical product catalogue — dog t-shirts, bandanas, cat litter and grooming tools. These items are not currently available for purchase; instant digital guides are on sale now.";
     const ogDesc = category
-      ? `Shop the ${category} collection at Paw & Found for dogs and cats.`
-      : "Browse our full selection of pet supplies, apparel, and accessories for dogs and cats.";
+      ? `Browse the ${category} collection at Paw & Found for dogs and cats — not currently available for purchase.`
+      : "Browse Paw & Found's pet product catalogue for dogs and cats — not currently available for purchase.";
     return {
       meta: [
         { title: metaTitle },
@@ -124,6 +124,21 @@ function ProductsPage() {
             {searchQuery && <> for &ldquo;{searchQuery}&rdquo;</>}
           </p>
         </div>
+      </div>
+
+      {/* Availability notice — physical products are off sale */}
+      <div className="mt-6 rounded-xl border border-[#E9EDDE] bg-[#FFF8F0] p-5">
+        <p className="font-heading text-base font-semibold text-[#2D2D2D]">
+          🕒 Physical products aren't available for purchase yet
+        </p>
+        <p className="mt-2 text-sm leading-relaxed text-[#6B7280]">
+          Everything below is here to browse. We're a digital-only store while we sort out a
+          supplier, so nothing on this page can be ordered — no shipping, no delivery dates.
+          The instant-download guides, planners and printables are on sale now.
+        </p>
+        <a href="/downloads" className="btn-primary mt-4 inline-block text-sm">
+          Shop digital guides →
+        </a>
       </div>
 
       {/* Search bar */}
@@ -301,6 +316,7 @@ function ProductCard({ product }: { product: Product }) {
           {product.name}
         </h3>
         <p className="mt-1 text-lg font-bold text-[#FF7F5C]">${product.price.toFixed(2)}</p>
+        <p className="mt-1 text-xs font-semibold text-[#B0B7A3]">Not available yet</p>
       </div>
     </a>
   );
