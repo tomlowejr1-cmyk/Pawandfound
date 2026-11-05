@@ -215,6 +215,13 @@ function PromoBanner() {
   );
 }
 
+// Links that stay in the desktop bar. Everything else is rendered inside the
+// "More" dropdown, because 25 inline links are ~2200px wide and blew the page
+// out to a horizontal scrollbar at every desktop width.
+const PRIMARY_NAV_HREFS = ["/", "/products", "/downloads", "/blog", "/about"];
+// Only shown once there is room for them (lg and up).
+const WIDE_ONLY_HREFS = ["/blog", "/about"];
+
 function Header() {
   const navLinks = [
     { href: "/", label: "Home" },
@@ -244,32 +251,77 @@ function Header() {
     { href: "/faq", label: "FAQ" },
   ];
 
+  const primaryLinks = navLinks.filter((link) => PRIMARY_NAV_HREFS.includes(link.href));
+  const moreLinks = navLinks.filter((link) => !PRIMARY_NAV_HREFS.includes(link.href));
+
   return (
     <header className="sticky top-0 z-50 border-b border-[#E9EDDE] bg-white/90 backdrop-blur-md">
-      <div className="mx-auto flex max-w-7xl items-center px-4 py-3 sm:px-6 lg:px-8">
-        <a href="/" className="flex items-center gap-2">
+      <div className="mx-auto flex max-w-7xl items-center gap-2 px-4 py-3 sm:px-6 lg:px-8">
+        <a href="/" className="flex shrink-0 items-center gap-2">
           <img src="/images/logo.png" alt="Paw & Found — Pet Supplies Store Logo" className="h-8 w-auto" />
-          <span className="font-heading text-xl font-bold text-[#2A9D8F]">Paw & Found</span>
+          <span className="font-heading whitespace-nowrap text-xl font-bold text-[#2A9D8F]">Paw & Found</span>
         </a>
 
-        <nav className="hidden items-center gap-1 md:flex mr-4">
-          {navLinks.map((link) => (
+        <nav className="hidden min-w-0 items-center gap-1 md:flex">
+          {primaryLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="nav-link rounded-lg px-3 py-2 text-sm text-[#6B7280] hover:bg-[#E9EDDE] hover:text-[#2A9D8F]"
+              className={`nav-link whitespace-nowrap rounded-lg px-3 py-2 text-sm text-[#6B7280] hover:bg-[#E9EDDE] hover:text-[#2A9D8F] ${
+                WIDE_ONLY_HREFS.includes(link.href) ? "hidden lg:inline-block" : ""
+              }`}
             >
               {link.label}
             </a>
           ))}
+          <MoreMenu links={moreLinks} />
         </nav>
 
-        <div className="flex items-center gap-3 ml-auto">
+        <div className="ml-auto flex shrink-0 items-center gap-3">
           <MobileMenu navLinks={navLinks} />
           <CartButton />
         </div>
       </div>
     </header>
+  );
+}
+
+/**
+ * Overflow valve for the desktop nav: the remaining links live in a full-width
+ * dropdown so the bar itself never grows wider than the viewport.
+ */
+function MoreMenu({ links }: { links: { href: string; label: string }[] }) {
+  return (
+    <details className="group">
+      <summary className="nav-link flex cursor-pointer list-none items-center gap-1 whitespace-nowrap rounded-lg px-3 py-2 text-sm text-[#6B7280] hover:bg-[#E9EDDE] hover:text-[#2A9D8F] [&::-webkit-details-marker]:hidden">
+        More
+        <svg
+          className="h-4 w-4 transition-transform group-open:rotate-180"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          strokeWidth={2}
+          aria-hidden="true"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+        </svg>
+      </summary>
+      <div className="absolute left-0 right-0 top-full max-h-[calc(100dvh-5rem)] overflow-y-auto border-t border-[#E9EDDE] bg-white shadow-lg">
+        <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
+          <div className="grid gap-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {links.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="nav-link truncate rounded-lg px-3 py-2 text-sm text-[#6B7280] hover:bg-[#E9EDDE] hover:text-[#2A9D8F]"
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </details>
   );
 }
 
@@ -281,7 +333,7 @@ function MobileMenu({ navLinks }: { navLinks: { href: string; label: string }[] 
           <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
         </svg>
       </summary>
-      <div className="absolute left-0 right-0 top-full border-t border-[#E9EDDE] bg-white shadow-lg">
+      <div className="absolute left-0 right-0 top-full max-h-[calc(100dvh-5rem)] overflow-y-auto border-t border-[#E9EDDE] bg-white shadow-lg">
         <div className="flex flex-col gap-1 px-4 py-3">
           {navLinks.map((link) => (
             <a
