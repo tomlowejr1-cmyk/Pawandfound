@@ -41,7 +41,7 @@ function ThankYouPage() {
           </li>
           <li className="flex items-start gap-2">
             <span className="mt-0.5 text-[#2A9D8F]">✓</span>
-            <span><strong>Instant download</strong> — Everything we sell is digital, so your file is ready the moment payment clears. The download link is in your email — nothing is being shipped.</span>
+            <span><strong>Instant download</strong> — Everything we sell is digital, so your file is ready the moment payment clears. Nothing is being shipped. Your download page opens automatically straight after payment; if you closed it, every guide on the Downloads page has a “get your download” link.</span>
           </li>
           <li className="flex items-start gap-2">
             <span className="mt-0.5 text-[#2A9D8F]">✓</span>
@@ -54,7 +54,7 @@ function ThankYouPage() {
           <li className="flex items-start gap-2">
             <span className="mt-0.5 text-[#2A9D8F]">✓</span>
             <span>
-              <strong>Can't find the link?</strong> — Check your spam or promotions folder, then email us and we'll resend it.
+              <strong>Lost your download page?</strong> — Email hello@pawandfound.store with the address you paid with and we'll send your file to you.
             </span>
           </li>
         </ul>

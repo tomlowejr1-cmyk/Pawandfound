@@ -2,7 +2,6 @@ import { createFileRoute, notFound, Link } from "@tanstack/react-router";
 import React, { useState } from "react";
 import { loadProducts, loadPaymentLinks, getProductBySlug, getPaymentLink } from "~/lib/products";
 import { useCart } from "~/lib/cart-context";
-import { ProductReviews } from "~/components/product-reviews";
 import type { Product } from "~/lib/types";
 import { SUBSCRIBABLE_CATEGORIES, SUBSCRIPTION_DISCOUNT } from "~/lib/types";
 import subscriptionLinks from "~/lib/subscription-links.json";
@@ -296,7 +295,6 @@ function ProductDetailPage() {
           </div>
         </section>
       )}
-      <ProductReviews productId={product.id} productName={product.name} />
     </div>
   );
 }

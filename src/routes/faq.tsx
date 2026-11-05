@@ -47,11 +47,11 @@ const faqSections = [
     questions: [
       {
         q: "How do I get what I ordered?",
-        a: "Everything Paw & Found sells is a digital download. The moment your Stripe payment clears, the download link is emailed to the address you used at checkout — there is no shipping step and no delivery address to enter.",
+        a: "Everything Paw & Found sells is a digital download. When your Stripe payment clears you are taken straight to a page with your file on it — there is no shipping step and no delivery address to enter. Bookmark or screenshot that page, and if you lose it just email hello@pawandfound.store and we'll send the file.",
       },
       {
         q: "How long does delivery take?",
-        a: "There is no delivery window: your file is available immediately after checkout. If the email hasn't arrived within a few minutes, check your spam or promotions folder first, then email hello@pawandfound.store and we'll send the link again.",
+        a: "There is no delivery window: your file is on the page you land on the moment checkout completes. If the download doesn't start, open that page in your phone's browser rather than an in-app browser (Instagram, Facebook and TikTok block downloads), or email hello@pawandfound.store and we'll send the file to you directly.",
       },
       {
         q: "Do you sell physical products?",

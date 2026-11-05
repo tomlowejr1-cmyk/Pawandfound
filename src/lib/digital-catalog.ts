@@ -11,24 +11,34 @@ export interface DigitalProduct {
   longDescription: string;
   image: string;
   stripePaymentLink: string;
+  /**
+   * Site-relative path to the file this product actually delivers.
+   * A product with no `file` cannot be sold: it has nothing to hand the buyer.
+   * Every Buy button in the UI is gated on this — see `isAvailable()`.
+   */
+  file?: string;
   features: string[];
 }
 
 export interface Bundle {
   id: string;
+  /** Slug used by the post-payment page: /access/<accessSlug>. */
+  accessSlug: string;
   title: string;
   description: string;
   price: number;
   originalPrice: number;
   savings: number;
   stripePaymentLink: string;
-  includedProducts: { title: string; price: number }[];
+  /** Component products, by catalogue slug, so bundle availability is derived. */
+  includedProducts: { title: string; price: number; slug: string }[];
   image: string;
 }
 
 export const bundles: Bundle[] = [
   {
     id: "bundle-001",
+    accessSlug: "puppy-starter-pack",
     title: "Puppy Starter Pack",
     description:
       "Everything a new puppy parent needs — training schedule, treat recipes, and emergency know-how. Save 28% vs buying individually.",
@@ -38,13 +48,14 @@ export const bundles: Bundle[] = [
     stripePaymentLink: "https://buy.stripe.com/4gM7sL7vM2qcc779iw2cg0w",
     image: "/images/puppy-training-checklist-preview.png",
     includedProducts: [
-      { title: "Puppy Training Checklist & Milestone Tracker", price: 4.99 },
-      { title: "Homemade Pet Treats Recipe Guide", price: 4.99 },
-      { title: "Pet First Aid: Emergency Care Guide", price: 7.99 },
+      { title: "Puppy Training Checklist & Milestone Tracker", price: 4.99, slug: "puppy-training-checklist" },
+      { title: "Homemade Pet Treats Recipe Guide", price: 4.99, slug: "homemade-pet-treats-recipe-guide" },
+      { title: "Pet First Aid: Emergency Care Guide", price: 7.99, slug: "pet-first-aid-emergency-care-guide" },
     ],
   },
   {
     id: "bundle-002",
+    accessSlug: "cat-essentials-kit",
     title: "Cat Essentials Kit",
     description:
       "The ultimate cat care bundle — decode their behavior, plan their care, and ace every vet visit. Save 29% vs buying individually.",
@@ -54,9 +65,9 @@ export const bundles: Bundle[] = [
     stripePaymentLink: "https://buy.stripe.com/5kQdR9g2i1m84EF2U82cg0x",
     image: "/images/cat-behavior-decoder-preview.png",
     includedProducts: [
-      { title: "Cat Behavior Decoder", price: 5.99 },
-      { title: "The Ultimate Pet Care Planner", price: 9.99 },
-      { title: "Vet Visit Prep Kit", price: 4.99 },
+      { title: "Cat Behavior Decoder", price: 5.99, slug: "cat-behavior-decoder" },
+      { title: "The Ultimate Pet Care Planner", price: 9.99, slug: "ultimate-pet-care-planner" },
+      { title: "Vet Visit Prep Kit", price: 4.99, slug: "vet-visit-prep-kit" },
     ],
   },
 ];
@@ -73,6 +84,7 @@ export const digitalProducts: DigitalProduct[] = [
       "Treat your furry best friend to the healthiest, tastiest homemade snacks! This digital recipe guide includes 7 vet-approved recipes for dogs and cats — from crunchy peanut butter biscuits to frozen salmon bites. Every recipe uses simple, whole-food ingredients you probably already have in your kitchen. Bonus: includes a section on ingredients to avoid and safe substitutions for pets with allergies.",
     image: "/images/pet-treat-recipes-preview.png",
     stripePaymentLink: "https://buy.stripe.com/dRm7sLaHY3ug8UVbqE2cg0h",
+    file: "/downloads/homemade-pet-treats-recipe-guide/Homemade-Pet-Treats-Recipe-Guide.pdf",
     features: [
       "7 vet-approved recipes for dogs and cats",
       "Grain-free and allergy-friendly options",
@@ -93,6 +105,7 @@ export const digitalProducts: DigitalProduct[] = [
       "Emergencies happen when you least expect them. This veterinarian-reviewed guide walks you through exactly what to do when your pet needs immediate help — from the first critical minutes until you can reach a vet. Covers choking, poisoning, wounds and bleeding, seizures, heatstroke, broken bones, and allergic reactions. Includes a quick-reference emergency checklist and a pet emergency kit shopping list. Peace of mind in your pocket — literally.",
     image: "/images/pet-first-aid-preview.png",
     stripePaymentLink: "https://buy.stripe.com/9B6eVd4jA5Co3AB0M02cg0i",
+    file: "/downloads/pet-first-aid-emergency-care-guide/Pet-First-Aid-Emergency-Care-Guide.pdf",
     features: [
       "Step-by-step emergency response guides",
       "Covers choking, poisoning, wounds, and more",
@@ -113,6 +126,7 @@ export const digitalProducts: DigitalProduct[] = [
       "Decorate your digital journal, planner, or notes with these adorable hand-drawn pet stickers! This pack includes 24 individual PNG stickers featuring dogs, cats, paw prints, pet care icons, and fun pet-parent sayings. All stickers have transparent backgrounds and high resolution — perfect for GoodNotes, Notability, Zoom whiteboards, and any app that supports image imports. Just import and start decorating!",
     image: "/images/sticker-cover.jpg",
     stripePaymentLink: "https://buy.stripe.com/9B6bJ19DU6Gs0op2U82cg0j",
+    file: "/downloads/paw-and-found-stickers.zip",
     features: [
       "24 individual PNG stickers",
       "Dog, cat & pet parent designs",
@@ -133,6 +147,7 @@ export const digitalProducts: DigitalProduct[] = [
       "Stay on top of your pet's health and happiness with this comprehensive printable planner. 24 undated pages let you start any time of year and reuse year after year. Includes dedicated sections for vet visit logs, vaccination records, medication schedules, daily feeding trackers, grooming logs, training progress, expense tracking, and a full pet sitter information sheet with emergency contacts. US Letter size (8.5×11\") — print at home or at your local print shop. Perfect for busy pet parents who want to keep everything organized in one place.",
     image: "/images/pet-care-planner-preview.png",
     stripePaymentLink: "https://buy.stripe.com/dRmaEX17od4Q2wx9iw2cg0k",
+    file: "/downloads/pet-care-planner.pdf",
     features: [
       "24 undated pages — use year after year",
       "Vet, meds, feeding & grooming logs",
@@ -153,6 +168,7 @@ export const digitalProducts: DigitalProduct[] = [
       "Raising a puppy is exciting — and busy! This checklist keeps you organized through every stage of your puppy's first year. Track potty training progress, basic commands mastered, socialization experiences, vaccination schedules, and growth milestones. Includes weekly checklists from 8 weeks through 12 months, plus tips for common challenges like teething and leash pulling. Print as many copies as you need — perfect for first-time puppy parents!",
     image: "/images/puppy-training-checklist-preview.png",
     stripePaymentLink: "https://buy.stripe.com/5kQeVd2bsfcY3AB3Yc2cg0l",
+    file: "/downloads/puppy-training-checklist/Puppy-Training-Checklist-and-Milestone-Tracker.pdf",
     features: [
       "Weekly checklists from 8 weeks to 12 months",
       "Potty training & command trackers",
@@ -173,6 +189,7 @@ export const digitalProducts: DigitalProduct[] = [
       "Cats are mysterious — but they're always communicating. This beautifully illustrated guide helps you decode your cat's every move: what different meows mean, why their tail twitches, what ear positions signal, and how to tell if they're stressed, happy, or ready to play. Includes 30+ common behaviors with clear illustrations and explanations, plus troubleshooting tips for common issues like scratching furniture and litter box avoidance. Build a deeper bond by finally understanding what your cat is saying!",
     image: "/images/cat-behavior-decoder-preview.png",
     stripePaymentLink: "https://buy.stripe.com/9B6fZh03k2qcc77eCQ2cg0m",
+    file: "/downloads/cat-behavior-decoder/Cat-Behavior-Decoder.pdf",
     features: [
       "30+ common cat behaviors decoded",
       "Illustrated body language guide",
@@ -193,6 +210,7 @@ export const digitalProducts: DigitalProduct[] = [
       "Traveling with your pet? This comprehensive checklist covers everything you need — whether you're hitting the road, flying across the country, camping in the woods, or dropping your pet off at the boarder. Includes separate packing lists for dogs and cats, a pre-trip planning timeline, documents checklist (vaccination records, health certificates), car safety tips, airline-approved carrier guidelines, and an emergency contact sheet. Travel stress-free knowing you haven't forgotten anything!",
     image: "/images/pet-travel-checklist-preview.png",
     stripePaymentLink: "https://buy.stripe.com/dRm8wP03kaWIgnngKY2cg0n",
+    file: "/downloads/pet-travel-checklist/Pet-Travel-Checklist-and-Packing-Guide.pdf",
     features: [
       "Separate checklists for dogs & cats",
       "Road trip, flight, camping & boarding guides",
@@ -213,6 +231,7 @@ export const digitalProducts: DigitalProduct[] = [
       "Your dog deserves a celebration! This printable party kit has everything you need to throw an unforgettable dog birthday bash. Includes adorable paw-print invitations, a 'Happy Barkday' banner, cupcake toppers, a dog-safe cake recipe (peanut butter & pumpkin — tested and pup-approved!), party hat templates, and 5 fun party game ideas. All printables are designed for US Letter paper. Just print, cut, and party!",
     image: "/images/dog-birthday-party-kit-preview.png",
     stripePaymentLink: "https://buy.stripe.com/cNi14n2bs3ug1steCQ2cg0p",
+    file: "/downloads/diy-dog-birthday-party-kit/DIY-Dog-Birthday-Party-Kit.pdf",
     features: [
       "Printable invitations & decorations",
       "Dog-safe birthday cake recipe",
@@ -233,6 +252,7 @@ export const digitalProducts: DigitalProduct[] = [
       "Want Instagram-worthy pet photos without expensive gear? This guide teaches you to take amazing photos of your pet using just your smartphone. Covers natural lighting techniques, composition rules that make any photo pop, how to capture sharp action shots, working with different coat colors, and simple editing tricks using free apps. Includes 40+ practical tips with before-and-after examples. Your pet is adorable — let's make sure your photos do them justice!",
     image: "/images/pet-photo-tips-preview.png",
     stripePaymentLink: "https://buy.stripe.com/14AcN52bs7KwgnneCQ2cg0q",
+    file: "/downloads/pet-photo-tips-guide/Pet-Photo-Tips-Guide.pdf",
     features: [
       "40+ practical photo tips",
       "Smartphone-focused — no gear needed",
@@ -253,6 +273,7 @@ export const digitalProducts: DigitalProduct[] = [
       "Relax and de-stress with this beautifully illustrated pet-themed coloring book. 20 original designs featuring dogs, cats, paw prints, and whimsical animal patterns — from detailed mandalas to charming doodle-style pages. Each design is printed on its own page (no bleed-through worries). Perfect for winding down after a long day, or as a thoughtful gift for the pet lover in your life. Print your favorites as many times as you'd like!",
     image: "/images/pet-coloring-book-preview.png",
     stripePaymentLink: "https://buy.stripe.com/9B6bJ14jAe8U2wxfGU2cg0o",
+    file: "/downloads/paws-and-relax-coloring-book/Paws-And-Relax-Coloring-Book.pdf",
     features: [
       "20 original coloring designs",
       "Dogs, cats & whimsical animal art",
@@ -273,6 +294,7 @@ export const digitalProducts: DigitalProduct[] = [
       "A delightful first coloring book for little hands! Featuring 18 original, kid-friendly pet designs — from a sleeping puppy and a smiling kitten to a bunny, hamster, and goldfish — each with thick, easy-to-color outlines and big open spaces. Single-sided pages mean no bleed-through, so kids can use crayons, markers, or colored pencils without worry. Sized 8.5 x 11 inches, perfect for small artists. A screen-free creative activity and a sweet, screen-free gift for any child who loves animals.",
     image: "/images/my-first-pet-coloring-book-cover.png",
     stripePaymentLink: "https://buy.stripe.com/5kQfZh2bs7Kw5IJfGU2cg1u",
+    file: "/downloads/kdp-coloring-book-kids/My-First-Pet-Coloring-Book-DIGITAL.pdf",
     features: [
       "18 original kid-friendly pet designs",
       "Thick outlines & big open spaces for small hands",
@@ -293,6 +315,7 @@ export const digitalProducts: DigitalProduct[] = [
       "Color, fold, and give! This Valentine's coloring book is 20 adorable pet-and-love scenes that are also giftable cards — each page has a To:/From: line and a short message space. Little artists can color a puppy holding a heart, a kitty with a 'be mine' balloon, bunnies, paw-print hearts and more, then fold and hand them to someone they love. Great for ages 3-8 and lovely for Valentine's, Grandparents' Day, or any 'I love you.' Single-sided pages mean no bleed-through, so crayons, markers, or colored pencils all work. Sized 8.5 x 11 inches and print-at-home friendly.",
     image: "/downloads/kdp-coloring-book-valentine/Colorful-Wishes-Valentine-preview.png",
     stripePaymentLink: "https://buy.stripe.com/fZu6oHcQ64yk2wxeCQ2cg1H",
+    file: "/downloads/kdp-coloring-book-valentine/Colorful-Wishes-Valentine-PRINT-AT-HOME.pdf",
     features: [
       "20 color-fold-and-give Valentine card pages",
       "To:/From: lines & message space on every card",
@@ -313,6 +336,7 @@ export const digitalProducts: DigitalProduct[] = [
       "Add a furry finishing touch to every gift! This printable set includes a sheet of charming pet-themed gift tags (paw prints, 'pawfect for you', dog and cat designs), plus matching wrapping extras like gift-card holders, a mini 'to/from' flag set, and coordinating patterns. Print as many copies as you need for birthdays, holidays, and adoption celebrations alike. Everything is designed for US Letter paper, with clean cut lines and an easy print-at-home layout.",
     image: "/downloads/pet-gift-tags-set/Pet-Gift-Tags-Wrapping-Set-preview.png",
     stripePaymentLink: "https://buy.stripe.com/9B69ATbM24yk6MN3Yc2cg1I",
+    file: "/downloads/pet-gift-tags-set/Pet-Gift-Tags-Wrapping-Set-PRINT-AT-HOME.pdf",
     features: [
       "Pet-themed gift tags with paw prints & puns",
       "Matching gift-card holders & wrapping extras",
@@ -333,6 +357,7 @@ export const digitalProducts: DigitalProduct[] = [
       "Never walk into a vet appointment unprepared again. This comprehensive prep kit helps you track symptoms before the visit, organize the questions you want to ask, log current medications and dosages, and maintain an up-to-date vaccination record. Also includes a post-visit summary sheet so you remember everything the vet told you. Designed with input from veterinary professionals. Stress less and advocate better for your pet's health!",
     image: "/images/vet-visit-prep-kit-preview.png",
     stripePaymentLink: "https://buy.stripe.com/dRm8wP9DU8OAgnndyM2cg0r",
+    file: "/downloads/vet-visit-prep-kit/Vet-Visit-Prep-Kit.pdf",
     features: [
       "Symptom tracker & timeline",
       "Questions-to-ask checklist",
@@ -443,3 +468,67 @@ export const digitalProducts: DigitalProduct[] = [
     ],
   },
 ];
+
+/* -------------------------------------------------------------------------
+ * Deliverability gate
+ *
+ * Paw & Found only sells what it can hand over. A product is sellable if and
+ * only if it has a real file on this site; a bundle is sellable only if every
+ * one of its component guides has one. Every Buy button in the UI checks these
+ * helpers, and /access/<slug> is where a buyer lands after paying.
+ * ---------------------------------------------------------------------- */
+
+/** The one address a buyer can reach a human on. Also published in /contact. */
+export const SUPPORT_EMAIL = "hello@pawandfound.store";
+
+/** The route Stripe redirects a buyer to after a successful payment. */
+export function accessPath(slug: string): string {
+  return `/access/${slug}`;
+}
+
+/** Absolute URL of a product's access page — used in emails and Stripe redirects. */
+export function accessUrl(slug: string, origin = "https://www.pawandfound.store"): string {
+  return `${origin}${accessPath(slug)}`;
+}
+
+export function getProductBySlug(slug: string): DigitalProduct | undefined {
+  return digitalProducts.find((p) => p.slug === slug);
+}
+
+export function getBundleById(id: string): Bundle | undefined {
+  return bundles.find((b) => b.id === id);
+}
+
+export function getBundleByAccessSlug(slug: string): Bundle | undefined {
+  return bundles.find((b) => b.accessSlug === slug);
+}
+
+/** True only when the product has a real file to deliver. */
+export function isAvailable(product: DigitalProduct): boolean {
+  return typeof product.file === "string" && product.file.length > 0;
+}
+
+/** True only when every component guide of the bundle has a real file. */
+export function isBundleAvailable(bundle: Bundle): boolean {
+  if (bundle.includedProducts.length === 0) return false;
+  return bundle.includedProducts.every((item) => {
+    const product = getProductBySlug(item.slug);
+    return product ? isAvailable(product) : false;
+  });
+}
+
+/** The component products of a bundle, in catalogue order. */
+export function bundleComponents(bundle: Bundle): DigitalProduct[] {
+  return bundle.includedProducts
+    .map((item) => getProductBySlug(item.slug))
+    .filter((p): p is DigitalProduct => Boolean(p));
+}
+
+/** Products that can actually be delivered today. */
+export const availableProducts: DigitalProduct[] = digitalProducts.filter(isAvailable);
+
+/** Bundles that can actually be delivered today. */
+export const availableBundles: Bundle[] = bundles.filter(isBundleAvailable);
+
+/** Products kept in the catalogue but not on sale, because no file exists yet. */
+export const unavailableProducts: DigitalProduct[] = digitalProducts.filter((p) => !isAvailable(p));
