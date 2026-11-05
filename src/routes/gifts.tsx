@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { bundles, digitalProducts } from "~/lib/digital-catalog";
+import { bundles, digitalProducts, isAvailable, isBundleAvailable } from "~/lib/digital-catalog";
 
 const SITE_URL = "https://www.pawandfound.store";
 
@@ -19,7 +19,9 @@ const GIFT_GROUPS = [
   { id: "kids", label: "Coloring & Kids", icon: "🖍️" },
 ] as const;
 
-// 18 gift picks: 2 bundles + 16 individual downloads, all live on Stripe.
+// 18 gift picks: 2 bundles + 16 individual downloads. A pick whose file is
+// missing is still listed, but its card says "Not available yet" and carries no
+// Buy button — nothing on this page sells what it cannot deliver.
 const PICKS_BY_GROUP: Record<string, string[]> = {
   bundles: ["bundle-001", "bundle-002"],
   guides: [
@@ -92,12 +94,16 @@ interface GiftPick {
   image: string;
   buyUrl: string;
   detailsHref: string;
+  /** False when the product has no deliverable file — no Buy button renders. */
+  available: boolean;
 }
 
 interface GiftsData {
   picks: GiftPick[];
   selectedCategory: string | null;
   totalPicks: number;
+  /** Picks that are actually on sale (every one has a file to deliver). */
+  availableCount: number;
 }
 
 function buildPicks(): GiftPick[] {
@@ -118,6 +124,7 @@ function buildPicks(): GiftPick[] {
           image: bundle.image,
           buyUrl: bundle.stripePaymentLink,
           detailsHref: "/downloads",
+          available: isBundleAvailable(bundle),
         });
         continue;
       }
@@ -132,6 +139,7 @@ function buildPicks(): GiftPick[] {
           image: product.image,
           buyUrl: product.stripePaymentLink,
           detailsHref: "/downloads",
+          available: isAvailable(product),
         });
       }
     }
@@ -152,6 +160,7 @@ export const Route = createFileRoute("/gifts")({
       picks,
       selectedCategory: category ?? null,
       totalPicks: allPicks.length,
+      availableCount: allPicks.filter((p) => p.available).length,
     };
   },
   component: GiftsPage,
@@ -166,9 +175,10 @@ export const Route = createFileRoute("/gifts")({
     const metaTitle = groupName
       ? `Digital Gifts — ${groupName} | Paw & Found 🎁`
       : "Christmas Gift Guide — Instant Digital Gifts | Paw & Found 🎁";
+    const readyNow = match.loaderData?.availableCount ?? 0;
     const metaDesc = groupName
-      ? `Instant-download pet gifts for Christmas in the ${groupName} category — every pick is a digital download from Paw & Found.`
-      : "Paw & Found's Christmas gift guide — 18 instant-download pet gifts, from $3.99 starter guides to bundles for new puppy and cat parents. Nothing to ship, nothing to wrap.";
+      ? `Instant-download pet gifts for Christmas in the ${groupName} category — every pick on sale is a digital download from Paw & Found.`
+      : `Paw & Found's Christmas gift guide — ${readyNow} instant-download pet gifts ready now, from $3.99 starter guides to bundles for new puppy and cat parents. Nothing to ship, nothing to wrap.`;
     return {
       meta: [
         { title: metaTitle },
@@ -177,7 +187,7 @@ export const Route = createFileRoute("/gifts")({
         {
           property: "og:description",
           content:
-            "18 instant-download pet gifts for Christmas — guides, planners, printables and bundles for dogs, cats and the people who love them.",
+            "Instant-download pet gifts for Christmas — guides, planners, printables and bundles for dogs, cats and the people who love them.",
         },
         { property: "og:image", content: `${SITE_URL}/images/pet-care-planner-preview.png` },
         { property: "og:url", content: canonical },
@@ -186,7 +196,7 @@ export const Route = createFileRoute("/gifts")({
         { name: "twitter:title", content: metaTitle },
         {
           name: "twitter:description",
-          content: "18 instant-download pet gifts for Christmas — nothing to ship, nothing to wrap.",
+          content: "Instant-download pet gifts for Christmas — nothing to ship, nothing to wrap.",
         },
         { name: "twitter:image", content: `${SITE_URL}/images/pet-care-planner-preview.png` },
       ],
@@ -196,7 +206,7 @@ export const Route = createFileRoute("/gifts")({
 });
 
 function GiftsPage() {
-  const { picks, selectedCategory, totalPicks } = Route.useLoaderData();
+  const { picks, selectedCategory, totalPicks, availableCount } = Route.useLoaderData();
   const groupName = selectedCategory
     ? GIFT_GROUPS.find((g) => g.id === selectedCategory)?.label ?? selectedCategory
     : null;
@@ -214,9 +224,10 @@ function GiftsPage() {
               The Christmas <span className="text-[#FF7F5C]">Gift Guide</span>
             </h1>
             <p className="mx-auto mt-4 max-w-xl text-lg leading-relaxed text-[#6B7280] lg:mx-0">
-              Every gift in this guide is an instant download — a guide, a planner, a printable or a
+              Every gift on sale here is an instant download — a guide, a planner, a printable or a
               bundle that lands in their inbox minutes after checkout. Nothing to ship, nothing to
-              wrap, nothing to wait for.
+              wrap, nothing to wait for. A few picks are marked “not available yet” while we finish
+              their files; those aren't on sale.
             </p>
             <div className="mt-6 flex flex-wrap justify-center gap-3 lg:justify-start">
               <a href="#picks" className="btn-primary">
@@ -260,8 +271,9 @@ function GiftsPage() {
               🎄 {groupName ? `${groupName} Gift Picks` : "Gift Picks"}
             </h2>
             <p className="mt-2 text-[#6B7280]">
-              {picks.length} of {totalPicks} hand-picked digital gifts
-              {groupName ? ` in ${groupName}` : " across the library"}.
+              {picks.filter((p) => p.available).length} of {picks.length} picks ready to download now
+              {groupName ? ` in ${groupName}` : " across the library"}
+              {availableCount < totalPicks ? ` · ${totalPicks - availableCount} coming back soon` : ""}
             </p>
           </div>
           <a href="/downloads" className="text-sm font-semibold text-[#2A9D8F] hover:text-[#FF7F5C]">
@@ -317,7 +329,9 @@ function GiftsPage() {
                   />
                 </div>
                 <div className="flex flex-1 flex-col p-4">
-                  <span className="badge">Instant download</span>
+                  <span className={pick.available ? "badge" : "badge bg-[#E9EDDE] text-[#6B7280]"}>
+                    {pick.available ? "Instant download" : "Not available yet"}
+                  </span>
                   <h3 className="font-heading mt-2 font-semibold text-[#2D2D2D] group-hover:text-[#FF7F5C]">
                     {pick.title}
                   </h3>
@@ -328,14 +342,20 @@ function GiftsPage() {
                     {pick.blurb}
                   </p>
                   <div className="mt-auto flex gap-2 pt-4">
-                    <a
-                      href={pick.buyUrl}
-                      target="_blank"
-                      rel="noopener"
-                      className="btn-primary flex-1 text-center text-xs px-3 py-2.5"
-                    >
-                      Buy Now
-                    </a>
+                    {pick.available ? (
+                      <a
+                        href={pick.buyUrl}
+                        target="_blank"
+                        rel="noopener"
+                        className="btn-primary flex-1 text-center text-xs px-3 py-2.5"
+                      >
+                        Buy Now
+                      </a>
+                    ) : (
+                      <span className="flex-1 rounded-full bg-[#E9EDDE] px-3 py-2.5 text-center text-xs font-semibold text-[#6B7280]">
+                        Not available yet
+                      </span>
+                    )}
                     <a
                       href={pick.detailsHref}
                       className="rounded-full border border-[#2A9D8F] px-4 py-2.5 text-xs font-semibold text-[#2A9D8F] transition-colors hover:bg-[#E8F8F5]"
@@ -369,7 +389,8 @@ function GiftsPage() {
             <span className="text-3xl">📥</span>
             <h3 className="font-heading mt-3 text-xl font-bold text-[#2D2D2D]">2. Download instantly</h3>
             <p className="mt-2 text-sm leading-relaxed text-[#6B7280]">
-              Your download link arrives by email the moment payment clears. No delivery window.
+              Payment takes you straight to your own download page. No delivery window, nothing to
+              wait for.
             </p>
           </div>
           <div className="card flex flex-col p-6">

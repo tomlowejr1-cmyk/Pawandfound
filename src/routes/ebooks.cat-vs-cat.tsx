@@ -2,8 +2,6 @@ import { createFileRoute } from "@tanstack/react-router";
 
 const SITE_URL = "https://www.pawandfound.store";
 
-const BUNDLE_PAYMENT_LINK = "https://buy.stripe.com/8x28wPg2i9SE6MN7ao2cg0K";
-const EBOOK_PAYMENT_LINK = "https://buy.stripe.com/fZu3cvaHY2qcb33cuI2cg18";
 
 const chapters = [
   { ch: "1", title: "Why Cats Fight: Understanding Feline Conflict", desc: "Territorial instincts, redirected aggression, and the real reasons behind hissing standoffs" },
@@ -61,9 +59,9 @@ function CatVsCatPage() {
               </p>
               <div className="mt-6 flex flex-wrap items-center gap-4 justify-center md:justify-start">
                 <span className="font-heading text-3xl font-bold text-[#FF7F5C]">$12.99</span>
-                <a href={EBOOK_PAYMENT_LINK} className="btn-primary text-base px-8 py-3">
-                  Buy Now — Instant Download
-                </a>
+                <span className="inline-block rounded-full bg-[#E9EDDE] px-5 py-2.5 text-sm font-semibold text-[#6B7280]">
+              Not available yet — this eBook’s file isn’t finished
+            </span>
               </div>
               <p className="mt-2 text-xs text-[#6B7280]">Secure payment via Stripe. 30-day money-back guarantee.</p>
             </div>
@@ -134,9 +132,9 @@ function CatVsCatPage() {
           <div className="mt-6">
             <span className="font-heading text-4xl font-bold text-[#FF7F5C]">$12.99</span>
             <p className="mt-1 text-sm text-[#6B7280]">Instant PDF download · 30-day money-back guarantee</p>
-            <a href={EBOOK_PAYMENT_LINK} className="btn-primary mt-4 inline-block text-base px-10 py-4">
-              Buy Now — Instant Download
-            </a>
+            <span className="inline-block rounded-full bg-[#E9EDDE] px-5 py-2.5 text-sm font-semibold text-[#6B7280]">
+              Not available yet — this eBook’s file isn’t finished
+            </span>
           </div>
 
           {/* Bundle Cross-sell */}
@@ -150,9 +148,9 @@ function CatVsCatPage() {
               <span className="text-lg text-[#6B7280] line-through">$79.96</span>
               <span className="font-heading text-2xl font-bold text-[#FF7F5C]">$49.99</span>
             </div>
-            <a href={BUNDLE_PAYMENT_LINK} className="btn-secondary mt-3 inline-block">
-              Get the Bundle Instead
-            </a>
+            <span className="inline-block rounded-full bg-[#E9EDDE] px-5 py-2.5 text-sm font-semibold text-[#6B7280]">
+              Not available yet — this eBook’s file isn’t finished
+            </span>
           </div>
         </div>
       </div>

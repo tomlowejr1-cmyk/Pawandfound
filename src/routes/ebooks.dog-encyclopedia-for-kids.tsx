@@ -2,8 +2,6 @@ import { createFileRoute } from "@tanstack/react-router";
 
 const SITE_URL = "https://www.pawandfound.store";
 
-const EBOOK_PAYMENT_LINK = "https://buy.stripe.com/14A9AT5nE0i4fjjgKY2cg16";
-const CAT_ENYCLOPEDIA_LINK = "https://buy.stripe.com/eVqfZh5nE6Gs1stgKY2cg17";
 
 const chapters = [
   { icon: "🐕", title: "40+ Breeds from A to Z", desc: "Meet amazing dogs from the tiny Chihuahua to the giant Great Dane — with fun facts about every one!" },
@@ -77,9 +75,9 @@ function DogEncyclopediaKidsPage() {
               </p>
               <div className="mt-6 flex flex-wrap items-center gap-4 justify-center md:justify-start">
                 <span className="font-heading text-3xl font-bold text-white drop-shadow-sm">$12.99</span>
-                <a href={EBOOK_PAYMENT_LINK} className="btn-primary text-base px-8 py-3 !bg-[#2A9D8F] hover:!bg-[#23877B] !text-white">
-                  Buy Now — Instant Download
-                </a>
+                <span className="inline-block rounded-full bg-[#E9EDDE] px-5 py-2.5 text-sm font-semibold text-[#6B7280]">
+              Not available yet — this eBook’s file isn’t finished
+            </span>
               </div>
               <p className="mt-2 text-xs text-white/70">Secure payment via Stripe. 30-day money-back guarantee.</p>
             </div>
@@ -184,9 +182,9 @@ function DogEncyclopediaKidsPage() {
           <div className="mt-6">
             <span className="font-heading text-4xl font-bold text-[#FF7F5C]">$12.99</span>
             <p className="mt-1 text-sm text-[#6B7280]">Instant PDF download · 30-day money-back guarantee</p>
-            <a href={EBOOK_PAYMENT_LINK} className="btn-primary mt-4 inline-block text-base px-10 py-4 !bg-[#2A9D8F] hover:!bg-[#23877B] !text-white">
-              Buy Now — Instant Download
-            </a>
+            <span className="inline-block rounded-full bg-[#E9EDDE] px-5 py-2.5 text-sm font-semibold text-[#6B7280]">
+              Not available yet — this eBook’s file isn’t finished
+            </span>
           </div>
 
           {/* Cross-sell */}
@@ -215,9 +213,9 @@ function DogEncyclopediaKidsPage() {
                   <a href="/ebooks/cat-encyclopedia-for-kids" className="text-sm font-medium text-[#2A9D8F] hover:text-[#FF7F5C] transition-colors">
                     Learn more →
                   </a>
-                  <a href={CAT_ENYCLOPEDIA_LINK} className="btn-primary text-sm px-4 py-2 !bg-[#FF7F5C] hover:!bg-[#E96A48] !text-white">
-                    Buy Now
-                  </a>
+                  <span className="inline-block rounded-full bg-[#E9EDDE] px-5 py-2.5 text-sm font-semibold text-[#6B7280]">
+              Not available yet — this eBook’s file isn’t finished
+            </span>
                 </div>
               </div>
             </div>

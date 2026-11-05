@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 const SITE_URL = "https://www.pawandfound.store";
-const PAYMENT_LINK = "https://buy.stripe.com/00w28r2bs3ug9YZ9iw2cg0Q";
 
 export const Route = createFileRoute("/products/pet-calendar")({
   component: PetCalendarPage,
@@ -44,9 +43,9 @@ function PetCalendarPage() {
               </p>
               <div className="mt-6 flex flex-wrap items-center gap-4 justify-center md:justify-start">
                 <span className="font-heading text-3xl font-bold text-[#FF7F5C]">$12.99</span>
-                <a href={PAYMENT_LINK} className="btn-primary text-base px-8 py-3">
-                  Buy Now — Instant Download
-                </a>
+                <span className="inline-block rounded-full bg-[#E9EDDE] px-6 py-3 text-sm font-semibold text-[#6B7280]">
+              Not available yet — the 2027 calendar file isn’t ready
+            </span>
               </div>
               <p className="mt-2 text-xs text-[#6B7280]">Secure payment via Stripe. Printable PDF — print as many copies as you want.</p>
             </div>
@@ -145,9 +144,9 @@ function PetCalendarPage() {
           <div className="mt-6">
             <span className="font-heading text-4xl font-bold text-[#FF7F5C]">$12.99</span>
             <p className="mt-1 text-sm text-[#6B7280]">Instant PDF download · Print as many copies as you want</p>
-            <a href={PAYMENT_LINK} className="btn-primary mt-4 inline-block text-base px-10 py-4">
-              Buy Now — Instant Download
-            </a>
+            <span className="inline-block rounded-full bg-[#E9EDDE] px-6 py-3 text-sm font-semibold text-[#6B7280]">
+              Not available yet — the 2027 calendar file isn’t ready
+            </span>
           </div>
 
           {/* Cross-sell to eBooks */}

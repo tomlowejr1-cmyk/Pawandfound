@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { bundles, digitalProducts } from "~/lib/digital-catalog";
+import { bundles, digitalProducts, isAvailable, isBundleAvailable } from "~/lib/digital-catalog";
 
 const SITE_URL = "https://www.pawandfound.store";
 
@@ -46,6 +46,14 @@ function DownloadsPage() {
           <span className="inline-flex items-center rounded-full bg-[#2D2D2D] px-3 py-1 text-xs font-bold text-[#F4A261]">📚 PREMIUM eBOOKS</span>
           <h2 className="section-title mt-3">Premium Pet Care eBooks</h2>
           <p className="section-subtitle mt-2">In-depth guides written by pet experts. One purchase, lifetime access.</p>
+          <div className="mx-auto mt-4 max-w-2xl rounded-2xl border border-[#F4A261]/40 bg-[#FFF8F0] p-4 text-sm text-[#6B7280]">
+            <p className="font-semibold text-[#2D2D2D]">Our eBooks are off sale for now</p>
+            <p className="mt-1">
+              We're finishing the book files. Until a finished eBook can actually be downloaded the
+              moment you pay, we're not selling it. The guides, planners, printables and coloring
+              books further down this page are live and ready to download.
+            </p>
+          </div>
         </div>
 
         {/* Bundle Card — Featured */}
@@ -77,9 +85,9 @@ function DownloadsPage() {
                 <span className="font-heading text-3xl font-bold text-[#FF7F5C]">$49.99</span>
                 <span className="inline-flex items-center rounded-full bg-[#2A9D8F]/10 px-3 py-1 text-xs font-bold text-[#2A9D8F]">Save $29.97</span>
               </div>
-              <a href="https://buy.stripe.com/8x28wPg2i9SE6MN7ao2cg0K" className="btn-primary mt-4 inline-block text-sm">
-                Buy Bundle — Instant Download
-              </a>
+              <p className="mt-4 inline-block rounded-full bg-[#E9EDDE] px-4 py-2 text-sm font-semibold text-[#6B7280]">
+                Not available yet — eBook bundle off sale
+              </p>
             </div>
           </div>
         </div>
@@ -92,8 +100,6 @@ function DownloadsPage() {
               price: "$19.99",
               desc: "Week-by-week roadmap for raising a happy, healthy puppy. Training, health, nutrition — 12 chapters.",
               img: "/images/ebook-puppy-handbook.jpg",
-              link: "https://buy.stripe.com/14A3cv5nE5Co0op1Q42cg0H",
-              gumroad: "https://tomlowe8.gumroad.com/l/httpswwwpawandfoundstoreebookspuppy-handbook",
               slug: "/ebooks/puppy-handbook",
             },
             {
@@ -101,8 +107,6 @@ function DownloadsPage() {
               price: "$19.99",
               desc: "Master cat behavior, health, and enrichment. 10 chapters covering everything from litter boxes to senior care.",
               img: "/images/ebook-cat-care.jpg",
-              link: "https://buy.stripe.com/aFafZh9DUgh21stfGU2cg0I",
-              gumroad: "https://tomlowe8.gumroad.com/l/httpswwwpawandfoundstoreebookscat-care-guide",
               slug: "/ebooks/cat-care-guide",
             },
             {
@@ -110,8 +114,6 @@ function DownloadsPage() {
               price: "$24.99",
               desc: "The comprehensive reference for dogs and cats. Emergencies, travel, multi-pet homes — 14 chapters.",
               img: "/images/ebook-survival-guide.jpg",
-              link: "https://buy.stripe.com/14AdR94jA0i45IJ2U82cg0J",
-              gumroad: "https://tomlowe8.gumroad.com/l/httpswwwpawandfoundstoreebookssurvival-guide",
               slug: "/ebooks/survival-guide",
             },
             {
@@ -119,8 +121,6 @@ function DownloadsPage() {
               price: "$14.99",
               desc: "Compassionate guidance for your pet's golden years. Health, mobility, nutrition, and end-of-life care — 8 chapters.",
               img: "/images/ebook-senior-pet-care.jpg",
-              link: "https://buy.stripe.com/7sY6oH4jA3ug8UV0M02cg0U",
-              gumroad: "https://tomlowe8.gumroad.com/l/httpswwwpawandfoundstoreebookssenior-pet-care",
               slug: "/ebooks/senior-pet-care",
             },
             {
@@ -128,8 +128,6 @@ function DownloadsPage() {
               price: "$12.99",
               desc: "40+ dog breeds A to Z, fun facts, a family breed quiz, dog jobs, and amazing records — a playful guide for young dog lovers.",
               img: "/images/ebook-dog-encyclopedia-kids.jpg",
-              link: "https://buy.stripe.com/14A9AT5nE0i4fjjgKY2cg16",
-              gumroad: "https://tomlowe8.gumroad.com/l/httpswwwpawandfoundstoreebooksdog-encyclopedia-for-kids",
               slug: "/ebooks/dog-encyclopedia-for-kids",
             },
             {
@@ -137,8 +135,6 @@ function DownloadsPage() {
               price: "$12.99",
               desc: "25+ cat breeds A to Z, fun facts, a family breed quiz, famous cats in history, and amazing records — a purr-fect guide for young cat fans.",
               img: "/images/ebook-cat-encyclopedia-kids.jpg",
-              link: "https://buy.stripe.com/eVqfZh5nE6Gs1stgKY2cg17",
-              gumroad: "https://tomlowe8.gumroad.com/l/httpswwwpawandfoundstoreebookscat-encyclopedia-for-kids",
               slug: "/ebooks/cat-encyclopedia-for-kids",
             },
             {
@@ -146,8 +142,6 @@ function DownloadsPage() {
               price: "$12.99",
               desc: "Stop the hissing and restore peace. Introductions, territory, resource sharing, stress signals, and safe fight interventions — 8 chapters.",
               img: "/images/ebook-cat-vs-cat.jpg",
-              link: "https://buy.stripe.com/fZu3cvaHY2qcb33cuI2cg18",
-              gumroad: "https://tomlowe8.gumroad.com/l/httpswwwpawandfoundstoreebookscat-vs-cat",
               slug: "/ebooks/cat-vs-cat",
             },
             {
@@ -155,8 +149,6 @@ function DownloadsPage() {
               price: "$14.99",
               desc: "Understand and manage leash reactivity, barking, and fear-based responses. Threshold management, counter-conditioning, and confidence building — for walks you both enjoy.",
               img: "/images/ebook-reactive-dog.jpg",
-              link: "https://buy.stripe.com/9B6cN54jA0i45IJ1Q42cg1e",
-              gumroad: "https://tomlowe8.gumroad.com/l/httpswwwpawandfoundstoredownloads",
               slug: "/downloads",
             },
             {
@@ -164,8 +156,6 @@ function DownloadsPage() {
               price: "$14.99",
               desc: "Yes, cats CAN be trained! Clicker training, harness walking, tricks, and solving problem behaviors with positive reinforcement adapted for felines.",
               img: "/images/ebook-cat-training.jpg",
-              link: "https://buy.stripe.com/5kQ5kDbM25Co5IJ66k2cg1f",
-              gumroad: "https://tomlowe8.gumroad.com/l/httpsbuystripecom5kQ5kDbM25Co5IJ66k2cg1f",
               slug: "/downloads",
             },
           ].map((ebook) => (
@@ -184,8 +174,7 @@ function DownloadsPage() {
                   <span className="font-heading text-lg font-bold text-[#FF7F5C]">{ebook.price}</span>
                   <div className="flex gap-2">
                     <a href={ebook.slug} className="text-xs font-medium text-[#2A9D8F] hover:text-[#FF7F5C]">Details</a>
-                    <a href={ebook.gumroad} target="_blank" rel="noopener" className="rounded-full border border-[#FF90E8] px-3 py-1.5 text-xs font-semibold text-[#FF7F5C] hover:bg-[#FFF0F5] transition-colors">Buy on Gumroad</a>
-                    <a href={ebook.link} className="btn-primary text-xs px-3 py-1.5">Buy with Card</a>
+                    <span className="rounded-full bg-[#E9EDDE] px-3 py-1.5 text-xs font-semibold text-[#6B7280]">Not available yet</span>
                   </div>
                 </div>
               </div>
@@ -220,12 +209,9 @@ function DownloadsPage() {
                 <a href="/ebooks/senior-pet-care" className="text-sm font-medium text-[#2A9D8F] hover:text-[#FF7F5C] transition-colors">
                   Learn more →
                 </a>
-                <a
-                  href="https://buy.stripe.com/7sY6oH4jA3ug8UV0M02cg0U"
-                  className="btn-primary text-sm px-4 py-2"
-                >
-                  Buy Now — Instant Download
-                </a>
+                <span className="rounded-full bg-[#E9EDDE] px-4 py-2 text-sm font-semibold text-[#6B7280]">
+                  Not available yet
+                </span>
               </div>
             </div>
           </div>
@@ -255,14 +241,12 @@ function DownloadsPage() {
                   img: "/images/ebook-dog-encyclopedia-kids.jpg",
                   price: "$12.99",
                   slug: "/ebooks/dog-encyclopedia-for-kids",
-                  link: "https://buy.stripe.com/14A9AT5nE0i4fjjgKY2cg16",
                 },
                 {
                   title: "The Cat Encyclopedia for Kids",
                   img: "/images/ebook-cat-encyclopedia-kids.jpg",
                   price: "$12.99",
                   slug: "/ebooks/cat-encyclopedia-for-kids",
-                  link: "https://buy.stripe.com/eVqfZh5nE6Gs1stgKY2cg17",
                 },
               ].map((book) => (
                 <div key={book.title} className="flex items-center gap-4 rounded-xl bg-white/95 p-4 shadow-md">
@@ -274,9 +258,9 @@ function DownloadsPage() {
                       <a href={book.slug} className="text-xs font-medium text-[#2A9D8F] hover:text-[#FF7F5C] transition-colors">
                         Details
                       </a>
-                      <a href={book.link} className="btn-primary text-xs px-3 py-1.5 !bg-[#2A9D8F] hover:!bg-[#23877B] !text-white">
-                        Buy Now
-                      </a>
+                      <span className="rounded-full bg-[#E9EDDE] px-3 py-1.5 text-xs font-semibold text-[#6B7280]">
+                        Not available yet
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -364,17 +348,25 @@ function DownloadsPage() {
                   </span>
                 </div>
 
-                {/* CTA */}
+                {/* CTA — gated on every component guide having a real file */}
                 <div className="mt-5">
-                  <a
-                    href={bundle.stripePaymentLink}
-                    className="btn-primary w-full text-center text-base py-3"
-                  >
-                    Buy Bundle — Instant Download
-                  </a>
+                  {isBundleAvailable(bundle) ? (
+                    <a
+                      href={bundle.stripePaymentLink}
+                      className="btn-primary w-full text-center text-base py-3"
+                    >
+                      Buy Bundle — Instant Download
+                    </a>
+                  ) : (
+                    <p className="w-full rounded-lg bg-[#E9EDDE] px-4 py-3 text-center text-sm font-semibold text-[#6B7280]">
+                      Not available yet — one of these guides has no file to download
+                    </p>
+                  )}
                 </div>
                 <p className="mt-2 text-center text-xs text-[#6B7280]">
-                  Secure payment via Stripe. All 3 guides included.
+                  {isBundleAvailable(bundle)
+                    ? "Secure payment via Stripe. All 3 guides included."
+                    : "This bundle comes back on sale when all three guides are ready."}
                 </p>
               </div>
             </div>
@@ -430,94 +422,55 @@ function DownloadsPage() {
                 </ul>
               </div>
 
-              {/* Price & Buy */}
+              {/* Price & Buy — the Buy button exists only if there is a file to deliver */}
               <div className="mt-8 flex flex-wrap items-center gap-4">
                 <span className="font-heading text-3xl font-bold text-[#FF7F5C]">
                   ${product.price.toFixed(2)}
                 </span>
-                <a
-                  href={product.stripePaymentLink}
-                  className="btn-primary text-base px-8 py-3"
-                >
-                  Buy Now — Instant Download
-                </a>
+                {isAvailable(product) ? (
+                  <a
+                    href={product.stripePaymentLink}
+                    className="btn-primary text-base px-8 py-3"
+                  >
+                    Buy Now — Instant Download
+                  </a>
+                ) : (
+                  <span className="rounded-full bg-[#E9EDDE] px-5 py-2.5 text-sm font-semibold text-[#6B7280]">
+                    Not available yet — no file to download
+                  </span>
+                )}
               </div>
               <p className="mt-2 text-xs text-[#6B7280]">
-                Secure payment via Stripe. Refunds within 30 days if unsatisfied.
+                {isAvailable(product)
+                  ? "Secure payment via Stripe. Refunds within 30 days if unsatisfied."
+                  : "We'd rather not sell a download we can't hand over. This one comes back when its file is ready."}
               </p>
+              {isAvailable(product) && (
+                <a
+                  href={`/access/${product.slug}`}
+                  className="mt-1 inline-block text-xs font-medium text-[#2A9D8F] hover:text-[#FF7F5C]"
+                >
+                  Already bought it? Get your download →
+                </a>
+              )}
             </div>
           </div>
         ))}
       </div>
 
-      {/* WISHES5 Loyalty */}
+      {/* Colourful Wishes card books — no files yet, so not on sale */}
       <section className="mx-auto max-w-4xl px-4 py-10 sm:px-6 lg:px-8">
         <div className="rounded-3xl bg-gradient-to-br from-[#FFF8F0] to-white p-6 ring-1 ring-[#F4E3CD] sm:p-8">
           <div className="text-center">
             <span className="text-3xl">🎨</span>
             <h2 className="font-heading mt-2 text-2xl font-bold text-[#2D2D2D] sm:text-3xl">
-              Love your coloring books? <span className="text-[#FF7F5C]">$5 off your next one</span>
+              Colorful Wishes card books — <span className="text-[#FF7F5C]">back soon</span>
             </h2>
             <p className="mx-auto mt-2 max-w-xl text-[#6B7280]">
-              A thank-you for our repeat buyers — grab another Colorful Wishes coloring book at a
-              discounted price. Just a small reward. No code needed.
+              The Birthday, Dinosaur and Ocean Party card books aren't on sale at the moment — the
+              print-at-home files aren't finished. When they are, they'll be right here. The
+              Colorful Wishes Valentine's card book is live on this page and ready to download.
             </p>
-          </div>
-          <div className="mt-6 grid gap-4 sm:grid-cols-3">
-            <a
-              href="https://buy.stripe.com/eVq7sL8zQ3uggnn7ao2cg1w"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="card group flex flex-col items-center gap-3 p-5 text-center transition-all hover:-translate-y-1"
-            >
-              <span className="text-2xl">🎂</span>
-              <span className="font-heading font-semibold text-[#2D2D2D]">
-                Colorful Wishes: Birthday Card
-              </span>
-              <span className="mt-auto">
-                <span className="text-sm text-[#6B7280] line-through">$9.99</span>{" "}
-                <span className="font-heading text-xl font-bold text-[#FF7F5C]">$4.99</span>
-              </span>
-              <span className="btn-primary mt-2 w-full px-4 py-2 text-center text-sm">
-                Buy for $4.99
-              </span>
-            </a>
-            <a
-              href="https://buy.stripe.com/6oUfZh3fw5Cofjj3Yc2cg1x"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="card group flex flex-col items-center gap-3 p-5 text-center transition-all hover:-translate-y-1"
-            >
-              <span className="text-2xl">🦖</span>
-              <span className="font-heading font-semibold text-[#2D2D2D]">
-                Colorful Wishes: Dinosaur Adventure
-              </span>
-              <span className="mt-auto">
-                <span className="text-sm text-[#6B7280] line-through">$9.99</span>{" "}
-                <span className="font-heading text-xl font-bold text-[#FF7F5C]">$4.99</span>
-              </span>
-              <span className="btn-primary mt-2 w-full px-4 py-2 text-center text-sm">
-                Buy for $4.99
-              </span>
-            </a>
-            <a
-              href="https://buy.stripe.com/bJe5kD2bs7Kwb333Yc2cg1y"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="card group flex flex-col items-center gap-3 p-5 text-center transition-all hover:-translate-y-1"
-            >
-              <span className="text-2xl">🌊</span>
-              <span className="font-heading font-semibold text-[#2D2D2D]">
-                Colorful Wishes: Ocean Party
-              </span>
-              <span className="mt-auto">
-                <span className="text-sm text-[#6B7280] line-through">$9.99</span>{" "}
-                <span className="font-heading text-xl font-bold text-[#FF7F5C]">$4.99</span>
-              </span>
-              <span className="btn-primary mt-2 w-full px-4 py-2 text-center text-sm">
-                Buy for $4.99
-              </span>
-            </a>
           </div>
         </div>
       </section>
@@ -536,9 +489,9 @@ function DownloadsPage() {
               </p>
             </div>
             <div>
-              <span className="text-2xl">📧</span>
+              <span className="text-2xl">⬇️</span>
               <p className="mt-2 text-sm text-[#6B7280]">
-                Check your email for your receipt and download link
+                You land on your download page straight after payment — your file is there to grab
               </p>
             </div>
             <div>
