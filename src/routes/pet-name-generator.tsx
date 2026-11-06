@@ -226,7 +226,8 @@ function generate(type: PetType, style: Style, theme: ThemeKey, count = 8): stri
   return shuffle([...themedPick, ...stylePick]);
 }
 
-function validateSearch(v: unknown): {
+/** Fill in defaults — used for the page's initial state and the <head> copy. */
+function normalizeSearch(v: unknown): {
   type: PetType;
   style: Style;
   theme: ThemeKey;
@@ -238,13 +239,36 @@ function validateSearch(v: unknown): {
   return { type, style, theme };
 }
 
+/**
+ * Keep only the params the visitor actually supplied (and only if valid).
+ *
+ * Returning the defaults from here made the router treat
+ * "/pet-name-generator" and "/pet-name-generator?type=dog&style=funny&theme=none"
+ * as two different locations, so a bare visit cost a 307 redirect hop to the
+ * parameterised URL. Defaults are applied in the component instead.
+ */
+function pickSearch(v: unknown): {
+  type?: PetType;
+  style?: Style;
+  theme?: ThemeKey;
+} {
+  const s = (v ?? {}) as Record<string, unknown>;
+  const out: { type?: PetType; style?: Style; theme?: ThemeKey } = {};
+  if ((["dog", "cat", "other"] as PetType[]).includes(s.type as PetType)) out.type = s.type as PetType;
+  if ((["funny", "cute", "unique", "classic"] as Style[]).includes(s.style as Style)) out.style = s.style as Style;
+  if ((["none", "food", "nature", "space", "music", "royalty", "ocean", "cozy"] as ThemeKey[]).includes(s.theme as ThemeKey)) {
+    out.theme = s.theme as ThemeKey;
+  }
+  return out;
+}
+
 /* ------------------------------ route ------------------------------ */
 
 export const Route = createFileRoute("/pet-name-generator")({
   component: PetNameGeneratorPage,
-  validateSearch: (search) => validateSearch(search),
+  validateSearch: (search) => pickSearch(search),
   head: ({ search }) => {
-    const { type, style, theme } = validateSearch(search);
+    const { type, style, theme } = normalizeSearch(search);
     const typeLabel = PET_TYPES.find((t) => t.key === type)?.label ?? "Pet";
     const styleLabel = STYLES.find((s) => s.key === style)?.label ?? "";
     return {
@@ -268,9 +292,9 @@ export const Route = createFileRoute("/pet-name-generator")({
 
 function PetNameGeneratorPage() {
   const search = useSearch({ from: Route.id });
-  const [type, setType] = useState<PetType>(search.type);
-  const [style, setStyle] = useState<Style>(search.style);
-  const [theme, setTheme] = useState<ThemeKey>(search.theme);
+  const [type, setType] = useState<PetType>(search.type ?? "dog");
+  const [style, setStyle] = useState<Style>(search.style ?? "funny");
+  const [theme, setTheme] = useState<ThemeKey>(search.theme ?? "none");
   const [names, setNames] = useState<string[]>([]);
   const [faves, setFaves] = useState<string[]>([]);
   const [copied, setCopied] = useState<string | null>(null);
