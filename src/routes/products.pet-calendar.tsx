@@ -149,15 +149,15 @@ function PetCalendarPage() {
             </span>
           </div>
 
-          {/* Cross-sell to eBooks */}
+          {/* Cross-sell to the digital catalogue */}
           <div className="mt-10 rounded-2xl border border-[#E9EDDE] bg-white p-6 shadow-sm">
             <span className="text-2xl">📚</span>
             <h3 className="font-heading mt-2 text-lg font-semibold text-[#2D2D2D]">Looking for more pet content?</h3>
             <p className="mt-1 text-sm text-[#6B7280]">
-              Check out our premium eBooks — in-depth guides for puppy parents, cat owners, and every pet lover in between.
+              Browse our instant-download guides and printables — practical help for puppy parents, cat owners, and every pet lover in between.
             </p>
-            <a href="/downloads#premium-ebooks" className="btn-secondary mt-3 inline-block text-sm">
-              Browse Premium eBooks
+            <a href="/downloads" className="btn-secondary mt-3 inline-block text-sm">
+              Browse Digital Guides
             </a>
           </div>
         </div>

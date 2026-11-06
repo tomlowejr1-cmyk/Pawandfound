@@ -432,7 +432,7 @@ function GiftsPage() {
               Digital Guides &amp; Bundles
             </h3>
             <p className="mt-2 flex-1 text-sm leading-relaxed text-[#6B7280]">
-              Instant-download guides from $3.99, starter bundles, and premium eBooks for the pet
+              Instant-download guides from $3.99 and starter bundles for the pet
               parent on your list — nothing to ship, nothing to wrap.
             </p>
             <span className="mt-4 text-sm font-semibold text-[#2A9D8F] group-hover:text-[#FF7F5C]">

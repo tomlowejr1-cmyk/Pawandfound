@@ -41,7 +41,7 @@ export const Route = createRootRoute({
       {
         name: "description",
         content:
-          "Instant digital pet guides, printable planners, coloring books and eBooks — buy in two clicks and download straight away.",
+          "Instant digital pet guides, printable planners and coloring books — buy in two clicks and download straight away.",
       },
       // Open Graph defaults
       { property: "og:site_name", content: "Paw & Found" },
@@ -51,7 +51,7 @@ export const Route = createRootRoute({
       {
         property: "og:description",
         content:
-          "Instant digital pet guides, printable planners, coloring books and eBooks — buy in two clicks and download straight away.",
+          "Instant digital pet guides, printable planners and coloring books — buy in two clicks and download straight away.",
       },
       { property: "og:image", content: `${SITE_URL}/images/logo.png` },
       // Twitter Card
@@ -80,7 +80,7 @@ export const Route = createRootRoute({
           url: SITE_URL,
           logo: `${SITE_URL}/images/logo.png`,
           description:
-            "Digital pet shop selling downloadable guides, printable planners, coloring books and eBooks — delivered instantly, nothing to ship.",
+            "Digital pet shop selling downloadable guides, printable planners and coloring books — delivered instantly, nothing to ship.",
           contactPoint: {
             "@type": "ContactPoint",
             email: "hello@pawandfound.store",
@@ -238,7 +238,6 @@ function Header() {
     { href: "/training", label: "Training Videos 🎓" },
     { href: "/budget-tracker", label: "Budget Tracker 💰" },
     { href: "/downloads", label: "Digital Guides" },
-    { href: "/downloads#premium-ebooks", label: "eBooks" },
     { href: "/freebies/pet-birthday-card", label: "Freebies" },
     { href: "/gift-cards", label: "Gift Cards 🎁" },
     { href: "/refer-a-friend", label: "Refer a Friend 💌" },
@@ -403,7 +402,6 @@ function Footer() {
               <li><a href="/blog" className="hover:text-white">Blog</a></li>
               <li><a href="/training" className="hover:text-white">Training Videos 🎓</a></li>
               <li><a href="/downloads" className="hover:text-white">Digital Guides</a></li>
-              <li><a href="/downloads#premium-ebooks" className="hover:text-white">eBooks</a></li>
               <li><a href="/freebies/pet-birthday-card" className="hover:text-white">Freebies</a></li>
               <li><a href="/adopt" className="hover:text-white">Adopt a Pet ❤️</a></li>
               <li><a href="/suggest" className="hover:text-white">Request a Product 💡</a></li>
