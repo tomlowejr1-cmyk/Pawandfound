@@ -239,7 +239,6 @@ function Header() {
     { href: "/budget-tracker", label: "Budget Tracker 💰" },
     { href: "/downloads", label: "Digital Guides" },
     { href: "/freebies/pet-birthday-card", label: "Freebies" },
-    { href: "/gift-cards", label: "Gift Cards 🎁" },
     { href: "/refer-a-friend", label: "Refer a Friend 💌" },
     { href: "/birthday-club", label: "Birthday Club 🎂" },
     { href: "/pet-reminders", label: "Pet Reminders ⏰" },

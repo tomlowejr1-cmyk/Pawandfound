@@ -378,54 +378,6 @@ function GiftsPage() {
           this year.
         </p>
         <div className="mt-8 grid gap-6 sm:grid-cols-3">
-          <div className="card flex flex-col p-6">
-            <span className="text-3xl">🛒</span>
-            <h3 className="font-heading mt-3 text-xl font-bold text-[#2D2D2D]">1. Check out</h3>
-            <p className="mt-2 text-sm leading-relaxed text-[#6B7280]">
-              Pay securely with Stripe — card, Apple Pay or PayPal.
-            </p>
-          </div>
-          <div className="card flex flex-col p-6">
-            <span className="text-3xl">📥</span>
-            <h3 className="font-heading mt-3 text-xl font-bold text-[#2D2D2D]">2. Download instantly</h3>
-            <p className="mt-2 text-sm leading-relaxed text-[#6B7280]">
-              Payment takes you straight to your own download page. No delivery window, nothing to
-              wait for.
-            </p>
-          </div>
-          <div className="card flex flex-col p-6">
-            <span className="text-3xl">🎁</span>
-            <h3 className="font-heading mt-3 text-xl font-bold text-[#2D2D2D]">3. Pass it on</h3>
-            <p className="mt-2 text-sm leading-relaxed text-[#6B7280]">
-              Forward the file to the pet parent on your list — it's theirs to keep and print.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Gift cards */}
-      <section id="gift-cards" className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        <h2 className="font-heading text-3xl font-bold text-[#2D2D2D]">🎁 Gift Cards</h2>
-        <p className="mt-2 max-w-2xl text-[#6B7280]">
-          Gift cards are not on sale yet — we'd rather not sell a card than sell one that has
-          nothing to spend it on. When they launch, this is where you'll find them.
-        </p>
-        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          <div className="card flex flex-col p-6">
-            <span className="text-3xl">💳</span>
-            <h3 className="font-heading mt-3 text-xl font-bold text-[#2D2D2D]">
-              Gift Cards — coming soon
-            </h3>
-            <p className="mt-2 flex-1 text-sm leading-relaxed text-[#6B7280]">
-              $25 to $100, delivered by email. Not available for purchase yet.
-            </p>
-            <a
-              href="/gift-cards"
-              className="mt-4 text-sm font-semibold text-[#2A9D8F] hover:text-[#FF7F5C]"
-            >
-              See gift card details →
-            </a>
-          </div>
           <a href="/downloads" className="card group flex flex-col p-6">
             <span className="text-3xl">📚</span>
             <h3 className="font-heading mt-3 text-xl font-bold text-[#2D2D2D] group-hover:text-[#FF7F5C]">
