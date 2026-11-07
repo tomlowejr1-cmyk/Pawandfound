@@ -195,8 +195,8 @@ function ChristmasPage() {
         >
           <span className="text-2xl">🎁</span>
           <span className="font-heading font-semibold text-[#2D2D2D] group-hover:text-[#FF7F5C]">
-            Shopping for someone else? See the full Christmas Gift Guide — gift picks, gift cards
-            &amp; instant digital guides →
+            Shopping for someone else? See the full Christmas Gift Guide — digital gift picks
+            &amp; instant downloads →
           </span>
         </a>
       </section>
