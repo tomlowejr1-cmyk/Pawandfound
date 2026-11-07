@@ -201,7 +201,7 @@ function PromoBanner() {
       <span className="inline-flex items-center gap-1.5">
         🐾 <strong>Welcome!</strong> Apparel, essentials &amp; digital guides — shop the collection
       </span>{" "}
-      <a href="/products" className="underline decoration-white/50 hover:text-white/90">Shop now →</a>
+      <a href="/downloads" className="underline decoration-white/50 hover:text-white/90">Shop now →</a>
       <button
         onClick={handleDismiss}
         className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full p-1 text-white/70 hover:bg-white/20 hover:text-white transition-colors"
@@ -218,18 +218,13 @@ function PromoBanner() {
 // Links that stay in the desktop bar. Everything else is rendered inside the
 // "More" dropdown, because 25 inline links are ~2200px wide and blew the page
 // out to a horizontal scrollbar at every desktop width.
-const PRIMARY_NAV_HREFS = ["/", "/products", "/downloads", "/blog", "/about"];
+const PRIMARY_NAV_HREFS = ["/", "/downloads", "/gifts", "/blog", "/about"];
 // Only shown once there is room for them (lg and up).
 const WIDE_ONLY_HREFS = ["/blog", "/about"];
 
 function Header() {
   const navLinks = [
     { href: "/", label: "Home" },
-    { href: "/products", label: "Shop All" },
-    { href: "/products?category=Apparel", label: "Apparel" },
-    { href: "/products?category=Essentials", label: "Essentials" },
-    { href: "/products?category=Supplies", label: "Supplies" },
-    { href: "/products?category=Accessories", label: "Accessories" },
     { href: "/about", label: "About" },
     { href: "/blog", label: "Blog" },
     { href: "/thanksgiving", label: "🦃 Thanksgiving" },
@@ -237,6 +232,7 @@ function Header() {
     { href: "/quiz", label: "Quiz" },
     { href: "/training", label: "Training Videos 🎓" },
     { href: "/budget-tracker", label: "Budget Tracker 💰" },
+    { href: "/gifts", label: "Gifts 🎁" },
     { href: "/downloads", label: "Digital Guides" },
     { href: "/freebies/pet-birthday-card", label: "Freebies" },
     { href: "/refer-a-friend", label: "Refer a Friend 💌" },
@@ -387,11 +383,10 @@ function Footer() {
           <div>
             <h3 className="font-heading mb-2 text-sm font-semibold text-white">Shop</h3>
             <ul className="space-y-1 text-sm text-white/70">
-              <li><a href="/products" className="hover:text-white">All Products</a></li>
-              <li><a href="/products?category=Apparel" className="hover:text-white">Apparel</a></li>
-              <li><a href="/products?category=Essentials" className="hover:text-white">Essentials</a></li>
-              <li><a href="/products?category=Supplies" className="hover:text-white">Supplies</a></li>
-              <li><a href="/products?category=Accessories" className="hover:text-white">Accessories</a></li>
+              <li><a href="/downloads" className="hover:text-white">All Downloads</a></li>
+              <li><a href="/downloads" className="hover:text-white">Bundles</a></li>
+              <li><a href="/downloads" className="hover:text-white">Coloring Books</a></li>
+              <li><a href="/gifts" className="hover:text-white">Gift Guide</a></li>
             </ul>
           </div>
           <div>
