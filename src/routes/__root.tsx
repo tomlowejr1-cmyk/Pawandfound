@@ -60,7 +60,7 @@ export const Route = createRootRoute({
       {
         name: "twitter:description",
         content:
-          "Your one-stop shop for pet apparel, essentials, supplies, and accessories.",
+          "Instant digital pet guides, printables and coloring books for dog, cat and small-pet owners.",
       },
       { name: "twitter:image", content: `${SITE_URL}/images/logo.png` },
     ],
@@ -148,7 +148,7 @@ function RootDocument({ children }: { children: ReactNode }) {
               name: "Paw & Found",
               url: "https://www.pawandfound.store",
               description:
-                "A pet product store with curated supplies, apparel, accessories, and digital guides for pet owners.",
+                "A digital pet shop selling downloadable guides, printables, coloring books and sticker packs for dog, cat and small-pet owners.",
               sameAs: [
                 "https://instagram.com/explore/tags/pawandfoundpets",
               ],

@@ -44,17 +44,17 @@ export const Route = createFileRoute("/")({
   component: Home,
   head: () => ({
     meta: [
-      { title: "Paw & Found — Pet Supplies & Apparel for Dogs & Cats" },
+      { title: "Paw & Found — Instant Pet Guides, Printables & Coloring Books" },
       {
         name: "description",
         content:
-          "Shop Paw & Found for the best pet supplies, apparel, and accessories — from dog t-shirts to premium cat litter. Find everything your pet needs in one place.",
+          "Downloadable pet guides, planners, coloring books and sticker packs — bought in two clicks and delivered instantly. No shipping, nothing to wait for.",
       },
-      { property: "og:title", content: "Paw & Found — Pet Supplies & Apparel for Dogs & Cats" },
+      { property: "og:title", content: "Paw & Found — Instant Pet Guides, Printables & Coloring Books" },
       {
         property: "og:description",
         content:
-          "Shop the best pet supplies, apparel, and accessories. From dog t-shirts to cat litter, find everything your pet needs.",
+          "Instant digital pet guides, printables and coloring books for dog, cat and small-pet owners.",
       },
       { property: "og:url", content: SITE_URL },
       { property: "og:image", content: `${SITE_URL}/images/logo.png` },
@@ -62,7 +62,7 @@ export const Route = createFileRoute("/")({
       {
         name: "twitter:description",
         content:
-          "Shop the best pet supplies, apparel, and accessories. From dog t-shirts to cat litter, find everything your pet needs.",
+          "Instant digital pet guides, printables and coloring books for dog, cat and small-pet owners.",
       },
     ],
     links: [{ rel: "canonical", href: SITE_URL }],
