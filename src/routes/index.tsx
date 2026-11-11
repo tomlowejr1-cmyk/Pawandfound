@@ -9,7 +9,33 @@ import { LiveClock } from "~/components/live-clock";
 import { WeatherWidget } from "~/components/weather-widget";
 import { DailyPetTip } from "~/components/daily-pet-tip";
 import { PetFactOfTheDay } from "~/components/pet-fact-of-the-day";
+import {
+  getProductBySlug,
+  isAvailable,
+  type DigitalProduct,
+} from "~/lib/digital-catalog";
 const SITE_URL = "https://www.pawandfound.store";
+
+/**
+ * Homepage catalogue preview. Only products with a real file behind them can
+ * appear here — a title with nothing to deliver cannot be sold. Puppy and cat
+ * products lead. Titles, prices and cover art come straight from the
+ * catalogue, so nothing here can drift from /downloads.
+ */
+const HOMEPAGE_PRODUCT_SLUGS = [
+  "puppy-training-checklist",
+  "cat-behavior-decoder",
+  "ultimate-pet-care-planner",
+  "vet-visit-prep-kit",
+  "pet-travel-checklist",
+  "diy-dog-birthday-party-kit",
+  "pet-photo-tips-guide",
+  "my-first-pet-coloring-book",
+];
+
+const homepageProducts: DigitalProduct[] = HOMEPAGE_PRODUCT_SLUGS.map(
+  (slug) => getProductBySlug(slug),
+).filter((p): p is DigitalProduct => p !== undefined && isAvailable(p));
 
 /** Deterministic shuffle using week number as seed */
 function seededShuffle(arr: Product[], seed: number): Product[] {
@@ -71,7 +97,7 @@ export const Route = createFileRoute("/")({
 });
 
 function Home() {
-  const { featured, categories } = Route.useLoaderData();
+  const { featured } = Route.useLoaderData();
   const [hashtagCopied, setHashtagCopied] = useState(false);
   const [referred, setReferred] = useState(false);
   const BRAND_HASHTAG = "#PawAndFoundPets";
@@ -294,28 +320,47 @@ function Home() {
         </a>
       </section>
 
-      {/* Categories Section */}
+      {/* Digital Catalogue Section — live, downloadable products only */}
       <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="text-center">
-          <h2 className="section-title">Browse Pet Supplies by Category</h2>
+          <h2 className="section-title">Shop the Digital Catalogue</h2>
           <p className="section-subtitle mt-2">
-            A look at the physical catalogue — these items aren't available for purchase yet
+            Instant downloads — every title below is available now, and your file arrives the moment you pay
           </p>
         </div>
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {categories.map((cat) => (
+          {homepageProducts.map((product) => (
             <a
-              key={cat.id}
-              href={`/products?category=${cat.id}`}
-              className="card group p-6 text-center transition-all hover:-translate-y-1"
+              key={product.id}
+              href={`/downloads#${product.slug}`}
+              className="card group flex flex-col overflow-hidden transition-all hover:-translate-y-1"
             >
-              <span className="inline-block text-4xl">{cat.icon}</span>
-              <h3 className="font-heading mt-3 text-lg font-semibold text-[#2D2D2D] group-hover:text-[#FF7F5C]">
-                {cat.name}
-              </h3>
-              <p className="mt-1 text-sm text-[#6B7280]">{cat.description}</p>
+              <div className="aspect-square overflow-hidden bg-[#FFF8F0]">
+                <img
+                  src={product.image}
+                  alt={product.title}
+                  className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-105"
+                  loading="lazy"
+                />
+              </div>
+              <div className="flex flex-1 flex-col p-4">
+                <h3 className="font-heading text-base font-semibold leading-snug text-[#2D2D2D] group-hover:text-[#FF7F5C]">
+                  {product.title}
+                </h3>
+                <div className="mt-auto flex items-center justify-between border-t border-[#E9EDDE] pt-3">
+                  <span className="font-heading text-lg font-bold text-[#FF7F5C]">
+                    ${product.price.toFixed(2)}
+                  </span>
+                  <span className="text-sm font-medium text-[#2A9D8F]">View →</span>
+                </div>
+              </div>
             </a>
           ))}
+        </div>
+        <div className="mt-10 text-center">
+          <a href="/downloads" className="btn-secondary">
+            Browse All Downloads →
+          </a>
         </div>
       </section>
 
