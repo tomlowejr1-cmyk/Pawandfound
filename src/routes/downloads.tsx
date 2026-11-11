@@ -149,7 +149,8 @@ function DownloadsPage() {
         {digitalProducts.map((product) => (
           <div
             key={product.id}
-            className="flex flex-col gap-8 md:flex-row md:items-start"
+            id={product.slug}
+            className="flex flex-col gap-8 md:flex-row md:items-start scroll-mt-24"
           >
             {/* Cover Image */}
             <div className="flex-shrink-0 mx-auto md:mx-0">
