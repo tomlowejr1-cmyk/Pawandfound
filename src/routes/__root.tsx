@@ -199,7 +199,7 @@ function PromoBanner() {
   return (
     <div className="relative bg-gradient-to-r from-[#FF7F5C] via-[#FF7F5C] to-[#F4A261] px-4 py-2.5 text-center text-sm font-medium text-white animate-pulse">
       <span className="inline-flex items-center gap-1.5">
-        🐾 <strong>Welcome!</strong> Apparel, essentials &amp; digital guides — shop the collection
+        🐾 <strong>Welcome!</strong> Instant-download guides, printables &amp; coloring books — nothing ships
       </span>{" "}
       <a href="/downloads" className="underline decoration-white/50 hover:text-white/90">Shop now →</a>
       <button
@@ -252,7 +252,7 @@ function Header() {
     <header className="sticky top-0 z-50 border-b border-[#E9EDDE] bg-white/90 backdrop-blur-md">
       <div className="mx-auto flex max-w-7xl items-center gap-2 px-4 py-3 sm:px-6 lg:px-8">
         <a href="/" className="flex shrink-0 items-center gap-2">
-          <img src="/images/logo.png" alt="Paw & Found — Pet Supplies Store Logo" className="h-8 w-auto" />
+          <img src="/images/logo.png" alt="Paw & Found — Instant Pet Downloads" className="h-8 w-auto" />
           <span className="font-heading whitespace-nowrap text-xl font-bold text-[#2A9D8F]">Paw & Found</span>
         </a>
 
@@ -373,7 +373,7 @@ function Footer() {
         <div className="grid gap-8 sm:grid-cols-3">
           <div>
             <div className="flex items-center gap-2 text-lg font-bold text-white">
-              <img src="/images/logo.png" alt="Paw & Found — Pet Supplies Store" className="h-7 w-auto brightness-0 invert" />
+              <img src="/images/logo.png" alt="Paw & Found — Instant Pet Downloads" className="h-7 w-auto brightness-0 invert" />
               <span className="font-heading">Paw & Found</span>
             </div>
             <p className="mt-2 text-sm text-white/70">

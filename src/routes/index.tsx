@@ -1,8 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { loadProducts } from "~/lib/products";
-import type { Product } from "~/lib/types";
-import { CATEGORIES } from "~/lib/types";
 import { NewsletterSignup } from "~/components/newsletter-signup";
 import { SpinWheel } from "~/components/spin-wheel";
 import { LiveClock } from "~/components/live-clock";
@@ -37,36 +34,7 @@ const homepageProducts: DigitalProduct[] = HOMEPAGE_PRODUCT_SLUGS.map(
   (slug) => getProductBySlug(slug),
 ).filter((p): p is DigitalProduct => p !== undefined && isAvailable(p));
 
-/** Deterministic shuffle using week number as seed */
-function seededShuffle(arr: Product[], seed: number): Product[] {
-  const shuffled = [...arr];
-  let s = seed;
-  for (let i = shuffled.length - 1; i > 0; i--) {
-    s = (s * 16807 + 0) % 2147483647;
-    const j = s % (i + 1);
-    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-  }
-  return shuffled;
-}
-
-/** Get week number for rotation (resets Monday) */
-function getWeekSeed(): number {
-  return Math.floor(Date.now() / (7 * 24 * 60 * 60 * 1000));
-}
-
-interface HomeData {
-  featured: Product[];
-  categories: typeof CATEGORIES;
-}
-
 export const Route = createFileRoute("/")({
-  loader: async (): Promise<HomeData> => {
-    const products = await loadProducts();
-    const seed = getWeekSeed();
-    const shuffled = seededShuffle(products, seed);
-    const featured = shuffled.slice(0, 6);
-    return { featured, categories: CATEGORIES };
-  },
   component: Home,
   head: () => ({
     meta: [
@@ -84,7 +52,7 @@ export const Route = createFileRoute("/")({
       },
       { property: "og:url", content: SITE_URL },
       { property: "og:image", content: `${SITE_URL}/images/logo.png` },
-      { name: "twitter:title", content: "Paw & Found — Pet Supplies & Apparel" },
+      { name: "twitter:title", content: "Paw & Found — Instant Pet Guides & Printables" },
       {
         name: "twitter:description",
         content:
@@ -97,7 +65,6 @@ export const Route = createFileRoute("/")({
 });
 
 function Home() {
-  const { featured } = Route.useLoaderData();
   const [hashtagCopied, setHashtagCopied] = useState(false);
   const [referred, setReferred] = useState(false);
   const BRAND_HASHTAG = "#PawAndFoundPets";
@@ -194,8 +161,8 @@ function Home() {
             </h1>
             <p className="mt-4 max-w-lg text-lg text-white/80">
               Pet guides, planners, printables and coloring books you can download the second you
-              check out. Our physical range is on show to browse, but not on sale yet — what we sell
-              today lands in your inbox, not on a delivery van.
+              check out. Every product in the shop is a download — nothing ships, so there is
+              nothing to wait for.
             </p>
             {/* Curated badge */}
             <div className="mt-6 inline-flex items-center gap-2 rounded-xl bg-white/15 backdrop-blur-sm px-5 py-3 text-white border border-white/20">
@@ -243,17 +210,18 @@ function Home() {
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-4 gap-y-2 px-4 py-3 text-center sm:px-6 lg:px-8">
           <span className="text-xl">🦃</span>
           <p className="text-sm font-medium text-[#2D2D2D]">
-            Thanksgiving is coming — shop the{" "}
-            <a href="/thanksgiving" className="font-bold text-[#FF7F5C] underline-offset-4 hover:underline">
-              Thanksgiving Collection
-            </a>{" "}
-            and keep your pet safe at the feast.
+            Thanksgiving is coming — instant-download pet guides and printables, ready the moment
+            you buy. See the{" "}
+            <a href="/downloads" className="font-bold text-[#FF7F5C] underline-offset-4 hover:underline">
+              Digital Downloads
+            </a>
+            .
           </p>
           <a
-            href="/thanksgiving"
+            href="/downloads"
             className="rounded-full bg-[#FF7F5C] px-4 py-1.5 text-xs font-bold text-white transition-transform hover:scale-105"
           >
-            Shop Now
+            Shop Downloads
           </a>
         </div>
       </section>
@@ -363,30 +331,6 @@ function Home() {
           </a>
         </div>
       </section>
-
-      {/* Featured Products Section */}
-      {featured.length > 0 && (
-        <section className="bg-[#E9EDDE]/50 py-16">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="text-center">
-              <h2 className="section-title">From the Catalogue</h2>
-              <p className="section-subtitle mt-2">
-                Browsable only for now — no physical product is on sale yet
-              </p>
-            </div>
-            <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-              {featured.map((product) => (
-                <ProductCard key={product.id} product={product} />
-              ))}
-            </div>
-            <div className="mt-10 text-center">
-              <a href="/products" className="btn-secondary">
-                Browse the Full Catalogue
-              </a>
-            </div>
-          </div>
-        </section>
-      )}
 
       {/* Blog Section */}
       <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
@@ -747,28 +691,5 @@ function Home() {
         </div>
       </section>
     </div>
-  );
-}
-
-function ProductCard({ product }: { product: Product }) {
-  return (
-    <a href={`/product/${product.slug}`} className="card group">
-      <div className="aspect-square overflow-hidden bg-[#FFF8F0]">
-        <img
-          src={product.image}
-          alt={`${product.name} — Paw & Found pet product`}
-          className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-          loading="lazy"
-        />
-      </div>
-      <div className="p-4">
-        <span className="badge">{product.category}</span>
-        <h3 className="font-heading mt-2 font-semibold text-[#2D2D2D] group-hover:text-[#FF7F5C]">
-          {product.name}
-        </h3>
-        <p className="mt-1 text-lg font-bold text-[#FF7F5C]">${product.price.toFixed(2)}</p>
-        <p className="mt-1 text-xs font-semibold text-[#B0B7A3]">Not available yet</p>
-      </div>
-    </a>
   );
 }

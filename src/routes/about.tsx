@@ -6,17 +6,17 @@ export const Route = createFileRoute("/about")({
   component: AboutPage,
   head: () => ({
     meta: [
-      { title: "About Paw & Found — Pet Store for Dogs & Cats" },
+      { title: "About Paw & Found — Instant Pet Downloads" },
       {
         name: "description",
         content:
-          "Learn about Paw & Found, the pet store that makes it simple to find quality pet supplies, apparel, and accessories — pet-first, sustainable, and community-driven.",
+          "Paw & Found is a digital pet shop: downloadable guides, planners, printables and coloring books for dog, cat and small-pet owners. Everything is an instant download — nothing ships.",
       },
-      { property: "og:title", content: "About Paw & Found — Pet Store for Dogs & Cats" },
+      { property: "og:title", content: "About Paw & Found — Instant Pet Downloads" },
       {
         property: "og:description",
         content:
-          "Learn about Paw & Found — making it simple to find quality pet supplies, apparel, and accessories.",
+          "A digital pet shop of downloadable guides, planners, printables and coloring books. Everything is an instant download — nothing ships.",
       },
       { property: "og:url", content: `${SITE_URL}/about` },
     ],
@@ -34,8 +34,11 @@ function AboutPage() {
           About Paw & Found
         </h1>
         <p className="mx-auto mt-4 max-w-2xl text-lg text-[#6B7280]">
-          We make it dead simple to find exactly what your pet needs — from trendy pet T-shirts
-          to everyday essentials like cat litter.
+          We make practical pet guides you can download the moment you buy — for dog, cat and
+          small-pet owners who would rather have the answer now than wait for a parcel.
+        </p>
+        <p className="mx-auto mt-3 max-w-2xl text-base font-semibold text-[#2A9D8F]">
+          Everything here is an instant download. Nothing ships.
         </p>
       </div>
 
@@ -44,38 +47,41 @@ function AboutPage() {
         <div>
           <h2 className="font-heading text-2xl font-bold text-[#2D2D2D]">Our Story</h2>
           <p className="mt-4 leading-relaxed text-[#6B7280]">
-            Paw & Found was born from a simple frustration: shopping for pet supplies
-            shouldn't be complicated. We noticed that pet owners were spending too much
-            time searching through endless options, trying to find quality products at
-            fair prices.
+            Paw & Found started with a simple frustration: good pet advice is scattered all over
+            the internet — half of it vague, most of it buried under ads. Pet owners were
+            spending more time searching than actually helping their animals.
           </p>
           <p className="mt-4 leading-relaxed text-[#6B7280]">
-            So we created a curated one-stop shop. Every product in our catalog is
-            selected by pet owners who know what matters — durability, comfort, safety,
-            and style. Whether you're looking for a cozy sweater for winter walks or
-            reliable cat litter that actually controls odor, we've got you covered.
+            So we write it up properly and sell it as a file. A training checklist, a care
+            planner, a coloring book, a set of printable gift tags — a finished PDF you download,
+            print if you want, and keep.
           </p>
           <p className="mt-4 leading-relaxed text-[#6B7280]">
-            Our mission is simple: <strong className="text-[#FF7F5C]">spend less time shopping, more time
-            with your pet.</strong>
+            The shop is digital only. There is no warehouse, no stock and no courier. You pay by
+            card through Stripe, and the download page opens the moment the payment clears, with
+            the file ready to save.
+          </p>
+          <p className="mt-4 leading-relaxed text-[#6B7280]">
+            Our mission is simple: <strong className="text-[#FF7F5C]">spend less time searching,
+            more time with your pet.</strong>
           </p>
         </div>
         <div className="overflow-hidden rounded-xl bg-gradient-to-br from-[#FF7F5C] to-[#F4A261] p-8 text-white">
           <div className="flex h-full flex-col justify-center">
             <span className="text-6xl">🐶🐱</span>
-            <h3 className="font-heading mt-4 text-2xl font-bold">Why pet owners love us</h3>
+            <h3 className="font-heading mt-4 text-2xl font-bold">Why pet owners like it here</h3>
             <ul className="mt-4 space-y-3">
               <li className="flex items-center gap-2">
-                <span>✓</span> Curated selection — no endless scrolling
+                <span>✓</span> Instant delivery — the file is there when you pay
               </li>
               <li className="flex items-center gap-2">
-                <span>✓</span> Clear categories that make sense
+                <span>✓</span> Nothing ships, so nothing to wait for
               </li>
               <li className="flex items-center gap-2">
-                <span>✓</span> Fast shopping, easy checkout
+                <span>✓</span> A real, finished file behind every listing
               </li>
               <li className="flex items-center gap-2">
-                <span>✓</span> Products tested by real pet owners
+                <span>✓</span> Print at home as often as you like
               </li>
               <li className="flex items-center gap-2">
                 <span>✓</span> Secure checkout via Stripe
@@ -90,24 +96,26 @@ function AboutPage() {
         <h2 className="font-heading text-center text-2xl font-bold text-[#2D2D2D]">What We Stand For</h2>
         <div className="mt-8 grid gap-6 sm:grid-cols-3">
           <article className="card p-6 text-center">
-            <span className="text-3xl">❤️</span>
+            <span className="text-3xl">🐕</span>
             <h3 className="font-heading mt-3 font-semibold text-[#2D2D2D]">Pet-First</h3>
             <p className="mt-1 text-sm text-[#6B7280]">
-              Every product is chosen with your pet's happiness and safety in mind.
+              Written for the animal in front of you — a new puppy, a cat, a senior or a small pet.
             </p>
           </article>
           <article className="card p-6 text-center">
-            <span className="text-3xl">🌱</span>
-            <h3 className="font-heading mt-3 font-semibold text-[#2D2D2D]">Sustainable</h3>
+            <span className="text-3xl">📄</span>
+            <h3 className="font-heading mt-3 font-semibold text-[#2D2D2D]">Honest Catalogue</h3>
             <p className="mt-1 text-sm text-[#6B7280]">
-              We prioritize eco-friendly options and sustainable packaging.
+              If a product has no finished file, it is not for sale. We would rather list a short
+              shelf of real downloads than a long one of maybes.
             </p>
           </article>
           <article className="card p-6 text-center">
             <span className="text-3xl">🤝</span>
-            <h3 className="font-heading mt-3 font-semibold text-[#2D2D2D]">Community</h3>
+            <h3 className="font-heading mt-3 font-semibold text-[#2D2D2D]">Straight Answers</h3>
             <p className="mt-1 text-sm text-[#6B7280]">
-              We partner with local shelters and donate a portion of every sale.
+              A question about a file, a download or a refund reaches us directly at
+              hello@pawandfound.store.
             </p>
           </article>
         </div>
@@ -117,11 +125,11 @@ function AboutPage() {
       <section className="mt-16 rounded-xl bg-[#E9EDDE] p-8 text-center">
         <h2 className="font-heading text-2xl font-bold text-[#2D2D2D]">Get in Touch</h2>
         <p className="mt-2 text-[#6B7280]">
-          Have questions or suggestions? We'd love to hear from you!
+          Questions about a download, or an idea for a guide we should write? We would love to
+          hear from you.
         </p>
-        <div className="mt-4 flex justify-center gap-8 text-sm text-[#6B7280]">
+        <div className="mt-4 flex justify-center text-sm text-[#6B7280]">
           <span>📧 hello@pawandfound.store</span>
-          <span>📞 (555) 123-PAWS</span>
         </div>
       </section>
 
@@ -133,7 +141,7 @@ function AboutPage() {
           <a href="/blog" className="btn-secondary text-sm">🐕 Dog Breeds Guide</a>
           <a href="/blog" className="btn-secondary text-sm">🐱 Cat Breeds Guide</a>
           <a href="/blog" className="btn-secondary text-sm">🍖 Dog Food Tips</a>
-          <a href="/blog" className="btn-secondary text-sm">📝 See All →</a>
+          <a href="/downloads" className="btn-secondary text-sm">📥 Shop the Downloads</a>
         </div>
       </section>
     </div>
