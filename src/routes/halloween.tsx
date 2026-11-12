@@ -1,10 +1,29 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { loadProducts, loadPaymentLinks, getProductBySlug, getPaymentLink } from "~/lib/products";
-import type { Product } from "~/lib/types";
+import { getProductBySlug, isAvailable } from "~/lib/digital-catalog";
+import type { DigitalProduct } from "~/lib/digital-catalog";
 
 const SITE_URL = "https://www.pawandfound.store";
 
-const SEASONAL_SLUGS = ["halloween-boo-pet-tshirt", "pumpkin-spice-bandana", "holiday-plaid-bowtie-collar"];
+// Halloween picks — real, deliverable downloads at live Stripe prices.
+const FEATURED: { slug: string; blurb: string }[] = [
+  {
+    slug: "paws-and-relax-coloring-book",
+    blurb: "Twenty printable pet-themed pages to colour while the trick-or-treaters ring the bell.",
+  },
+  {
+    slug: "paw-and-found-digital-sticker-pack",
+    blurb: "Digital stickers for photos, planners and party invites — use them again every year.",
+  },
+  {
+    slug: "pet-photo-tips-guide",
+    blurb: "Get a photo of the costume before it comes off: light, angles and treats that hold the pose.",
+  },
+];
+
+const featured = FEATURED.map(({ slug, blurb }) => {
+  const product = getProductBySlug(slug);
+  return product && isAvailable(product) ? { product, blurb } : null;
+}).filter((x): x is { product: DigitalProduct; blurb: string } => x !== null);
 
 const SAFETY_POSTS = [
   {
@@ -36,74 +55,39 @@ const SAFETY_POSTS = [
       "More pets go missing on July 4th than any other day. How to keep your dog and cat calm during fireworks, safe in the heat, and home where they belong.",
   },
 ];
-const PRODUCT_JSON_LD = JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "Product",
-  name: "Halloween Boo Pet T-Shirt",
-  image: `${SITE_URL}/images/product-tshirt-halloween.jpg`,
-  description:
-    "A spooky-but-cozy Boo t-shirt for dogs and cats. Soft, breathable cotton, one size fits most — perfect for Halloween photos and fall fun.",
-  brand: { "@type": "Brand", name: "Paw & Found" },
-  category: "Apparel",
-  offers: {
-    "@type": "Offer",
-    price: "21.99",
-    priceCurrency: "USD",
-    availability: "https://schema.org/OutOfStock",
-    // No shippingDetails: nothing on the store ships — every sale is a digital download.
-  },
-});
-
-interface HalloweenData {
-  seasonal: { product: Product; stripeUrl: string | undefined }[];
-}
 
 export const Route = createFileRoute("/halloween")({
-  loader: async (): Promise<HalloweenData> => {
-    const products = await loadProducts();
-    const paymentLinks = await loadPaymentLinks();
-    const seasonal = SEASONAL_SLUGS.map((slug) => ({
-      product: getProductBySlug(products, slug),
-      stripeUrl: getPaymentLink(paymentLinks, slug),
-    }))
-      .filter((x): x is { product: Product; stripeUrl: string | undefined } => Boolean(x.product))
-      .map((x) => ({ product: x.product as Product, stripeUrl: x.stripeUrl }));
-    return { seasonal };
-  },
   component: HalloweenPage,
   head: () => ({
     meta: [
-      { title: "Halloween Collection | Paw & Found 🎃" },
+      { title: "Halloween Downloads for Pet Parents | Paw & Found 🎃" },
       {
         name: "description",
         content:
-          "Paw & Found's Halloween Collection — spooky-but-cozy pet tees, bandanas and bowties, currently not available for purchase — plus seasonal pet-safety guides for your dog and cat.",
+          "Halloween downloads for dog and cat owners — a printable pet coloring book, digital sticker pack and pet photo tips, from $5.99. Instant download, nothing ships.",
       },
-      { property: "og:title", content: "Halloween Collection | Paw & Found 🎃" },
+      { property: "og:title", content: "Halloween Downloads for Pet Parents | Paw & Found 🎃" },
       {
         property: "og:description",
         content:
-          "Seasonal pet apparel for Halloween plus seasonal safety guides.",
+          "Printable coloring pages, digital stickers and costume-photo tips — instant downloads for the season.",
       },
-      { property: "og:image", content: `${SITE_URL}/images/product-tshirt-halloween.jpg` },
+      { property: "og:image", content: `${SITE_URL}/images/pet-coloring-book-preview.png` },
       { property: "og:url", content: `${SITE_URL}/halloween` },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Halloween Collection | Paw & Found 🎃" },
+      { name: "twitter:title", content: "Halloween Downloads for Pet Parents | Paw & Found 🎃" },
       {
         name: "twitter:description",
-        content: "Seasonal pet apparel for Halloween plus pet-safety guides.",
+        content: "Coloring pages, digital stickers and costume-photo tips — instant downloads.",
       },
-      { name: "twitter:image", content: `${SITE_URL}/images/product-tshirt-halloween.jpg` },
+      { name: "twitter:image", content: `${SITE_URL}/images/pet-coloring-book-preview.png` },
     ],
     links: [{ rel: "canonical", href: `${SITE_URL}/halloween` }],
-    scripts: [{ type: "application/ld+json", children: PRODUCT_JSON_LD }],
   }),
 });
 
 function HalloweenPage() {
-  const { seasonal } = Route.useLoaderData();
-
   return (
     <div className="bg-gradient-to-b from-[#FFF8F0] to-white">
       {/* Hero */}
@@ -114,16 +98,16 @@ function HalloweenPage() {
               🎃 Spooky season is here
             </span>
             <h1 className="font-heading mt-4 text-4xl font-bold text-[#2D2D2D] sm:text-5xl">
-              The Halloween <span className="text-[#FF7F5C]">Collection</span>
+              The Halloween <span className="text-[#FF7F5C]">Downloads</span>
             </h1>
             <p className="mx-auto mt-4 max-w-xl text-lg leading-relaxed text-[#6B7280] lg:mx-0">
-              Spooky-but-cozy pet apparel your dog or cat will love wearing — plus the seasonal
-              safety guides that keep them out of the candy bowl and out of the ER. Trick or treat,
-              safely.
+              Printable colouring pages, digital stickers and the photo tips that get the costume
+              shot before it comes off — plus the seasonal safety guides that keep your pet out of
+              the candy bowl. Instant download, nothing ships.
             </p>
             <div className="mt-6 flex flex-wrap justify-center gap-3 lg:justify-start">
               <a href="#shop" className="btn-primary">
-                See the Collection
+                See the Downloads
               </a>
               <a
                 href="#safety"
@@ -135,63 +119,61 @@ function HalloweenPage() {
           </div>
           <div className="w-full max-w-md flex-shrink-0 lg:w-1/3">
             <img
-              src="/images/product-tshirt-halloween.jpg"
-              alt="Halloween Boo Pet T-Shirt — Paw & Found Halloween Collection"
+              src="/images/pet-coloring-book-preview.png"
+              alt="Paws & Relax Coloring Book — Paw & Found Halloween downloads"
               className="w-full rounded-3xl shadow-2xl shadow-[#FF7F5C]/20 ring-1 ring-[#F4E3CD]"
             />
           </div>
         </div>
       </section>
 
-      {/* Seasonal products grid */}
+      {/* Seasonal downloads */}
       <section id="shop" className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="flex flex-wrap items-end justify-between gap-2">
           <div>
-            <h2 className="font-heading text-3xl font-bold text-[#2D2D2D]">🎃 Seasonal Picks</h2>
+            <h2 className="font-heading text-3xl font-bold text-[#2D2D2D]">🎃 Seasonal Downloads</h2>
             <p className="mt-2 text-[#6B7280]">
-              Halloween gear — not available for purchase right now.
+              Instant downloads for the season — every price below is live.
             </p>
           </div>
-          <a href="/products" className="text-sm font-semibold text-[#2A9D8F] hover:text-[#FF7F5C]">
-            Browse all products →
+          <a href="/downloads" className="text-sm font-semibold text-[#2A9D8F] hover:text-[#FF7F5C]">
+            See all downloads →
           </a>
         </div>
         <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {seasonal.map(({ product, stripeUrl }) => (
+          {featured.map(({ product, blurb }) => (
             <div key={product.id} className="card group flex flex-col overflow-hidden">
-              <a href={`/product/${product.slug}`} className="block aspect-square overflow-hidden bg-[#FFF8F0]">
+              <a
+                href={`/downloads#${product.slug}`}
+                className="block aspect-square overflow-hidden bg-[#FFF8F0]"
+              >
                 <img
                   src={product.image}
-                  alt={`${product.name} — Paw & Found pet product`}
+                  alt={`${product.title} — Paw & Found download`}
                   className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
                   loading="lazy"
                 />
               </a>
               <div className="flex flex-1 flex-col p-4">
-                <span className="badge">{product.category}</span>
-                <a href={`/product/${product.slug}`}>
+                <span className="badge">Instant download</span>
+                <a href={`/downloads#${product.slug}`}>
                   <h3 className="font-heading mt-2 font-semibold text-[#2D2D2D] group-hover:text-[#FF7F5C]">
-                    {product.name}
+                    {product.title}
                   </h3>
                 </a>
-                <p className="mt-1 text-lg font-bold text-[#FF7F5C]">${product.price.toFixed(2)}</p>
+                <p className="mt-2 text-sm leading-relaxed text-[#6B7280]">{blurb}</p>
+                <p className="mt-2 text-lg font-bold text-[#FF7F5C]">${product.price.toFixed(2)}</p>
                 <div className="mt-auto flex gap-2 pt-4">
-                  {stripeUrl ? (
-                    <a
-                      href={stripeUrl}
-                      target="_blank"
-                      rel="noopener"
-                      className="btn-primary flex-1 text-center text-xs px-3 py-2.5"
-                    >
-                      Buy Now
-                    </a>
-                  ) : (
-                    <span className="flex-1 rounded-lg border border-[#E9EDDE] bg-[#F9FAF5] px-3 py-2.5 text-center text-xs font-semibold text-[#B0B7A3]">
-                      Not available yet
-                    </span>
-                  )}
                   <a
-                    href={`/product/${product.slug}`}
+                    href={product.stripePaymentLink}
+                    target="_blank"
+                    rel="noopener"
+                    className="btn-primary flex-1 text-center text-xs px-3 py-2.5"
+                  >
+                    Buy now — ${product.price.toFixed(2)}
+                  </a>
+                  <a
+                    href={`/downloads#${product.slug}`}
                     className="rounded-full border border-[#2A9D8F] px-4 py-2.5 text-xs font-semibold text-[#2A9D8F] transition-colors hover:bg-[#E8F8F5]"
                   >
                     Details
@@ -250,12 +232,12 @@ function HalloweenPage() {
             🐾 Make This Halloween Their Best One Yet
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-white/90">
-            Grab the festive gear, brush up on the safety basics, and enjoy a spooky-but-cozy
-            season with your favorite furry friend.
+            Print the colouring pages, grab the stickers, brush up on the safety basics, and enjoy a
+            spooky-but-cozy season with your favorite furry friend.
           </p>
           <div className="mt-6 flex flex-wrap justify-center gap-3">
             <a href="#shop" className="rounded-full bg-white px-8 py-3 text-sm font-bold text-[#FF7F5C] transition-transform hover:scale-105">
-              See the Collection
+              See the Downloads
             </a>
             <a href="/blog" className="rounded-full border-2 border-white/70 px-8 py-3 text-sm font-bold text-white transition-colors hover:bg-white/10">
               Browse All Safety Guides
