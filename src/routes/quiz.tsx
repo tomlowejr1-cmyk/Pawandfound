@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, useEffect, useRef } from "react";
-import { loadProducts, getProductBySlug } from "~/lib/products";
-import type { Product } from "~/lib/types";
+import { getProductBySlug, isAvailable } from "~/lib/digital-catalog";
+import type { DigitalProduct } from "~/lib/digital-catalog";
 
 const GIVEAWAY_STORAGE_KEY = "pawandfound_quiz_giveaway_seen";
 
@@ -11,7 +11,7 @@ interface QuizAnswer {
   pet: "dog" | "cat";
   size: "small" | "medium" | "large";
   vibe: "active" | "cozy" | "chewer" | "senior";
-  lookingFor: "toys" | "apparel" | "essentials" | "accessories";
+  lookingFor: "training" | "health" | "printables" | "gifts";
   breed: string;
 }
 
@@ -66,18 +66,18 @@ const breedTraits: Record<string, string[]> = {
   sphynx: ["cozy", "hairless", "sensitive-skin"],
 };
 
-// Product slugs mapped to breed traits
+// Download slugs mapped to breed traits — every one is a deliverable file.
 const traitProductMap: Record<string, string[]> = {
-  active: ["plush-squeaky-fox-toy", "squeaky-tennis-ball-3-pack", "nylon-reflective-leash", "adventure-pup-graphic-tee"],
-  chewer: ["squeaky-tennis-ball-3-pack", "plush-squeaky-fox-toy"],
-  "long-hair": ["slicker-grooming-brush", "gentle-pet-shampoo-16oz"],
-  "curly-hair": ["slicker-grooming-brush", "gentle-pet-shampoo-16oz"],
-  cozy: ["orthopedic-pet-bed-medium", "cozy-hoodie-pullover", "paws-and-relax-coloring-book"],
-  outgoing: ["good-dog-club-tshirt", "adventure-pup-graphic-tee", "classic-plaid-bandana"],
-  "sensitive-skin": ["gentle-pet-shampoo-16oz"],
-  large: ["adjustable-collar-leather", "orthopedic-pet-bed-medium"],
-  hairless: ["gentle-pet-shampoo-16oz", "cozy-hoodie-pullover"],
-  climber: ["ventilated-travel-carrier"],
+  active: ["puppy-training-checklist", "pet-travel-checklist", "pet-photo-tips-guide"],
+  chewer: ["homemade-pet-treats-recipe-guide", "puppy-training-checklist"],
+  "long-hair": ["ultimate-pet-care-planner", "vet-visit-prep-kit"],
+  "curly-hair": ["ultimate-pet-care-planner", "vet-visit-prep-kit"],
+  cozy: ["paws-and-relax-coloring-book", "ultimate-pet-care-planner"],
+  outgoing: ["pet-photo-tips-guide", "paw-and-found-digital-sticker-pack"],
+  "sensitive-skin": ["vet-visit-prep-kit", "pet-first-aid-emergency-care-guide"],
+  large: ["ultimate-pet-care-planner", "pet-travel-checklist"],
+  hairless: ["vet-visit-prep-kit", "ultimate-pet-care-planner"],
+  climber: ["pet-travel-checklist", "paws-and-relax-coloring-book"],
 };
 
 const questions: Question[] = [
@@ -116,78 +116,69 @@ const questions: Question[] = [
   },
   {
     id: "lookingFor",
-    question: "What are you looking for?",
+    question: "What would help most right now?",
     options: [
-      { value: "toys", label: "Toys & Play", emoji: "🎾" },
-      { value: "apparel", label: "Apparel & Style", emoji: "👕" },
-      { value: "essentials", label: "Essentials", emoji: "🛒" },
-      { value: "accessories", label: "Accessories", emoji: "🎒" },
+      { value: "training", label: "Training & Behaviour", emoji: "🎓" },
+      { value: "health", label: "Health & Safety", emoji: "🩺" },
+      { value: "printables", label: "Printables & Fun", emoji: "🎨" },
+      { value: "gifts", label: "Gifts & Keepsakes", emoji: "🎁" },
     ],
   },
 ];
 
-function getRecommendations(answers: QuizAnswer, products: Product[]) {
-  const recs: Product[] = [];
+function getRecommendations(answers: QuizAnswer) {
+  const recs: DigitalProduct[] = [];
   const guideSlug = getDigitalGuide(answers);
 
-  // Breed-specific recommendations (highest priority)
+  function push(slug: string) {
+    if (recs.length >= 5) return;
+    const p = getProductBySlug(slug);
+    if (p && isAvailable(p) && !recs.find((r) => r.id === p.id)) recs.push(p);
+  }
+
+  // Breed-specific picks (highest priority)
   const traits = breedTraits[answers.breed] || [];
   for (const trait of traits) {
-    const slugs = traitProductMap[trait] || [];
-    for (const slug of slugs) {
-      if (recs.length >= 5) break;
-      const p = products.find(pr => pr.slug === slug);
-      if (p && !recs.find(r => r.id === p.id)) recs.push(p);
-    }
+    for (const slug of traitProductMap[trait] || []) push(slug);
   }
 
-  // Vibe-based recommendations
+  // Vibe-based picks
   if (answers.vibe === "active") {
-    const toy = products.find(p => p.slug === "plush-squeaky-fox-toy");
-    if (toy && !recs.find(r => r.id === toy.id)) recs.push(toy);
-    const leash = products.find(p => p.slug === "nylon-reflective-leash");
-    if (leash && !recs.find(r => r.id === leash.id)) recs.push(leash);
+    push("puppy-training-checklist");
+    push("pet-travel-checklist");
   }
   if (answers.vibe === "cozy" || answers.vibe === "senior") {
-    const bed = products.find(p => p.slug === "orthopedic-pet-bed-medium");
-    if (bed && !recs.find(r => r.id === bed.id)) recs.push(bed);
-    const hoodie = products.find(p => p.slug === "cozy-hoodie-pullover");
-    if (hoodie && !recs.find(r => r.id === hoodie.id)) recs.push(hoodie);
+    push("ultimate-pet-care-planner");
+    push("paws-and-relax-coloring-book");
   }
   if (answers.vibe === "chewer") {
-    const balls = products.find(p => p.slug === "squeaky-tennis-ball-3-pack");
-    if (balls && !recs.find(r => r.id === balls.id)) recs.push(balls);
+    push("homemade-pet-treats-recipe-guide");
+    push("pet-first-aid-emergency-care-guide");
   }
 
-  // Size-based recommendations
-  if (answers.size === "large" && answers.pet === "dog") {
-    const collar = products.find(p => p.slug === "adjustable-collar-leather");
-    if (collar && !recs.find(r => r.id === collar.id)) recs.push(collar);
-  }
-  if (answers.size === "small") {
-    const carrier = products.find(p => p.slug === "ventilated-travel-carrier");
-    if (carrier && !recs.find(r => r.id === carrier.id)) recs.push(carrier);
-  }
+  // Size-based picks
+  if (answers.size === "small") push("pet-travel-checklist");
 
-  // Category picks
-  const categoryMap: Record<string, string> = {
-    toys: "plush-squeaky-fox-toy",
-    apparel: "good-dog-club-tshirt",
-    essentials: "stainless-steel-bowl-set",
-    accessories: "personalized-engraved-id-tag",
+  // What they said would help most
+  const categoryMap: Record<string, string[]> = {
+    training: ["puppy-training-checklist", "cat-behavior-decoder"],
+    health: ["pet-first-aid-emergency-care-guide", "vet-visit-prep-kit"],
+    printables: ["paws-and-relax-coloring-book", "paw-and-found-digital-sticker-pack"],
+    gifts: ["pet-gift-tags-wrapping-set", "diy-dog-birthday-party-kit"],
   };
-  const keySlug = categoryMap[answers.lookingFor];
-  const keyProduct = products.find(p => p.slug === keySlug);
-  if (keyProduct && !recs.find(r => r.id === keyProduct.id)) recs.push(keyProduct);
+  for (const slug of categoryMap[answers.lookingFor] || []) push(slug);
 
-  // Always add staples if we have room
-  if (recs.length < 5) {
-    const staples = ["premium-clumping-cat-litter", "gentle-pet-shampoo-16oz", "eco-friendly-poop-bags-120ct"];
-    for (const s of staples) {
-      if (recs.length >= 5) break;
-      const p = products.find(p => p.slug === s);
-      if (p && !recs.find(r => r.id === p.id)) recs.push(p);
-    }
+  // Pet-type fit
+  push(answers.pet === "cat" ? "cat-behavior-decoder" : "puppy-training-checklist");
+
+  // The matched guide, then staples
+  push(guideSlug);
+  for (const s of [
+    "ultimate-pet-care-planner",
+    "pet-first-aid-emergency-care-guide",
+    "paw-and-found-digital-sticker-pack",
+  ]) {
+    push(s);
   }
 
   return { products: recs.slice(0, 5), guideSlug };
@@ -221,7 +212,13 @@ function getSummary(answers: QuizAnswer): string {
     chewer: "tough chewer",
     senior: "chill senior",
   };
-  return `Your perfect match: a ${vibeLabels[answers.vibe]} ${getBreedLabel(answers.breed)} looking for ${answers.lookingFor}!`;
+  const lookingLabels: Record<string, string> = {
+    training: "training & behaviour",
+    health: "health & safety",
+    printables: "printables & fun",
+    gifts: "gifts & keepsakes",
+  };
+  return `Your perfect match: a ${vibeLabels[answers.vibe]} ${getBreedLabel(answers.breed)} — downloads for ${lookingLabels[answers.lookingFor]}.`;
 }
 
 function GiveawayCard() {
@@ -242,7 +239,7 @@ function GiveawayCard() {
     e.preventDefault();
     const input = (e.target as HTMLFormElement).querySelector("input");
     if (input?.value) {
-      alert("🎉 You're entered! Check your inbox for a confirmation email and welcome gift.");
+      alert("🎉 You're entered! Check your inbox for a confirmation email.");
       input.value = "";
       localStorage.setItem(GIVEAWAY_STORAGE_KEY, "1");
       setVisible(false);
@@ -260,11 +257,11 @@ function GiveawayCard() {
       <div className="relative text-center">
         <span className="text-4xl">🎁</span>
         <h3 className="font-heading mt-3 text-xl font-bold text-[#2D2D2D]">
-          Win a Paw & Found Gift Box!
+          Win a Paw &amp; Found Download Bundle!
         </h3>
         <p className="mt-2 text-sm text-[#6B7280] max-w-md mx-auto">
-          Enter your email for a chance to win a curated box of treats, toys, and essentials — plus you'll get
-          our weekly pet care tips and exclusive deals.
+          Enter your email for a chance to win one of our digital bundles — instant downloads, no
+          shipping — plus our weekly pet care tips.
         </p>
 
         <form
@@ -294,17 +291,13 @@ function GiveawayCard() {
 }
 
 export const Route = createFileRoute("/quiz")({
-  loader: async () => {
-    const products = await loadProducts();
-    return { products };
-  },
   component: QuizPage,
   head: () => ({
     meta: [
-      { title: "Pet Product Finder Quiz — Paw & Found" },
-      { name: "description", content: "Find the perfect products for your pet in 5 quick questions. Answer about your pet's breed, size, and habits to get personalized product and digital-guide recommendations from Paw & Found." },
-      { property: "og:title", content: "Pet Product Finder Quiz — Paw & Found" },
-      { property: "og:description", content: "Find the perfect products for your pet in 5 quick questions — plus enter to win a Paw & Found gift box!" },
+      { title: "Pet Download Finder Quiz — Paw & Found" },
+      { name: "description", content: "Answer 5 quick questions about your pet's breed, size and habits and get matched to printable guides, checklists and coloring books from Paw & Found — every one an instant download from $3.99." },
+      { property: "og:title", content: "Pet Download Finder Quiz — Paw & Found" },
+      { property: "og:description", content: "Answer 5 quick questions and get matched to instant downloads for your dog or cat." },
       { property: "og:url", content: `${SITE_URL}/quiz` },
     ],
     links: [{ rel: "canonical", href: `${SITE_URL}/quiz` }],
@@ -312,10 +305,9 @@ export const Route = createFileRoute("/quiz")({
 });
 
 function QuizPage() {
-  const { products } = Route.useLoaderData();
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState<Partial<QuizAnswer>>({});
-  const [results, setResults] = useState<{ products: Product[]; guideSlug: string } | null>(null);
+  const [results, setResults] = useState<{ products: DigitalProduct[]; guideSlug: string } | null>(null);
   const [animating, setAnimating] = useState(false);
 
   // Get the current question, resolving dynamic breed options
@@ -339,7 +331,7 @@ function QuizPage() {
       if (step < questions.length - 1) {
         setStep(step + 1);
       } else {
-        setResults(getRecommendations(newAnswers as QuizAnswer, products));
+        setResults(getRecommendations(newAnswers as QuizAnswer));
       }
       setAnimating(false);
     }, 300);
@@ -361,30 +353,30 @@ function QuizPage() {
           <p className="mt-2 text-[#6B7280]">{getSummary(answers as QuizAnswer)}</p>
         </div>
 
-        {/* Product Recommendations */}
+        {/* Download Recommendations */}
         <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {results.products.map(product => (
             <a
               key={product.id}
-              href={`/product/${product.slug}`}
+              href={`/downloads#${product.slug}`}
               className="card group flex flex-col transition-all hover:-translate-y-1"
             >
               <div className="aspect-square overflow-hidden bg-[#FFF8F0]">
                 <img
                   src={product.image}
-                  alt={`${product.name} — Paw & Found`}
+                  alt={`${product.title} — Paw & Found download`}
                   className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
                   loading="lazy"
                 />
               </div>
               <div className="flex flex-1 flex-col p-4">
-                <span className="badge">{product.category}</span>
+                <span className="badge">Instant download</span>
                 <h3 className="font-heading mt-2 font-semibold text-[#2D2D2D] group-hover:text-[#FF7F5C]">
-                  {product.name}
+                  {product.title}
                 </h3>
                 <p className="mt-1 text-lg font-bold text-[#FF7F5C]">${product.price.toFixed(2)}</p>
                 <span className="mt-auto pt-3 text-sm font-medium text-[#FF7F5C] group-hover:underline inline-flex items-center gap-1">
-                  Shop Now
+                  See the download
                   <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                   </svg>
@@ -403,23 +395,23 @@ function QuizPage() {
             💡 Why these picks?
           </h3>
           <p className="mt-1 text-sm text-[#6B7280]">
-            Based on your {getBreedLabel(answers.breed || "")}'s traits — we matched products that fit their energy level, size, and grooming needs.
+            Based on your {getBreedLabel(answers.breed || "")}'s traits — we matched downloads that fit their energy level, age, and day-to-day care.
           </p>
         </div>
 
         {/* Digital Guide */}
         <div className="mt-4 rounded-xl border-2 border-[#2A9D8F] bg-[#2A9D8F]/5 p-5">
-          <p className="font-heading text-sm font-semibold text-[#2A9D8F]">📚 You might also like</p>
-          <p className="mt-1 text-sm text-[#6B7280]">We found a digital guide that matches your pet's needs!</p>
-          <a href="/downloads" className="mt-3 btn-secondary text-sm inline-flex">Browse Digital Guides</a>
+          <p className="font-heading text-sm font-semibold text-[#2A9D8F]">📚 Your best match</p>
+          <p className="mt-1 text-sm text-[#6B7280]">One download fits your pet's needs better than the rest.</p>
+          <a href={`/downloads#${results.guideSlug}`} className="mt-3 btn-secondary text-sm inline-flex">See your matched download</a>
         </div>
 
         <div className="mt-8 flex flex-wrap justify-center gap-3">
           <button onClick={reset} className="btn-primary">
             🔄 Take the Quiz Again
           </button>
-          <a href="/products" className="btn-secondary">
-            🛍️ Browse All Products
+          <a href="/downloads" className="btn-secondary">
+            📥 Browse All Downloads
           </a>
         </div>
       </div>
@@ -433,7 +425,7 @@ function QuizPage() {
     <div className="mx-auto max-w-2xl px-4 py-12 sm:px-6 lg:px-8">
       {/* Page heading for landing + question states */}
       <h1 className="font-heading mb-6 text-center text-3xl font-bold text-[#2D2D2D]">
-        Find the Perfect Products for Your Pet
+        Find the Right Download for Your Pet
       </h1>
       {/* Progress Bar */}
       <div className="mb-8">

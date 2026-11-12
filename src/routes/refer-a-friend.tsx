@@ -41,13 +41,13 @@ export const Route = createFileRoute("/refer-a-friend")({
       {
         name: "description",
         content:
-          "Found a great pet store? Share Paw & Found with a friend — apparel, essentials, and digital guides for pet parents, all in one place.",
+          "Share Paw & Found with a friend — printable pet-care guides, planners, coloring books and sticker packs for pet parents, all instant downloads.",
       },
       { property: "og:title", content: "Share Paw & Found with a Friend — Paw & Found 💌" },
       {
         property: "og:description",
         content:
-          "Share Paw & Found with a friend — apparel, essentials, and digital guides for pet parents.",
+          "Share Paw & Found with a friend — instant digital downloads for pet parents.",
       },
       { property: "og:url", content: `${SITE_URL}/refer-a-friend` },
     ],
@@ -113,11 +113,11 @@ function ReferAFriendPage() {
 
 
   const shareText = encodeURIComponent(
-    `🐾 Found a great pet store — Paw & Found. Apparel, essentials & digital guides for pet parents!`,
+    `🐾 Found a great little pet shop — Paw & Found. Instant digital downloads for pet parents: printable guides, planners, coloring books and sticker packs.`,
   );
   const shareLink = encodeURIComponent(referralLink);
   const shareBody = encodeURIComponent(
-    `Hey! I found this awesome pet store — Paw & Found. Apparel, essentials & digital guides for pet parents. ${referralLink}`,
+    `Hey! I found this pet shop — Paw & Found. Digital downloads for pet parents: printable pet-care guides, planners, coloring books and sticker packs, all delivered instantly. ${referralLink}`,
   );
 
   const shareButtons = [
@@ -155,8 +155,8 @@ function ReferAFriendPage() {
     },
     {
       emoji: "🛍️",
-      title: "They explore the store",
-      text: "Apparel, essentials, accessories, and digital guides — something for every pet parent.",
+      title: "They explore the downloads",
+      text: "Printable guides, planners, coloring books and sticker packs — instant downloads from $3.99.",
     },
     {
       emoji: "🐾",
@@ -166,7 +166,7 @@ function ReferAFriendPage() {
   ];
 
   const terms = [
-    "Curated pet apparel, essentials, accessories, and digital guides — a one-stop shop.",
+    "Printable pet-care guides, planners, coloring books and sticker packs — all instant downloads.",
     "Secure checkout via Stripe on every order.",
     "Free pet-care content and interactive tools on our blog and in the store.",
   ];
@@ -181,7 +181,8 @@ function ReferAFriendPage() {
         </h1>
         <p className="mx-auto mt-3 max-w-2xl text-[#6B7280]">
           Love Paw &amp; Found? Pass it on. Send a friend a link and help them discover
-          apparel, essentials, and digital guides — all in one place. Happy pets, happy humans. 🐶🐱
+          printable guides, planners and coloring books — downloaded in seconds, nothing to wait
+          for. Happy pets, happy humans. 🐶🐱
         </p>
       </div>
 
@@ -228,12 +229,12 @@ function ReferAFriendPage() {
             <h2 className="font-heading font-bold text-[#2D2D2D]">What They’ll Find</h2>
           </div>
           <p className="mt-2 text-sm text-[#6B7280]">
-            A curated shop for pet parents — from trendy tees and bandanas to everyday
-            essentials like cat litter, plus digital guides and helpful tools.
+            A shop for pet parents — printable pet-care guides, planners, coloring books and
+            sticker packs, all delivered as instant downloads.
           </p>
           <div className="mt-4 flex flex-1 flex-col justify-center gap-2">
-            <a href="/products" className="btn-primary text-center">Browse the Store →</a>
-            <a href="/downloads" className="btn-secondary text-center">Explore Digital Guides</a>
+            <a href="/downloads" className="btn-primary text-center">Browse the Downloads →</a>
+            <a href="/blog" className="btn-secondary text-center">Read the Pet Care Blog</a>
           </div>
         </div>
       </div>
@@ -294,10 +295,10 @@ function ReferAFriendPage() {
       <section className="mt-10 rounded-2xl bg-gradient-to-br from-[#2A9D8F] to-[#1E7A6F] p-8 text-center text-white sm:p-10">
         <h2 className="font-heading text-2xl font-bold">Ready to treat your pet?</h2>
         <p className="mx-auto mt-2 max-w-md text-white/85">
-          Browse the store — and don't forget to share your link with a friend on the way.
+          Browse the downloads — and don't forget to share your link with a friend on the way.
         </p>
-        <a href="/products" className="btn-primary mt-6 inline-flex bg-white text-[#2A9D8F] hover:bg-white/90">
-          Shop the Store →
+        <a href="/downloads" className="btn-primary mt-6 inline-flex bg-white text-[#2A9D8F] hover:bg-white/90">
+          Shop the Downloads →
         </a>
       </section>
     </div>
